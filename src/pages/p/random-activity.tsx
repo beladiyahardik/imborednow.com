@@ -119,8 +119,8 @@ export default function RandomActivity() {
     return (
         <>
             <Head>
-                <title>Random Activity - Kill Boredom Instantly!</title>
-                <meta name="description" content="Get a random activity, joke, fact, or challenge to kill boredom right now!" />
+                <title>Random Activity - I'm Bored Now Instantly!</title>
+                <meta name="description" content="Get a random activity, joke, fact, or challenge to I'm Bored Now right now!" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
             </Head>
 
@@ -131,7 +131,7 @@ export default function RandomActivity() {
                         <div className="flex justify-between items-center">
                             <Link href="/">
                                 <h1 className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 cursor-pointer hover:scale-105 transition-transform">
-                                    🎯 Kill Boredom
+                                    🎯 I'm Bored Now
                                 </h1>
                             </Link>
                             <Link href="/">
@@ -368,7 +368,7 @@ export default function RandomActivity() {
                 <footer className="bg-gradient-to-br from-gray-900 to-gray-800 text-white py-8 sm:py-10 mt-12">
                     <div className="container mx-auto px-4 sm:px-6 text-center space-y-4">
                         <p className="text-gray-400 text-sm">
-                            &copy; 2025 Kill Boredom. Made with ❤️ to cure boredom worldwide.
+                            &copy; 2025 I'm Bored Now. Made with ❤️ to cure boredom worldwide.
                         </p>
                         <div className="flex flex-wrap justify-center gap-4 text-sm">
                             {['About', 'Privacy', 'Terms', 'Contact'].map((link) => (

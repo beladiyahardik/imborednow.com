@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Kill Boredom - Fun Activities, Jokes, Games & More!</title>
+        <title>I'm Bored Now - Fun Activities, Jokes, Games & More!</title>
         <meta name="description" content="Beat boredom instantly with jokes, facts, games, DIY ideas, and random surprises. Fun for everyone!" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
@@ -26,7 +26,7 @@ export default function Home() {
             <div className="flex justify-between items-center">
               <Link href="/">
                 <h1 className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 cursor-pointer hover:scale-105 transition-transform">
-                  🎯 Kill Boredom
+                  🎯 I'm Bored Now
                 </h1>
               </Link>
               <nav className="hidden md:flex space-x-6 lg:space-x-8">
@@ -203,7 +203,7 @@ export default function Home() {
               {/* Value Proposition Section */}
               <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-8 sm:p-12 rounded-3xl shadow-xl border border-purple-100">
                 <h2 className="text-2xl sm:text-3xl font-black text-center mb-8 text-gray-800">
-                  Why Kill Boredom? 🤔
+                  Why I'm Bored Now? 🤔
                 </h2>
                 <div className="grid sm:grid-cols-2 gap-6">
                   {[
@@ -331,7 +331,7 @@ export default function Home() {
             <div className="text-center space-y-6">
               <div className="flex justify-center items-center space-x-2 text-2xl sm:text-3xl font-black">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
-                  🎯 Kill Boredom
+                  🎯 I'm Bored Now
                 </span>
               </div>
               <p className="text-gray-400 text-sm sm:text-base max-w-2xl mx-auto">
@@ -346,7 +346,7 @@ export default function Home() {
               </div>
               <div className="pt-6 border-t border-gray-700">
                 <p className="text-gray-500 text-xs sm:text-sm">
-                  &copy; 2025 Kill Boredom. All rights reserved.
+                  &copy; 2025 I'm Bored Now. All rights reserved.
                 </p>
               </div>
             </div>
