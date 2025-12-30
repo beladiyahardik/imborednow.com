@@ -1,16 +1,29 @@
-import { useState, useEffect, useRef } from "react";
+'use client'
+/* eslint-disable react/no-unescaped-entities */
+import { useState, useEffect, useRef, FormEvent } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import { format, differenceInYears } from "date-fns";
 
+interface PersonalEvent {
+  age: number;
+  status: string;
+  formattedDate: string;
+  year: number;
+  month: number;
+  day: number;
+  event: string;
+}
+
 export default function HistoryOnYourBirthday() {
   const [birthdate, setBirthdate] = useState("");
-  const [events, setEvents] = useState([]);
+  const [events, setEvents] = useState<(PersonalEvent)[]>([]);
   const [showResults, setShowResults] = useState(false);
-  const resultsRef = useRef(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const resultsRef = useRef<any>(null);
 
   // Big JSON of major world history events (1900–2025)
-const historyEvents = [
+  const historyEvents = [
     // Ancient & Classical Era
     { year: -753, month: 4, day: 21, event: "Founding of Rome 🏛️" },
     { year: -509, month: 1, day: 1, event: "Roman Republic Established 🏛️" },
@@ -19,7 +32,7 @@ const historyEvents = [
     { year: -44, month: 3, day: 15, event: "Assassination of Julius Caesar 🗡️" },
     { year: 79, month: 8, day: 24, event: "Mount Vesuvius Destroys Pompeii 🌋" },
     { year: 476, month: 9, day: 4, event: "Fall of Western Roman Empire 🏛️⬇️" },
-    
+
     // Medieval Period
     { year: 622, month: 9, day: 24, event: "Muhammad's Hijra to Medina ☪️" },
     { year: 800, month: 12, day: 25, event: "Charlemagne Crowned Holy Roman Emperor 👑" },
@@ -31,7 +44,7 @@ const historyEvents = [
     { year: 1347, month: 10, day: 1, event: "Black Death Arrives in Europe 💀🦠" },
     { year: 1453, month: 5, day: 29, event: "Fall of Constantinople 🏰" },
     { year: 1455, month: 1, day: 1, event: "Gutenberg Prints First Bible 📖" },
-    
+
     // Age of Discovery
     { year: 1492, month: 10, day: 12, event: "Columbus Reaches the Americas 🌍⛵" },
     { year: 1497, month: 5, day: 20, event: "Vasco da Gama Reaches India 🇮🇳⛵" },
@@ -39,7 +52,7 @@ const historyEvents = [
     { year: 1519, month: 9, day: 20, event: "Magellan Begins First Circumnavigation 🌍⛵" },
     { year: 1521, month: 8, day: 13, event: "Fall of Tenochtitlan - Aztec Empire Ends 🇲🇽" },
     { year: 1533, month: 1, day: 1, event: "Spanish Conquest of Inca Empire 🇵🇪" },
-    
+
     // 17th & 18th Century
     { year: 1603, month: 3, day: 24, event: "Tokugawa Shogunate Begins in Japan 🇯🇵" },
     { year: 1618, month: 5, day: 23, event: "Thirty Years' War Begins ⚔️" },
@@ -55,7 +68,7 @@ const historyEvents = [
     { year: 1783, month: 9, day: 3, event: "Treaty of Paris - US Independence Recognized 🇺🇸" },
     { year: 1789, month: 7, day: 14, event: "Storming of the Bastille - French Revolution 🇫🇷⚔️" },
     { year: 1793, month: 1, day: 21, event: "Execution of King Louis XVI 🗡️👑" },
-    
+
     // 19th Century
     { year: 1804, month: 12, day: 2, event: "Napoleon Crowned Emperor 👑🇫🇷" },
     { year: 1815, month: 6, day: 18, event: "Battle of Waterloo - Napoleon Defeated ⚔️" },
@@ -80,7 +93,7 @@ const historyEvents = [
     { year: 1895, month: 12, day: 28, event: "First Public Film Screening by Lumière Brothers 🎬" },
     { year: 1896, month: 4, day: 6, event: "First Modern Olympic Games in Athens 🏅" },
     { year: 1898, month: 4, day: 25, event: "Spanish-American War Begins 🇪🇸🇺🇸" },
-    
+
     // Early 20th Century
     { year: 1901, month: 1, day: 22, event: "Queen Victoria Dies - End of Era 👑⚰️" },
     { year: 1903, month: 12, day: 17, event: "Wright Brothers' First Powered Flight ✈️" },
@@ -120,7 +133,7 @@ const historyEvents = [
     { year: 1945, month: 8, day: 9, event: "Atomic Bomb Dropped on Nagasaki 💣☢️" },
     { year: 1945, month: 8, day: 15, event: "Japan Surrenders - End of WWII 🕊️🇯🇵" },
     { year: 1945, month: 10, day: 24, event: "United Nations Founded 🇺🇳" },
-    
+
     // Post-War & Cold War Era
     { year: 1947, month: 8, day: 15, event: "India Gains Independence from Britain 🇮🇳" },
     { year: 1947, month: 8, day: 14, event: "Pakistan Gains Independence 🇵🇰" },
@@ -157,7 +170,7 @@ const historyEvents = [
     { year: 1968, month: 8, day: 20, event: "Soviet Invasion of Czechoslovakia 🇨🇿🇷🇺" },
     { year: 1969, month: 7, day: 20, event: "Apollo 11 Moon Landing 👨‍🚀🌕🚀" },
     { year: 1969, month: 8, day: 15, event: "Woodstock Music Festival 🎸🎶" },
-    
+
     // 1970s
     { year: 1971, month: 12, day: 16, event: "Bangladesh Independence 🇧🇩" },
     { year: 1972, month: 2, day: 21, event: "Nixon Visits China - Diplomatic Breakthrough 🇺🇸🇨🇳" },
@@ -174,7 +187,7 @@ const historyEvents = [
     { year: 1979, month: 3, day: 28, event: "Three Mile Island Nuclear Accident ☢️🇺🇸" },
     { year: 1979, month: 11, day: 4, event: "Iran Hostage Crisis Begins 🇮🇷🇺🇸" },
     { year: 1979, month: 12, day: 25, event: "Soviet Invasion of Afghanistan 🇦🇫🇷🇺" },
-    
+
     // 1980s
     { year: 1980, month: 8, day: 14, event: "Gdańsk Shipyard Strike - Solidarity Movement Begins 🇵🇱✊" },
     { year: 1981, month: 3, day: 30, event: "Reagan Assassination Attempt 🇺🇸" },
@@ -191,7 +204,7 @@ const historyEvents = [
     { year: 1989, month: 6, day: 4, event: "Tiananmen Square Massacre 🇨🇳💔" },
     { year: 1989, month: 11, day: 9, event: "Fall of the Berlin Wall 🧱⬇️🎉" },
     { year: 1989, month: 12, day: 25, event: "Execution of Ceaușescu in Romania 🇷🇴" },
-    
+
     // 1990s
     { year: 1990, month: 2, day: 11, event: "Nelson Mandela Released from Prison 🇿🇦✊" },
     { year: 1990, month: 8, day: 2, event: "Iraq Invades Kuwait 🇮🇶🇰🇼" },
@@ -215,7 +228,7 @@ const historyEvents = [
     { year: 1998, month: 8, day: 7, event: "US Embassy Bombings in Kenya & Tanzania 🇰🇪🇹🇿💣" },
     { year: 1999, month: 3, day: 24, event: "NATO Bombing of Yugoslavia Begins 🇷🇸✈️" },
     { year: 1999, month: 12, day: 31, event: "Boris Yeltsin Resigns - Putin Takes Over 🇷🇺" },
-    
+
     // 2000s
     { year: 2000, month: 9, day: 28, event: "Second Intifada Begins 🇵🇸🇮🇱" },
     { year: 2001, month: 9, day: 11, event: "9/11 Terrorist Attacks 🗽✈️💔" },
@@ -235,7 +248,7 @@ const historyEvents = [
     { year: 2008, month: 9, day: 15, event: "Lehman Brothers Collapse - Financial Crisis Peaks 💰📉" },
     { year: 2008, month: 11, day: 4, event: "Barack Obama Elected First Black US President 🇺🇸" },
     { year: 2009, month: 1, day: 20, event: "Barack Obama Inaugurated as US President 🇺🇸" },
-    
+
     // 2010s
     { year: 2010, month: 1, day: 12, event: "Haiti Earthquake - Over 200,000 Dead 🇭🇹💔" },
     { year: 2010, month: 4, day: 20, event: "Deepwater Horizon Oil Spill 🛢️🌊" },
@@ -281,7 +294,7 @@ const historyEvents = [
     { year: 2019, month: 8, day: 3, event: "El Paso Walmart Shooting 🇺🇸💔" },
     { year: 2019, month: 9, day: 23, event: "Greta Thunberg UN Climate Speech 🌍" },
     { year: 2019, month: 12, day: 31, event: "First COVID-19 Cases Reported in Wuhan 🇨🇳🦠" },
-    
+
     // 2020s
     { year: 2020, month: 1, day: 3, event: "US Kills Iranian General Qasem Soleimani 🇺🇸🇮🇷" },
     { year: 2020, month: 1, day: 11, event: "WHO Declares COVID-19 Global Pandemic 🦠🌍" },
@@ -328,7 +341,7 @@ const historyEvents = [
     { year: 2024, month: 12, day: 8, event: "Assad Regime Falls in Syria - Rebels Take Damascus 🇸🇾" },
     { year: 2025, month: 1, day: 1, event: "New Year 2025 🎆" },
     { year: 2025, month: 1, day: 20, event: "Donald Trump Inaugurated as 47th US President 🇺🇸" }
-]
+  ]
 
   const calculateAgeAtEvents = () => {
     if (!birthdate) return;
@@ -359,11 +372,15 @@ const historyEvents = [
       .filter(Boolean); // Remove nulls (past events)
 
     // Sort chronologically
-    setEvents(personalEvents.sort((a, b) => a.year - b.year));
+    const validEvents = personalEvents.filter((event): event is PersonalEvent => event !== null);
+
+    // Sort chronologically
+    setEvents(validEvents.sort((a, b) => a.year - b.year));
+
     setShowResults(true);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     calculateAgeAtEvents();
   };
@@ -394,7 +411,7 @@ const historyEvents = [
               <Link href="/" className="flex items-center gap-1.5">
                 <span className="text-3xl">🎯</span>
                 <h1 className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">
-                  I'm Bored Now
+                  I&apos;m Bored Now
                 </h1>
               </Link>
             </div>
@@ -418,7 +435,7 @@ const historyEvents = [
             </p>
 
             <form
-              onSubmit={handleSubmit}
+              onSubmit={(e) => handleSubmit(e)}
               className="max-w-md mx-auto bg-white/20 backdrop-blur-lg p-8 sm:p-10 rounded-3xl shadow-2xl border border-white/30"
             >
               <label className="block text-lg sm:text-xl font-bold mb-4">
@@ -458,11 +475,10 @@ const historyEvents = [
                   {events.map((ev, index) => (
                     <div
                       key={index}
-                      className={`group relative p-8 rounded-3xl shadow-2xl overflow-hidden transition-all duration-500 hover:-translate-y-4 hover:scale-105 ${
-                        ev.age === 0
+                      className={`group relative p-8 rounded-3xl shadow-2xl overflow-hidden transition-all duration-500 hover:-translate-y-4 hover:scale-105 ${ev.age === 0
                           ? "bg-gradient-to-br from-yellow-400 to-orange-500 text-purple-900"
                           : "bg-gradient-to-br from-purple-500 to-pink-500 text-white"
-                      }`}
+                        }`}
                       style={{ animationDelay: `${index * 100}ms` }}
                     >
                       <div className="absolute inset-0 bg-white/10 group-hover:bg-white/20 transition-all duration-300"></div>

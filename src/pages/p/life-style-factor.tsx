@@ -1,3 +1,5 @@
+'use client'
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useRef, useEffect } from "react";
 import Head from "next/head";
 import Link from "next/link";
@@ -30,7 +32,7 @@ export default function LifeExpectancyCalculator() {
   };
 
   // Lifestyle adjustments in years (approximate averages from studies)
-  const adjustments = {
+  const adjustments: any = {
     smoking: { never: 0, former: -3, current: -10 },
     exercise: { sedentary: -3, moderate: 0, active: +4 },
     alcohol: { none: 0, moderate: +1, heavy: -4 },
@@ -98,7 +100,7 @@ export default function LifeExpectancyCalculator() {
               <Link href="/" className="flex items-center gap-1.5">
                 <span className="text-3xl">🎯</span>
                 <h1 className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">
-                  I'm Bored Now
+                  I&apos;m Bored Now
                 </h1>
               </Link>
               <nav className="hidden md:flex space-x-6 lg:space-x-8">
@@ -158,11 +160,10 @@ export default function LifeExpectancyCalculator() {
                         key={g}
                         type="button"
                         onClick={() => setGender(g)}
-                        className={`py-4 px-6 rounded-xl font-bold text-lg transition-all ${
-                          gender === g
+                        className={`py-4 px-6 rounded-xl font-bold text-lg transition-all ${gender === g
                             ? "bg-yellow-300 text-purple-800 shadow-lg scale-105"
                             : "bg-white/30 text-white hover:bg-white/50"
-                        }`}
+                          }`}
                       >
                         {g === "male" ? "👨 Male" : g === "female" ? "👩 Female" : "👥 Average"}
                       </button>
@@ -362,10 +363,10 @@ export default function LifeExpectancyCalculator() {
             <Link href="/" className="flex justify-center items-center gap-1.5 mb-6">
               <span className="text-3xl">🎯</span>
               <span className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
-                I'm Bored Now
+                I&apos;m Bored Now
               </span>
             </Link>
-            <p className="text-gray-400">© 2025 I'm Bored Now. Made with ❤️ to inspire healthy fun.</p>
+            <p className="text-gray-400">© 2025 I&apos;m Bored Now. Made with ❤️ to inspire healthy fun.</p>
           </div>
         </footer>
       </div>

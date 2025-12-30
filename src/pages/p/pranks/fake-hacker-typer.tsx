@@ -1,3 +1,5 @@
+'use client'
+/* eslint-disable react-hooks/immutability */
 import { useState, useEffect } from "react";
 import Head from "next/head";
 import Link from "next/link";
@@ -58,7 +60,7 @@ alert("FBI WARNING: Illegal activity detected!");
 
 `.repeat(10); // Make it long enough to scroll forever
 
-  let codeIndex = 0;
+  let codeIndex: number = 0;
 
   useEffect(() => {
     const blinkInterval = setInterval(() => {
@@ -148,7 +150,7 @@ alert("FBI WARNING: Illegal activity detected!");
 
       {/* Tiny hint for victims */}
       <div className="fixed bottom-4 right-4 text-gray-600 text-xs opacity-30 pointer-events-none">
-        Prank by I'm Bored Now • Press ESC to stop hacking (if you dare)
+        Prank by I&apos;m Bored Now • Press ESC to stop hacking (if you dare)
       </div>
     </>
   );

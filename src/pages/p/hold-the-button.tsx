@@ -1,3 +1,5 @@
+'use client'
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect, useRef, useCallback } from "react";
 import Head from "next/head";
 import Link from "next/link";
@@ -7,12 +9,12 @@ import Confetti from "react-confetti"; // npm install react-confetti
 export default function HoldTheButtonGame() {
   const [isPressed, setIsPressed] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
-  const [leaderboard, setLeaderboard] = useState([]);
+  const [leaderboard, setLeaderboard] = useState<any[]>([]);
   const [activeTab, setActiveTab] = useState("game");
   const [showConfetti, setShowConfetti] = useState(false);
   const [milestone, setMilestone] = useState("");
   const [shake, setShake] = useState(false);
-  const intervalRef = useRef(null);
+  const intervalRef = useRef<any>(null);
   const canvasRef = useRef(null);
 
   const milestones = [
@@ -32,6 +34,7 @@ export default function HoldTheButtonGame() {
 
   useEffect(() => {
     const saved = localStorage.getItem("holdButtonLeaderboard");
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLeaderboard(saved ? JSON.parse(saved) : initialLeaderboard);
   }, []);
 
@@ -59,6 +62,12 @@ export default function HoldTheButtonGame() {
     }, 1000);
   }, []);
 
+  const formatTime = (seconds: any) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs.toString().padStart(2, "0")}`;
+  };
+
   const stopTimer = useCallback(() => {
     if (intervalRef.current) clearInterval(intervalRef.current);
     setIsPressed(false);
@@ -79,19 +88,13 @@ export default function HoldTheButtonGame() {
     setCurrentTime(0);
   }, [currentTime, leaderboard]);
 
-  const formatTime = (seconds) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${mins}:${secs.toString().padStart(2, "0")}`;
-  };
-
   // Handle mouse/touch events properly for mobile/desktop
-  const handlePress = useCallback((e) => {
+  const handlePress = useCallback((e: any) => {
     e.preventDefault();
     startTimer();
   }, [startTimer]);
 
-  const handleRelease = useCallback((e) => {
+  const handleRelease = useCallback((e: any) => {
     e.preventDefault();
     stopTimer();
   }, [stopTimer]);
@@ -132,11 +135,10 @@ export default function HoldTheButtonGame() {
           <div className="flex">
             <button
               onClick={() => setActiveTab("game")}
-              className={`flex-1 py-6 px-8 text-xl font-black transition-all duration-300 relative ${
-                activeTab === "game"
+              className={`flex-1 py-6 px-8 text-xl font-black transition-all duration-300 relative ${activeTab === "game"
                   ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg"
                   : "text-gray-600 hover:text-purple-600"
-              }`}
+                }`}
             >
               🎮 Challenge
               {activeTab === "game" && (
@@ -145,11 +147,10 @@ export default function HoldTheButtonGame() {
             </button>
             <button
               onClick={() => setActiveTab("leaderboard")}
-              className={`flex-1 py-6 px-8 text-xl font-black transition-all duration-300 relative ${
-                activeTab === "leaderboard"
+              className={`flex-1 py-6 px-8 text-xl font-black transition-all duration-300 relative ${activeTab === "leaderboard"
                   ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg"
                   : "text-gray-600 hover:text-purple-600"
-              }`}
+                }`}
             >
               🏆 Legends
               {activeTab === "leaderboard" && (
@@ -190,11 +191,10 @@ export default function HoldTheButtonGame() {
               <div className="relative inline-block perspective-1000" style={{ perspective: '1000px' }}>
                 {/* Outer Ring / Bezel */}
                 <div className="absolute -inset-4 bg-gradient-to-br from-gray-300 to-gray-500 rounded-3xl shadow-2xl shadow-gray-400/50 rotate-x-10" />
-                
+
                 {/* Side Shadows */}
-                <div className={`absolute inset-0 rounded-3xl shadow-[4px_4px_12px_rgba(0,0,0,0.3), inset_-4px_-4px_8px_rgba(255,255,255,0.4)] transition-all duration-200 ${
-                  isPressed ? 'shadow-[2px_2px_6px_rgba(0,0,0,0.5), inset_-2px_-2px_12px_rgba(255,255,255,0.2)]' : ''
-                }`} />
+                <div className={`absolute inset-0 rounded-3xl shadow-[4px_4px_12px_rgba(0,0,0,0.3), inset_-4px_-4px_8px_rgba(255,255,255,0.4)] transition-all duration-200 ${isPressed ? 'shadow-[2px_2px_6px_rgba(0,0,0,0.5), inset_-2px_-2px_12px_rgba(255,255,255,0.2)]' : ''
+                  }`} />
 
                 {/* Button Face */}
                 <button
@@ -204,25 +204,24 @@ export default function HoldTheButtonGame() {
                   onTouchStart={handlePress}
                   onTouchEnd={handleRelease}
                   onTouchCancel={handleRelease}
-                  className={`relative block w-72 h-72 sm:w-96 sm:h-96 rounded-3xl font-black text-5xl sm:text-7xl transition-all duration-150 ease-out overflow-hidden group ${
-                    isPressed
+                  className={`relative block w-72 h-72 sm:w-96 sm:h-96 rounded-3xl font-black text-5xl sm:text-7xl transition-all duration-150 ease-out overflow-hidden group ${isPressed
                       ? 'translate-y-4 scale-95 shadow-[0_8px_32px_rgba(239,68,68,0.6)] rotate-x-20'
                       : 'shadow-[0_20px_40px_rgba(0,0,0,0.3), 0_10px_20px_rgba(239,68,68,0.4)] hover:shadow-[0_25px_50px_rgba(0,0,0,0.4), 0_15px_30px_rgba(239,68,68,0.6)] hover:-translate-y-2 hover:rotate-x-5'
-                  }`}
+                    }`}
                   style={{
-                    background: isPressed 
+                    background: isPressed
                       ? 'radial-gradient(circle at 30% 30%, #ef4444 0%, #dc2626 50%, #b91c1c 100%)'
                       : 'radial-gradient(circle at 30% 30%, #f87171 0%, #ef4444 30%, #dc2626 70%, #b91c1c 100%)',
                   }}
                 >
                   {/* Shine Effect */}
                   <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-3xl group-hover:animate-shine" />
-                  
+
                   {/* Pressed Inner Glow */}
                   {isPressed && (
                     <div className="absolute inset-0 bg-gradient-to-r from-yellow-300/50 via-orange-400/30 to-red-500/20 rounded-3xl animate-pulse-fast" />
                   )}
-                  
+
                   {/* Text */}
                   <span className={`relative z-10 transition-all duration-200 ${isPressed ? 'text-white drop-shadow-lg' : 'text-white/90 drop-shadow-2xl'}`}>
                     {isPressed ? "KEEP HOLDING!" : "PRESS & HOLD"}
@@ -230,15 +229,14 @@ export default function HoldTheButtonGame() {
                 </button>
 
                 {/* Bottom Shadow */}
-                <div className={`absolute -bottom-8 left-1/2 -translate-x-1/2 w-4/5 h-8 bg-gradient-to-t from-black/40 to-transparent rounded-full blur-xl transition-all ${
-                  isPressed ? 'scale-x-110 opacity-70' : 'opacity-50'
-                }`} />
+                <div className={`absolute -bottom-8 left-1/2 -translate-x-1/2 w-4/5 h-8 bg-gradient-to-t from-black/40 to-transparent rounded-full blur-xl transition-all ${isPressed ? 'scale-x-110 opacity-70' : 'opacity-50'
+                  }`} />
               </div>
 
               {/* Progress Bar */}
               <div className="mt-20 max-w-2xl mx-auto">
                 <div className="w-full bg-gray-200 rounded-full h-6 shadow-inner overflow-hidden">
-                  <div 
+                  <div
                     className={`h-full bg-gradient-to-r from-purple-500 to-pink-500 shadow-lg transition-all duration-1000 ease-out rounded-full relative overflow-hidden`}
                     style={{ width: `${Math.min((currentTime / 300) * 100, 100)}%` }}
                   >
@@ -259,18 +257,17 @@ export default function HoldTheButtonGame() {
                 Eternal Champions 🏆
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-6 max-w-4xl mx-auto">
-                {leaderboard.map((entry, index) => (
+                {leaderboard.map((entry: any, index) => (
                   <div
                     key={index}
-                    className={`group relative p-10 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 cursor-pointer hover:-translate-y-4 border-4 ${
-                      index === 0 
-                        ? 'border-yellow-400 bg-gradient-to-br from-yellow-400 to-orange-500 text-gray-900' 
-                        : index === 1 
-                        ? 'border-gray-400 bg-gradient-to-br from-gray-300 to-gray-500' 
-                        : index === 2 
-                        ? 'border-orange-400 bg-gradient-to-br from-orange-500 to-red-500' 
-                        : 'border-purple-200 bg-white/80 hover:border-purple-300'
-                    }`}
+                    className={`group relative p-10 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 cursor-pointer hover:-translate-y-4 border-4 ${index === 0
+                        ? 'border-yellow-400 bg-gradient-to-br from-yellow-400 to-orange-500 text-gray-900'
+                        : index === 1
+                          ? 'border-gray-400 bg-gradient-to-br from-gray-300 to-gray-500'
+                          : index === 2
+                            ? 'border-orange-400 bg-gradient-to-br from-orange-500 to-red-500'
+                            : 'border-purple-200 bg-white/80 hover:border-purple-300'
+                      }`}
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-8">
@@ -301,7 +298,7 @@ export default function HoldTheButtonGame() {
             <Link href="/" className="flex justify-center items-center gap-3 mb-6 group">
               <span className="text-4xl group-hover:scale-110 transition-transform">🎯</span>
               <span className="text-3xl font-black bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                I'm Bored Now
+                I&apos;m Bored Now
               </span>
             </Link>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto">

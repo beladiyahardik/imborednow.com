@@ -1,3 +1,5 @@
+'use client'
+/* eslint-disable react/no-unescaped-entities */
 import { useState, useEffect, useRef } from "react";
 import Head from "next/head";
 import Link from "next/link";
@@ -137,8 +139,8 @@ export default function ScaryMazePrank() {
           <>
             <canvas
               ref={canvasRef}
-              width={window.innerWidth * 0.9}
-              height={window.innerHeight * 0.8}
+              width={typeof window !== 'undefined' ? window.innerWidth * 0.9 : 0}
+              height={typeof window !== 'undefined' ? window.innerHeight * 0.8 : 0}
               className="border-4 border-gray-800 rounded-2xl shadow-2xl"
             />
 

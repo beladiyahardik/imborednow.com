@@ -1,3 +1,6 @@
+'use client'
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect } from "react";
 
 export default function FakeUpdatePrank() {
@@ -32,7 +35,7 @@ export default function FakeUpdatePrank() {
   }, []);
 
   useEffect(() => {
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: any) => {
       if (e.key === "Escape" || e.key === "F11") {
         setStage("configuring");
         setProgress(0);
