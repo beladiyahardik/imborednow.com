@@ -1,4 +1,4 @@
-'use client'
+"use client";
 /* eslint-disable react/no-unescaped-entities */
 import { useState, useRef, useEffect } from "react";
 import Head from "next/head";
@@ -14,7 +14,10 @@ export default function LifeExpectancyCalculator() {
   const resultsRef = useRef<HTMLDivElement>(null);
 
   // Average life expectancy data (2025 estimates, sourced from WHO/UN)
-  const lifeExpectancyData: Record<string, { male: number; female: number; both: number }> = {
+  const lifeExpectancyData: Record<
+    string,
+    { male: number; female: number; both: number }
+  > = {
     world: { male: 71, female: 76, both: 73.5 },
     usa: { male: 76, female: 81, both: 78.5 },
     japan: { male: 81, female: 87, both: 84.5 },
@@ -25,7 +28,12 @@ export default function LifeExpectancyCalculator() {
   };
 
   const selectedLE = lifeExpectancyData[country];
-  const expectedYears = gender === "male" ? selectedLE.male : gender === "female" ? selectedLE.female : selectedLE.both;
+  const expectedYears =
+    gender === "male"
+      ? selectedLE.male
+      : gender === "female"
+      ? selectedLE.female
+      : selectedLE.both;
 
   const calculate = () => {
     if (!birthdate) return;
@@ -42,21 +50,35 @@ export default function LifeExpectancyCalculator() {
 
   useEffect(() => {
     if (showResults && resultsRef.current) {
-      resultsRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+      resultsRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
     }
   }, [showResults]);
 
   const today = format(new Date(), "yyyy-MM-dd");
   const currentAgeInYears = birthdate
-    ? (new Date().getTime() - new Date(birthdate).getTime()) / (1000 * 60 * 60 * 24 * 365.25)
+    ? (new Date().getTime() - new Date(birthdate).getTime()) /
+      (1000 * 60 * 60 * 24 * 365.25)
     : 0;
 
   const expectedBirthToDeathYears = expectedYears;
-  const expectedDeathDate = birthdate ? addYears(new Date(birthdate), expectedBirthToDeathYears) : null;
-  const remainingYears = expectedDeathDate ? (expectedDeathDate.getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24 * 365.25) : 0;
+  const expectedDeathDate = birthdate
+    ? addYears(new Date(birthdate), expectedBirthToDeathYears)
+    : null;
+  const remainingYears = expectedDeathDate
+    ? (expectedDeathDate.getTime() - new Date().getTime()) /
+      (1000 * 60 * 60 * 24 * 365.25)
+    : 0;
 
   // Bonus: Days lived and expected total days
-  const daysLived = birthdate ? Math.floor((new Date().getTime() - new Date(birthdate).getTime()) / (1000 * 60 * 60 * 24)) : 0;
+  const daysLived = birthdate
+    ? Math.floor(
+        (new Date().getTime() - new Date(birthdate).getTime()) /
+          (1000 * 60 * 60 * 24)
+      )
+    : 0;
   const expectedTotalDays = Math.round(expectedYears * 365.25);
 
   return (
@@ -70,31 +92,6 @@ export default function LifeExpectancyCalculator() {
       </Head>
 
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50">
-        {/* Header */}
-        <header className="bg-white/80 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-purple-100">
-          <div className="container mx-auto px-4 sm:px-6 py-4">
-            <div className="flex justify-between items-center">
-              <Link href="/" className="flex items-center gap-1.5">
-                <span className="text-3xl">🎯</span>
-                <h1 className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">
-                  I'm Bored Now
-                </h1>
-              </Link>
-              <nav className="hidden md:flex space-x-6 lg:space-x-8">
-                {["Home", "Jokes", "Games", "Facts", "Random"].map((item) => (
-                  <Link
-                    key={item}
-                    href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-                    className="text-gray-700 hover:text-purple-600 font-semibold transition-colors"
-                  >
-                    {item}
-                  </Link>
-                ))}
-              </nav>
-            </div>
-          </div>
-        </header>
-
         {/* Hero Section */}
         <section className="relative overflow-hidden py-20 sm:py-32">
           <div className="absolute inset-0 bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400 opacity-90"></div>
@@ -108,7 +105,8 @@ export default function LifeExpectancyCalculator() {
               Life Expectancy Calculator 🌍
             </h1>
             <p className="text-xl sm:text-2xl lg:text-3xl font-medium opacity-95 max-w-4xl mx-auto mb-12">
-              How long might you live? Discover your estimated lifespan and key milestones based on global health data.
+              How long might you live? Discover your estimated lifespan and key
+              milestones based on global health data.
             </p>
 
             {/* Form */}
@@ -117,7 +115,9 @@ export default function LifeExpectancyCalculator() {
               className="max-w-2xl mx-auto bg-white/20 backdrop-blur-lg p-8 sm:p-12 rounded-3xl shadow-2xl border border-white/30 space-y-8"
             >
               <div>
-                <label className="block text-lg sm:text-xl font-bold mb-4">Your Birthdate 🎂</label>
+                <label className="block text-lg sm:text-xl font-bold mb-4">
+                  Your Birthdate 🎂
+                </label>
                 <input
                   type="date"
                   value={birthdate}
@@ -129,7 +129,9 @@ export default function LifeExpectancyCalculator() {
               </div>
 
               <div>
-                <label className="block text-lg sm:text-xl font-bold mb-4">Gender</label>
+                <label className="block text-lg sm:text-xl font-bold mb-4">
+                  Gender
+                </label>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                   <button
                     type="button"
@@ -168,7 +170,9 @@ export default function LifeExpectancyCalculator() {
               </div>
 
               <div>
-                <label className="block text-lg sm:text-xl font-bold mb-4">Country / Region</label>
+                <label className="block text-lg sm:text-xl font-bold mb-4">
+                  Country / Region
+                </label>
                 <select
                   value={country}
                   onChange={(e) => setCountry(e.target.value)}
@@ -189,7 +193,9 @@ export default function LifeExpectancyCalculator() {
                 className="group w-full px-8 py-6 text-2xl font-bold bg-yellow-300 text-purple-800 rounded-full shadow-2xl hover:shadow-yellow-400/60 hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3"
               >
                 ✨ Reveal My Lifespan!
-                <span className="inline-block group-hover:translate-x-3 transition-transform">→</span>
+                <span className="inline-block group-hover:translate-x-3 transition-transform">
+                  →
+                </span>
               </button>
             </form>
           </div>
@@ -197,7 +203,10 @@ export default function LifeExpectancyCalculator() {
 
         {/* Results Section */}
         {showResults && birthdate && expectedDeathDate && (
-          <section ref={resultsRef} className="py-16 sm:py-24 bg-white/70 backdrop-blur-sm">
+          <section
+            ref={resultsRef}
+            className="py-16 sm:py-24 bg-white/70 backdrop-blur-sm"
+          >
             <div className="container mx-auto px-4 sm:px-6">
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">
                 Your Life Journey Ahead 🌟
@@ -207,14 +216,18 @@ export default function LifeExpectancyCalculator() {
                 {/* Days Lived */}
                 <div className="bg-gradient-to-br from-purple-500 to-pink-500 text-white p-8 rounded-3xl shadow-2xl text-center hover:scale-105 transition-transform">
                   <div className="text-6xl mb-4">🗓️</div>
-                  <div className="text-4xl font-black">{daysLived.toLocaleString()}</div>
+                  <div className="text-4xl font-black">
+                    {daysLived.toLocaleString()}
+                  </div>
                   <div className="text-xl mt-2">Days You've Lived</div>
                 </div>
 
                 {/* Expected Total Days */}
                 <div className="bg-gradient-to-br from-blue-500 to-cyan-500 text-white p-8 rounded-3xl shadow-2xl text-center hover:scale-105 transition-transform">
                   <div className="text-6xl mb-4">🎯</div>
-                  <div className="text-4xl font-black">{expectedTotalDays.toLocaleString()}</div>
+                  <div className="text-4xl font-black">
+                    {expectedTotalDays.toLocaleString()}
+                  </div>
                   <div className="text-xl mt-2">Expected Total Days</div>
                 </div>
 
@@ -234,7 +247,9 @@ export default function LifeExpectancyCalculator() {
                 <div className="bg-gradient-to-br from-green-500 to-emerald-500 text-white p-8 rounded-3xl shadow-2xl text-center hover:scale-105 transition-transform">
                   <div className="text-6xl mb-4">⏳</div>
                   <div className="text-4xl font-black">
-                    {remainingYears > 0 ? Math.max(0, Math.round(remainingYears)) : "0"}
+                    {remainingYears > 0
+                      ? Math.max(0, Math.round(remainingYears))
+                      : "0"}
                   </div>
                   <div className="text-xl mt-2">
                     {remainingYears > 1 ? "Years Left" : "Year Left"}
@@ -254,7 +269,8 @@ export default function LifeExpectancyCalculator() {
                   of your expected life.
                 </p>
                 <p className="text-lg text-gray-700">
-                  This is just an estimate based on averages. Lifestyle, health, and luck play a huge role! 💪
+                  This is just an estimate based on averages. Lifestyle, health,
+                  and luck play a huge role! 💪
                 </p>
               </div>
 
@@ -288,25 +304,15 @@ export default function LifeExpectancyCalculator() {
               Live Fully Today 🌈
             </h3>
             <p className="text-xl sm:text-2xl leading-relaxed text-gray-800">
-              No matter the number, every day is a gift. Laugh more, love deeply, and chase what makes you happy.
+              No matter the number, every day is a gift. Laugh more, love
+              deeply, and chase what makes you happy.
               <br />
-              <span className="font-bold text-purple-600">You&apos;ve got this!</span>
+              <span className="font-bold text-purple-600">
+                You&apos;ve got this!
+              </span>
             </p>
           </div>
         </section>
-
-        {/* Footer */}
-        <footer className="bg-gradient-to-br from-gray-900 to-gray-800 text-white py-10 sm:py-12">
-          <div className="container mx-auto px-4 sm:px-6 text-center">
-            <Link href="/" className="flex justify-center items-center gap-1.5 mb-6">
-              <span className="text-3xl">🎯</span>
-              <span className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
-                I'm Bored Now
-              </span>
-            </Link>
-            <p className="text-gray-400">© 2025 I'm Bored Now. Made with ❤️ to inspire and entertain.</p>
-          </div>
-        </footer>
       </div>
     </>
   );

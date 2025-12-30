@@ -1,4 +1,4 @@
-'use client'
+"use client";
 /* eslint-disable react/no-unescaped-entities */
 import { useState, useEffect } from "react";
 import Head from "next/head";
@@ -46,21 +46,7 @@ export default function PrankCollection() {
         />
       </Head>
 
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50">
-        {/* Header */}
-        <header className="bg-white/80 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-purple-100">
-          <div className="container mx-auto px-4 sm:px-6 py-4">
-            <div className="flex justify-between items-center">
-              <Link href="/" className="flex items-center gap-1.5">
-                <span className="text-3xl">🎯</span>
-                <h1 className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">
-                  I'm Bored Now
-                </h1>
-              </Link>
-            </div>
-          </div>
-        </header>
-
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50 pb-12">
         {/* Hero */}
         <section className="relative overflow-hidden py-20 sm:py-32">
           <div className="absolute inset-0 bg-gradient-to-br from-purple-600 via-pink-500 to-red-500 opacity-90"></div>
@@ -74,7 +60,8 @@ export default function PrankCollection() {
               Ultimate Prank Zone 😈
             </h1>
             <p className="text-2xl sm:text-4xl font-medium opacity-95 max-w-4xl mx-auto mb-12">
-              Harmless, hilarious browser pranks to troll your friends!<br />
+              Harmless, hilarious browser pranks to troll your friends!
+              <br />
               (Reveal quickly – keep it fun!)
             </p>
           </div>
@@ -115,31 +102,19 @@ export default function PrankCollection() {
         <div className="container mx-auto px-4 sm:px-6 my-12 text-center">
           <div className="bg-yellow-100 border-4 border-yellow-400 rounded-3xl p-8 max-w-3xl mx-auto">
             <p className="text-2xl font-bold text-yellow-800">
-              ⚠️ These pranks are for laughs only!<br />
+              ⚠️ These pranks are for laughs only!
+              <br />
               Always reveal quickly and prank responsibly 😄
             </p>
           </div>
         </div>
 
-        {/* Ad */}
-        <div className="container mx-auto px-4 sm:px-6 my-12">
+        {/* Ad my-12*/}
+        <div className="container mx-auto px-4 sm:px-6 mb-0">
           <div className="bg-gradient-to-r from-gray-100 to-gray-200 border-2 border-dashed border-gray-300 rounded-xl w-full h-64 flex items-center justify-center text-gray-500 font-semibold shadow-inner">
             [AdSense Rectangle 336×280]
           </div>
         </div>
-
-        {/* Footer */}
-        <footer className="bg-gradient-to-br from-gray-900 to-gray-800 text-white py-10">
-          <div className="container mx-auto px-4 sm:px-6 text-center">
-            <Link href="/" className="flex justify-center items-center gap-1.5 mb-6">
-              <span className="text-3xl">🎯</span>
-              <span className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
-                I'm Bored Now
-              </span>
-            </Link>
-            <p className="text-gray-400">© 2025 I'm Bored Now. Pranks & Fun Forever 😂</p>
-          </div>
-        </footer>
       </div>
     </>
   );

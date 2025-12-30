@@ -1,4 +1,4 @@
-'use client'
+"use client";
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useRef, useEffect } from "react";
 import Head from "next/head";
@@ -21,7 +21,10 @@ export default function LifeExpectancyCalculator() {
   const resultsRef = useRef<HTMLDivElement>(null);
 
   // Base life expectancy data (2025 estimates)
-  const lifeExpectancyData: Record<string, { male: number; female: number; both: number }> = {
+  const lifeExpectancyData: Record<
+    string,
+    { male: number; female: number; both: number }
+  > = {
     world: { male: 71, female: 76, both: 73.5 },
     usa: { male: 76, female: 81, both: 78.5 },
     japan: { male: 81, female: 87, both: 84.5 },
@@ -40,9 +43,15 @@ export default function LifeExpectancyCalculator() {
     bmi: { underweight: -4, normal: 0, overweight: +1, obese: -4 },
   };
 
-  const baseLE = gender === "male" ? lifeExpectancyData[country].male : gender === "female" ? lifeExpectancyData[country].female : lifeExpectancyData[country].both;
+  const baseLE =
+    gender === "male"
+      ? lifeExpectancyData[country].male
+      : gender === "female"
+      ? lifeExpectancyData[country].female
+      : lifeExpectancyData[country].both;
 
-  const adjustedLE = baseLE +
+  const adjustedLE =
+    baseLE +
     adjustments.smoking[smoking] +
     adjustments.exercise[exercise] +
     adjustments.alcohol[alcohol] +
@@ -63,23 +72,38 @@ export default function LifeExpectancyCalculator() {
 
   useEffect(() => {
     if (showResults && resultsRef.current) {
-      resultsRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+      resultsRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
     }
   }, [showResults]);
 
   const today = format(new Date(), "yyyy-MM-dd");
 
   const currentAgeInYears = birthdate
-    ? (new Date().getTime() - new Date(birthdate).getTime()) / (1000 * 60 * 60 * 24 * 365.25)
+    ? (new Date().getTime() - new Date(birthdate).getTime()) /
+      (1000 * 60 * 60 * 24 * 365.25)
     : 0;
 
-  const expectedDeathDate = birthdate ? addYears(new Date(birthdate), adjustedLE) : null;
+  const expectedDeathDate = birthdate
+    ? addYears(new Date(birthdate), adjustedLE)
+    : null;
 
   const remainingYears = expectedDeathDate
-    ? Math.max(0, (expectedDeathDate.getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24 * 365.25))
+    ? Math.max(
+        0,
+        (expectedDeathDate.getTime() - new Date().getTime()) /
+          (1000 * 60 * 60 * 24 * 365.25)
+      )
     : 0;
 
-  const daysLived = birthdate ? Math.floor((new Date().getTime() - new Date(birthdate).getTime()) / (1000 * 60 * 60 * 24)) : 0;
+  const daysLived = birthdate
+    ? Math.floor(
+        (new Date().getTime() - new Date(birthdate).getTime()) /
+          (1000 * 60 * 60 * 24)
+      )
+    : 0;
   const expectedTotalDays = Math.round(adjustedLE * 365.25);
 
   return (
@@ -93,31 +117,6 @@ export default function LifeExpectancyCalculator() {
       </Head>
 
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50">
-        {/* Header */}
-        <header className="bg-white/80 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-purple-100">
-          <div className="container mx-auto px-4 sm:px-6 py-4">
-            <div className="flex justify-between items-center">
-              <Link href="/" className="flex items-center gap-1.5">
-                <span className="text-3xl">🎯</span>
-                <h1 className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">
-                  I&apos;m Bored Now
-                </h1>
-              </Link>
-              <nav className="hidden md:flex space-x-6 lg:space-x-8">
-                {["Home", "Jokes", "Games", "Facts", "Random"].map((item) => (
-                  <Link
-                    key={item}
-                    href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-                    className="text-gray-700 hover:text-purple-600 font-semibold transition-colors"
-                  >
-                    {item}
-                  </Link>
-                ))}
-              </nav>
-            </div>
-          </div>
-        </header>
-
         {/* Hero Section */}
         <section className="relative overflow-hidden py-20 sm:py-32">
           <div className="absolute inset-0 bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400 opacity-90"></div>
@@ -131,7 +130,8 @@ export default function LifeExpectancyCalculator() {
               Advanced Life Expectancy Calculator 🧬
             </h1>
             <p className="text-xl sm:text-2xl lg:text-3xl font-medium opacity-95 max-w-4xl mx-auto mb-12">
-              See how your lifestyle choices — smoking, exercise, diet, alcohol & weight — can add or subtract years from your life!
+              See how your lifestyle choices — smoking, exercise, diet, alcohol
+              & weight — can add or subtract years from your life!
             </p>
 
             {/* Expanded Form */}
@@ -141,7 +141,9 @@ export default function LifeExpectancyCalculator() {
             >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
-                  <label className="block text-lg sm:text-xl font-bold mb-4">Birthdate 🎂</label>
+                  <label className="block text-lg sm:text-xl font-bold mb-4">
+                    Birthdate 🎂
+                  </label>
                   <input
                     type="date"
                     value={birthdate}
@@ -153,26 +155,35 @@ export default function LifeExpectancyCalculator() {
                 </div>
 
                 <div>
-                  <label className="block text-lg sm:text-xl font-bold mb-4">Gender</label>
+                  <label className="block text-lg sm:text-xl font-bold mb-4">
+                    Gender
+                  </label>
                   <div className="grid grid-cols-3 gap-4">
                     {["male", "female", "both"].map((g) => (
                       <button
                         key={g}
                         type="button"
                         onClick={() => setGender(g)}
-                        className={`py-4 px-6 rounded-xl font-bold text-lg transition-all ${gender === g
+                        className={`py-4 px-6 rounded-xl font-bold text-lg transition-all ${
+                          gender === g
                             ? "bg-yellow-300 text-purple-800 shadow-lg scale-105"
                             : "bg-white/30 text-white hover:bg-white/50"
-                          }`}
+                        }`}
                       >
-                        {g === "male" ? "👨 Male" : g === "female" ? "👩 Female" : "👥 Average"}
+                        {g === "male"
+                          ? "👨 Male"
+                          : g === "female"
+                          ? "👩 Female"
+                          : "👥 Average"}
                       </button>
                     ))}
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-lg sm:text-xl font-bold mb-4">Country / Region</label>
+                  <label className="block text-lg sm:text-xl font-bold mb-4">
+                    Country / Region
+                  </label>
                   <select
                     value={country}
                     onChange={(e) => setCountry(e.target.value)}
@@ -189,10 +200,16 @@ export default function LifeExpectancyCalculator() {
                 </div>
 
                 <div>
-                  <label className="block text-lg sm:text-xl font-bold mb-4">Smoking 🚭</label>
+                  <label className="block text-lg sm:text-xl font-bold mb-4">
+                    Smoking 🚭
+                  </label>
                   <select
                     value={smoking}
-                    onChange={(e) => setSmoking(e.target.value as "never" | "former" | "current")}
+                    onChange={(e) =>
+                      setSmoking(
+                        e.target.value as "never" | "former" | "current"
+                      )
+                    }
                     className="w-full px-6 py-4 text-gray-800 text-lg rounded-xl border-2 border-white/50 focus:border-yellow-300 focus:outline-none transition-all"
                   >
                     <option value="never">Never smoked</option>
@@ -202,23 +219,37 @@ export default function LifeExpectancyCalculator() {
                 </div>
 
                 <div>
-                  <label className="block text-lg sm:text-xl font-bold mb-4">Exercise 🏃</label>
+                  <label className="block text-lg sm:text-xl font-bold mb-4">
+                    Exercise 🏃
+                  </label>
                   <select
                     value={exercise}
-                    onChange={(e) => setExercise(e.target.value as "sedentary" | "moderate" | "active")}
+                    onChange={(e) =>
+                      setExercise(
+                        e.target.value as "sedentary" | "moderate" | "active"
+                      )
+                    }
                     className="w-full px-6 py-4 text-gray-800 text-lg rounded-xl border-2 border-white/50 focus:border-yellow-300 focus:outline-none transition-all"
                   >
-                    <option value="sedentary">Sedentary (little/no exercise)</option>
+                    <option value="sedentary">
+                      Sedentary (little/no exercise)
+                    </option>
                     <option value="moderate">Moderate (some activity)</option>
                     <option value="active">Active (150+ min/week)</option>
                   </select>
                 </div>
 
                 <div>
-                  <label className="block text-lg sm:text-xl font-bold mb-4">Alcohol 🍷</label>
+                  <label className="block text-lg sm:text-xl font-bold mb-4">
+                    Alcohol 🍷
+                  </label>
                   <select
                     value={alcohol}
-                    onChange={(e) => setAlcohol(e.target.value as "none" | "moderate" | "heavy")}
+                    onChange={(e) =>
+                      setAlcohol(
+                        e.target.value as "none" | "moderate" | "heavy"
+                      )
+                    }
                     className="w-full px-6 py-4 text-gray-800 text-lg rounded-xl border-2 border-white/50 focus:border-yellow-300 focus:outline-none transition-all"
                   >
                     <option value="none">None</option>
@@ -228,23 +259,39 @@ export default function LifeExpectancyCalculator() {
                 </div>
 
                 <div>
-                  <label className="block text-lg sm:text-xl font-bold mb-4">Diet 🥗</label>
+                  <label className="block text-lg sm:text-xl font-bold mb-4">
+                    Diet 🥗
+                  </label>
                   <select
                     value={diet}
-                    onChange={(e) => setDiet(e.target.value as "poor" | "average" | "healthy")}
+                    onChange={(e) =>
+                      setDiet(e.target.value as "poor" | "average" | "healthy")
+                    }
                     className="w-full px-6 py-4 text-gray-800 text-lg rounded-xl border-2 border-white/50 focus:border-yellow-300 focus:outline-none transition-all"
                   >
                     <option value="poor">Poor (lots of processed food)</option>
                     <option value="average">Average</option>
-                    <option value="healthy">Healthy (lots of fruits/veggies/whole grains)</option>
+                    <option value="healthy">
+                      Healthy (lots of fruits/veggies/whole grains)
+                    </option>
                   </select>
                 </div>
 
                 <div>
-                  <label className="block text-lg sm:text-xl font-bold mb-4">Weight (BMI) ⚖️</label>
+                  <label className="block text-lg sm:text-xl font-bold mb-4">
+                    Weight (BMI) ⚖️
+                  </label>
                   <select
                     value={bmiCategory}
-                    onChange={(e) => setBmiCategory(e.target.value as "underweight" | "normal" | "overweight" | "obese")}
+                    onChange={(e) =>
+                      setBmiCategory(
+                        e.target.value as
+                          | "underweight"
+                          | "normal"
+                          | "overweight"
+                          | "obese"
+                      )
+                    }
                     className="w-full px-6 py-4 text-gray-800 text-lg rounded-xl border-2 border-white/50 focus:border-yellow-300 focus:outline-none transition-all"
                   >
                     <option value="underweight">Underweight (&lt;18.5)</option>
@@ -260,7 +307,9 @@ export default function LifeExpectancyCalculator() {
                 className="group w-full px-8 py-6 text-2xl font-bold bg-yellow-300 text-purple-800 rounded-full shadow-2xl hover:shadow-yellow-400/60 hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3"
               >
                 ✨ Reveal My Personalized Lifespan!
-                <span className="inline-block group-hover:translate-x-3 transition-transform">→</span>
+                <span className="inline-block group-hover:translate-x-3 transition-transform">
+                  →
+                </span>
               </button>
             </form>
           </div>
@@ -268,7 +317,10 @@ export default function LifeExpectancyCalculator() {
 
         {/* Results Section */}
         {showResults && birthdate && expectedDeathDate && (
-          <section ref={resultsRef} className="py-16 sm:py-24 bg-white/70 backdrop-blur-sm">
+          <section
+            ref={resultsRef}
+            className="py-16 sm:py-24 bg-white/70 backdrop-blur-sm"
+          >
             <div className="container mx-auto px-4 sm:px-6">
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">
                 Your Personalized Life Journey 🌟
@@ -277,25 +329,33 @@ export default function LifeExpectancyCalculator() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
                 <div className="bg-gradient-to-br from-purple-500 to-pink-500 text-white p-8 rounded-3xl shadow-2xl text-center hover:scale-105 transition-transform">
                   <div className="text-6xl mb-4">🗓️</div>
-                  <div className="text-4xl font-black">{daysLived.toLocaleString()}</div>
+                  <div className="text-4xl font-black">
+                    {daysLived.toLocaleString()}
+                  </div>
                   <div className="text-xl mt-2">Days Lived So Far</div>
                 </div>
 
                 <div className="bg-gradient-to-br from-blue-500 to-cyan-500 text-white p-8 rounded-3xl shadow-2xl text-center hover:scale-105 transition-transform">
                   <div className="text-6xl mb-4">🎯</div>
-                  <div className="text-4xl font-black">{Math.round(adjustedLE)}</div>
+                  <div className="text-4xl font-black">
+                    {Math.round(adjustedLE)}
+                  </div>
                   <div className="text-xl mt-2">Estimated Total Years</div>
                 </div>
 
                 <div className="bg-gradient-to-br from-orange-500 to-red-500 text-white p-8 rounded-3xl shadow-2xl text-center hover:scale-105 transition-transform">
                   <div className="text-6xl mb-4">📅</div>
-                  <div className="text-2xl font-bold">{format(expectedDeathDate, "MMMM d, yyyy")}</div>
+                  <div className="text-2xl font-bold">
+                    {format(expectedDeathDate, "MMMM d, yyyy")}
+                  </div>
                   <div className="text-lg mt-2">Estimated End Date</div>
                 </div>
 
                 <div className="bg-gradient-to-br from-green-500 to-emerald-500 text-white p-8 rounded-3xl shadow-2xl text-center hover:scale-105 transition-transform">
                   <div className="text-6xl mb-4">⏳</div>
-                  <div className="text-4xl font-black">{Math.round(remainingYears)}</div>
+                  <div className="text-4xl font-black">
+                    {Math.round(remainingYears)}
+                  </div>
                   <div className="text-xl mt-2">Years Remaining</div>
                   <div className="text-sm opacity-80 mt-4">Make them epic!</div>
                 </div>
@@ -303,20 +363,36 @@ export default function LifeExpectancyCalculator() {
 
               <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
                 <div className="bg-gradient-to-r from-purple-100 to-pink-100 p-8 rounded-3xl border border-purple-200">
-                  <h3 className="text-2xl font-bold text-gray-800 mb-4">Base Expectancy: {Math.round(baseLE)} years</h3>
-                  <p className="text-lg text-gray-700">From global averages for your gender & country.</p>
+                  <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                    Base Expectancy: {Math.round(baseLE)} years
+                  </h3>
+                  <p className="text-lg text-gray-700">
+                    From global averages for your gender & country.
+                  </p>
                 </div>
                 <div className="bg-gradient-to-r from-green-100 to-emerald-100 p-8 rounded-3xl border border-green-200">
-                  <h3 className="text-2xl font-bold text-gray-800 mb-4">Your Adjusted: {Math.round(adjustedLE)} years</h3>
+                  <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                    Your Adjusted: {Math.round(adjustedLE)} years
+                  </h3>
                   <p className="text-lg text-gray-700">
-                    {adjustedLE > baseLE ? `+${Math.round(adjustedLE - baseLE)} years thanks to your habits! 🎉` : adjustedLE < baseLE ? `${Math.round(baseLE - adjustedLE)} years shorter — small changes can help! 💪` : "Right on average!"}
+                    {adjustedLE > baseLE
+                      ? `+${Math.round(
+                          adjustedLE - baseLE
+                        )} years thanks to your habits! 🎉`
+                      : adjustedLE < baseLE
+                      ? `${Math.round(
+                          baseLE - adjustedLE
+                        )} years shorter — small changes can help! 💪`
+                      : "Right on average!"}
                   </p>
                 </div>
               </div>
 
               <div className="mt-12 text-center bg-white/80 p-8 rounded-3xl max-w-4xl mx-auto">
                 <p className="text-lg text-gray-700 italic">
-                  *This is an estimate based on large population studies. Actual lifespan depends on many factors including genetics, healthcare, and luck. Use it for motivation, not worry!
+                  *This is an estimate based on large population studies. Actual
+                  lifespan depends on many factors including genetics,
+                  healthcare, and luck. Use it for motivation, not worry!
                 </p>
               </div>
 
@@ -350,25 +426,15 @@ export default function LifeExpectancyCalculator() {
               Small Changes = Big Gains 🌱
             </h3>
             <p className="text-xl sm:text-2xl leading-relaxed text-gray-800">
-              Quitting smoking, moving more, eating veggies, and maintaining a healthy weight can add <strong>years</strong> to your life.
+              Quitting smoking, moving more, eating veggies, and maintaining a
+              healthy weight can add <strong>years</strong> to your life.
               <br />
-              <span className="font-bold text-purple-600">Today is the perfect day to start!</span>
+              <span className="font-bold text-purple-600">
+                Today is the perfect day to start!
+              </span>
             </p>
           </div>
         </section>
-
-        {/* Footer */}
-        <footer className="bg-gradient-to-br from-gray-900 to-gray-800 text-white py-10 sm:py-12">
-          <div className="container mx-auto px-4 sm:px-6 text-center">
-            <Link href="/" className="flex justify-center items-center gap-1.5 mb-6">
-              <span className="text-3xl">🎯</span>
-              <span className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
-                I&apos;m Bored Now
-              </span>
-            </Link>
-            <p className="text-gray-400">© 2025 I&apos;m Bored Now. Made with ❤️ to inspire healthy fun.</p>
-          </div>
-        </footer>
       </div>
     </>
   );

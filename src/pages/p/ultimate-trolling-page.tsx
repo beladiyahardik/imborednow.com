@@ -28,7 +28,7 @@ export default function TrollPage() {
       const newTop = Math.random() * 70 + 15;
       const newLeft = Math.random() * 70 + 15;
       setButtonPosition({ top: newTop, left: newLeft });
-      setClickCount(prev => prev + 1);
+      setClickCount((prev) => prev + 1);
     }
   };
 
@@ -48,20 +48,6 @@ export default function TrollPage() {
       </Head>
 
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50 relative overflow-hidden">
-        {/* Header */}
-        <header className="bg-white/80 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-purple-100">
-          <div className="container mx-auto px-4 sm:px-6 py-4">
-            <div className="flex justify-between items-center">
-              <Link href="/" className="flex items-center gap-1.5">
-                <span className="text-3xl">🎯</span>
-                <h1 className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">
-                  I&apos;m Bored Now
-                </h1>
-              </Link>
-            </div>
-          </div>
-        </header>
-
         {/* Main Troll Content */}
         <div className="relative container mx-auto px-4 py-20 sm:py-32 text-center">
           <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black mb-8 text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-yellow-500 to-green-600 animate-pulse">
@@ -78,7 +64,7 @@ export default function TrollPage() {
           <div className="relative h-96 flex items-center justify-center">
             <button
               onMouseEnter={handleButtonHover}
-              onClick={() => setClickCount(prev => prev + 1)}
+              onClick={() => setClickCount((prev) => prev + 1)}
               style={{
                 position: "absolute",
                 top: `${buttonPosition.top}%`,
@@ -98,7 +84,8 @@ export default function TrollPage() {
                 {message}
               </p>
               <p className="text-xl text-gray-600 mt-4">
-                Clicks so far: <span className="font-bold text-purple-600">{clickCount}</span>
+                Clicks so far:{" "}
+                <span className="font-bold text-purple-600">{clickCount}</span>
               </p>
             </div>
           )}
@@ -106,7 +93,9 @@ export default function TrollPage() {
           {/* Hidden Real Button */}
           {clickCount >= 40 && !showRick && (
             <div className="mt-20">
-              <p className="text-2xl text-gray-700 mb-8">Okay okay... here&apos;s the real one:</p>
+              <p className="text-2xl text-gray-700 mb-8">
+                Okay okay... here&apos;s the real one:
+              </p>
               <button
                 onClick={handleRealClick}
                 className="px-16 py-10 text-4xl font-black bg-gradient-to-r from-yellow-400 to-orange-500 text-white rounded-full shadow-2xl hover:shadow-orange-500/60 hover:scale-110 transition-all duration-500 animate-pulse"
@@ -117,8 +106,12 @@ export default function TrollPage() {
                 <div className="fixed inset-0 pointer-events-none z-50">
                   <div className="absolute inset-0 flex items-center justify-center">
                     <span className="text-8xl animate-spin">🎊</span>
-                    <span className="text-8xl animate-spin animation-delay-200">🎉</span>
-                    <span className="text-8xl animate-spin animation-delay-400">🥳</span>
+                    <span className="text-8xl animate-spin animation-delay-200">
+                      🎉
+                    </span>
+                    <span className="text-8xl animate-spin animation-delay-400">
+                      🥳
+                    </span>
                   </div>
                 </div>
               )}
@@ -152,25 +145,24 @@ export default function TrollPage() {
         <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-red-600 text-white px-8 py-4 rounded-full text-2xl font-black shadow-2xl animate-pulse">
           Offer expires in: 00:05
         </div>
-
-        {/* Footer */}
-        <footer className="absolute bottom-0 w-full bg-gradient-to-br from-gray-900 to-gray-800 text-white py-6">
-          <div className="container mx-auto text-center">
-            <p className="text-sm opacity-75">
-              © 2025 TotallyNotAScam.com | 100% Legit | Terms apply* (in another dimension)
-            </p>
-          </div>
-        </footer>
       </div>
 
       <style jsx>{`
         @keyframes animation-delay-200 {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
         }
         @keyframes animation-delay-400 {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
         }
         .animation-delay-200 {
           animation: animation-delay-200 2s linear infinite;

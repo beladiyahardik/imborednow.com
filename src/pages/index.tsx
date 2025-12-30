@@ -23,48 +23,6 @@ export default function Home() {
       </Head>
 
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50">
-        {/* Header */}
-        <header className="bg-white/80 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-purple-100">
-          <div className="container mx-auto px-4 sm:px-6 py-4">
-            <div className="flex justify-between items-center">
-              <Link href="/" className="flex items-center gap-1.5">
-                <span className="text-3xl">🎯</span>
-                <h1 className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 cursor-pointer hover:scale-105 transition-transform">
-                  I'm Bored Now
-                </h1>
-              </Link>
-              <nav className="hidden md:flex space-x-6 lg:space-x-8">
-                {["Home", "Jokes", "Games", "Facts", "Random"].map((item) => (
-                  <Link
-                    key={item}
-                    href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-                  >
-                    <span className="text-gray-700 hover:text-purple-600 font-semibold transition-colors cursor-pointer relative group">
-                      {item}
-                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-600 group-hover:w-full transition-all duration-300"></span>
-                    </span>
-                  </Link>
-                ))}
-              </nav>
-              <button className="md:hidden p-2 text-purple-600">
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </header>
-
         {/* Hero Section - Enhanced */}
         <section className="relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400 opacity-95"></div>
@@ -536,50 +494,11 @@ export default function Home() {
         </section>
 
         {/* Final Ad */}
-        <div className="container mx-auto px-4 sm:px-6 my-8 sm:my-12">
+        {/* <div className="container mx-auto px-4 sm:px-6 sm:my-12">
           <div className="bg-gradient-to-r from-gray-100 to-gray-200 border-2 border-dashed border-gray-300 rounded-xl w-full h-24 sm:h-32 flex items-center justify-center text-gray-500 font-semibold shadow-inner">
             [AdSense Horizontal Unit]
           </div>
-        </div>
-
-        {/* Footer - Enhanced */}
-        <footer className="bg-gradient-to-br from-gray-900 to-gray-800 text-white py-10 sm:py-12">
-          <div className="container mx-auto px-4 sm:px-6">
-            <div className="text-center space-y-6">
-              <div className="flex justify-center items-center space-x-2 text-2xl sm:text-3xl font-black">
-                <div className="flex flex-row gap-1.5 items-center">
-                  <span className="text-3xl">🎯</span>
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
-                    I'm Bored Now
-                  </span>
-                </div>
-              </div>
-              <p className="text-gray-400 text-sm sm:text-base max-w-2xl mx-auto">
-                Made with ❤️ to cure boredom worldwide. Join thousands
-                who&apos;ve already escaped the monotony!
-              </p>
-              <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-sm sm:text-base">
-                {["About", "Privacy Policy", "Terms", "Contact", "Sitemap"].map(
-                  (link) => (
-                    <Link
-                      key={link}
-                      href={`/${link.toLowerCase().replace(" ", "-")}`}
-                    >
-                      <span className="hover:text-purple-400 transition-colors cursor-pointer">
-                        {link}
-                      </span>
-                    </Link>
-                  )
-                )}
-              </div>
-              <div className="pt-6 border-t border-gray-700">
-                <p className="text-gray-500 text-xs sm:text-sm">
-                  &copy; 2025 I'm Bored Now. All rights reserved.
-                </p>
-              </div>
-            </div>
-          </div>
-        </footer>
+        </div> */}
       </div>
     </>
   );
