@@ -10,6 +10,24 @@ export default function Document() {
           strategy="beforeInteractive"
           crossOrigin="anonymous"
         />
+
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-7Z56ZLVNVC"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', 'G-7Z56ZLVNVC', {
+                    page_path: window.location.pathname,
+                  });
+                `,
+          }}
+        />
+
         <meta
           name="google-adsense-account"
           content="ca-pub-7085320120847108"
