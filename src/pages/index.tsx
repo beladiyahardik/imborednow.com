@@ -123,6 +123,62 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 sm:gap-12">
             {/* Main Content */}
             <div className="lg:col-span-3 space-y-12 sm:space-y-16">
+              <div>
+                <div className="flex items-center justify-center gap-3 mb-8">
+                  <span className="text-4xl">🧮</span>
+                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">
+                    Fun & Useful Calculators
+                  </h2>
+                  <span className="text-4xl">🔢</span>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {[
+                    {
+                      title: "Birthdate Calculator",
+                      desc: "Discover fun facts about your birthday, age in days, next birthday countdown & more!",
+                      emoji: "🎂",
+                      href: "/p/birthdate-calculator",
+                    },
+                    {
+                      title: "Life Expectancy Calculator",
+                      desc: "Estimate your life expectancy based on lifestyle, habits & health factors",
+                      emoji: "❤️",
+                      href: "/p/life-expectancy-calculator",
+                    },
+                    {
+                      title: "Lifestyle Factor Analyzer",
+                      desc: "See how your daily habits affect your health and longevity",
+                      emoji: "⚖️",
+                      href: "/p/life-style-factor",
+                    },
+                  ].map((calc) => (
+                    <Link key={calc.title} href={calc.href}>
+                      <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden transition-all duration-300 hover:-translate-y-3 cursor-pointer border border-purple-100 flex flex-col h-full">
+                        {/* Fixed height gradient top */}
+                        <div className="bg-gradient-to-br from-purple-400 to-pink-500 h-40 flex items-center justify-center flex-shrink-0">
+                          <span className="text-6xl sm:text-7xl transform group-hover:scale-110 transition-transform duration-300">
+                            {calc.emoji}
+                          </span>
+                        </div>
+                        {/* Content area that grows equally */}
+                        <div className="p-6 flex flex-col flex-grow">
+                          <h3 className="text-xl font-bold mb-3 text-gray-800">
+                            {calc.title}
+                          </h3>
+                          <p className="text-gray-600 mb-6 flex-grow">
+                            {calc.desc}
+                          </p>
+                          {/* Button always at bottom */}
+                          <span className="text-purple-600 font-bold hover:underline inline-flex items-center mt-auto">
+                            Try It Now →
+                          </span>
+                        </div>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
               {/* Categories - Enhanced */}
               <div>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-center mb-8 sm:mb-12 text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">
@@ -142,7 +198,7 @@ export default function Home() {
                       desc: "Mind-blowing trivia daily",
                       emoji: "🧠",
                       color: "from-green-500 to-green-600",
-                      href: "/p/life-expectancy-calculator",
+                      href: "/p/facts",
                     },
                     {
                       title: "Quick Games",
@@ -223,37 +279,37 @@ export default function Home() {
                       title: "Dad Joke of the Day",
                       emoji: "🎭",
                       color: "from-purple-400 to-purple-500",
-                      url: '/p/dad-jokes'
+                      url: "/p/dad-jokes",
                     },
                     {
                       title: "Mind-Bending Riddle",
                       emoji: "🧩",
                       color: "from-pink-400 to-pink-500",
-                      url: '/p/dad-jokes'
+                      url: "/p/dad-jokes",
                     },
                     {
                       title: "5-Minute Browser Game",
                       emoji: "🎮",
                       color: "from-blue-400 to-blue-500",
-                      url: '/p/dad-jokes'
+                      url: "/p/dad-jokes",
                     },
                     {
                       title: "Crazy Animal Fact",
                       emoji: "🦁",
                       color: "from-green-400 to-green-500",
-                      url: '/p/dad-jokes'
+                      url: "/p/crazy-animal-fact",
                     },
                     {
                       title: "Quick DIY Craft",
                       emoji: "✨",
                       color: "from-orange-400 to-orange-500",
-                      url: '/p/dad-joke'
+                      url: "/p/dad-joke",
                     },
                     {
                       title: "Relaxing Soundscape",
                       emoji: "🎵",
                       color: "from-indigo-400 to-indigo-500",
-                      url: '/p/dad-joke'
+                      url: "/p/dad-joke",
                     },
                   ].map((item, i) => (
                     <Link key={i} href={`${item.url}`}>
