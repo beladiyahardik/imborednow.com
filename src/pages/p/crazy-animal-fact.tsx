@@ -913,7 +913,7 @@ export default function AnimalFactsPage() {
   const [activeCategory, setActiveCategory] = useState("all");
   const [currentIdx, setCurrentIdx] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
-  console.log("allFacts", allFacts);
+
   const filteredFacts: AnimalFact[] = useMemo(() => {
     if (activeCategory === "all") return allFacts;
     return allFacts.filter((f) => f.category === activeCategory);
