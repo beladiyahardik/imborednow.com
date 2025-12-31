@@ -223,34 +223,40 @@ export default function Home() {
                       title: "Dad Joke of the Day",
                       emoji: "🎭",
                       color: "from-purple-400 to-purple-500",
+                      url: '/p/dad-jokes'
                     },
                     {
                       title: "Mind-Bending Riddle",
                       emoji: "🧩",
                       color: "from-pink-400 to-pink-500",
+                      url: '/p/dad-jokes'
                     },
                     {
                       title: "5-Minute Browser Game",
                       emoji: "🎮",
                       color: "from-blue-400 to-blue-500",
+                      url: '/p/dad-jokes'
                     },
                     {
                       title: "Crazy Animal Fact",
                       emoji: "🦁",
                       color: "from-green-400 to-green-500",
+                      url: '/p/dad-jokes'
                     },
                     {
                       title: "Quick DIY Craft",
                       emoji: "✨",
                       color: "from-orange-400 to-orange-500",
+                      url: '/p/dad-joke'
                     },
                     {
                       title: "Relaxing Soundscape",
                       emoji: "🎵",
                       color: "from-indigo-400 to-indigo-500",
+                      url: '/p/dad-joke'
                     },
                   ].map((item, i) => (
-                    <Link key={i} href="/random">
+                    <Link key={i} href={`${item.url}`}>
                       <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 cursor-pointer border border-purple-100">
                         <div
                           className={`bg-gradient-to-br ${item.color} h-40 sm:h-48 flex items-center justify-center text-6xl sm:text-7xl transform group-hover:scale-110 transition-transform duration-300`}
