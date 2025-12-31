@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>I'm Bored Now - Fun Activities, Jokes, Games & More!</title>
+        <title>I&apos;m Bored Now - Fun Activities, Jokes, Games & More!</title>
         <meta
           name="description"
           content="Beat boredom instantly with jokes, facts, games, DIY ideas, and random surprises. Fun for everyone!"
@@ -163,7 +163,7 @@ export default function Home() {
                       desc: "Hilarious & strange sites",
                       emoji: "🌐",
                       color: "from-pink-500 to-pink-600",
-                      href: "/p/pranks/fake-update",
+                      href: "/p/weird-websites",
                     },
                     {
                       title: "Relax & Chill",
@@ -297,7 +297,7 @@ export default function Home() {
               {/* Value Proposition Section */}
               <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-8 sm:p-12 rounded-3xl shadow-xl border border-purple-100">
                 <h2 className="text-2xl sm:text-3xl font-black text-center mb-8 text-gray-800">
-                  Why I'm Bored Now? 🤔
+                  Why I&apos;m Bored Now? 🤔
                 </h2>
                 <div className="grid sm:grid-cols-2 gap-6">
                   {[
