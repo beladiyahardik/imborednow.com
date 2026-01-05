@@ -448,7 +448,7 @@ export default function Home() {
               </div>
 
               {/* Quick Links */}
-              <div className="bg-gradient-to-br from-purple-100 to-pink-100 p-6 rounded-2xl border border-purple-200">
+              {/* <div className="bg-gradient-to-br from-purple-100 to-pink-100 p-6 rounded-2xl border border-purple-200">
                 <h3 className="text-lg font-bold mb-4 text-gray-800">
                   ⚡ Quick Jump
                 </h3>
@@ -466,7 +466,7 @@ export default function Home() {
                     </Link>
                   ))}
                 </div>
-              </div>
+              </div> */}
             </aside>
           </div>
         </div>

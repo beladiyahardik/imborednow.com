@@ -149,7 +149,7 @@ export default function WeirdWebsites() {
                 </div>
 
                 {/* Hero */}
-                <section className="relative py-24 sm:py-40 text-center z-10">
+                {/* <section className="relative py-24 sm:py-40 text-center z-10">
                     <div className="container mx-auto px-6">
                         <h1 className="text-6xl sm:text-8xl lg:text-9xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-pink-600 to-amber-500 drop-shadow-3xl">
                             Weird & Wonderful Web 🌐
@@ -168,7 +168,7 @@ export default function WeirdWebsites() {
                             </button>
                         </div>
                     </div>
-                </section>
+                </section> */}
 
                 {/* Search */}
                 <section className="py-12 relative z-10">

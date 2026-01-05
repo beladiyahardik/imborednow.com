@@ -110,6 +110,18 @@ export default function RandomActivity() {
     },
   ];
 
+  const categories = [
+    { label: "😂 Jokes", route: "/p/jokes" },
+    { label: "🧠 Facts", route: "/p/facts" },
+    // { label: "🎮 Games", route: "/games" },
+    { label: "🧩 Riddles", route: "/p/mind-bending-riddle" },
+    // { label: "✂️ DIY", route: "/diy" },
+    // { label: "🎯 Challenges", route: "/challenges" },
+    // { label: "😌 Relax", route: "/relax" },
+    // { label: "❓ Trivia", route: "/trivia" },
+    // { label: "🌟 Surprise", route: "/surprise" },
+  ];
+
   const getRandomActivity = () => {
     setLoading(true);
     setAnimation(true);
@@ -120,6 +132,39 @@ export default function RandomActivity() {
       setLoading(false);
       setTimeout(() => setAnimation(false), 500);
     }, 800);
+  };
+
+  const handleShare = (platform: "fb" | "x" | "email") => {
+    const shareUrl =
+      typeof window !== "undefined"
+        ? window.location.href
+        : "https://imborednow.com";
+    const shareText = "Check out this awesome boredom killer! 🚀";
+    let url = "";
+
+    switch (platform) {
+      case "fb":
+        url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+          shareUrl
+        )}`;
+        break;
+      case "x":
+        url = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
+          shareUrl
+        )}&text=${encodeURIComponent(shareText)}`;
+        break;
+      case "email":
+        url = `mailto:?subject=${encodeURIComponent(
+          "You have to see this!"
+        )}&body=${encodeURIComponent(`${shareText}\n\n${shareUrl}`)}`;
+        break;
+    }
+
+    if (platform === "email") {
+      window.location.href = url;
+    } else {
+      window.open(url, "_blank", "width=600,height=400");
+    }
   };
 
   useEffect(() => {
@@ -271,23 +316,13 @@ export default function RandomActivity() {
                   🎨 Choose by Category
                 </h3>
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
-                  {[
-                    "😂 Jokes",
-                    "🧠 Facts",
-                    "🎮 Games",
-                    "🧩 Riddles",
-                    "✂️ DIY",
-                    "🎯 Challenges",
-                    "😌 Relax",
-                    "❓ Trivia",
-                    "🌟 Surprise",
-                  ].map((cat, idx) => (
+                  {categories.map((cat, idx) => (
                     <Link
                       key={idx}
-                      href={`/${cat.split(" ")[1].toLowerCase()}`}
+                      href={cat.route}
                     >
                       <button className="w-full px-4 py-3 bg-white hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 text-gray-700 hover:text-white font-semibold rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-purple-200 hover:border-transparent">
-                        {cat}
+                        {cat.label}
                       </button>
                     </Link>
                   ))}
@@ -367,21 +402,21 @@ export default function RandomActivity() {
                   ⚡ Quick Actions
                 </h3>
                 <div className="flex flex-col gap-3">
-                  <Link href="/jokes">
+                  <Link href="/p/jokes">
                     <button className="w-full px-4 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all">
                       😂 Just Jokes
                     </button>
                   </Link>
-                  <Link href="/facts">
+                  <Link href="/p/facts">
                     <button className="w-full px-4 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all">
                       🧠 Only Facts
                     </button>
                   </Link>
-                  <Link href="/games">
+                  {/* <Link href="/games">
                     <button className="w-full px-4 py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all">
                       🎮 Play Games
                     </button>
-                  </Link>
+                  </Link> */}
                   <Link href="/">
                     <button className="w-full px-4 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-xl hover:shadow-lg transition-all">
                       🏠 Back Home
@@ -399,13 +434,27 @@ export default function RandomActivity() {
                   Tell your friends about this awesome boredom killer!
                 </p>
                 <div className="flex gap-2 justify-center">
-                  <button className="w-10 h-10 bg-blue-600 text-white rounded-full hover:scale-110 transition-transform flex items-center justify-center">
+                  {/* Facebook */}
+                  <button
+                    onClick={() => handleShare("fb")}
+                    className="w-10 h-10 bg-[#1877F2] text-white rounded-full hover:scale-110 active:scale-90 transition-transform flex items-center justify-center text-xl font-bold"
+                  >
                     f
                   </button>
-                  <button className="w-10 h-10 bg-sky-500 text-white rounded-full hover:scale-110 transition-transform flex items-center justify-center">
+
+                  {/* X (Twitter) */}
+                  <button
+                    onClick={() => handleShare("x")}
+                    className="w-10 h-10 bg-black text-white rounded-full hover:scale-110 active:scale-90 transition-transform flex items-center justify-center"
+                  >
                     𝕏
                   </button>
-                  <button className="w-10 h-10 bg-pink-600 text-white rounded-full hover:scale-110 transition-transform flex items-center justify-center">
+
+                  {/* Email */}
+                  <button
+                    onClick={() => handleShare("email")}
+                    className="w-10 h-10 bg-pink-600 text-white rounded-full hover:scale-110 active:scale-90 transition-transform flex items-center justify-center text-xl"
+                  >
                     📧
                   </button>
                 </div>
