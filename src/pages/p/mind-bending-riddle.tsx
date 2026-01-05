@@ -739,15 +739,38 @@ const RIDDLES = [
 ];
 
 export default function RiddlePage() {
-  const [currentIdx, setCurrentIdx] = useState(0);
+  // --- STATE ---
+  const [shuffledIds, setShuffledIds] = useState<number[]>([]);
+  const [currentIndexInQueue, setCurrentIndexInQueue] = useState(0);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [isAnswered, setIsAnswered] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [isLoved, setIsLoved] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
 
-  const currentRiddle = RIDDLES[currentIdx];
+  // --- LOGIC: Shuffle Function ---
+  const shuffleRiddles = () => {
+    const ids = RIDDLES.map((r) => r.id);
+    for (let i = ids.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [ids[i], ids[j]] = [ids[j], ids[i]];
+    }
+    return ids;
+  };
 
+  // Initialize the shuffle on first load
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setShuffledIds(shuffleRiddles());
+  }, []);
+
+  // Get the actual riddle object based on the current ID in the shuffled queue
+  const currentRiddle = useMemo(() => {
+    const activeId = shuffledIds[currentIndexInQueue];
+    return RIDDLES.find((r) => r.id === activeId) || RIDDLES[0];
+  }, [shuffledIds, currentIndexInQueue]);
+
+  // --- HANDLERS ---
   const handleOptionClick = (key: string) => {
     if (isAnswered) return;
     setSelectedOption(key);
@@ -758,17 +781,15 @@ export default function RiddlePage() {
     setIsAnimating(true);
 
     setTimeout(() => {
-      setCurrentIdx((prev) => {
-        if (RIDDLES.length <= 1) return prev;
+      // Check if we need to reshuffle (if we reached the end of the list)
+      if (currentIndexInQueue >= shuffledIds.length - 1) {
+        setShuffledIds(shuffleRiddles());
+        setCurrentIndexInQueue(0);
+      } else {
+        setCurrentIndexInQueue((prev) => prev + 1);
+      }
 
-        let randomIdx;
-        do {
-          randomIdx = Math.floor(Math.random() * RIDDLES.length);
-        } while (randomIdx === prev);
-
-        return randomIdx;
-      });
-
+      // Reset states
       setSelectedOption(null);
       setIsAnswered(false);
       setIsLoved(false);
@@ -783,9 +804,8 @@ export default function RiddlePage() {
         <title>Mind-Bending Riddles | imborednow</title>
       </Head>
 
-      {/* Header with Mystery Theme */}
       <header className="bg-gradient-to-br from-indigo-900 via-purple-800 to-indigo-700 pt-12 pb-24 px-4 text-center text-white relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none text-8xl">
+        <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none text-8xl select-none">
           🧩 🔮 🕯️ 🎭
         </div>
         <h1 className="text-4xl md:text-6xl font-black mb-3 drop-shadow-lg tracking-tight">
@@ -799,17 +819,18 @@ export default function RiddlePage() {
       <main className="container mx-auto px-4 -mt-16 pb-20 max-w-2xl relative z-10">
         <div className="bg-white rounded-[2.5rem] shadow-[0_40px_80px_-20px_rgba(0,0,0,0.1)] border border-indigo-50/50 overflow-hidden">
           <div className="p-8 md:p-12">
-            {/* Riddle Progress */}
+            {/* Progress Bar */}
             <div className="flex justify-between items-center mb-10">
               <span className="px-4 py-1.5 bg-indigo-50 text-indigo-600 rounded-full text-[10px] font-black uppercase tracking-widest border border-indigo-100">
-                Level: {currentRiddle.id}
+                Riddle {currentIndexInQueue + 1} / {RIDDLES.length}
               </span>
               <div className="flex gap-1">
+                {/* Visual dots indicating progress through the set */}
                 {[...Array(5)].map((_, i) => (
                   <div
                     key={i}
-                    className={`h-1.5 w-6 rounded-full ${
-                      i < currentRiddle.id % 6
+                    className={`h-1.5 w-6 rounded-full transition-colors duration-500 ${
+                      i < (currentIndexInQueue + 1) % 6
                         ? "bg-yellow-400"
                         : "bg-slate-100"
                     }`}
@@ -818,7 +839,7 @@ export default function RiddlePage() {
               </div>
             </div>
 
-            {/* Riddle Question Area */}
+            {/* Content Area */}
             <div
               className={`text-center mb-12 transition-all duration-300 ${
                 isAnimating ? "opacity-0 scale-95" : "opacity-100 scale-100"
@@ -838,18 +859,32 @@ export default function RiddlePage() {
                 const isCorrect = key === currentRiddle.correct_answer;
                 const isSelected = selectedOption === key;
 
+                // 1. Setup default styles
                 let btnStyle =
                   "bg-slate-50 border-slate-200 text-slate-700 hover:border-indigo-300";
+                let keyStyle = "bg-white text-slate-500 shadow-sm"; // The A, B, C, D circle
+
+                // 2. Override styles when an answer is selected
                 if (isAnswered) {
-                  if (isCorrect)
+                  if (isCorrect) {
+                    // Correct Answer Styling
                     btnStyle =
-                      "bg-emerald-50 border-emerald-500 text-emerald-700 ring-2 ring-emerald-100";
-                  else if (isSelected && !isCorrect)
+                      "bg-emerald-50 border-emerald-500 text-emerald-700 ring-4 ring-emerald-100/50";
+                    keyStyle = "bg-emerald-600 text-white";
+                  } else if (isSelected) {
+                    // Wrong Selection Styling
                     btnStyle =
-                      "bg-rose-50 border-rose-500 text-rose-700 opacity-70";
-                  else
+                      "bg-rose-50 border-rose-500 text-rose-700 opacity-80";
+                    keyStyle = "bg-rose-600 text-white";
+                  } else {
+                    // Unselected & Incorrect Options
                     btnStyle =
-                      "bg-slate-50 border-slate-100 text-slate-400 opacity-50";
+                      "bg-slate-50 border-slate-100 text-slate-400 opacity-40";
+                    keyStyle = "bg-slate-200 text-slate-400";
+                  }
+                } else if (isSelected) {
+                  // Styling for a click BEFORE the answer is officially revealed (if applicable)
+                  keyStyle = "bg-indigo-600 text-white";
                 }
 
                 return (
@@ -857,29 +892,25 @@ export default function RiddlePage() {
                     key={key}
                     onClick={() => handleOptionClick(key)}
                     disabled={isAnswered}
-                    className={`p-5 rounded-2xl border-2 font-bold text-lg text-left transition-all flex items-center gap-4 ${btnStyle}`}
+                    className={`p-5 rounded-2xl border-2 font-bold text-lg text-left transition-all flex items-center gap-4 active:scale-95 ${btnStyle}`}
                   >
                     <span
-                      className={`w-8 h-8 rounded-lg flex items-center justify-center text-sm font-black ${
-                        isSelected
-                          ? "bg-current text-white"
-                          : "bg-white shadow-sm"
-                      }`}
+                      className={`w-8 h-8 shrink-0 rounded-lg flex items-center justify-center text-sm font-black transition-colors duration-300 ${keyStyle}`}
                     >
                       {key}
                     </span>
-                    {text}
+                    <span className="leading-tight">{text}</span>
                   </button>
                 );
               })}
             </div>
 
-            {/* Feedback & Navigation */}
+            {/* Footer Actions */}
             <div className="space-y-8 animate-fade-in">
               {isAnswered && (
                 <div className="py-4 px-6 bg-slate-50 rounded-2xl border border-slate-100 text-center animate-pop-in">
                   <p className="text-slate-500 font-bold text-sm uppercase mb-1">
-                    Answer:
+                    The Answer is:
                   </p>
                   <p className="text-indigo-600 font-black text-xl">
                     {currentRiddle.correct_text}
@@ -893,11 +924,11 @@ export default function RiddlePage() {
                     onClick={handleNext}
                     className="w-full py-5 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-[1.25rem] font-black text-xl hover:shadow-xl hover:shadow-indigo-200 transition-all flex items-center justify-center gap-3 active:scale-95"
                   >
-                    Next Riddle <Icons.Refresh className="w-6 h-6" />
+                    Next Riddle{" "}
+                    <Icons.Refresh className="w-6 h-6 animate-spin-slow" />
                   </button>
                 )}
 
-                {/* PASTEL UTILITY BUTTONS (YOUR DESIGN) */}
                 <div className="flex flex-wrap justify-center gap-3 pt-6 border-t border-slate-100">
                   <button
                     onClick={() => setIsLoved(!isLoved)}
@@ -941,6 +972,17 @@ export default function RiddlePage() {
         .animate-pop-in {
           animation: pop-in 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)
             forwards;
+        }
+        .animate-spin-slow {
+          animation: spin 3s linear infinite;
+        }
+        @keyframes spin {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
         }
       `}</style>
     </div>

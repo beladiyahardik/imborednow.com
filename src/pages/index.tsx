@@ -151,6 +151,12 @@ export default function Home() {
                       emoji: "⚖️",
                       href: "/p/life-style-factor",
                     },
+                    {
+                      title: "History Timeline Finder",
+                      desc: "Travel through time! See which major historical events happened on your exact date of birth.",
+                      emoji: "⏳",
+                      href: "/p/history-timeline",
+                    },
                   ].map((calc) => (
                     <Link key={calc.title} href={calc.href}>
                       <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden transition-all duration-300 hover:-translate-y-3 cursor-pointer border border-purple-100 flex flex-col h-full">
@@ -200,20 +206,20 @@ export default function Home() {
                       color: "from-green-500 to-green-600",
                       href: "/p/facts",
                     },
-                    {
-                      title: "Quick Games",
-                      desc: "Play in your browser",
-                      emoji: "🎮",
-                      color: "from-orange-500 to-orange-600",
-                      href: "/p/life-style-factor",
-                    },
-                    {
-                      title: "DIY Ideas",
-                      desc: "Creative projects at home",
-                      emoji: "✂️",
-                      color: "from-purple-500 to-purple-600",
-                      href: "/p/ultimate-trolling-page",
-                    },
+                    // {
+                    //   title: "Quick Games",
+                    //   desc: "Play in your browser",
+                    //   emoji: "🎮",
+                    //   color: "from-orange-500 to-orange-600",
+                    //   href: "/p/life-style-factor",
+                    // },
+                    // {
+                    //   title: "DIY Ideas",
+                    //   desc: "Creative projects at home",
+                    //   emoji: "✂️",
+                    //   color: "from-purple-500 to-purple-600",
+                    //   href: "/p/ultimate-trolling-page",
+                    // },
                     {
                       title: "Weird Web",
                       desc: "Hilarious & strange sites",
@@ -221,27 +227,20 @@ export default function Home() {
                       color: "from-pink-500 to-pink-600",
                       href: "/p/weird-websites",
                     },
-                    {
-                      title: "Relax & Chill",
-                      desc: "Calming vibes",
-                      emoji: "😌",
-                      color: "from-yellow-500 to-yellow-600",
-                      href: "/p/funny-pranks",
-                    },
-                    {
-                      title: "Relax & Chill",
-                      desc: "Calming vibes",
-                      emoji: "😌",
-                      color: "from-yellow-500 to-yellow-600",
-                      href: "/p/history-timeline",
-                    },
-                    {
-                      title: "Relax & Chill",
-                      desc: "Calming vibes",
-                      emoji: "😌",
-                      color: "from-yellow-500 to-yellow-600",
-                      href: "/p/hold-the-button",
-                    },
+                    // {
+                    //   title: "Relax & Chill",
+                    //   desc: "Calming vibes",
+                    //   emoji: "😌",
+                    //   color: "from-yellow-500 to-yellow-600",
+                    //   href: "/p/funny-pranks",
+                    // },
+                    // {
+                    //   title: "Relax & Chill",
+                    //   desc: "Calming vibes",
+                    //   emoji: "😌",
+                    //   color: "from-yellow-500 to-yellow-600",
+                    //   href: "/p/hold-the-button",
+                    // },
                   ].map((cat) => (
                     <Link key={cat.title} href={cat.href}>
                       <div
@@ -287,30 +286,30 @@ export default function Home() {
                       color: "from-pink-400 to-pink-500",
                       url: "/p/mind-bending-riddle",
                     },
-                    {
-                      title: "5-Minute Browser Game",
-                      emoji: "🎮",
-                      color: "from-blue-400 to-blue-500",
-                      url: "/p/dad-jokes",
-                    },
+                    // {
+                    //   title: "5-Minute Browser Game",
+                    //   emoji: "🎮",
+                    //   color: "from-blue-400 to-blue-500",
+                    //   url: "/p/dad-jokes",
+                    // },
                     {
                       title: "Crazy Animal Fact",
                       emoji: "🦁",
                       color: "from-green-400 to-green-500",
                       url: "/p/crazy-animal-fact",
                     },
-                    {
-                      title: "Quick DIY Craft",
-                      emoji: "✨",
-                      color: "from-orange-400 to-orange-500",
-                      url: "/p/dad-joke",
-                    },
-                    {
-                      title: "Relaxing Soundscape",
-                      emoji: "🎵",
-                      color: "from-indigo-400 to-indigo-500",
-                      url: "/p/dad-joke",
-                    },
+                    // {
+                    //   title: "Quick DIY Craft",
+                    //   emoji: "✨",
+                    //   color: "from-orange-400 to-orange-500",
+                    //   url: "/p/dad-joke",
+                    // },
+                    // {
+                    //   title: "Relaxing Soundscape",
+                    //   emoji: "🎵",
+                    //   color: "from-indigo-400 to-indigo-500",
+                    //   url: "/p/dad-joke",
+                    // },
                   ].map((item, i) => (
                     <Link key={i} href={`${item.url}`}>
                       <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 cursor-pointer border border-purple-100">
