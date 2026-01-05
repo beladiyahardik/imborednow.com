@@ -1444,7 +1444,7 @@ export default function RandomJokesPage() {
     }, 250);
   };
 
-  const getTriggerText = (text) => {
+  const getTriggerText = (text: string): string => {
     const firstWord = text.split(" ")[0].replace(/[^a-zA-Z]/g, "");
     const triggers = ["How", "Why", "What", "Who", "Where", "When"];
     return triggers.includes(firstWord) ? `${firstWord}?` : "And... ?";
@@ -1453,7 +1453,7 @@ export default function RandomJokesPage() {
   return (
     <div className="min-h-screen bg-slate-50 font-sans">
       <Head>
-        <title>Random Jokes | I'm Bored Now</title>
+        <title>Random Jokes | I&apos;m Bored Now</title>
       </Head>
 
       <header className="bg-gradient-to-br from-purple-600 via-pink-500 to-rose-400 pt-10 pb-20 px-4 text-center text-white">
