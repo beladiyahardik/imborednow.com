@@ -191,7 +191,7 @@ export default function Home() {
                       desc: "Instant laughs guaranteed",
                       emoji: "😂",
                       color: "from-blue-500 to-blue-600",
-                      href: "/p/birthdate-calculator",
+                      href: "/p/random-jokes",
                     },
                     {
                       title: "Fun Facts",
@@ -285,7 +285,7 @@ export default function Home() {
                       title: "Mind-Bending Riddle",
                       emoji: "🧩",
                       color: "from-pink-400 to-pink-500",
-                      url: "/p/dad-jokes",
+                      url: "/p/mind-bending-riddle",
                     },
                     {
                       title: "5-Minute Browser Game",
