@@ -298,12 +298,12 @@ export default function Home() {
                       color: "from-green-400 to-green-500",
                       url: "/p/crazy-animal-fact",
                     },
-                    // {
-                    //   title: "Quick DIY Craft",
-                    //   emoji: "✨",
-                    //   color: "from-orange-400 to-orange-500",
-                    //   url: "/p/dad-joke",
-                    // },
+                    {
+                      title: "Quick DIY Craft",
+                      emoji: "✨",
+                      color: "from-orange-400 to-orange-500",
+                      url: "/p/diy-craft",
+                    },
                     // {
                     //   title: "Relaxing Soundscape",
                     //   emoji: "🎵",

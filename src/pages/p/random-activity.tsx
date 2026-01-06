@@ -115,7 +115,7 @@ export default function RandomActivity() {
     { label: "🧠 Facts", route: "/p/facts" },
     // { label: "🎮 Games", route: "/games" },
     { label: "🧩 Riddles", route: "/p/mind-bending-riddle" },
-    // { label: "✂️ DIY", route: "/diy" },
+    { label: "✂️ DIY", route: "/p/diy-craft" },
     // { label: "🎯 Challenges", route: "/challenges" },
     // { label: "😌 Relax", route: "/relax" },
     // { label: "❓ Trivia", route: "/trivia" },
@@ -412,11 +412,11 @@ export default function RandomActivity() {
                       🧠 Only Facts
                     </button>
                   </Link>
-                  {/* <Link href="/games">
+                  <Link href="/p/diy-craft">
                     <button className="w-full px-4 py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all">
-                      🎮 Play Games
+                      ✂️ DIY Crafts
                     </button>
-                  </Link> */}
+                  </Link>
                   <Link href="/">
                     <button className="w-full px-4 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-xl hover:shadow-lg transition-all">
                       🏠 Back Home
