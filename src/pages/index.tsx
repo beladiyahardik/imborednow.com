@@ -304,11 +304,17 @@ export default function Home() {
                       color: "from-orange-400 to-orange-500",
                       url: "/p/diy-craft",
                     },
+                    {
+                      title: "Boredom Trivia",
+                      emoji: "🧠",
+                      color: "from-indigo-500 to-blue-600",
+                      url: "/p/trivia",
+                    },
                     // {
                     //   title: "Relaxing Soundscape",
                     //   emoji: "🎵",
                     //   color: "from-indigo-400 to-indigo-500",
-                    //   url: "/p/dad-joke",
+                    //   url: "/p/trivia",
                     // },
                   ].map((item, i) => (
                     <Link key={i} href={`${item.url}`}>
