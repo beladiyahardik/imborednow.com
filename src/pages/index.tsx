@@ -5,568 +5,206 @@ import Link from "next/link";
 export default function Home() {
   const [email, setEmail] = useState("");
 
-  const handleSubscribe = (e: Event) => {
-    e.preventDefault();
-    alert("Thanks for subscribing!");
-    setEmail("");
-  };
+  const categories = [
+    { title: "Boredom Trivia", emoji: "🧠", color: "from-indigo-600 to-blue-700", url: "/p/trivia", tag: "Hot" },
+    { title: "Quick DIY Craft", emoji: "✨", color: "from-orange-500 to-rose-500", url: "/p/diy-craft", tag: "New" },
+    { title: "Mind Riddles", emoji: "🧩", color: "from-purple-600 to-pink-600", url: "/p/mind-bending-riddle", tag: "Brainy" },
+    { title: "Random Jokes", emoji: "😂", color: "from-blue-500 to-cyan-500", url: "/p/random-jokes", tag: "Funny" },
+    { title: "Weird Web", emoji: "🌐", color: "from-rose-500 to-orange-500", url: "/p/weird-websites", tag: "Strange" },
+    { title: "Animal Facts", emoji: "🦁", color: "from-emerald-500 to-teal-600", url: "/p/crazy-animal-fact", tag: "Cool" },
+  ];
 
   return (
-    <>
+    <div className="min-h-screen bg-[#F8FAFC] font-sans selection:bg-purple-200 pb-20">
       <Head>
-        <title>I&apos;m Bored Now - Fun Activities, Jokes, Games & More!</title>
-        <meta
-          name="description"
-          content="Beat boredom instantly with jokes, facts, games, DIY ideas, and random surprises. Fun for everyone!"
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>I&apos;m Bored Now | Kill Boredom Instantly</title>
       </Head>
 
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50">
-        {/* Hero Section - Enhanced */}
-        <section className="relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400 opacity-95"></div>
-          <div className="absolute inset-0">
-            <div className="absolute top-10 left-10 w-72 h-72 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
-            <div className="absolute bottom-10 right-10 w-96 h-96 bg-pink-300/20 rounded-full blur-3xl animate-pulse delay-700"></div>
+      {/* --- 1. HERO SECTION --- */}
+      <section className="relative pt-16 pb-28 px-4 overflow-hidden bg-slate-950">
+        <div className="absolute inset-0 opacity-30">
+           <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_30%_20%,_var(--tw-gradient-stops))] from-purple-600/40 via-transparent to-transparent" />
+        </div>
+        
+        <div className="relative z-10 max-w-5xl mx-auto text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur-xl rounded-full text-purple-300 text-[10px] font-black uppercase tracking-[0.3em] mb-8 border border-white/10">
+            🚀 The #1 Boredom Killer
           </div>
+          <h1 className="text-5xl md:text-8xl font-black text-white mb-6 tracking-tighter leading-[0.85]">
+            BEAT <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-400">BOREDOM</span><br/>
+            IN SECONDS.
+          </h1>
+          <div className="flex justify-center gap-4 mt-8">
+            <Link href="/p/random-activity">
+              <button className="px-8 py-4 bg-white text-slate-900 rounded-2xl font-black text-lg hover:scale-105 transition-all shadow-xl active:scale-95">
+                Surprise Me! 🎁
+              </button>
+            </Link>
+          </div>
+        </div>
+      </section>
 
-          <div className="relative container mx-auto px-4 sm:px-6 py-20 sm:py-32 text-center text-white">
-            <div className="max-w-4xl mx-auto space-y-8">
-              <h2 className="text-4xl sm:text-6xl lg:text-7xl font-black leading-tight drop-shadow-2xl animate-fade-in">
-                Feeling Bored? 😴
-                <br />
-                <span className="text-yellow-300">Not Anymore!</span>
-              </h2>
-              <p className="text-lg sm:text-2xl lg:text-3xl font-medium opacity-95 drop-shadow-lg max-w-3xl mx-auto">
-                Discover instant fun with jokes, games, amazing facts, and
-                endless surprises!
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-                <Link href="/p/random-activity">
-                  <button className="group px-8 sm:px-12 py-4 sm:py-6 text-xl sm:text-2xl font-bold bg-white text-purple-600 rounded-full shadow-2xl hover:shadow-purple-400/50 hover:scale-110 transition-all duration-300 transform hover:-rotate-2">
-                    🎉 Kill My Boredom Now!
-                    <span className="inline-block group-hover:translate-x-2 transition-transform ml-2">
-                      →
+      <main className="max-w-6xl mx-auto px-4 -mt-12 relative z-20 space-y-20">
+        
+        {/* --- 2. BENTO GRID (The Main Content) --- */}
+        <section>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6">
+            {categories.map((cat, i) => (
+              <Link key={i} href={cat.url}>
+                <div className={`group relative h-44 md:h-55 lg:h-64 rounded-[2rem] md:rounded-[2.5rem] bg-gradient-to-br ${cat.color} p-5 md:p-8 overflow-hidden cursor-pointer transition-all duration-500 hover:-translate-y-2 shadow-xl active:scale-95`}>
+                  <div className="absolute top-[-5%] right-[-5%] text-8xl md:text-9xl opacity-15 group-hover:rotate-12 transition-transform duration-500">
+                    {cat.emoji}
+                  </div>
+                  <div className="relative h-full flex flex-col justify-between">
+                    <span className="self-start bg-black/20 backdrop-blur-md px-3 py-1 rounded-full text-[9px] font-black text-white uppercase tracking-widest">
+                      {cat.tag}
                     </span>
-                  </button>
-                </Link>
-              </div>
-              <div className="flex flex-wrap justify-center gap-4 sm:gap-8 pt-8 text-sm sm:text-base">
-                <div className="bg-white/20 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-full border border-white/30">
-                  ⚡ 100% Free
-                </div>
-                <div className="bg-white/20 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-full border border-white/30">
-                  🎮 No Downloads
-                </div>
-                <div className="bg-white/20 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-full border border-white/30">
-                  😄 Instant Fun
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* AdSense Leaderboard */}
-        <div className="container mx-auto px-4 sm:px-6 my-8 sm:my-12">
-          <div className="bg-gradient-to-r from-gray-100 to-gray-200 border-2 border-dashed border-gray-300 rounded-xl w-full h-24 flex items-center justify-center text-gray-500 font-semibold shadow-inner">
-            [AdSense Leaderboard 728×90]
-          </div>
-        </div>
-
-        {/* How It Works - Improved */}
-        <section className="py-12 sm:py-16 bg-white/60 backdrop-blur-sm">
-          <div className="container mx-auto px-4 sm:px-6">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-center mb-8 sm:mb-12 text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">
-              How It Works
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12 max-w-5xl mx-auto">
-              {[
-                {
-                  emoji: "😴",
-                  title: "Feel Bored",
-                  desc: "Staring at the wall? Scrolling endlessly? We get it.",
-                },
-                {
-                  emoji: "👆",
-                  title: "Click Anything",
-                  desc: "Pick a category or hit the big button. It's that simple!",
-                },
-                {
-                  emoji: "😄",
-                  title: "Have Fun Instantly",
-                  desc: "Laugh, play, learn — boredom vanishes in seconds!",
-                },
-              ].map((step, idx) => (
-                <div
-                  key={idx}
-                  className="group relative bg-white p-6 sm:p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-purple-100"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-pink-50 opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity duration-300"></div>
-                  <div className="relative text-center space-y-4">
-                    <div className="text-6xl sm:text-7xl mb-4 transform group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
-                      {step.emoji}
+                    <div>
+                      <h3 className="text-lg md:text-2xl font-black text-white mb-1">
+                        {cat.title}
+                      </h3>
+                      <p className="text-white/70 text-[10px] uppercase font-bold tracking-widest">Tap to Play →</p>
                     </div>
-                    <h3 className="text-xl sm:text-2xl font-bold text-gray-800">
-                      {step.title}
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed">{step.desc}</p>
                   </div>
                 </div>
-              ))}
-            </div>
+              </Link>
+            ))}
           </div>
         </section>
 
-        {/* Main Content Grid */}
-        <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-16">
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 sm:gap-12">
-            {/* Main Content */}
-            <div className="lg:col-span-3 space-y-12 sm:space-y-16">
-              <div>
-                <div className="flex items-center justify-center gap-3 mb-8">
-                  <span className="text-4xl">🧮</span>
-                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">
-                    Fun & Useful Calculators
-                  </h2>
-                  <span className="text-4xl">🔢</span>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {[
-                    {
-                      title: "Birthdate Calculator",
-                      desc: "Discover fun facts about your birthday, age in days, next birthday countdown & more!",
-                      emoji: "🎂",
-                      href: "/p/birthdate-calculator",
-                    },
-                    {
-                      title: "Life Expectancy Calculator",
-                      desc: "Estimate your life expectancy based on lifestyle, habits & health factors",
-                      emoji: "❤️",
-                      href: "/p/life-expectancy-calculator",
-                    },
-                    {
-                      title: "Lifestyle Factor Analyzer",
-                      desc: "See how your daily habits affect your health and longevity",
-                      emoji: "⚖️",
-                      href: "/p/life-style-factor",
-                    },
-                    {
-                      title: "History Timeline Finder",
-                      desc: "Travel through time! See which major historical events happened on your exact date of birth.",
-                      emoji: "⏳",
-                      href: "/p/history-timeline",
-                    },
-                  ].map((calc) => (
-                    <Link key={calc.title} href={calc.href}>
-                      <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden transition-all duration-300 hover:-translate-y-3 cursor-pointer border border-purple-100 flex flex-col h-full">
-                        {/* Fixed height gradient top */}
-                        <div className="bg-gradient-to-br from-purple-400 to-pink-500 h-40 flex items-center justify-center flex-shrink-0">
-                          <span className="text-6xl sm:text-7xl transform group-hover:scale-110 transition-transform duration-300">
-                            {calc.emoji}
-                          </span>
-                        </div>
-                        {/* Content area that grows equally */}
-                        <div className="p-6 flex flex-col flex-grow">
-                          <h3 className="text-xl font-bold mb-3 text-gray-800">
-                            {calc.title}
-                          </h3>
-                          <p className="text-gray-600 mb-6 flex-grow">
-                            {calc.desc}
-                          </p>
-                          {/* Button always at bottom */}
-                          <span className="text-purple-600 font-bold hover:underline inline-flex items-center mt-auto">
-                            Try It Now →
-                          </span>
-                        </div>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
+        {/* --- 3. DAD JOKE & FUN FACT (Featured Block) --- */}
+        <section className="grid md:grid-cols-2 gap-6">
+          {/* Dad Joke Card */}
+          <Link href="/p/dad-jokes">
+            <div className="bg-white p-8 rounded-[2.5rem] shadow-xl border border-slate-100 group cursor-pointer hover:border-purple-200 transition-all">
+              <div className="flex items-center justify-between mb-6">
+                <span className="text-4xl">🎭</span>
+                <span className="px-3 py-1 bg-purple-100 text-purple-600 rounded-lg text-[10px] font-black uppercase">Joke of the Day</span>
               </div>
+              <h3 className="text-2xl font-black text-slate-800 mb-4 group-hover:text-purple-600 transition-colors">
+                Why don't scientists trust atoms?
+              </h3>
+              <p className="text-slate-500 font-medium">Click to reveal the punchline... 😂</p>
+            </div>
+          </Link>
 
-              {/* Categories - Enhanced */}
-              <div>
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-center mb-8 sm:mb-12 text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">
-                  Choose Your Adventure
-                </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-                  {[
-                    {
-                      title: "Random Jokes",
-                      desc: "Instant laughs guaranteed",
-                      emoji: "😂",
-                      color: "from-blue-500 to-blue-600",
-                      href: "/p/random-jokes",
-                    },
-                    {
-                      title: "Fun Facts",
-                      desc: "Mind-blowing trivia daily",
-                      emoji: "🧠",
-                      color: "from-green-500 to-green-600",
-                      href: "/p/facts",
-                    },
-                    // {
-                    //   title: "Quick Games",
-                    //   desc: "Play in your browser",
-                    //   emoji: "🎮",
-                    //   color: "from-orange-500 to-orange-600",
-                    //   href: "/p/life-style-factor",
-                    // },
-                    // {
-                    //   title: "DIY Ideas",
-                    //   desc: "Creative projects at home",
-                    //   emoji: "✂️",
-                    //   color: "from-purple-500 to-purple-600",
-                    //   href: "/p/ultimate-trolling-page",
-                    // },
-                    {
-                      title: "Weird Web",
-                      desc: "Hilarious & strange sites",
-                      emoji: "🌐",
-                      color: "from-pink-500 to-pink-600",
-                      href: "/p/weird-websites",
-                    },
-                    // {
-                    //   title: "Relax & Chill",
-                    //   desc: "Calming vibes",
-                    //   emoji: "😌",
-                    //   color: "from-yellow-500 to-yellow-600",
-                    //   href: "/p/funny-pranks",
-                    // },
-                    // {
-                    //   title: "Relax & Chill",
-                    //   desc: "Calming vibes",
-                    //   emoji: "😌",
-                    //   color: "from-yellow-500 to-yellow-600",
-                    //   href: "/p/hold-the-button",
-                    // },
-                  ].map((cat) => (
-                    <Link key={cat.title} href={cat.href}>
-                      <div
-                        className={`group relative p-6 sm:p-8 rounded-2xl bg-gradient-to-br ${cat.color} text-white shadow-xl hover:shadow-2xl hover:-translate-y-3 transition-all duration-300 cursor-pointer overflow-hidden`}
-                      >
-                        <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors duration-300"></div>
-                        <div className="relative text-center space-y-3">
-                          <div className="text-5xl sm:text-6xl mb-4 transform group-hover:scale-125 group-hover:rotate-12 transition-transform duration-300">
-                            {cat.emoji}
-                          </div>
-                          <h3 className="text-xl sm:text-2xl font-bold">
-                            {cat.title}
-                          </h3>
-                          <p className="text-base sm:text-lg opacity-90">
-                            {cat.desc}
-                          </p>
-                        </div>
-                      </div>
-                    </Link>
-                  ))}
+          {/* Fun Fact Card */}
+          <Link href="/p/facts">
+            <div className="bg-slate-900 p-8 rounded-[2.5rem] shadow-xl group cursor-pointer overflow-hidden relative">
+              <div className="absolute right-[-10%] bottom-[-10%] text-9xl opacity-10 rotate-12 group-hover:rotate-0 transition-transform">🧠</div>
+              <div className="relative z-10">
+                <div className="flex items-center justify-between mb-6">
+                  <span className="text-4xl">💡</span>
+                  <span className="px-3 py-1 bg-white/10 text-white rounded-lg text-[10px] font-black uppercase">Did you know?</span>
                 </div>
-              </div>
-
-              {/* Featured Content - Improved */}
-              <div>
-                <div className="flex items-center gap-1.5 justify-center">
-                  <span className="text-3xl sm:text-4xl mb-8 sm:mb-12">🔥</span>
-                  <h2 className="text-3xl sm:text-4xl font-black text-center mb-8 sm:mb-12 text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">
-                    Popular Right Now
-                  </h2>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {[
-                    {
-                      title: "Dad Joke of the Day",
-                      emoji: "🎭",
-                      color: "from-purple-400 to-purple-500",
-                      url: "/p/dad-jokes",
-                    },
-                    {
-                      title: "Mind-Bending Riddle",
-                      emoji: "🧩",
-                      color: "from-pink-400 to-pink-500",
-                      url: "/p/mind-bending-riddle",
-                    },
-                    // {
-                    //   title: "5-Minute Browser Game",
-                    //   emoji: "🎮",
-                    //   color: "from-blue-400 to-blue-500",
-                    //   url: "/p/dad-jokes",
-                    // },
-                    {
-                      title: "Crazy Animal Fact",
-                      emoji: "🦁",
-                      color: "from-green-400 to-green-500",
-                      url: "/p/crazy-animal-fact",
-                    },
-                    {
-                      title: "Quick DIY Craft",
-                      emoji: "✨",
-                      color: "from-orange-400 to-orange-500",
-                      url: "/p/diy-craft",
-                    },
-                    {
-                      title: "Boredom Trivia",
-                      emoji: "🧠",
-                      color: "from-indigo-500 to-blue-600",
-                      url: "/p/trivia",
-                    },
-                    // {
-                    //   title: "Relaxing Soundscape",
-                    //   emoji: "🎵",
-                    //   color: "from-indigo-400 to-indigo-500",
-                    //   url: "/p/trivia",
-                    // },
-                  ].map((item, i) => (
-                    <Link key={i} href={`${item.url}`}>
-                      <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 cursor-pointer border border-purple-100">
-                        <div
-                          className={`bg-gradient-to-br ${item.color} h-40 sm:h-48 flex items-center justify-center text-6xl sm:text-7xl transform group-hover:scale-110 transition-transform duration-300`}
-                        >
-                          {item.emoji}
-                        </div>
-                        <div className="p-5 sm:p-6">
-                          <h3 className="text-lg sm:text-xl font-bold mb-2 text-gray-800">
-                            {item.title}
-                          </h3>
-                          <p className="text-gray-600 mb-4 text-sm sm:text-base">
-                            Trending today! Click to try it.
-                          </p>
-                          <span className="text-purple-600 font-bold hover:underline inline-flex items-center group">
-                            Try It Now
-                            <svg
-                              className="w-4 h-4 ml-2 group-hover:translate-x-2 transition-transform"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M9 5l7 7-7 7"
-                              />
-                            </svg>
-                          </span>
-                        </div>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-
-              {/* In-content Ad */}
-              <div className="my-12">
-                <div className="bg-gradient-to-r from-gray-100 to-gray-200 border-2 border-dashed border-gray-300 rounded-xl w-full h-64 flex items-center justify-center text-gray-500 font-semibold shadow-inner">
-                  [AdSense Rectangle 336×280]
-                </div>
-              </div>
-
-              {/* Value Proposition Section */}
-              <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-8 sm:p-12 rounded-3xl shadow-xl border border-purple-100">
-                <h2 className="text-2xl sm:text-3xl font-black text-center mb-8 text-gray-800">
-                  Why I&apos;m Bored Now? 🤔
-                </h2>
-                <div className="grid sm:grid-cols-2 gap-6">
-                  {[
-                    {
-                      icon: "🎯",
-                      title: "Always Fresh",
-                      desc: "New content added daily to keep things exciting",
-                    },
-                    {
-                      icon: "🚀",
-                      title: "Super Fast",
-                      desc: "No waiting, no loading. Instant entertainment",
-                    },
-                    {
-                      icon: "👨‍👩‍👧‍👦",
-                      title: "Family Friendly",
-                      desc: "Safe, clean fun for all ages",
-                    },
-                    {
-                      icon: "📱",
-                      title: "Works Everywhere",
-                      desc: "Phone, tablet, computer—we got you covered",
-                    },
-                  ].map((item, i) => (
-                    <div
-                      key={i}
-                      className="flex gap-4 items-start bg-white p-5 rounded-xl shadow-md hover:shadow-lg transition-shadow"
-                    >
-                      <div className="text-4xl">{item.icon}</div>
-                      <div>
-                        <h3 className="font-bold text-lg text-gray-800 mb-1">
-                          {item.title}
-                        </h3>
-                        <p className="text-gray-600 text-sm">{item.desc}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                <h3 className="text-2xl font-black text-white mb-4">
+                  Honey never spoils. Archaeologists found edible honey in ancient tombs!
+                </h3>
+                <p className="text-indigo-300 font-bold uppercase text-[10px] tracking-[0.2em]">More Facts →</p>
               </div>
             </div>
+          </Link>
+        </section>
 
-            {/* Sidebar */}
-            <aside className="space-y-8">
-              {/* Ad Unit */}
-              <div className="sticky top-24">
-                <div className="bg-gradient-to-br from-gray-100 to-gray-200 border-2 border-dashed border-gray-300 rounded-xl w-full h-64 flex items-center justify-center text-gray-500 font-semibold shadow-inner">
-                  [AdSense 300×250]
-                </div>
-              </div>
-
-              {/* Stats Widget */}
-              <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-xl border border-purple-100">
-                <h3 className="text-xl sm:text-2xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 text-center">
-                  🎊 Fun Stats
-                </h3>
-                <div className="space-y-6">
-                  {[
-                    {
-                      num: "50K+",
-                      label: "Jokes Told",
-                      color: "text-purple-600",
-                    },
-                    {
-                      num: "120K+",
-                      label: "Happy Visitors",
-                      color: "text-pink-600",
-                    },
-                    {
-                      num: "1M+",
-                      label: "Boredom Killed",
-                      color: "text-green-600",
-                    },
-                  ].map((stat, i) => (
-                    <div
-                      key={i}
-                      className="text-center p-4 bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl"
-                    >
-                      <div
-                        className={`text-3xl sm:text-4xl font-black ${stat.color} mb-1`}
-                      >
-                        {stat.num}
-                      </div>
-                      <p className="text-gray-600 font-medium">{stat.label}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Quick Links */}
-              {/* <div className="bg-gradient-to-br from-purple-100 to-pink-100 p-6 rounded-2xl border border-purple-200">
-                <h3 className="text-lg font-bold mb-4 text-gray-800">
-                  ⚡ Quick Jump
-                </h3>
-                <div className="flex flex-col gap-3">
-                  {[
-                    "Surprise Me!",
-                    "Daily Challenge",
-                    "Top Rated",
-                    "Random Pick",
-                  ].map((link) => (
-                    <Link key={link} href="/random">
-                      <div className="bg-white p-3 rounded-lg hover:bg-purple-50 transition-colors cursor-pointer text-sm font-medium text-gray-700 hover:text-purple-600">
-                        → {link}
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </div> */}
-            </aside>
-          </div>
-        </div>
-
-        {/* Testimonials - Enhanced */}
-        <section className="py-12 sm:py-16 bg-gradient-to-br from-purple-100 via-pink-100 to-orange-100">
-          <div className="container mx-auto px-4 sm:px-6">
-            <div className="mb-8 sm:mb-12 flex items-center gap-2 justify-center">
-              <span className="text-3xl sm:text-4xl lg:text-5xl">💬</span>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">
-                What People Say
+        {/* --- 4. THE DISCOVERY LAB (Expanded Tools) --- */}
+        <section>
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-8 px-2">
+            <div>
+              <h2 className="text-2xl font-black text-slate-900 flex items-center gap-2">
+                The Discovery Lab <span className="animate-pulse">🧪</span>
               </h2>
+              <p className="text-sm font-bold text-slate-400 uppercase tracking-widest mt-1">Deep Dive Into Your Life</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 lg:gap-12 max-w-6xl mx-auto">
+            <div className="h-[2px] hidden md:block flex-grow mx-6 bg-slate-100" />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+             {[
+               { 
+                 title: "Birthdate Secrets", 
+                 icon: "🎂", 
+                 desc: "What happened the day you were born?", 
+                 color: "bg-blue-50 border-blue-100 text-blue-700", 
+                 href: "/p/birthdate-calculator" 
+               },
+               { 
+                 title: "History Timeline", 
+                 icon: "⏳", 
+                 desc: "Sync your life events with world history.", 
+                 color: "bg-purple-50 border-purple-100 text-purple-700", 
+                 href: "/p/history-timeline" 
+               },
+               { 
+                 title: "Life Expectancy", 
+                 icon: "❤️", 
+                 desc: "How many days do you have left? Find out.", 
+                 color: "bg-rose-50 border-rose-100 text-rose-700", 
+                 href: "/p/life-expectancy-calculator" 
+               },
+               { 
+                 title: "Lifestyle Factor", 
+                 icon: "⚖️", 
+                 desc: "Analyze how your habits affect your future.", 
+                 color: "bg-emerald-50 border-emerald-100 text-emerald-700", 
+                 href: "/p/life-style-factor" 
+               }
+             ].map((tool, i) => (
+               <Link key={i} href={tool.href}>
+                 <div className={`${tool.color} border p-6 rounded-3xl flex items-center gap-5 hover:scale-[1.03] transition-all cursor-pointer group active:scale-95 shadow-sm hover:shadow-md`}>
+                    <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-4xl shadow-sm group-hover:rotate-6 transition-transform">
+                      {tool.icon}
+                    </div>
+                    <div>
+                      <h4 className="font-black text-lg leading-tight mb-1">{tool.title}</h4>
+                      <p className="text-slate-600 text-xs font-bold opacity-80 leading-snug">{tool.desc}</p>
+                    </div>
+                 </div>
+               </Link>
+             ))}
+          </div>
+        </section>
+
+        {/* --- 5. WHY I'M BORED NOW? (Value Proposition) --- */}
+        <section className="bg-white rounded-[3rem] p-8 md:p-16 shadow-2xl border border-slate-50 text-center relative overflow-hidden">
+          <div className="max-w-3xl mx-auto relative z-10">
+            <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-6 tracking-tight">
+              Why <span className="text-purple-600">imborednow?</span> 🤔
+            </h2>
+            <div className="grid md:grid-cols-2 gap-8 mt-12 text-left">
               {[
-                {
-                  quote:
-                    "This site saved my lunch break every single day! So much fun and variety!",
-                  name: "Sarah K.",
-                  rating: 5,
-                },
-                {
-                  quote:
-                    "Best random jokes on the internet! I laugh out loud every time.",
-                  name: "Mike T.",
-                  rating: 5,
-                },
-                {
-                  quote:
-                    "My kids absolutely love the games section. Clean, safe, and entertaining!",
-                  name: "Emma L.",
-                  rating: 5,
-                },
-              ].map((t, i) => (
-                <div
-                  key={i}
-                  className="bg-white p-6 sm:p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow border border-purple-100"
-                >
-                  <div className="flex justify-center mb-4 text-yellow-400 text-xl">
-                    {"⭐".repeat(t.rating)}
+                { icon: "🎯", title: "Always Fresh", desc: "New jokes and trivia added every 24 hours." },
+                { icon: "🚀", title: "Zero Friction", desc: "No signups, no ads that stop the fun." },
+                { icon: "👨‍👩‍👧‍👦", title: "Family Safe", desc: "Clean content curated for all age groups." },
+                { icon: "📱", title: "Pocket Fun", desc: "Works perfectly on any phone or tablet." }
+              ].map((item, i) => (
+                <div key={i} className="flex gap-4">
+                  <div className="text-3xl">{item.icon}</div>
+                  <div>
+                    <h4 className="font-black text-slate-800">{item.title}</h4>
+                    <p className="text-slate-500 text-sm font-medium">{item.desc}</p>
                   </div>
-                  <p className="text-base sm:text-lg italic mb-6 text-gray-700 leading-relaxed">
-                    &quot;{t.quote}&quot;
-                  </p>
-                  <p className="font-bold text-purple-600 text-center">
-                    — {t.name}
-                  </p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Newsletter - Improved */}
-        <section className="py-12 sm:py-16 bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500 text-white relative overflow-hidden">
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-0 left-1/4 w-96 h-96 bg-white rounded-full blur-3xl"></div>
-            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-yellow-300 rounded-full blur-3xl"></div>
-          </div>
-          <div className="relative container mx-auto px-4 sm:px-6 text-center">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black mb-4 sm:mb-6 drop-shadow-lg">
-              📧 Never Be Bored Again
-            </h2>
-            <p className="text-lg sm:text-xl lg:text-2xl mb-6 sm:mb-8 opacity-95 max-w-2xl mx-auto">
-              Get daily fun, jokes, and surprises delivered straight to your
-              inbox!
-            </p>
-            <div className="w-full flex flex-col gap-1 max-w-2xl mx-auto">
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email"
-                  className="flex-1 min-w-0 px-5 py-3 border rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                />
-                <button className="px-6 py-3 bg-white text-purple-600 font-bold rounded-xl hover:bg-purple-50 transition-colors whitespace-nowrap">
-                  Subscribe
-                </button>
-              </div>
-              <p className="mt-3 text-center text-sm opacity-75">
-                ✅ Free forever • 📬 No spam • 🔒 Unsubscribe anytime
-              </p>
-            </div>
-          </div>
+        {/* --- 6. NEWSLETTER (Itractive Style) --- */}
+        <section className="bg-gradient-to-r from-purple-600 to-indigo-700 rounded-[3rem] p-10 md:p-20 text-center text-white relative overflow-hidden">
+           <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -mr-20 -mt-20" />
+           <h2 className="text-3xl md:text-5xl font-black mb-4">Never be bored again.</h2>
+           <p className="text-indigo-100 text-lg mb-10 max-w-xl mx-auto opacity-80">Join 50,000+ humans getting a weekly dose of fun.</p>
+           <div className="max-w-md mx-auto flex flex-col sm:flex-row gap-3">
+              <input 
+                type="email" 
+                placeholder="Your email address" 
+                className="flex-grow px-6 py-4 rounded-2xl bg-white/10 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-white/50"
+              />
+              <button className="px-8 py-4 bg-white text-indigo-600 font-black rounded-2xl hover:bg-indigo-50 transition-colors">Join Free</button>
+           </div>
         </section>
 
-        {/* Final Ad */}
-        {/* <div className="container mx-auto px-4 sm:px-6 sm:my-12">
-          <div className="bg-gradient-to-r from-gray-100 to-gray-200 border-2 border-dashed border-gray-300 rounded-xl w-full h-24 sm:h-32 flex items-center justify-center text-gray-500 font-semibold shadow-inner">
-            [AdSense Horizontal Unit]
-          </div>
-        </div> */}
-      </div>
-    </>
+      </main>
+    </div>
   );
 }
