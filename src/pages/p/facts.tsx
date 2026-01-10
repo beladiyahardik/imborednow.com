@@ -1,107 +1,5 @@
-import { useState, useEffect } from "react";
-
-// Custom SVG Icons
-const Icons = {
-  Heart: ({
-    className = "",
-    filled = false,
-  }: {
-    className?: string;
-    filled?: boolean;
-  }) => (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill={filled ? "currentColor" : "none"}
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-    </svg>
-  ),
-  Bookmark: ({
-    className = "",
-    filled = false,
-  }: {
-    className?: string;
-    filled?: boolean;
-  }) => (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill={filled ? "currentColor" : "none"}
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
-    </svg>
-  ),
-  Share: ({ className = "" }: { className?: string }) => (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <circle cx="18" cy="5" r="3"></circle>
-      <circle cx="6" cy="12" r="3"></circle>
-      <circle cx="18" cy="19" r="3"></circle>
-      <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-      <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-    </svg>
-  ),
-  Refresh: ({ className = "" }: { className?: string }) => (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"></path>
-    </svg>
-  ),
-  TrendingUp: ({ className = "" }: { className?: string }) => (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
-      <polyline points="17 6 23 6 23 12"></polyline>
-    </svg>
-  ),
-  Sparkles: ({ className = "" }: { className?: string }) => (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path>
-      <path d="M5 3v4"></path>
-      <path d="M19 17v4"></path>
-      <path d="M3 5h4"></path>
-      <path d="M17 19h4"></path>
-    </svg>
-  ),
-};
+import Head from "next/head";
+import { useState } from "react";
 
 interface Fact {
   id: number;
@@ -312,375 +210,185 @@ export default function EnhancedFacts() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [currentFacts, setCurrentFacts] = useState(factsData.all);
   const [likedFacts, setLikedFacts] = useState<Set<number>>(new Set());
-  const [savedFacts, setSavedFacts] = useState<Set<number>>(new Set());
-  const [animatingFactId, setAnimatingFactId] = useState<number | null>(null);
-  const [animationType, setAnimationType] = useState<
-    "like" | "save" | "share" | null
-  >(null);
-  const [floatingHearts, setFloatingHearts] = useState<
-    { id: string; cardId: number; x: number; y: number }[]
-  >([]);
-  const [factsViewed, setFactsViewed] = useState(0);
-  const [randomFact, setRandomFact] = useState<Fact | null>(null);
-
-  useEffect(() => {
-    setFactsViewed((prev) => prev + currentFacts.length);
-  }, [currentFacts]);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [surpriseFact, setSurpriseFact] = useState<any | null>(null);
 
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category);
     setCurrentFacts(factsData[category]);
   };
 
-  const createFloatingHeart = (e: React.MouseEvent, cardId: number) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    // eslint-disable-next-line react-hooks/purity
-    const id = `heart-${Date.now()}-${Math.random()}`;
-
-    setFloatingHearts((prev) => [...prev, { id, cardId, x, y }]);
-    setTimeout(() => {
-      setFloatingHearts((prev) => prev.filter((h) => h.id !== id));
-    }, 1000);
-  };
-
-  const handleLike = (factId: number, e: React.MouseEvent) => {
-    createFloatingHeart(e, factId);
+  const handleLike = (factId: number) => {
     setLikedFacts((prev) => {
       const newSet = new Set(prev);
-      if (newSet.has(factId)) {
-        newSet.delete(factId);
-      } else {
-        newSet.add(factId);
-      }
+      if (newSet.has(factId)) newSet.delete(factId);
+      else newSet.add(factId);
       return newSet;
     });
-    setAnimatingFactId(factId);
-    setAnimationType("like");
-    setTimeout(() => {
-    //   if (animatingFactId === factId && animationType === "like") {
-        setAnimatingFactId(null);
-        setAnimationType(null);
-    //   }
-    }, 600);
   };
 
-  const handleSave = (factId: number, factText: string) => {
-    setSavedFacts((prev) => {
-      const newSet = new Set(prev);
-      if (newSet.has(factId)) {
-        newSet.delete(factId);
-      } else {
-        newSet.add(factId);
-      }
-      return newSet;
-    });
-    navigator.clipboard.writeText(factText);
-    setAnimatingFactId(factId);
-    setAnimationType("save");
-    setTimeout(() => {
-    //   if (animatingFactId === factId && animationType === "save") {
-        setAnimatingFactId(null);
-        setAnimationType(null);
-    //   }
-    }, 1000);
-  };
-
-  const handleShare = async (factId: number, factText: string) => {
-    setAnimatingFactId(factId);
-    setAnimationType("share");
-    if (navigator.share) {
-      try {
-        await navigator.share({ title: "Amazing Fact!", text: factText });
-      } catch (err) {
-        navigator.clipboard.writeText(factText);
-      }
-    } else {
-      navigator.clipboard.writeText(factText);
-    }
-    setTimeout(() => {
-      if (animatingFactId === factId && animationType === "share") {
-        setAnimatingFactId(null);
-        setAnimationType(null);
-      }
-    }, 1000);
-  };
-
-  const handleRandomFact = () => {
+  const triggerSurprise = () => {
     const allFacts = factsData.all;
     const random = allFacts[Math.floor(Math.random() * allFacts.length)];
-    setRandomFact(random);
-    setTimeout(() => setRandomFact(null), 5000);
+    setSurpriseFact(random);
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
-      {/* Fixed Animated Background Blobs */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-64 h-64 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"></div>
-        <div
-          className="absolute top-40 right-20 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"
-          style={{ animationDelay: "1s" }}
-        ></div>
-        <div
-          className="absolute bottom-20 left-1/3 w-80 h-80 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"
-          style={{ animationDelay: "2s" }}
-        ></div>
-      </div>
+    <div className="min-h-screen bg-[#F8FAFC] font-sans selection:bg-purple-200 pb-20 relative">
+      <Head>
+        <title>Amazing Facts | imborednow</title>
+      </Head>
 
-      {/* Hero Section - Fixed Gradient */}
-      <section className="relative pt-20 pb-12 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400 opacity-95"></div>
-
-        <div className="relative container mx-auto px-6 text-center text-white">
-          <div className="flex justify-center gap-4 mb-6">
-            {["🧠", "💡", "🤯", "✨"].map((emoji, i) => (
-              <span
-                key={i}
-                className="text-5xl sm:text-7xl animate-bounce"
-                style={{ animationDelay: `${i * 0.2}s` }}
+      {/* --- 1. SURPRISE MODAL OVERLAY --- */}
+      {surpriseFact && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-6 bg-slate-950/80 backdrop-blur-sm animate-in fade-in duration-300">
+          <div className="bg-white w-full max-w-lg rounded-[2.5rem] p-8 md:p-12 shadow-2xl relative overflow-hidden animate-in zoom-in-95 duration-300">
+            <div className="absolute top-0 right-0 p-6">
+              <button
+                onClick={() => setSurpriseFact(null)}
+                className="text-slate-400 hover:text-slate-900 font-black text-xl"
               >
-                {emoji}
-              </span>
-            ))}
-          </div>
-
-          <h1 className="text-5xl sm:text-7xl font-extrabold mb-4 drop-shadow-2xl">
-            Amazing Facts
-          </h1>
-
-          <p className="text-xl sm:text-2xl mb-8 opacity-90">
-            Mind-blowing truths that will surprise you!
-          </p>
-
-          {/* Stats Bar */}
-          <div className="flex justify-center gap-8 flex-wrap">
-            <div className="bg-white/20 backdrop-blur-md rounded-full px-6 py-3">
-              <div className="flex items-center gap-2">
-                <Icons.TrendingUp className="w-5 h-5" />
-                <span className="font-bold">{factsViewed} Facts Viewed</span>
-              </div>
+                ✕
+              </button>
             </div>
-            <div className="bg-white/20 backdrop-blur-md rounded-full px-6 py-3">
-              <div className="flex items-center gap-2">
-                <Icons.Heart className="w-5 h-5" filled />
-                <span className="font-bold">{likedFacts.size} Liked</span>
-              </div>
-            </div>
-            <div className="bg-white/20 backdrop-blur-md rounded-full px-6 py-3">
-              <div className="flex items-center gap-2">
-                <Icons.Bookmark className="w-5 h-5" filled />
-                <span className="font-bold">{savedFacts.size} Saved</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Random Fact Banner */}
-      {randomFact && (
-        <div className="container mx-auto px-6 mb-8">
-          <div className="bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 rounded-2xl p-6 shadow-2xl animate-pulse">
-            <div className="flex items-center justify-between">
-              <div className="flex-1">
-                <p className="text-white font-bold text-lg sm:text-xl">
-                  {randomFact.text}
-                </p>
-              </div>
-              <Icons.Sparkles className="w-8 h-8 text-white ml-4" />
-            </div>
+            <div className="text-5xl mb-6">🎁</div>
+            <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-purple-600 mb-4">
+              Random Surprise
+            </h3>
+            <p className="text-2xl md:text-3xl font-black text-slate-900 leading-tight mb-8">
+              {surpriseFact.text}
+            </p>
+            <button
+              onClick={triggerSurprise}
+              className="w-full py-4 bg-slate-900 text-white rounded-2xl font-black hover:bg-purple-600 transition-all active:scale-95"
+            >
+              Give Me Another! 🎲
+            </button>
           </div>
         </div>
       )}
 
-      {/* Category Pills */}
-      <section className="py-6 sm:py-8 px-3 sm:px-6 relative">
-        <div className="container mx-auto max-w-6xl">
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
+      {/* --- 2. HERO SECTION --- */}
+      <section className="relative pt-16 pb-24 px-4 overflow-hidden bg-slate-950">
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_30%_20%,_var(--tw-gradient-stops))] from-purple-600/40 via-transparent to-transparent" />
+        </div>
+        <div className="relative z-10 max-w-5xl mx-auto text-center">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/5 backdrop-blur-xl rounded-full text-purple-300 text-[9px] font-black uppercase tracking-[0.3em] mb-6 border border-white/10">
+            🧠 Mind-Blowing Knowledge
+          </div>
+          <h1 className="text-4xl md:text-7xl font-black text-white mb-4 tracking-tighter leading-[0.9]">
+            FACTS THAT <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-400 uppercase">
+              Feel Unreal.
+            </span>
+          </h1>
+        </div>
+      </section>
+
+      {/* --- 2. COMPACT CATEGORY HUB (Scrollable on Mobile & Tablet) --- */}
+      <section className="max-w-6xl mx-auto px-4 -mt-6 relative z-30">
+        <div className="bg-white rounded-2xl lg:rounded-[2.5rem] shadow-xl border border-slate-100 overflow-hidden">
+          {/* 'flex-nowrap' and 'overflow-x-auto' stay active until 'lg' (1024px).
+              This ensures it stays a scrollable row on 768px (md) tablets.
+          */}
+          <div className="flex flex-nowrap lg:flex-wrap lg:justify-center items-center gap-2 p-2 md:p-3 overflow-x-auto no-scrollbar scroll-smooth">
             {categories.map((cat) => (
               <button
                 key={cat.value}
                 onClick={() => handleCategoryChange(cat.value)}
-                className={`group relative px-3 sm:px-6 py-2 sm:py-3 text-sm sm:text-base md:text-lg font-bold rounded-full transition-all duration-300 overflow-hidden ${
-                  selectedCategory === cat.value
-                    ? "scale-105 sm:scale-110 shadow-xl sm:shadow-2xl"
-                    : "bg-white shadow-md sm:shadow-lg hover:shadow-xl hover:scale-105"
-                }`}
+                className={`
+                  flex-shrink-0 px-5 py-3 lg:px-6 lg:py-3 rounded-xl font-black text-[12px] md:text-sm 
+                  transition-all flex items-center gap-2 active:scale-95 whitespace-nowrap
+                  ${
+                    selectedCategory === cat.value
+                      ? `bg-slate-900 text-white shadow-md scale-105`
+                      : "bg-slate-50 text-slate-500 hover:bg-slate-100"
+                  }
+                `}
               >
-                <div
-                  className={`absolute inset-0 bg-gradient-to-r ${
-                    cat.gradient
-                  } ${
-                    selectedCategory === cat.value
-                      ? "opacity-100"
-                      : "opacity-0 group-hover:opacity-100"
-                  } transition-opacity`}
-                ></div>
-                <div
-                  className={`relative flex items-center gap-1 sm:gap-2 ${
-                    selectedCategory === cat.value
-                      ? "text-white"
-                      : "text-gray-700 group-hover:text-white"
-                  }`}
-                >
-                  <span className="text-xl sm:text-2xl">{cat.emoji}</span>
-                  <span className="whitespace-nowrap">{cat.name}</span>
-                </div>
+                <span className="text-lg">{cat.emoji}</span>
+                <span className="tracking-tight">{cat.name}</span>
               </button>
             ))}
-          </div>
-
-          {/* Random Fact Button */}
-          <div className="flex justify-center mt-4 sm:mt-6">
-            <button
-              onClick={handleRandomFact}
-              className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold text-sm sm:text-base shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center gap-2 sm:gap-3"
-            >
-              <Icons.Refresh className="w-4 h-4 sm:w-5 sm:h-5" />
-              Random Fact!
-            </button>
           </div>
         </div>
       </section>
 
-      {/* Facts Grid */}
-      <div className="container mx-auto px-6 pb-20 relative">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {currentFacts.map((fact, index) => {
+      {/* --- 4. FACTS GRID --- */}
+      <main className="max-w-6xl mx-auto px-4 mt-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+          {currentFacts.map((fact) => {
             const isLiked = likedFacts.has(fact.id);
-            const isSaved = savedFacts.has(fact.id);
-            const categoryData = categories.find(
-              (c) => c.value === fact.category
-            );
-            const isAnimating = animatingFactId === fact.id;
-
+            const cat =
+              categories.find((c) => c.value === fact.category) ||
+              categories[0];
             return (
               <div
                 key={fact.id}
-                className="group relative bg-white/90 backdrop-blur-lg rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                className="group relative h-56 md:h-64 rounded-[2rem] bg-white border border-slate-100 shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-1 overflow-hidden flex flex-col p-6 md:p-8"
               >
-                {/* Gradient Border Effect */}
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${categoryData?.gradient} opacity-0 group-hover:opacity-100 transition-opacity rounded-3xl pointer-events-none`}
-                ></div>
-                <div className="absolute inset-[3px] bg-white rounded-3xl"></div>
-
-                {/* Floating Hearts - Only for this card */}
-                <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                  {floatingHearts
-                    .filter((h) => h.cardId === fact.id)
-                    .map((heart) => (
-                      <div
-                        key={heart.id}
-                        className="absolute text-2xl animate-ping"
-                        style={{
-                          left: heart.x,
-                          top: heart.y,
-                          animation: "float-up 1s ease-out forwards",
-                        }}
-                      >
-                        ❤️
-                      </div>
-                    ))}
+                <div className="absolute top-[-5%] right-[-5%] text-7xl md:text-8xl opacity-[0.04] group-hover:rotate-12 transition-all duration-700 pointer-events-none">
+                  {cat.emoji}
                 </div>
-
-                {/* Content */}
-                <div className="relative p-6">
-                  {/* Category Badge */}
-                  <div
-                    className={`inline-flex items-center gap-2 bg-gradient-to-r ${categoryData?.gradient} text-white px-4 py-2 rounded-full text-sm font-bold mb-4`}
+                <div className="relative h-full flex flex-col justify-end items-start gap-3">
+                  <span
+                    className={`px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest text-white bg-gradient-to-r ${cat.gradient}`}
                   >
-                    <span>{categoryData?.emoji}</span>
-                    {fact.category.toUpperCase()}
-                  </div>
-
-                  {/* Fact Text */}
-                  <p className="text-lg font-semibold text-gray-800 leading-relaxed mb-6 min-h-[80px]">
-                    {fact.text}
-                  </p>
-
-                  {/* Like Count */}
-                  <div className="flex items-center gap-2 mb-4 text-gray-600">
-                    <Icons.Heart
-                      className="w-4 h-4 fill-pink-400 text-pink-400"
-                      filled
-                    />
-                    <span className="text-sm font-medium">
-                      {fact.likes! + (isLiked ? 1 : 0)} people amazed
-                    </span>
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div className="flex gap-2">
-                    <button
-                      onClick={(e) => handleLike(fact.id, e)}
-                      className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl font-bold transition-all duration-300 ${
-                        isLiked
-                          ? "bg-gradient-to-r from-pink-500 to-red-500 text-white"
-                          : "bg-pink-100 text-pink-600 hover:bg-pink-200"
-                      } ${
-                        isAnimating && animationType === "like"
-                          ? "animate-bounce"
-                          : ""
-                      }`}
-                    >
-                      <Icons.Heart
-                        className={`w-4 h-4 ${isLiked ? "fill-white" : ""}`}
-                        filled={isLiked}
-                      />
-                      {isLiked ? "Loved!" : "Love"}
-                    </button>
-
-                    <button
-                      onClick={() => handleSave(fact.id, fact.text)}
-                      className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl font-bold transition-all duration-300 ${
-                        isSaved
-                          ? "bg-gradient-to-r from-emerald-500 to-teal-500 text-white"
-                          : "bg-emerald-100 text-emerald-600 hover:bg-emerald-200"
-                      } ${
-                        isAnimating && animationType === "save"
-                          ? "animate-bounce"
-                          : ""
-                      }`}
-                    >
-                      <Icons.Bookmark
-                        className={`w-4 h-4 ${isSaved ? "fill-white" : ""}`}
-                        filled={isSaved}
-                      />
-                      {isSaved ? "Saved!" : "Save"}
-                    </button>
-
-                    <button
-                      onClick={() => handleShare(fact.id, fact.text)}
-                      className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl font-bold bg-blue-100 text-blue-600 hover:bg-blue-200 transition-all duration-300 ${
-                        isAnimating && animationType === "share"
-                          ? "animate-bounce"
-                          : ""
-                      }`}
-                    >
-                      <Icons.Share className="w-4 h-4" />
-                      Share
-                    </button>
+                    {fact.category}
+                  </span>
+                  <div>
+                    <p className="text-lg md:text-xl font-black text-slate-800 leading-tight mb-4 line-clamp-3">
+                      {fact.text}
+                    </p>
+                    <div className="flex items-center gap-5 border-t border-slate-50 pt-4 w-full text-[9px] font-black uppercase tracking-widest text-slate-400">
+                      <button
+                        onClick={() => handleLike(fact.id)}
+                        className={`flex items-center gap-1.5 ${
+                          isLiked ? "text-pink-500" : ""
+                        }`}
+                      >
+                        <span className="text-sm">{isLiked ? "❤️" : "🤍"}</span>{" "}
+                        {isLiked ? "Loved" : "Like"}
+                      </button>
+                      <button className="flex items-center gap-1.5 hover:text-indigo-600">
+                        <span className="text-sm">🔗</span> Share
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
             );
           })}
         </div>
-      </div>
+      </main>
 
-      <style jsx>{`
-        @keyframes float-up {
-          0% {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-          }
-          100% {
-            opacity: 0;
-            transform: translateY(-50px) scale(1.5);
-          }
+      {/* --- 5. DISCOVERY LAB FOOTER (TRIGGER BUTTON) --- */}
+      <footer className="max-w-6xl mx-auto px-4 mt-16 pb-10">
+        <div className="bg-slate-900 rounded-[2.5rem] p-8 md:p-12 text-center relative overflow-hidden">
+          <h2 className="text-2xl font-black text-white mb-2 relative z-10">
+            Curiosity calling? 🎲
+          </h2>
+          <p className="text-slate-400 text-sm mb-6 relative z-10">
+            Get a random fact from our secret vault.
+          </p>
+          {/* ADDED triggerSurprise here */}
+          <button
+            onClick={triggerSurprise}
+            className="px-8 py-3 bg-white text-slate-900 rounded-xl font-black hover:scale-105 transition-all active:scale-95 relative z-10"
+          >
+            Surprise Me!
+          </button>
+        </div>
+      </footer>
+
+      <style jsx global>{`
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
         }
       `}</style>
     </div>
