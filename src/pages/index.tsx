@@ -56,7 +56,7 @@ export default function Home() {
 
           <meta property="og:description" content={`Feeling bored at school, work, or home? Say " I'm bored" no more! Click the red Bored Button for hundreds of random interactive games, cool websites, and fun activities to cure boredom instantly. From quick games to pointless fun – beat boredom now!"`} />
 
-          <meta property="og:image" content="https://www.imborednow.com/banner.png" />
+          <meta property="og:image" content="/banner.png" />
 
 
           <meta property="twitter:card" content="summary_large_image" />
@@ -67,7 +67,7 @@ export default function Home() {
 
           <meta property="twitter:description" content={`Feeling bored at school, work, or home? Say " I'm bored" no more! Click the red Bored Button for hundreds of random interactive games, cool websites, and fun activities to cure boredom instantly. From quick games to pointless fun – beat boredom now!"`} />
 
-          <meta property="twitter:image" content="https://www.imborednow.com/banner.png" />
+          <meta property="twitter:image" content="/banner.png" />
 
           <link rel="canonical" href="https://www.imborednow.com/"></link>
 
