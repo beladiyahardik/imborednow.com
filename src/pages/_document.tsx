@@ -32,6 +32,9 @@ export default function Document() {
           name="google-adsense-account"
           content="ca-pub-7085320120847108"
         ></meta>
+
+        <link rel="icon" href="/favicon.ico" sizes="any"></link>
+        
       </Head>
       <body className="antialiased">
         <Main />
