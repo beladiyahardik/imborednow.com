@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Head from "next/head";
 import Link from "next/link";
 
@@ -10,459 +10,383 @@ interface TActivity {
   content: string;
   color: string;
   bgColor: string;
+  tag: string;
 }
 
 export default function RandomActivity() {
   const [activity, setActivity] = useState<TActivity | null>(null);
   const [loading, setLoading] = useState(false);
   const [animation, setAnimation] = useState(false);
+  const [intensity, setIntensity] = useState(50);
+  const [history, setHistory] = useState<TActivity[]>([]);
+  const resultsRef = useRef<HTMLDivElement>(null);
 
-  const activities = [
+  const activities: TActivity[] = [
+    {
+      type: "challenge",
+      emoji: "🧪",
+      title: "Chemistry Lab",
+      content:
+        "Go to the kitchen and mix oil and water in a glass. Add a drop of soap and watch the molecular war!",
+      color: "from-blue-500 to-cyan-500",
+      bgColor: "bg-blue-50",
+      tag: "Experiment",
+    },
+    {
+      type: "challenge",
+      emoji: "✍️",
+      title: "Non-Dominant Sketch",
+      content:
+        "Try to draw a simple house using only your non-dominant hand. It's harder than it looks!",
+      color: "from-purple-600 to-indigo-600",
+      bgColor: "bg-purple-50",
+      tag: "Creative",
+    },
+    {
+      type: "challenge",
+      emoji: "🤫",
+      title: "Silent Minute",
+      content:
+        "Set a timer for 60 seconds and sit in total silence. No phone, no talking, just your thoughts.",
+      color: "from-slate-700 to-slate-900",
+      bgColor: "bg-slate-100",
+      tag: "Mindfulness",
+    },
+    {
+      type: "challenge",
+      emoji: "🤸",
+      title: "Wall Sit Hero",
+      content:
+        "How long can you hold a wall sit? 30 seconds is rookie, 2 minutes is legend status.",
+      color: "from-orange-500 to-red-500",
+      bgColor: "bg-orange-50",
+      tag: "Physical",
+    },
     {
       type: "joke",
       emoji: "😂",
       title: "Dad Joke Time!",
       content:
-        "Why don't scientists trust atoms? Because they make up everything!",
-      color: "from-blue-500 to-blue-600",
-      bgColor: "from-blue-50 to-blue-100",
+        "I told my wife she was drawing her eyebrows too high. She looked surprised.",
+      color: "from-blue-500 to-cyan-500",
+      bgColor: "bg-blue-50",
+      tag: "Funny",
     },
     {
       type: "fact",
       emoji: "🧠",
       title: "Amazing Fact",
       content:
-        "Octopuses have three hearts and blue blood! Two hearts pump blood to the gills, while the third pumps it to the rest of the body.",
-      color: "from-green-500 to-green-600",
-      bgColor: "from-green-50 to-green-100",
+        "A single bolt of lightning contains enough energy to toast 100,000 slices of bread!",
+      color: "from-emerald-500 to-teal-600",
+      bgColor: "bg-emerald-50",
+      tag: "Knowledge",
     },
     {
       type: "challenge",
-      emoji: "🎯",
-      title: "Quick Challenge",
+      emoji: "🔍",
+      title: "Object Hunt",
       content:
-        "Try to stand on one leg with your eyes closed for 30 seconds. Can you do it without wobbling?",
-      color: "from-purple-500 to-purple-600",
-      bgColor: "from-purple-50 to-purple-100",
+        "Find 3 blue objects in the room you are in within 10 seconds. GO!",
+      color: "from-pink-500 to-rose-600",
+      bgColor: "bg-rose-50",
+      tag: "Active",
     },
     {
       type: "riddle",
       emoji: "🧩",
       title: "Brain Teaser",
-      content:
-        "I speak without a mouth and hear without ears. I have no body, but I come alive with wind. What am I? (Answer: An echo)",
-      color: "from-pink-500 to-pink-600",
-      bgColor: "from-pink-50 to-pink-100",
-    },
-    {
-      type: "diy",
-      emoji: "✂️",
-      title: "DIY Idea",
-      content:
-        "Make a paper airplane and see how far you can throw it! Try different folding techniques for maximum distance.",
-      color: "from-orange-500 to-orange-600",
-      bgColor: "from-orange-50 to-orange-100",
-    },
-    {
-      type: "trivia",
-      emoji: "❓",
-      title: "Trivia Question",
-      content:
-        "Which planet in our solar system has the most moons? Saturn, with over 80 confirmed moons!",
-      color: "from-indigo-500 to-indigo-600",
-      bgColor: "from-indigo-50 to-indigo-100",
-    },
-    {
-      type: "game",
-      emoji: "🎮",
-      title: "Quick Game Idea",
-      content:
-        'Play "Word Association" - Think of a random word, then think of another word related to it. See how long you can keep the chain going!',
-      color: "from-red-500 to-red-600",
-      bgColor: "from-red-50 to-red-100",
-    },
-    {
-      type: "joke",
-      emoji: "🤣",
-      title: "Knock Knock Joke",
-      content:
-        "Knock knock! Who's there? Interrupting cow. Interrupting cow wh— MOOOOO!",
-      color: "from-yellow-500 to-yellow-600",
-      bgColor: "from-yellow-50 to-yellow-100",
-    },
-    {
-      type: "fact",
-      emoji: "🌟",
-      title: "Wild Fact",
-      content:
-        "Honey never spoils! Archaeologists have found 3,000-year-old honey in Egyptian tombs that was still perfectly edible.",
-      color: "from-cyan-500 to-cyan-600",
-      bgColor: "from-cyan-50 to-cyan-100",
-    },
-    {
-      type: "meditation",
-      emoji: "🧘",
-      title: "Quick Mindfulness",
-      content:
-        "Take 5 deep breaths. Breathe in for 4 seconds, hold for 4, breathe out for 4. Feel the calm wash over you.",
-      color: "from-teal-500 to-teal-600",
-      bgColor: "from-teal-50 to-teal-100",
+      content: "What has keys but can't open locks? (Answer: A Piano)",
+      color: "from-purple-600 to-pink-600",
+      bgColor: "bg-purple-50",
+      tag: "Brainy",
     },
   ];
 
   const categories = [
-    { label: "😂 Jokes", route: "/p/jokes" },
-    { label: "🧠 Facts", route: "/p/facts" },
-    // { label: "🎮 Games", route: "/games" },
-    { label: "🧩 Riddles", route: "/p/mind-bending-riddle" },
-    { label: "✂️ DIY", route: "/p/diy-craft" },
-    // { label: "🎯 Challenges", route: "/challenges" },
-    // { label: "😌 Relax", route: "/relax" },
-    // { label: "❓ Trivia", route: "/trivia" },
-    // { label: "🌟 Surprise", route: "/surprise" },
+    {
+      label: "Jokes",
+      emoji: "😂",
+      route: "/p/jokes",
+      color: "bg-blue-50 border-blue-100 text-blue-700",
+    },
+    {
+      label: "Facts",
+      emoji: "🧠",
+      route: "/p/facts",
+      color: "bg-emerald-50 border-emerald-100 text-emerald-700",
+    },
+    {
+      label: "Riddles",
+      emoji: "🧩",
+      route: "/p/mind-bending-riddle",
+      color: "bg-purple-50 border-purple-100 text-purple-700",
+    },
+    {
+      label: "DIY",
+      emoji: "✂️",
+      route: "/p/diy-craft",
+      color: "bg-orange-50 border-orange-100 text-orange-700",
+    },
   ];
 
   const getRandomActivity = () => {
     setLoading(true);
     setAnimation(true);
-
     setTimeout(() => {
       const randomIndex = Math.floor(Math.random() * activities.length);
-      setActivity(activities[randomIndex]);
+      const selected = activities[randomIndex];
+      setActivity(selected);
+      setHistory((prev) => [selected, ...prev].slice(0, 5));
       setLoading(false);
-      setTimeout(() => setAnimation(false), 500);
-    }, 800);
+      setTimeout(() => setAnimation(false), 300);
+      resultsRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }, 600);
   };
 
-  const handleShare = (platform: "fb" | "x" | "email") => {
-    const shareUrl =
-      typeof window !== "undefined"
-        ? window.location.href
-        : "https://imborednow.com";
-    const shareText = "Check out this awesome boredom killer! 🚀";
-    let url = "";
+  const handleShare = (platform: string) => {
+    const text = `I'm curing my boredom with this ${activity?.tag} challenge: "${activity?.content}" - Check it out on ImBoredNow!`;
+    const url = window.location.href;
 
-    switch (platform) {
-      case "fb":
-        url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-          shareUrl
-        )}`;
-        break;
-      case "x":
-        url = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
-          shareUrl
-        )}&text=${encodeURIComponent(shareText)}`;
-        break;
-      case "email":
-        url = `mailto:?subject=${encodeURIComponent(
-          "You have to see this!"
-        )}&body=${encodeURIComponent(`${shareText}\n\n${shareUrl}`)}`;
-        break;
-    }
+    const links: Record<string, string> = {
+      x: `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+        text
+      )}&url=${encodeURIComponent(url)}`,
+      fb: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+        url
+      )}`,
+      whatsapp: `https://wa.me/?text=${encodeURIComponent(text + " " + url)}`,
+    };
 
-    if (platform === "email") {
-      window.location.href = url;
+    if (platform === "copy") {
+      navigator.clipboard.writeText(url);
+      alert("Link copied to clipboard!");
     } else {
-      window.open(url, "_blank", "width=600,height=400");
+      window.open(links[platform], "_blank");
     }
   };
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     getRandomActivity();
   }, []);
 
   return (
-    <>
+    <div className="min-h-screen bg-[#F8FAFC] font-sans selection:bg-purple-200 pb-20">
       <Head>
-        <title>Random Activity - I'm Bored Now Instantly!</title>
-        <meta
-          name="description"
-          content="Get a random activity, joke, fact, or challenge to I'm Bored Now right now!"
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Boredom Lab | Random Activity & Challenges</title>
       </Head>
 
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50">
-        <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12">
-          {/* Top Ad */}
-          <div className="mb-8">
-            <div className="bg-gradient-to-r from-gray-100 to-gray-200 border-2 border-dashed border-gray-300 rounded-xl w-full h-24 flex items-center justify-center text-gray-500 font-semibold shadow-inner">
-              [AdSense Leaderboard 728×90]
-            </div>
-          </div>
+      {/* --- HERO SECTION --- */}
+      <section className="relative pt-20 pb-32 px-4 overflow-hidden bg-slate-950">
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_30%_20%,_var(--tw-gradient-stops))] from-blue-600/40 via-transparent to-transparent" />
+        </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-            {/* Main Content */}
-            <div className="lg:col-span-3">
-              {/* Hero Section */}
-              <div className="text-center mb-8 sm:mb-12">
-                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 mb-4">
-                  Random Activity Generator
+        <div className="relative z-10 max-w-5xl mx-auto text-center">
+          <nav className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur-xl rounded-full text-blue-300 text-[10px] font-black uppercase tracking-[0.3em] mb-8 border border-white/10">
+            ⚡ Session Active: {history.length} Activities Completed
+          </nav>
+
+          <h1 className="text-5xl md:text-8xl font-black text-white mb-6 tracking-tighter leading-[0.85]">
+            RANDOM{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-500">
+              QUEST
+            </span>
+            <br />
+            GENERATOR.
+          </h1>
+        </div>
+      </section>
+
+      <main className="max-w-6xl mx-auto px-4 -mt-16 relative z-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          {/* --- LEFT: ACTIVITY ENGINE --- */}
+          <div className="lg:col-span-8 space-y-8">
+            <div className="bg-white p-8 rounded-[3rem] shadow-2xl border border-blue-50">
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-sm font-black text-slate-400 uppercase tracking-widest">
+                  Boredom Intensity
                 </h2>
-                <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
-                  Click the button and get instant entertainment! No thinking
-                  required.
-                </p>
+                <span className="bg-blue-600 text-white text-[10px] px-3 py-1 rounded-full font-black">
+                  {intensity}%
+                </span>
               </div>
+              <input
+                type="range"
+                min="1"
+                max="100"
+                value={intensity}
+                onChange={(e) => setIntensity(parseInt(e.target.value))}
+                className="w-full h-3 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-blue-600"
+              />
+            </div>
 
-              {/* Activity Card */}
-              <div className="mb-8">
+            <div ref={resultsRef} className="relative group">
+              <div className="absolute -inset-2 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-[3.5rem] blur opacity-10" />
+
+              <div className="relative bg-white rounded-[3.5rem] shadow-2xl overflow-hidden border border-slate-100">
                 {loading ? (
-                  <div className="bg-white rounded-3xl shadow-2xl p-8 sm:p-12 min-h-96 flex flex-col items-center justify-center border-4 border-purple-200">
-                    <div className="relative w-32 h-32 mb-8">
-                      <div className="absolute inset-0 border-8 border-purple-200 rounded-full"></div>
-                      <div className="absolute inset-0 border-8 border-purple-600 rounded-full border-t-transparent animate-spin"></div>
+                  <div className="h-[450px] flex flex-col items-center justify-center">
+                    <div className="relative w-20 h-20">
+                      <div className="absolute inset-0 border-4 border-blue-100 rounded-full" />
+                      <div className="absolute inset-0 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
                     </div>
-                    <p className="text-2xl font-bold text-gray-600 animate-pulse">
-                      Finding something fun...
+                    <p className="font-black text-slate-400 uppercase tracking-widest mt-6 animate-pulse">
+                      Calculating New Quest...
                     </p>
                   </div>
-                ) : activity ? (
-                  <div
-                    className={`bg-gradient-to-br ${
-                      activity.bgColor
-                    } rounded-3xl shadow-2xl overflow-hidden border-4 border-white transition-all duration-500 ${
-                      animation ? "scale-95 opacity-0" : "scale-100 opacity-100"
-                    }`}
-                  >
+                ) : (
+                  activity && (
                     <div
-                      className={`bg-gradient-to-r ${activity.color} p-6 sm:p-8 text-white text-center`}
+                      className={`transition-all duration-500 ${
+                        animation
+                          ? "scale-95 opacity-0"
+                          : "scale-100 opacity-100"
+                      }`}
                     >
-                      <div className="text-7xl sm:text-8xl mb-4 animate-bounce">
-                        {activity.emoji}
-                      </div>
-                      <h3 className="text-3xl sm:text-4xl font-black drop-shadow-lg">
-                        {activity.title}
-                      </h3>
-                    </div>
-
-                    <div className="p-8 sm:p-12">
-                      <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-lg mb-8">
-                        <p className="text-xl sm:text-2xl text-gray-800 leading-relaxed text-center">
-                          {activity.content}
-                        </p>
+                      <div
+                        className={`bg-gradient-to-br ${activity.color} p-12 text-center text-white relative`}
+                      >
+                        <span className="relative z-10 bg-black/20 backdrop-blur-md px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.2em]">
+                          {activity.tag} Protocol
+                        </span>
+                        <h3 className="relative z-10 text-4xl md:text-6xl font-black mt-6 tracking-tight">
+                          {activity.title}
+                        </h3>
                       </div>
 
-                      <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <button
-                          onClick={getRandomActivity}
-                          className="group px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white text-lg sm:text-xl font-bold rounded-full shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
-                        >
-                          <span className="inline-flex items-center">
-                            🎲 Give Me Another!
-                            <svg
-                              className="w-6 h-6 ml-2 group-hover:rotate-180 transition-transform duration-500"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-                              />
-                            </svg>
-                          </span>
-                        </button>
+                      <div className="p-10 md:p-16">
+                        <div className="bg-slate-50 border border-slate-100 rounded-[2.5rem] p-8 md:p-14 text-center mb-10 shadow-inner">
+                          <p className="text-2xl md:text-4xl font-bold text-slate-800 leading-tight">
+                            {activity.content}
+                          </p>
+                        </div>
 
-                        <button className="px-8 py-4 bg-white border-2 border-purple-600 text-purple-600 text-lg sm:text-xl font-bold rounded-full hover:bg-purple-50 transition-all duration-300 shadow-lg">
-                          ❤️ Save for Later
-                        </button>
+                        <div className="flex flex-col sm:flex-row gap-4">
+                          <button
+                            onClick={getRandomActivity}
+                            className="flex-grow py-6 bg-red-600 text-white rounded-2xl font-black text-2xl hover:bg-red-500 transition-all shadow-[0_0_30px_rgba(220,38,38,0.3)] active:scale-95 flex items-center justify-center gap-3"
+                          >
+                            THE BORED BUTTON 🔴
+                          </button>
+                          <button className="px-10 py-6 bg-slate-900 text-white rounded-2xl font-black hover:bg-slate-800 transition-all">
+                            Done! ✅
+                          </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ) : null}
-              </div>
-
-              {/* Stats Bar */}
-              <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8 mb-8 border border-purple-100">
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 text-center">
-                  <div className="space-y-2">
-                    <div className="text-3xl">🎯</div>
-                    <div className="text-2xl sm:text-3xl font-black text-purple-600">
-                      1000+
-                    </div>
-                    <div className="text-sm text-gray-600">Activities</div>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="text-3xl">😂</div>
-                    <div className="text-2xl sm:text-3xl font-black text-pink-600">
-                      500+
-                    </div>
-                    <div className="text-sm text-gray-600">Jokes</div>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="text-3xl">🧠</div>
-                    <div className="text-2xl sm:text-3xl font-black text-green-600">
-                      300+
-                    </div>
-                    <div className="text-sm text-gray-600">Facts</div>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="text-3xl">🎮</div>
-                    <div className="text-2xl sm:text-3xl font-black text-orange-600">
-                      200+
-                    </div>
-                    <div className="text-sm text-gray-600">Games</div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Category Filters */}
-              <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-6 sm:p-8 mb-8 border border-purple-200">
-                <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">
-                  🎨 Choose by Category
-                </h3>
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
-                  {categories.map((cat, idx) => (
-                    <Link
-                      key={idx}
-                      href={cat.route}
-                    >
-                      <button className="w-full px-4 py-3 bg-white hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 text-gray-700 hover:text-white font-semibold rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-purple-200 hover:border-transparent">
-                        {cat.label}
-                      </button>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-
-              {/* In-content Ad */}
-              <div className="mb-8">
-                <div className="bg-gradient-to-r from-gray-100 to-gray-200 border-2 border-dashed border-gray-300 rounded-xl w-full h-64 flex items-center justify-center text-gray-500 font-semibold shadow-inner">
-                  [AdSense Rectangle 336×280]
-                </div>
-              </div>
-
-              {/* How to Use */}
-              <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8 border border-purple-100">
-                <h3 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-6 text-center">
-                  💡 How to Use This Page
-                </h3>
-                <div className="space-y-4">
-                  <div className="flex gap-4 items-start">
-                    <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
-                      1
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-lg text-gray-800 mb-1">
-                        Click the Button
-                      </h4>
-                      <p className="text-gray-600">
-                        Hit &quot;Give Me Another!&quot; to get a random
-                        activity, joke, fact, or challenge.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex gap-4 items-start">
-                    <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
-                      2
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-lg text-gray-800 mb-1">
-                        Enjoy Your Activity
-                      </h4>
-                      <p className="text-gray-600">
-                        Read, laugh, learn, or try the challenge. Have fun with
-                        it!
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex gap-4 items-start">
-                    <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
-                      3
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-lg text-gray-800 mb-1">
-                        Keep Going!
-                      </h4>
-                      <p className="text-gray-600">
-                        Click as many times as you want. The fun never stops!
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                  )
+                )}
               </div>
             </div>
 
-            {/* Sidebar */}
-            <aside className="space-y-8">
-              {/* Ad Unit */}
-              <div className="sticky top-24">
-                <div className="bg-gradient-to-br from-gray-100 to-gray-200 border-2 border-dashed border-gray-300 rounded-xl w-full h-64 flex items-center justify-center text-gray-500 font-semibold shadow-inner">
-                  [AdSense 300×250]
-                </div>
-              </div>
-
-              {/* Quick Actions */}
-              <div className="bg-white rounded-2xl shadow-xl p-6 border border-purple-100">
-                <h3 className="text-xl font-bold text-gray-800 mb-4">
-                  ⚡ Quick Actions
-                </h3>
-                <div className="flex flex-col gap-3">
-                  <Link href="/p/jokes">
-                    <button className="w-full px-4 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all">
-                      😂 Just Jokes
-                    </button>
-                  </Link>
-                  <Link href="/p/facts">
-                    <button className="w-full px-4 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all">
-                      🧠 Only Facts
-                    </button>
-                  </Link>
-                  <Link href="/p/diy-craft">
-                    <button className="w-full px-4 py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all">
-                      ✂️ DIY Crafts
-                    </button>
-                  </Link>
-                  <Link href="/">
-                    <button className="w-full px-4 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-xl hover:shadow-lg transition-all">
-                      🏠 Back Home
-                    </button>
-                  </Link>
-                </div>
-              </div>
-
-              {/* Share */}
-              <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-6 border border-purple-200">
-                <h3 className="text-lg font-bold text-gray-800 mb-4 text-center">
-                  📢 Share the Fun!
-                </h3>
-                <p className="text-sm text-gray-600 mb-4 text-center">
-                  Tell your friends about this awesome boredom killer!
-                </p>
-                <div className="flex gap-2 justify-center">
-                  {/* Facebook */}
-                  <button
-                    onClick={() => handleShare("fb")}
-                    className="w-10 h-10 bg-[#1877F2] text-white rounded-full hover:scale-110 active:scale-90 transition-transform flex items-center justify-center text-xl font-bold"
+            {/* Session History (Replaces Sponsored Space) */}
+            <div className="bg-white p-8 rounded-[3rem] border border-slate-100 shadow-sm">
+              <h3 className="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-6">
+                Recent Discoveries
+              </h3>
+              <div className="space-y-3">
+                {history.map((h, i) => (
+                  <div
+                    key={i}
+                    className="flex items-center gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100"
                   >
-                    f
-                  </button>
-
-                  {/* X (Twitter) */}
-                  <button
-                    onClick={() => handleShare("x")}
-                    className="w-10 h-10 bg-black text-white rounded-full hover:scale-110 active:scale-90 transition-transform flex items-center justify-center"
-                  >
-                    𝕏
-                  </button>
-
-                  {/* Email */}
-                  <button
-                    onClick={() => handleShare("email")}
-                    className="w-10 h-10 bg-pink-600 text-white rounded-full hover:scale-110 active:scale-90 transition-transform flex items-center justify-center text-xl"
-                  >
-                    📧
-                  </button>
-                </div>
+                    <span className="text-2xl">{h.emoji}</span>
+                    <span className="font-bold text-slate-700 text-sm">
+                      {h.title}
+                    </span>
+                    <span className="ml-auto text-[10px] font-black text-slate-300 uppercase">
+                      {h.type}
+                    </span>
+                  </div>
+                ))}
+                {history.length === 0 && (
+                  <p className="text-center text-slate-300 py-4 font-bold uppercase text-[10px]">
+                    Your activity log will appear here
+                  </p>
+                )}
               </div>
-            </aside>
+            </div>
           </div>
+
+          {/* --- RIGHT: SIDEBAR --- */}
+          <aside className="lg:col-span-4 space-y-6">
+            {/* Invite a Friend (Now Working) */}
+            <div className="bg-gradient-to-br from-blue-600 to-indigo-700 p-8 rounded-[3rem] text-white shadow-xl relative overflow-hidden">
+              <div className="absolute top-[-10%] right-[-10%] w-32 h-32 bg-white/10 rounded-full blur-2xl" />
+              <h4 className="font-black text-xl mb-2 relative z-10">
+                Cure a Friend 📢
+              </h4>
+              <p className="text-blue-100 text-sm mb-8 font-medium relative z-10">
+                Boredom is a disease. Share the antidote.
+              </p>
+              <div className="grid grid-cols-2 gap-3 relative z-10">
+                <button
+                  onClick={() => handleShare("x")}
+                  className="py-3 bg-black text-white rounded-xl font-black text-[10px] uppercase tracking-widest hover:scale-105 transition-all"
+                >
+                  Twitter
+                </button>
+                <button
+                  onClick={() => handleShare("whatsapp")}
+                  className="py-3 bg-emerald-500 text-white rounded-xl font-black text-[10px] uppercase tracking-widest hover:scale-105 transition-all"
+                >
+                  WhatsApp
+                </button>
+                <button
+                  onClick={() => handleShare("fb")}
+                  className="py-3 bg-blue-800 text-white rounded-xl font-black text-[10px] uppercase tracking-widest hover:scale-105 transition-all"
+                >
+                  Facebook
+                </button>
+                <button
+                  onClick={() => handleShare("copy")}
+                  className="py-3 bg-white text-blue-900 rounded-xl font-black text-[10px] uppercase tracking-widest hover:scale-105 transition-all"
+                >
+                  Copy Link
+                </button>
+              </div>
+            </div>
+
+            {/* Quick Filters */}
+            <div className="bg-white p-8 rounded-[3rem] border border-slate-100 shadow-xl">
+              <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-6">
+                Discovery Categories
+              </h3>
+              <div className="grid grid-cols-1 gap-3">
+                {categories.map((cat, i) => (
+                  <Link key={i} href={cat.route}>
+                    <div
+                      className={`${cat.color} p-4 rounded-2xl border flex items-center gap-4 hover:translate-x-2 transition-all cursor-pointer group`}
+                    >
+                      <span className="text-2xl group-hover:scale-125 transition-transform">
+                        {cat.emoji}
+                      </span>
+                      <span className="font-black text-sm uppercase tracking-widest">
+                        {cat.label}
+                      </span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Mini Game / Trivia Teaser */}
+            <div className="bg-yellow-50 border border-yellow-100 p-8 rounded-[3rem]">
+              <span className="text-yellow-600 text-[10px] font-black uppercase tracking-widest">
+                Did you know?
+              </span>
+              <p className="text-yellow-900 font-bold mt-2 text-sm">
+                You've clicked the button enough times to burn 2 calories. Keep
+                going for a workout!
+              </p>
+            </div>
+          </aside>
         </div>
-      </div>
-    </>
+      </main>
+    </div>
   );
 }

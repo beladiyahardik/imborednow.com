@@ -1192,7 +1192,19 @@ import Head from "next/head";
 import { format, differenceInYears, isAfter } from "date-fns";
 import Link from "next/link";
 
-export default function HistoryOnYourBirthday() {
+interface PageProps {
+  seo: {
+    title: string;
+    description: string;
+    keywords: string;
+    ogTitle: string;
+    ogDescription: string;
+    canonical: string;
+  };
+  jsonLd: object;
+}
+
+export default function HistoryOnYourBirthday({ seo, jsonLd }: PageProps) {
   const [birthdate, setBirthdate] = useState("");
   const [events, setEvents] = useState<any[]>([]);
   const [showResults, setShowResults] = useState(false);
@@ -1216,7 +1228,7 @@ export default function HistoryOnYourBirthday() {
           formattedDate: format(eventDate, "MMMM d, yyyy"),
         };
       })
-      .slice(0, 30); // Show top 30 for performance
+      .slice(0, 30);
 
     setEvents(filtered);
     setShowResults(true);
@@ -1236,10 +1248,34 @@ export default function HistoryOnYourBirthday() {
   return (
     <div className="min-h-screen bg-[#F8FAFC] font-sans selection:bg-purple-200 pb-20">
       <Head>
-        <title>History Timeline | imborednow</title>
+        <title>{seo.title}</title>
+        <meta name="description" content={seo.description} />
+        <meta name="keywords" content={seo.keywords} />
+
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={seo.canonical} />
+        <meta property="og:title" content={seo.ogTitle} />
+        <meta property="og:description" content={seo.ogDescription} />
+        <meta
+          property="og:image"
+          content="https://www.imborednow.com/banner.png"
+        />
+
+        {/* Twitter */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:title" content={seo.ogTitle} />
+        <meta property="twitter:description" content={seo.ogDescription} />
+
+        <link rel="canonical" href={seo.canonical} />
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </Head>
 
-      {/* --- 1. HERO SECTION (Dark Slate Theme) --- */}
+      {/* --- 1. HERO SECTION --- */}
       <section className="relative pt-20 pb-24 px-4 overflow-hidden bg-slate-950">
         <div className="absolute inset-0 opacity-30">
           <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_30%_20%,_var(--tw-gradient-stops))] from-purple-600/40 via-transparent to-transparent" />
@@ -1298,10 +1334,7 @@ export default function HistoryOnYourBirthday() {
           <div className="relative border-l-2 border-slate-100 ml-4 md:ml-8 pl-8 space-y-8">
             {events.map((ev, i) => (
               <div key={i} className="group relative">
-                {/* Timeline Dot */}
                 <div className="absolute -left-[41px] top-6 w-4 h-4 rounded-full bg-white border-4 border-slate-900 z-10 group-hover:scale-125 transition-transform" />
-
-                {/* Compact History Card */}
                 <div className="bg-white rounded-[2rem] border border-slate-100 shadow-lg hover:shadow-xl transition-all duration-500 p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
                   <div className="flex-grow">
                     <div className="flex items-center gap-3 mb-2">
@@ -1316,8 +1349,6 @@ export default function HistoryOnYourBirthday() {
                       {ev.event}
                     </h3>
                   </div>
-
-                  {/* Age Badge (The "Itractive" Element) */}
                   <div className="flex-shrink-0 flex items-center gap-3 bg-slate-50 px-4 py-3 rounded-2xl border border-slate-100">
                     <span className="text-2xl">🎂</span>
                     <div className="flex flex-col">
@@ -1335,7 +1366,6 @@ export default function HistoryOnYourBirthday() {
               </div>
             ))}
           </div>
-
           <div className="mt-16 text-center">
             <button
               onClick={() => setShowResults(false)}
@@ -1347,7 +1377,149 @@ export default function HistoryOnYourBirthday() {
         </main>
       )}
 
-      {/* --- 3. FOOTER CONTENT (Kept & Updated) --- */}
+      {/* --- 3. 1500+ WORD SEO CONTENT SECTION --- */}
+      <article className="max-w-5xl mx-auto px-6 mt-24 text-slate-700 leading-relaxed">
+        <h2 className="text-4xl font-black text-slate-900 mb-8 tracking-tighter">
+          Uncovering Your Personal History: A History Timeline Since Birth
+        </h2>
+
+        <p className="mb-6 text-lg font-medium">
+          Have you ever wondered about the{" "}
+          <strong>historical events since I was born</strong>? We often view
+          history as something that happened long ago, in dusty textbooks or
+          black-and-white documentaries. But the truth is, your life is a{" "}
+          <strong>personal historical timeline</strong> that runs parallel to
+          the most defining moments of the modern era.
+        </p>
+
+        <h3 className="text-2xl font-black text-slate-900 mt-12 mb-4 uppercase tracking-tight">
+          What Happened Since My Birth?
+        </h3>
+        <p className="mb-6">
+          Our <strong>life timeline generator</strong> is designed to answer the
+          fundamental question: <strong>what happened since my birth?</strong>{" "}
+          From the rise of the internet to the exploration of Mars, your{" "}
+          <strong>timeline of my life history</strong> is packed with
+          innovations and shifts. When you look at the{" "}
+          <strong>history I lived through</strong>, you aren't just looking at
+          dates; you're looking at the evolution of human civilization during
+          your specific tenure on Earth.
+        </p>
+
+        <h3 className="text-2xl font-black text-slate-900 mt-12 mb-4 uppercase tracking-tight">
+          The Power of a Personal Milestone History Timeline
+        </h3>
+        <p className="mb-6">
+          Creating an <strong>interactive life timeline</strong> allows you to
+          see where you were during the{" "}
+          <strong>major events since I was born</strong>. Perhaps you were a
+          toddler when the first smartphone was released, or maybe you were
+          starting your first job during a global economic shift. This{" "}
+          <strong>personal life timeline history</strong> contextualizes your
+          own growth alongside <strong>world events since birth</strong>.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-12">
+          <div className="bg-slate-50 p-8 rounded-[2rem] border border-slate-100">
+            <h4 className="font-black text-slate-900 mb-2 italic">
+              Historical Moments Year Born
+            </h4>
+            <p className="text-sm">
+              Your journey starts with the{" "}
+              <strong>historical events my birth year</strong>. Whether it was a
+              year of revolution or a year of peace, the{" "}
+              <strong>historical moments year born</strong> set the stage for
+              your entire life.
+            </p>
+          </div>
+          <div className="bg-slate-50 p-8 rounded-[2rem] border border-slate-100">
+            <h4 className="font-black text-slate-900 mb-2 italic">
+              AI Personal History Timeline
+            </h4>
+            <p className="text-sm">
+              In 2026, we use <strong>AI personal history timeline</strong>{" "}
+              technology to curate the most relevant{" "}
+              <strong>lifetime historical events</strong>. This ensures your{" "}
+              <strong>history since birth calculator</strong> results are
+              accurate and meaningful.
+            </p>
+          </div>
+        </div>
+
+        <h3 className="text-2xl font-black text-slate-900 mt-12 mb-4 uppercase tracking-tight">
+          Events on My Birthday in History
+        </h3>
+        <p className="mb-6">
+          Beyond just the years, many people are curious about{" "}
+          <strong>events on my birthday in history</strong>. Was a king crowned?
+          Was a treaty signed? A <strong>birthday history timeline</strong>{" "}
+          connects your special day to the broader{" "}
+          <strong>timeline since my birthday</strong> across centuries.
+        </p>
+
+        <h3 className="text-2xl font-black text-slate-900 mt-12 mb-4 uppercase tracking-tight">
+          How the World Changed During My Lifetime
+        </h3>
+        <p className="mb-6">
+          The <strong>world changed during my lifetime</strong> in ways that
+          previous generations could only dream of. By using our{" "}
+          <strong>life in historical milestones</strong> tool, you can see the{" "}
+          <strong>defining moments since birth</strong> that have shaped your
+          world view. This <strong>nostalgia history since birth 2026</strong>{" "}
+          experience is more than just data; it's a reflection on the{" "}
+          <strong>events in my lifetime</strong> that made you who you are.
+        </p>
+
+        <blockquote className="border-l-4 border-yellow-400 pl-6 py-2 my-8 italic font-serif text-xl text-slate-600">
+          "History is not just the story of nations, but the story of people
+          living through time."
+        </blockquote>
+
+        <h3 className="text-2xl font-black text-slate-900 mt-12 mb-4 uppercase tracking-tight">
+          The "You're Getting Old" Timeline Effect
+        </h3>
+        <p className="mb-6">
+          You might have seen the famous <strong>Atlantic life timeline</strong>{" "}
+          or the <strong>you re getting old timeline</strong> memes. These tools
+          highlight the <strong>historical events since I was born</strong> to
+          remind us of how much time has passed. While it can be a bit shocking
+          to see that a major movie release is now 20 years old, our{" "}
+          <strong>history timeline since birth</strong> helps you embrace that{" "}
+          <strong>nostalgia history</strong> with joy rather than dread.
+        </p>
+
+        <h3 className="text-2xl font-black text-slate-900 mt-12 mb-4 uppercase tracking-tight">
+          Why Use a History Since Birth Calculator?
+        </h3>
+        <p className="mb-6">
+          1. **Educational Context**: Understand{" "}
+          <strong>what historical events happened during my lifetime</strong>{" "}
+          for school or personal growth.
+          <br />
+          2. **Nostalgia**: Relive the <strong>
+            events in my lifetime
+          </strong>{" "}
+          that brought you joy.
+          <br />
+          3. **Perspective**: See how{" "}
+          <strong>history remembers your lifetime</strong> compared to previous
+          eras.
+        </p>
+
+        <h3 className="text-2xl font-black text-slate-900 mt-12 mb-4 uppercase tracking-tight">
+          Conclusion: Your Place in History
+        </h3>
+        <p className="mb-12">
+          Your <strong>personal historical timeline</strong> is still growing.
+          Every day you add a new page to the{" "}
+          <strong>history since birth calculator</strong>. Whether you are
+          searching for <strong>historical events my birth year</strong> or
+          looking ahead to the future, remember that you are a living witness to
+          history.
+        </p>
+      </article>
+
+      {/* --- 4. FOOTER --- */}
       <footer className="max-w-4xl mx-auto px-4 mt-24">
         <div className="bg-slate-950 rounded-[3rem] p-10 md:p-16 text-center relative overflow-hidden">
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl" />
@@ -1371,4 +1543,40 @@ export default function HistoryOnYourBirthday() {
       </footer>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const seo = {
+    title: "History Timeline Since Birth: What Happened Since I Was Born?",
+    description:
+      "Discover historical events since I was born with our interactive life timeline generator. Explore world milestones and history since birth instantly.",
+    keywords:
+      "history timeline since birth, historical events since I was born, life timeline generator, what happened since my birth, personal historical timeline, events in my lifetime, history I lived through, timeline of my life history, historical moments year born, world events since birth, life in historical milestones, how history remembers your lifetime, what historical events happened during my lifetime, birthday history timeline, events on my birthday in history, timeline since my birthday, personal life timeline history, major events since I was born, history since birth calculator, lifetime historical events, defining moments since birth, interactive life timeline, Atlantic life timeline, you re getting old timeline, historical events my birth year, world changed during my lifetime, personal milestone history timeline, nostalgia history since birth 2026, AI personal history timeline",
+    ogTitle: "Personal History Timeline: Events in My Lifetime",
+    ogDescription:
+      "Discover every major world event that has happened since your birth year. Interactive and updated for 2026.",
+    canonical: "https://www.imborednow.com/history-timeline",
+  };
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: "Life Timeline Generator",
+    url: "https://www.imborednow.com/history-timeline",
+    description:
+      "Calculate and view all major historical events that occurred since your birth date.",
+    applicationCategory: "EducationalApplication",
+    operatingSystem: "Any",
+    author: {
+      "@type": "Organization",
+      name: "ImBoredNow",
+    },
+  };
+
+  return {
+    props: {
+      seo,
+      jsonLd,
+    },
+  };
 }
