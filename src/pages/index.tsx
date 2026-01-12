@@ -38,6 +38,41 @@ export default function Home() {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+
+        <Head>
+
+          <title>Bored Button: Best Games & Sites to Cure Boredom Now</title>
+
+          <meta name="title" content="Bored Button: Best Games & Sites to Cure Boredom Now" />
+
+          <meta name="description" content={`Feeling bored at school, work, or home? Say " I'm bored" no more! Click the red Bored Button for hundreds of random interactive games, cool websites, and fun activities to cure boredom instantly. From quick games to pointless fun – beat boredom now!"`} />
+
+
+          <meta property="og:type" content="website" />
+
+          <meta property="og:url" content="https://www.imborednow.com/" />
+
+          <meta property="og:title" content="Bored Button: Best Games & Sites to Cure Boredom Now" />
+
+          <meta property="og:description" content={`Feeling bored at school, work, or home? Say " I'm bored" no more! Click the red Bored Button for hundreds of random interactive games, cool websites, and fun activities to cure boredom instantly. From quick games to pointless fun – beat boredom now!"`} />
+
+          <meta property="og:image" content="https://www.imborednow.com/banner.png" />
+
+
+          <meta property="twitter:card" content="summary_large_image" />
+
+          <meta property="twitter:url" content="https://www.imborednow.com/" />
+
+          <meta property="twitter:title" content="Bored Button: Best Games & Sites to Cure Boredom Now" />
+
+          <meta property="twitter:description" content={`Feeling bored at school, work, or home? Say " I'm bored" no more! Click the red Bored Button for hundreds of random interactive games, cool websites, and fun activities to cure boredom instantly. From quick games to pointless fun – beat boredom now!"`} />
+
+          <meta property="twitter:image" content="https://www.imborednow.com/banner.png" />
+
+          <link rel="canonical" href="https://www.imborednow.com/"></link>
+
+        </Head>
+
         <link rel="canonical" href="https://www.imborednow.com/" />
       </Head>
 
