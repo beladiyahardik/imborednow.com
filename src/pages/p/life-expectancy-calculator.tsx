@@ -115,7 +115,7 @@ export default function LifeExpectancyCalculator({
         />
         <link
           rel="canonical"
-          href="https://www.imborednow.com/life-expectancy-calculator"
+          href="https://imborednow.com/life-expectancy-calculator"
         />
       </Head>
       <div className="min-h-screen bg-[#F8FAFC] font-sans selection:bg-purple-200 pb-20">

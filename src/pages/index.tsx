@@ -42,7 +42,7 @@ export default function Home() {
         <meta property="og:description" content="Feeling bored? Click the red Bored Button for hundreds of random interactive games and fun activities to cure boredom instantly." />
         <meta property="og:image" content="https://www.imborednow.com/banner.png" />
         <meta property="twitter:card" content="summary_large_image" />
-        <link rel="canonical" href="https://www.imborednow.com/" />
+        <link rel="canonical" href="https://imborednow.com/" />
       </Head>
 
       <div className="min-h-screen bg-[#F8FAFC] font-sans selection:bg-purple-200 pb-20">

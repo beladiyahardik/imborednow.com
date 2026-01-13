@@ -1555,7 +1555,7 @@ export async function getStaticProps() {
     ogTitle: "Personal History Timeline: Events in My Lifetime",
     ogDescription:
       "Discover every major world event that has happened since your birth year. Interactive and updated for 2026.",
-    canonical: "https://www.imborednow.com/history-timeline",
+    canonical: "https://imborednow.com/history-timeline",
   };
 
   const jsonLd = {

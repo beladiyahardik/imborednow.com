@@ -100,6 +100,7 @@ export default function MilestoneCalculator({
         <meta property="og:image" content={seo.ogImage} />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
+        <link rel="canonical" href="https://imborednow.com/p/birthdate-calculator" />
 
         <script
           type="application/ld+json"

@@ -551,7 +551,7 @@ export async function getStaticProps() {
         title: "How Long Will I Live? | Advanced Life Expectancy Forecast 2026",
         description:
           "Use our biometric longevity lab to forecast your life expectancy. Analyze habits, geography, and lifestyle to determine your future health runway.",
-        canonical: "https://www.imborednow.com/life-expectancy-calculator",
+        canonical: "https://imborednow.com/life-expectancy-calculator",
         ogTitle: "Biometric Forecast: Discover Your Estimated Lifespan",
         ogDescription:
           "A data-driven approach to longevity. Calculate your remaining days and learn the science of living to 100.",
