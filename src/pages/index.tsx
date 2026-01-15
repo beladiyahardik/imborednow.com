@@ -117,10 +117,11 @@ export default function Home() {
         {/* --- 2. ADVANCED META TAGS --- */}
         <title>Bored Button: Random Games & Fun Sites to Cure Boredom Now</title>
         <meta name="description" content="Feeling bored at school or work? Click the Bored Button for 100+ unblocked games, mind-bending riddles, and crazy websites. The ultimate boredom killer." />
-        <link rel="canonical" href="https://imborednow.com" />
+        <link rel="canonical" href="https://www.imborednow.com" />
 
         {/* Open Graph / Social */}
         <meta property="og:title" content="Bored Button: Beat Boredom in Seconds" />
+        <meta property="og:url" content="https://www.imborednow.com" />
         <meta property="og:description" content="The internet's favorite 'I'm Bored' button. Discover 100+ random fun games and rabbit holes." />
         <meta property="og:image" content="https://imborednow.com/og-home.png" />
         <meta property="og:type" content="website" />
