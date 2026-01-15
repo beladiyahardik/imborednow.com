@@ -3,390 +3,124 @@ import { useState, useEffect, useRef } from "react";
 import Head from "next/head";
 import Link from "next/link";
 
-interface TActivity {
-  type: string;
-  emoji: string;
-  title: string;
-  content: string;
+interface TWebsite {
+  name: string;
+  url: string;
+  description: string;
   color: string;
-  bgColor: string;
-  tag: string;
 }
 
-export default function RandomActivity() {
-  const [activity, setActivity] = useState<TActivity | null>(null);
+export default function RandomWebsiteMachine() {
+  const [currentSite, setCurrentSite] = useState<TWebsite | null>(null);
   const [loading, setLoading] = useState(false);
-  const [animation, setAnimation] = useState(false);
-  const [intensity, setIntensity] = useState(50);
-  const [history, setHistory] = useState<TActivity[]>([]);
-  const resultsRef = useRef<HTMLDivElement>(null);
-
-  const activities: TActivity[] = [
-    {
-      type: "challenge",
-      emoji: "🧪",
-      title: "Chemistry Lab",
-      content:
-        "Go to the kitchen and mix oil and water in a glass. Add a drop of soap and watch the molecular war!",
-      color: "from-blue-500 to-cyan-500",
-      bgColor: "bg-blue-50",
-      tag: "Experiment",
-    },
-    {
-      type: "challenge",
-      emoji: "✍️",
-      title: "Non-Dominant Sketch",
-      content:
-        "Try to draw a simple house using only your non-dominant hand. It's harder than it looks!",
-      color: "from-purple-600 to-indigo-600",
-      bgColor: "bg-purple-50",
-      tag: "Creative",
-    },
-    {
-      type: "challenge",
-      emoji: "🤫",
-      title: "Silent Minute",
-      content:
-        "Set a timer for 60 seconds and sit in total silence. No phone, no talking, just your thoughts.",
-      color: "from-slate-700 to-slate-900",
-      bgColor: "bg-slate-100",
-      tag: "Mindfulness",
-    },
-    {
-      type: "challenge",
-      emoji: "🤸",
-      title: "Wall Sit Hero",
-      content:
-        "How long can you hold a wall sit? 30 seconds is rookie, 2 minutes is legend status.",
-      color: "from-orange-500 to-red-500",
-      bgColor: "bg-orange-50",
-      tag: "Physical",
-    },
-    {
-      type: "joke",
-      emoji: "😂",
-      title: "Dad Joke Time!",
-      content:
-        "I told my wife she was drawing her eyebrows too high. She looked surprised.",
-      color: "from-blue-500 to-cyan-500",
-      bgColor: "bg-blue-50",
-      tag: "Funny",
-    },
-    {
-      type: "fact",
-      emoji: "🧠",
-      title: "Amazing Fact",
-      content:
-        "A single bolt of lightning contains enough energy to toast 100,000 slices of bread!",
-      color: "from-emerald-500 to-teal-600",
-      bgColor: "bg-emerald-50",
-      tag: "Knowledge",
-    },
-    {
-      type: "challenge",
-      emoji: "🔍",
-      title: "Object Hunt",
-      content:
-        "Find 3 blue objects in the room you are in within 10 seconds. GO!",
-      color: "from-pink-500 to-rose-600",
-      bgColor: "bg-rose-50",
-      tag: "Active",
-    },
-    {
-      type: "riddle",
-      emoji: "🧩",
-      title: "Brain Teaser",
-      content: "What has keys but can't open locks? (Answer: A Piano)",
-      color: "from-purple-600 to-pink-600",
-      bgColor: "bg-purple-50",
-      tag: "Brainy",
-    },
+  const [iframeLoading, setIframeLoading] = useState(true);
+  
+  const websites: TWebsite[] = [
+    { name: "The Useless Web", url: "https://theuselessweb.com/", description: "The classic gateway to the weird web.", color: "from-purple-600 to-blue-600" },
+    { name: "Pointer Pointer", url: "https://pointerpointer.com/", description: "A photo that points exactly where your mouse is.", color: "from-slate-800 to-black" },
+    { name: "Hacker Typer", url: "https://hackertyper.com/", description: "Pretend to be a master hacker just by typing.", color: "from-emerald-600 to-green-900" },
+    { name: "Zoom Quilt", url: "https://zoomquilt.org/", description: "An infinite zooming piece of surreal art.", color: "from-orange-500 to-rose-500" },
+    { name: "Window Swap", url: "https://www.window-swap.com/", description: "Look out someone else's window somewhere in the world.", color: "from-blue-400 to-indigo-600" },
+    { name: "Silk", url: "http://weavesilk.com/", description: "Create interactive generative art with your mouse.", color: "from-cyan-500 to-blue-500" },
+    { name: "Paper Plane", url: "https://paperplanes.world/", description: "Throw paper planes around the world.", color: "from-sky-400 to-blue-300" },
+    { name: "Quick Draw", url: "https://quickdraw.withgoogle.com/", description: "Can a neural network recognize your doodles?", color: "from-yellow-400 to-orange-500" },
   ];
 
-  const categories = [
-    {
-      label: "Jokes",
-      emoji: "😂",
-      route: "/p/jokes",
-      color: "bg-blue-50 border-blue-100 text-blue-700",
-    },
-    {
-      label: "Facts",
-      emoji: "🧠",
-      route: "/p/facts",
-      color: "bg-emerald-50 border-emerald-100 text-emerald-700",
-    },
-    {
-      label: "Riddles",
-      emoji: "🧩",
-      route: "/p/mind-bending-riddle",
-      color: "bg-purple-50 border-purple-100 text-purple-700",
-    },
-    {
-      label: "DIY",
-      emoji: "✂️",
-      route: "/p/diy-craft",
-      color: "bg-orange-50 border-orange-100 text-orange-700",
-    },
-  ];
-
-  const getRandomActivity = () => {
+  const getRandomWebsite = () => {
     setLoading(true);
-    setAnimation(true);
+    setIframeLoading(true);
+    
     setTimeout(() => {
-      const randomIndex = Math.floor(Math.random() * activities.length);
-      const selected = activities[randomIndex];
-      setActivity(selected);
-      setHistory((prev) => [selected, ...prev].slice(0, 5));
+      const filtered = websites.filter(site => site.url !== currentSite?.url);
+      const selected = filtered[Math.floor(Math.random() * filtered.length)];
+      setCurrentSite(selected);
       setLoading(false);
-      setTimeout(() => setAnimation(false), 300);
-      resultsRef.current?.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }, 600);
   };
 
-  const handleShare = (platform: string) => {
-    const text = `I'm curing my boredom with this ${activity?.tag} challenge: "${activity?.content}" - Check it out on ImBoredNow!`;
-    const url = window.location.href;
-
-    const links: Record<string, string> = {
-      x: `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-        text
-      )}&url=${encodeURIComponent(url)}`,
-      fb: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-        url
-      )}`,
-      whatsapp: `https://wa.me/?text=${encodeURIComponent(text + " " + url)}`,
-    };
-
-    if (platform === "copy") {
-      navigator.clipboard.writeText(url);
-      alert("Link copied to clipboard!");
-    } else {
-      window.open(links[platform], "_blank");
-    }
-  };
-
   useEffect(() => {
-    getRandomActivity();
+    getRandomWebsite();
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] font-sans selection:bg-purple-200 pb-20">
+    <div className="h-screen bg-slate-950 font-sans overflow-hidden flex flex-col">
       <Head>
-        <title>Boredom Lab | Random Activity & Challenges</title>
+        <title>Random Site Machine | ImBoredNow</title>
       </Head>
 
-      {/* --- HERO SECTION --- */}
-      <section className="relative pt-20 pb-32 px-4 overflow-hidden bg-slate-950">
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_30%_20%,_var(--tw-gradient-stops))] from-blue-600/40 via-transparent to-transparent" />
-        </div>
-
-        <div className="relative z-10 max-w-5xl mx-auto text-center">
-          <nav className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur-xl rounded-full text-blue-300 text-[10px] font-black uppercase tracking-[0.3em] mb-8 border border-white/10">
-            ⚡ Session Active: {history.length} Activities Completed
-          </nav>
-
-          <h1 className="text-5xl md:text-8xl font-black text-white mb-6 tracking-tighter leading-[0.85]">
-            RANDOM{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-500">
-              QUEST
+      {/* --- TOP BAR --- */}
+      <header className="flex-none bg-slate-900 border-b border-white/10 px-4 py-3 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="flex gap-1.5">
+            <div className="w-2.5 h-2.5 rounded-full bg-red-500/20" />
+            <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/20" />
+            <div className="w-2.5 h-2.5 rounded-full bg-green-500/20" />
+          </div>
+          <Link href="/articles">
+            <span className="text-[9px] font-black text-slate-500 uppercase tracking-widest hover:text-white transition-colors cursor-pointer">
+              ← Exit Wormhole
             </span>
-            <br />
-            GENERATOR.
-          </h1>
+          </Link>
         </div>
-      </section>
 
-      <main className="max-w-6xl mx-auto px-4 -mt-16 relative z-20">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          {/* --- LEFT: ACTIVITY ENGINE --- */}
-          <div className="lg:col-span-8 space-y-8">
-            <div className="bg-white p-8 rounded-[3rem] shadow-2xl border border-blue-50">
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-sm font-black text-slate-400 uppercase tracking-widest">
-                  Boredom Intensity
-                </h2>
-                <span className="bg-blue-600 text-white text-[10px] px-3 py-1 rounded-full font-black">
-                  {intensity}%
-                </span>
-              </div>
-              <input
-                type="range"
-                min="1"
-                max="100"
-                value={intensity}
-                onChange={(e) => setIntensity(parseInt(e.target.value))}
-                className="w-full h-3 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-blue-600"
-              />
+        <div className="hidden md:flex bg-black/40 px-6 py-1.5 rounded-full border border-white/5 text-[10px] font-mono text-blue-400/80 tracking-tight w-1/3 justify-center">
+          {loading ? "ESTABLISHING_LINK..." : currentSite?.url}
+        </div>
+
+        <div className="text-[10px] font-black text-slate-500 uppercase">
+          {currentSite?.name || "Loading..."}
+        </div>
+      </header>
+
+      {/* --- MAIN IFRAME AREA --- */}
+      <main className="flex-grow relative bg-slate-950">
+        {(loading || iframeLoading) && (
+          <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-slate-950/90 backdrop-blur-sm">
+            <div className="relative w-12 h-12">
+              <div className="absolute inset-0 border-2 border-red-600/20 rounded-full" />
+              <div className="absolute inset-0 border-2 border-red-600 border-t-transparent rounded-full animate-spin" />
             </div>
+            <p className="mt-4 text-[9px] font-black text-red-500 uppercase tracking-[0.4em] animate-pulse">
+              Teleporting...
+            </p>
+          </div>
+        )}
+        
+        {currentSite && (
+          <iframe
+            src={currentSite.url}
+            className="w-full h-full border-none"
+            onLoad={() => setIframeLoading(false)}
+            sandbox="allow-forms allow-scripts allow-same-origin"
+          />
+        )}
+      </main>
 
-            <div ref={resultsRef} className="relative group">
-              <div className="absolute -inset-2 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-[3.5rem] blur opacity-10" />
-
-              <div className="relative bg-white rounded-[3.5rem] shadow-2xl overflow-hidden border border-slate-100">
-                {loading ? (
-                  <div className="h-[450px] flex flex-col items-center justify-center">
-                    <div className="relative w-20 h-20">
-                      <div className="absolute inset-0 border-4 border-blue-100 rounded-full" />
-                      <div className="absolute inset-0 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
-                    </div>
-                    <p className="font-black text-slate-400 uppercase tracking-widest mt-6 animate-pulse">
-                      Calculating New Quest...
-                    </p>
-                  </div>
-                ) : (
-                  activity && (
-                    <div
-                      className={`transition-all duration-500 ${
-                        animation
-                          ? "scale-95 opacity-0"
-                          : "scale-100 opacity-100"
-                      }`}
-                    >
-                      <div
-                        className={`bg-gradient-to-br ${activity.color} p-12 text-center text-white relative`}
-                      >
-                        <span className="relative z-10 bg-black/20 backdrop-blur-md px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.2em]">
-                          {activity.tag} Protocol
-                        </span>
-                        <h3 className="relative z-10 text-4xl md:text-6xl font-black mt-6 tracking-tight">
-                          {activity.title}
-                        </h3>
-                      </div>
-
-                      <div className="p-10 md:p-16">
-                        <div className="bg-slate-50 border border-slate-100 rounded-[2.5rem] p-8 md:p-14 text-center mb-10 shadow-inner">
-                          <p className="text-2xl md:text-4xl font-bold text-slate-800 leading-tight">
-                            {activity.content}
-                          </p>
-                        </div>
-
-                        <div className="flex flex-col sm:flex-row gap-4">
-                          <button
-                            onClick={getRandomActivity}
-                            className="flex-grow py-6 bg-red-600 text-white rounded-2xl font-black text-2xl hover:bg-red-500 transition-all shadow-[0_0_30px_rgba(220,38,38,0.3)] active:scale-95 flex items-center justify-center gap-3"
-                          >
-                            THE BORED BUTTON 🔴
-                          </button>
-                          <button className="px-10 py-6 bg-slate-900 text-white rounded-2xl font-black hover:bg-slate-800 transition-all">
-                            Done! ✅
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  )
-                )}
-              </div>
-            </div>
-
-            {/* Session History (Replaces Sponsored Space) */}
-            <div className="bg-white p-8 rounded-[3rem] border border-slate-100 shadow-sm">
-              <h3 className="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-6">
-                Recent Discoveries
-              </h3>
-              <div className="space-y-3">
-                {history.map((h, i) => (
-                  <div
-                    key={i}
-                    className="flex items-center gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100"
-                  >
-                    <span className="text-2xl">{h.emoji}</span>
-                    <span className="font-bold text-slate-700 text-sm">
-                      {h.title}
-                    </span>
-                    <span className="ml-auto text-[10px] font-black text-slate-300 uppercase">
-                      {h.type}
-                    </span>
-                  </div>
-                ))}
-                {history.length === 0 && (
-                  <p className="text-center text-slate-300 py-4 font-bold uppercase text-[10px]">
-                    Your activity log will appear here
-                  </p>
-                )}
-              </div>
-            </div>
+      {/* --- STICKY ACTION BAR --- */}
+      <footer className="flex-none p-4 md:p-6 bg-gradient-to-t from-black via-black/80 to-transparent fixed bottom-0 left-0 w-full z-[100]">
+        <div className="max-w-xl mx-auto flex items-center gap-4">
+          
+          <div className="flex-grow bg-white/10 backdrop-blur-2xl rounded-2xl border border-white/10 p-3 flex items-center gap-4 shadow-2xl">
+             <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${currentSite?.color} flex-none flex items-center justify-center text-lg`}>
+                ✨
+             </div>
+             <div className="overflow-hidden">
+                <p className="text-[10px] font-black text-white/40 uppercase tracking-widest leading-none mb-1">Current Quest</p>
+                <p className="text-white font-bold text-sm truncate uppercase tracking-tighter">{currentSite?.name}</p>
+             </div>
           </div>
 
-          {/* --- RIGHT: SIDEBAR --- */}
-          <aside className="lg:col-span-4 space-y-6">
-            {/* Invite a Friend (Now Working) */}
-            <div className="bg-gradient-to-br from-blue-600 to-indigo-700 p-8 rounded-[3rem] text-white shadow-xl relative overflow-hidden">
-              <div className="absolute top-[-10%] right-[-10%] w-32 h-32 bg-white/10 rounded-full blur-2xl" />
-              <h4 className="font-black text-xl mb-2 relative z-10">
-                Cure a Friend 📢
-              </h4>
-              <p className="text-blue-100 text-sm mb-8 font-medium relative z-10">
-                Boredom is a disease. Share the antidote.
-              </p>
-              <div className="grid grid-cols-2 gap-3 relative z-10">
-                <button
-                  onClick={() => handleShare("x")}
-                  className="py-3 bg-black text-white rounded-xl font-black text-[10px] uppercase tracking-widest hover:scale-105 transition-all"
-                >
-                  Twitter
-                </button>
-                <button
-                  onClick={() => handleShare("whatsapp")}
-                  className="py-3 bg-emerald-500 text-white rounded-xl font-black text-[10px] uppercase tracking-widest hover:scale-105 transition-all"
-                >
-                  WhatsApp
-                </button>
-                <button
-                  onClick={() => handleShare("fb")}
-                  className="py-3 bg-blue-800 text-white rounded-xl font-black text-[10px] uppercase tracking-widest hover:scale-105 transition-all"
-                >
-                  Facebook
-                </button>
-                <button
-                  onClick={() => handleShare("copy")}
-                  className="py-3 bg-white text-blue-900 rounded-xl font-black text-[10px] uppercase tracking-widest hover:scale-105 transition-all"
-                >
-                  Copy Link
-                </button>
-              </div>
-            </div>
+          <button
+            onClick={getRandomWebsite}
+            disabled={loading}
+            className="flex-none h-16 px-8 bg-red-600 hover:bg-red-500 text-white rounded-2xl font-black text-sm uppercase tracking-widest transition-all active:scale-90 shadow-[0_0_40px_rgba(220,38,38,0.4)] disabled:opacity-50"
+          >
+            {loading ? "..." : "Next Site 🔴"}
+          </button>
 
-            {/* Quick Filters */}
-            <div className="bg-white p-8 rounded-[3rem] border border-slate-100 shadow-xl">
-              <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-6">
-                Discovery Categories
-              </h3>
-              <div className="grid grid-cols-1 gap-3">
-                {categories.map((cat, i) => (
-                  <Link key={i} href={cat.route}>
-                    <div
-                      className={`${cat.color} p-4 rounded-2xl border flex items-center gap-4 hover:translate-x-2 transition-all cursor-pointer group`}
-                    >
-                      <span className="text-2xl group-hover:scale-125 transition-transform">
-                        {cat.emoji}
-                      </span>
-                      <span className="font-black text-sm uppercase tracking-widest">
-                        {cat.label}
-                      </span>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
-
-            {/* Mini Game / Trivia Teaser */}
-            <div className="bg-yellow-50 border border-yellow-100 p-8 rounded-[3rem]">
-              <span className="text-yellow-600 text-[10px] font-black uppercase tracking-widest">
-                Did you know?
-              </span>
-              <p className="text-yellow-900 font-bold mt-2 text-sm">
-                You've clicked the button enough times to burn 2 calories. Keep
-                going for a workout!
-              </p>
-            </div>
-          </aside>
         </div>
-      </main>
+      </footer>
     </div>
   );
 }

@@ -81,7 +81,7 @@ export default function BlogPost({ post, recommendations }: { post: any, recomme
       <div className="min-h-screen bg-[#F8FAFC]">
         <header className="bg-slate-950 pt-24 pb-48 px-4 text-center relative overflow-hidden">
           <div className="relative z-10 max-w-4xl mx-auto">
-            <Link href="/blog" className="text-purple-400 text-[10px] font-black uppercase tracking-[0.3em] mb-10 inline-block">
+            <Link href="/articles" className="text-purple-400 text-[10px] font-black uppercase tracking-[0.3em] mb-10 inline-block">
               ← Back to Feed
             </Link>
             <h1 className="text-4xl md:text-6xl font-black text-white leading-tight tracking-tighter mb-8">
@@ -130,7 +130,7 @@ export default function BlogPost({ post, recommendations }: { post: any, recomme
                 <h3 className="font-black text-slate-900 uppercase tracking-tighter mb-8 italic">Up Next</h3>
                 <div className="space-y-6">
                   {recommendations.map((item: any) => (
-                    <Link key={item.id} href={`/blog/${item.id}`} className="block group">
+                    <Link key={item.id} href={`/articles/${item.id}`} className="block group">
                       <h4 className="font-bold text-sm text-slate-800 group-hover:text-purple-600 transition-colors leading-tight mb-1">
                         {item.title}
                       </h4>

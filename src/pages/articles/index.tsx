@@ -24,7 +24,7 @@ export default function BlogList() {
 
   // SEO Constants
   const SITE_URL = "https://imborednow.com";
-  const PAGE_PATH = "/blog";
+  const PAGE_PATH = "/articles";
   const FULL_URL = `${SITE_URL}${PAGE_PATH}`;
   const PAGE_TITLE = "The Rabbit Hole Blog | ImBoredNow - Escape the Boredom";
   const PAGE_DESC = "Explore the deep end of the internet. From tech tips to random facts, find something to cure your boredom in the Rabbit Hole.";
