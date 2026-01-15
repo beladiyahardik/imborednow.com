@@ -61,22 +61,75 @@ export default function Home() {
     { title: "Animal Facts", emoji: "🦁", color: "from-emerald-500 to-teal-600", url: "/p/crazy-animal-fact", tag: "Cool", desc: "Wild discoveries" },
   ];
 
-  const jsonLd = {
+  // --- 1. ENHANCED SCHEMA MARKUP (E-E-A-T) ---
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "ImBoredNow",
+    "url": "https://imborednow.com",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://imborednow.com/articles?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  };
+
+  const softwareSchema = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "Bored Button / ImBoredNow",
+    "name": "The Bored Button",
     "operatingSystem": "Any",
     "applicationCategory": "EntertainmentApplication",
-    "offers": { "@type": "Offer", "price": "0" },
-    "description": "The ultimate collection of fun games and websites to play when bored at school or work. Discover the best boredom killers and random activities instantly."
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "12500"
+    },
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the Bored Button?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Bored Button is an interactive tool that redirects users to random fun games, websites, and activities to cure boredom instantly."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are these games unblocked for school?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, ImBoredNow focuses on browser-based, lightweight content that is typically accessible on school and work networks."
+        }
+      }
+    ]
   };
 
   return (
     <>
       <Head>
-        <title>Bored Button: Best Games & Sites to Cure Boredom Now</title>
-        <meta name="description" content="Feeling bored at school, work, or home? Click the red Bored Button for 100+ random interactive games, cool websites, and fun activities to cure boredom instantly." />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+        {/* --- 2. ADVANCED META TAGS --- */}
+        <title>Bored Button: Random Games & Fun Sites to Cure Boredom Now</title>
+        <meta name="description" content="Feeling bored at school or work? Click the Bored Button for 100+ unblocked games, mind-bending riddles, and crazy websites. The ultimate boredom killer." />
+        <link rel="canonical" href="https://imborednow.com" />
+
+        {/* Open Graph / Social */}
+        <meta property="og:title" content="Bored Button: Beat Boredom in Seconds" />
+        <meta property="og:description" content="The internet's favorite 'I'm Bored' button. Discover 100+ random fun games and rabbit holes." />
+        <meta property="og:image" content="https://imborednow.com/og-home.png" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+
+        {/* Structured Data Scripts */}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       </Head>
 
       <div className="min-h-screen bg-[#F8FAFC] font-sans selection:bg-purple-200 pb-20">

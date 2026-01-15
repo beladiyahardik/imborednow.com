@@ -1,3 +1,21 @@
+# User-agent: * applies to all search engines
 User-agent: *
-Disallow: 
+
+# Allow all main content and specialized folders
+Allow: /
+Allow: /articles
+Allow: /p/
+Allow: /info/
+
+# Block system and private folders to save crawl budget
+Disallow: /_next/
+Disallow: /api/
+Disallow: /static/
+
+# Block URL parameters to prevent duplicate content issues
+Disallow: /*?
+Disallow: /*&
+
+# Sitemaps
 Sitemap: https://www.imborednow.com/sitemap.xml
+Sitemap: https://www.imborednow.com/blog-sitemap.xml
