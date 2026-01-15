@@ -4,9 +4,19 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 // --- Utilities ---
+const slugify = (text: string) => {
+  return text
+    .toString()
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, '-')
+    .replace(/[^\w-]+/g, '')
+    .replace(/--+/g, '-');
+};
+
 const createExcerpt = (html: string) => {
   const text = html.replace(/<[^>]*>?/gm, '');
-  return text.substring(0, 150) + "..."; // Increased for better meta descriptions
+  return text.substring(0, 150) + "...";
 };
 
 const extractImage = (html: string) => {
@@ -28,7 +38,7 @@ export default function BlogList() {
   const FULL_URL = `${SITE_URL}${PAGE_PATH}`;
   const PAGE_TITLE = "The Rabbit Hole Blog | ImBoredNow - Escape the Boredom";
   const PAGE_DESC = "Explore the deep end of the internet. From tech tips to random facts, find something to cure your boredom in the Rabbit Hole.";
-  const OG_IMAGE = `${SITE_URL}/og-image.png`; // Ensure you have a default OG image in your public folder
+  const OG_IMAGE = `${SITE_URL}/og-image.png`;
 
   const API_KEY = "AIzaSyDw4oUW9oN8DfN5u6CUgFJ5rE7CF512l_0";
   const BLOG_ID = "9008125657659692221";
@@ -69,32 +79,23 @@ export default function BlogList() {
   return (
     <>
       <Head>
-        {/* --- PRIMARY SEO --- */}
         <title>{PAGE_TITLE}</title>
         <meta name="description" content={PAGE_DESC} />
         <link rel="canonical" href={FULL_URL} />
         <meta name="robots" content="index, follow" />
-
-        {/* --- OPEN GRAPH / FACEBOOK --- */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content={FULL_URL} />
         <meta property="og:title" content={PAGE_TITLE} />
         <meta property="og:description" content={PAGE_DESC} />
         <meta property="og:image" content={OG_IMAGE} />
-
-        {/* --- TWITTER --- */}
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content={FULL_URL} />
         <meta property="twitter:title" content={PAGE_TITLE} />
         <meta property="twitter:description" content={PAGE_DESC} />
         <meta property="twitter:image" content={OG_IMAGE} />
-        
-        {/* --- MOBILE OPTIMIZATION --- */}
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
       </Head>
 
       <div className="min-h-screen bg-[#F8FAFC] font-sans pb-20">
-        {/* ... (Hero section and Main content remain the same) ... */}
         <section className="bg-slate-950 pt-20 pb-32 px-4 relative overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(124,58,237,0.1),transparent)] pointer-events-none" />
           <div className="relative z-10 max-w-6xl mx-auto text-center">
@@ -120,17 +121,19 @@ export default function BlogList() {
                 {posts.map((post, idx) => {
                   const imageUrl = extractImage(post.content);
                   const colorTheme = colors[idx % colors.length];
+                  // GENERATE THE SLUG URL
+                  const postSlug = `${slugify(post.title)}-${post.id}`;
 
                   return (
-                    <Link key={post.id} href={`/articles/${post.id}`}>
+                    <Link key={post.id} href={`/articles/${postSlug}`}>
                       <article className="group bg-white rounded-[2.5rem] overflow-hidden shadow-xl border border-slate-100 h-full flex flex-col transition-all duration-500 hover:-translate-y-2">
                         <div className={`relative h-48 overflow-hidden bg-gradient-to-br ${colorTheme}`}>
                           {imageUrl ? (
                             <img 
                               src={imageUrl} 
-                              alt={post.title} // Crucial for Image SEO
+                              alt={post.title} 
                               className="w-full h-full object-cover mix-blend-overlay group-hover:scale-110 transition-transform duration-700 opacity-80" 
-                              loading="lazy" // Performance optimization
+                              loading="lazy" 
                             />
                           ) : (
                             <div className="flex items-center justify-center h-full text-6xl opacity-20">✨</div>
