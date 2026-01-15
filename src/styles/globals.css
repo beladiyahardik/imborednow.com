@@ -24,3 +24,27 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* globals.css */
+.blog-content {
+  @apply text-slate-700 leading-relaxed text-lg;
+}
+
+/* Remove extra margins from Blogger's nested divs */
+.blog-content div, .blog-content p {
+  @apply mb-5 mt-0;
+}
+
+.blog-content h1, .blog-content h2, .blog-content h3 {
+  @apply font-black tracking-tighter text-slate-900 mt-8 mb-4 leading-tight;
+}
+
+.blog-content img {
+  @apply rounded-3xl shadow-lg my-6 mx-auto block max-w-full h-auto;
+}
+
+/* AdSense Slot Styling */
+.ad-slot {
+  @apply my-8 p-4 bg-slate-50 border border-dashed border-slate-200 rounded-xl text-center text-[10px] text-slate-400 font-bold uppercase tracking-widest;
+  min-height: 100px;
+}

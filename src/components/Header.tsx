@@ -8,8 +8,8 @@ function Header() {
     { name: "Home", href: "/" },
     { name: "Jokes", href: "/p/jokes" },
     { name: "Facts", href: "/p/facts" },
+    { name: "Articles", href: "/articles" },
     { name: "About", href: "/info/about" },
-    { name: "Contact", href: "/info/contact" },
   ];
 
   return (
