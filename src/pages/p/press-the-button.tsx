@@ -19,7 +19,7 @@ export default function PressTheButton() {
     const [hasVoted, setHasVoted] = useState(false);
     const [loading, setLoading] = useState(true);
 
-    const API_BASE = "http://localhost/imborednow";
+    const API_BASE = "https://belbytes.com/APIs/imborednow";
 
     useEffect(() => {
         fetchNewScenario();
