@@ -5,182 +5,131 @@ export default function Disclaimers() {
   return (
     <>
       <Head>
-        <title>Disclaimers | I'm Bored Now</title>
+        <title>Disclaimers | I&apos;m Bored Now - Safety & Fun Policy</title>
         <meta
           name="description"
-          content="Our friendly disclaimers – keeping things fun, safe, and clear for everyone!"
+          content="Read our friendly disclaimers. We provide games to play when bored and fun websites, but please use our red button and tools responsibly!"
         />
+        <meta name="keywords" content="bored button disclaimer, games to play when bored, red button website policy, fun button terms" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50 pb-12">
+      <div className="min-h-screen bg-[#FDFCFD] pb-12 font-sans">
         {/* Hero Section */}
-        <section className="relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400 opacity-95"></div>
-          <div className="absolute inset-0">
-            <div className="absolute top-10 left-10 w-72 h-72 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
-            <div className="absolute bottom-20 right-20 w-96 h-96 bg-pink-300/20 rounded-full blur-3xl animate-pulse delay-700"></div>
-          </div>
-
-          <div className="relative container mx-auto px-4 sm:px-6 py-24 sm:py-32 text-center text-white">
-            <div className="max-w-4xl mx-auto space-y-8">
-              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black leading-tight drop-shadow-2xl">
-                Disclaimers
-              </h1>
-              <p className="text-xl sm:text-2xl lg:text-3xl font-medium opacity-95 max-w-3xl mx-auto">
-                Just a few friendly notes to keep the fun safe and happy! 😊
-              </p>
-            </div>
+        <section className="relative overflow-hidden bg-slate-900 py-20">
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+          <div className="relative container mx-auto px-4 text-center">
+            <h1 className="text-4xl sm:text-6xl font-black text-white mb-4 tracking-tighter">
+              The <span className="text-purple-500">Legal</span> Stuff
+            </h1>
+            <p className="text-slate-400 max-w-2xl mx-auto text-lg font-medium">
+              Keeping our <strong>boredom-killing</strong> community safe, happy, and informed.
+            </p>
           </div>
         </section>
 
         {/* Main Content */}
-        <section className="py-16 sm:py-24 bg-white/60 backdrop-blur-sm">
-          <div className="container mx-auto px-4 sm:px-6 max-w-4xl">
-            <div className="bg-white rounded-3xl shadow-2xl p-8 sm:p-12 border border-purple-100 space-y-10">
-              <div className="text-center mb-10">
-                <span className="text-8xl">ℹ️</span>
-                <p className="text-2xl font-bold text-gray-800 mt-4">
-                  Important info – explained in a fun and easy way!
+        <section className="py-12 -mt-10 px-4">
+          <div className="container mx-auto max-w-5xl">
+            <div className="bg-white rounded-[3rem] shadow-sm border border-slate-100 overflow-hidden">
+              
+              {/* Important Alert Box for AdSense */}
+              <div className="bg-amber-50 border-b border-amber-100 p-6 md:p-8 flex items-center gap-4">
+                 <div className="text-3xl">⚖️</div>
+                 <p className="text-amber-900 text-sm font-semibold leading-relaxed">
+                    By using <strong>I&apos;m Bored Now</strong> and clicking our <strong>red button</strong>, you agree to the following terms. We want you to find the best <strong>games to play when bored</strong>, but safety comes first!
+                 </p>
+              </div>
+
+              <div className="p-8 md:p-16 space-y-16">
+                
+                {/* 1. Entertainment Purpose */}
+                <div className="grid md:grid-cols-3 gap-8">
+                  <div className="md:col-span-1">
+                    <h2 className="text-xl font-black text-slate-900 uppercase tracking-widest flex items-center gap-2">
+                        <span className="text-purple-600">01.</span> Entertainment
+                    </h2>
+                  </div>
+                  <div className="md:col-span-2 text-slate-600 leading-relaxed">
+                    <p>
+                      All content provided on this website—including <strong>fun button games</strong>, jokes, and random activities—is for <strong>entertainment purposes only</strong>. We are a team of developers creating digital experiences to help when you are <strong>so bored</strong>. None of the content on this site should be taken as professional, legal, or medical advice.
+                    </p>
+                  </div>
+                </div>
+
+                {/* 2. AdSense & Third Party Disclaimer (Critical for Approval) */}
+                <div className="grid md:grid-cols-3 gap-8 pt-8 border-t border-slate-50">
+                  <div className="md:col-span-1">
+                    <h2 className="text-xl font-black text-slate-900 uppercase tracking-widest flex items-center gap-2">
+                        <span className="text-blue-600">02.</span> Ads & Links
+                    </h2>
+                  </div>
+                  <div className="md:col-span-2 text-slate-600 leading-relaxed space-y-4">
+                    <p>
+                      To keep our <strong>browser games free</strong>, we display advertisements (Google AdSense). We also link to external <strong>websites when bored</strong> users might find interesting. 
+                    </p>
+                    <p className="bg-slate-50 p-4 rounded-2xl text-sm italic">
+                      <strong>Note:</strong> We do not control the content of external sites. Once you click away from our <strong>random button</strong>, you are subject to that new site&apos;s own privacy policies and terms.
+                    </p>
+                  </div>
+                </div>
+
+                {/* 3. The "Calculators" Disclaimer */}
+                <div className="grid md:grid-cols-3 gap-8 pt-8 border-t border-slate-50">
+                  <div className="md:col-span-1">
+                    <h2 className="text-xl font-black text-slate-900 uppercase tracking-widest flex items-center gap-2">
+                        <span className="text-emerald-600">03.</span> Accuracy
+                    </h2>
+                  </div>
+                  <div className="md:col-span-2 text-slate-600 leading-relaxed">
+                    <p>
+                      While we try to provide the most <strong>amazing facts</strong> and quirky calculators, we cannot guarantee 100% accuracy. Our life expectancy or &quot;dog year&quot; calculators are <strong>silly tools</strong> meant for laughs, not scientific data. Always double-check facts before using them for school or work!
+                    </p>
+                  </div>
+                </div>
+
+                {/* 4. Use at Your Own Risk */}
+                <div className="grid md:grid-cols-3 gap-8 pt-8 border-t border-slate-50">
+                  <div className="md:col-span-1">
+                    <h2 className="text-xl font-black text-slate-900 uppercase tracking-widest flex items-center gap-2">
+                        <span className="text-red-600">04.</span> Responsibility
+                    </h2>
+                  </div>
+                  <div className="md:col-span-2 text-slate-600 leading-relaxed">
+                    <p>
+                      Using our <strong>red button website</strong> is at your own risk. We work hard to ensure all <strong>games to play when bored</strong> are safe and family-friendly, but we are not liable for any technical issues, data loss, or &quot;wasted time&quot; resulting from your use of the site.
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+
+              {/* Bottom Human-Tone Close */}
+              <div className="bg-slate-900 p-10 md:p-16 text-center">
+                <p className="text-white text-xl font-medium mb-8">
+                  We built this because we believe the world needs more fun. 
+                  <br className="hidden md:block" /> Use it, enjoy it, and stay curious!
+                </p>
+                <div className="flex flex-col md:flex-row justify-center gap-4">
+                   <Link href="/">
+                      <button className="px-8 py-4 bg-white text-slate-900 rounded-2xl font-black hover:bg-purple-100 transition-all active:scale-95">
+                        Back to the Button 🔴
+                      </button>
+                   </Link>
+                   <Link href="/p/contact">
+                      <button className="px-8 py-4 bg-slate-800 text-slate-400 rounded-2xl font-black hover:text-white transition-all">
+                        Questions? Contact Us
+                      </button>
+                   </Link>
+                </div>
+                <p className="mt-10 text-slate-500 text-[10px] font-bold uppercase tracking-[0.3em]">
+                    Last Updated: January 2026 • Made by Developers Who Hate Boredom
                 </p>
               </div>
 
-              <div className="space-y-8 text-lg text-gray-700 leading-relaxed">
-                <div className="flex items-start gap-5">
-                  <span className="text-4xl">🎉</span>
-                  <div>
-                    <h2 className="text-2xl font-bold text-purple-600 mb-2">
-                      1. Just for Fun & Entertainment
-                    </h2>
-                    <p>
-                      Everything on I'm Bored Now – jokes, games, pranks, facts,
-                      calculators, and activities – is meant purely for
-                      entertainment. It's not professional advice, medical
-                      guidance, financial tips, or anything serious like that.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-5">
-                  <span className="text-4xl">🧮</span>
-                  <div>
-                    <h2 className="text-2xl font-bold text-purple-600 mb-2">
-                      2. Calculators Are for Laughs
-                    </h2>
-                    <p>
-                      Our fun calculators (like love compatibility, dog years,
-                      or life expectancy estimates) are silly tools made to make
-                      you smile. They're not accurate or scientific – just
-                      playful guesses!
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-5">
-                  <span className="text-4xl">🃏</span>
-                  <div>
-                    <h2 className="text-2xl font-bold text-purple-600 mb-2">
-                      3. Pranks Are Harmless & Playful
-                    </h2>
-                    <p>
-                      Web pranks (like fake update screens) are designed to be
-                      light-hearted and funny. Please use them responsibly and
-                      only on friends who will laugh with you. We’re not
-                      responsible for any misunderstandings or over-the-top
-                      reactions!
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-5">
-                  <span className="text-4xl">🧠</span>
-                  <div>
-                    <h2 className="text-2xl font-bold text-purple-600 mb-2">
-                      4. Facts Are Cool, But Check Them
-                    </h2>
-                    <p>
-                      We share amazing and fun facts, but sometimes details can
-                      change or sources vary. If you're using a fact for school
-                      or something important, double-check it!
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-5">
-                  <span className="text-4xl">🌐</span>
-                  <div>
-                    <h2 className="text-2xl font-bold text-purple-600 mb-2">
-                      5. External Links & Sites
-                    </h2>
-                    <p>
-                      We sometimes link to other websites for extra fun. We try
-                      to choose safe ones, but we don’t control them. Explore
-                      carefully and remember to come back for more
-                      boredom-busting here!
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-5">
-                  <span className="text-4xl">📱</span>
-                  <div>
-                    <h2 className="text-2xl font-bold text-purple-600 mb-2">
-                      6. Use at Your Own Risk
-                    </h2>
-                    <p>
-                      The site is provided "as is" – we work hard to keep it fun
-                      and working, but we can’t guarantee it will always be
-                      perfect or available 24/7. Have fun, but don’t rely on it
-                      for anything super important.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-5">
-                  <span className="text-4xl">❤️</span>
-                  <div>
-                    <h2 className="text-2xl font-bold text-purple-600 mb-2">
-                      7. Made with Love
-                    </h2>
-                    <p>
-                      This site is created to spread joy and kill boredom
-                      worldwide. We’re not liable for excessive smiling,
-                      uncontrollable laughter, or sudden bursts of happiness!
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl p-8 mt-12 text-center">
-                <p className="text-xl font-bold text-gray-800">
-                  Thanks for understanding! Now go have some fun – responsibly,
-                  of course! 🌈✨
-                </p>
-                <p className="mt-4 text-gray-600">
-                  Last updated: December 30, 2025
-                </p>
-              </div>
-
-              <div className="text-center pt-8">
-                <Link href="/">
-                  <button className="group px-10 py-5 text-2xl font-bold bg-white text-purple-600 rounded-full shadow-2xl hover:shadow-purple-400/50 hover:scale-105 transition-all duration-300">
-                    Back to the Fun 🎉
-                    <span className="inline-block group-hover:translate-x-2 transition-transform ml-3">
-                      →
-                    </span>
-                  </button>
-                </Link>
-              </div>
             </div>
           </div>
         </section>
-
-        {/* Ad Placeholder */}
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="bg-gradient-to-r from-gray-100 to-gray-200 border-2 border-dashed border-gray-300 rounded-xl w-full h-32 flex items-center justify-center text-gray-500 font-semibold shadow-inner">
-            [AdSense Leaderboard 728×90]
-          </div>
-        </div>
       </div>
     </>
   );

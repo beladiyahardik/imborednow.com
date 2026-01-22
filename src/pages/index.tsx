@@ -16,13 +16,7 @@ const extractImage = (html: string) => {
 };
 
 const slugify = (text: string) => {
-  return text
-    .toString()
-    .toLowerCase()
-    .trim()
-    .replace(/\s+/g, '-')
-    .replace(/[^\w-]+/g, '')
-    .replace(/--+/g, '-');
+  return text.toString().toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w-]+/g, '').replace(/--+/g, '-');
 };
 
 export default function Home() {
@@ -30,6 +24,7 @@ export default function Home() {
   const [mounted, setMounted] = useState(false);
   const [posts, setPosts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [activeUsers, setActiveUsers] = useState(12450);
 
   const API_KEY = "AIzaSyDw4oUW9oN8DfN5u6CUgFJ5rE7CF512l_0";
   const BLOG_ID = "9008125657659692221";
@@ -38,6 +33,10 @@ export default function Home() {
   useEffect(() => {
     setMounted(true);
     fetchLatestPosts();
+    const interval = setInterval(() => {
+      setActiveUsers(prev => prev + Math.floor(Math.random() * 10) - 5);
+    }, 3000);
+    return () => clearInterval(interval);
   }, []);
 
   const fetchLatestPosts = async () => {
@@ -53,312 +52,197 @@ export default function Home() {
   };
 
   const categories = [
-    { title: "Boredom Trivia", emoji: "🧠", color: "from-indigo-600 to-blue-700", url: "/p/trivia", tag: "Hot", desc: "Test your brain" },
-    { title: "Quick DIY Craft", emoji: "✨", color: "from-orange-500 to-rose-500", url: "/p/diy-craft", tag: "New", desc: "Create something" },
+    { title: "Boredom Trivia", emoji: "🧠", color: "from-indigo-600 to-blue-700", url: "/p/trivia", tag: "Hot", desc: "Mind-blowing trivia" },
+    { title: "Quick DIY Craft", emoji: "✨", color: "from-orange-500 to-rose-500", url: "/p/diy-craft", tag: "New", desc: "Creative escapes" },
     { title: "Mind Riddles", emoji: "🧩", color: "from-purple-600 to-pink-600", url: "/p/mind-bending-riddle", tag: "Brainy", desc: "Logic puzzles" },
-    { title: "Random Jokes", emoji: "😂", color: "from-blue-500 to-cyan-500", url: "/p/random-jokes", tag: "Funny", desc: "Laugh out loud" },
+    { title: "Random Jokes", emoji: "😂", color: "from-blue-500 to-cyan-500", url: "/p/random-jokes", tag: "Funny", desc: "Instant laughs" },
     { title: "Weird Web", emoji: "🌐", color: "from-rose-500 to-orange-500", url: "/p/weird-websites", tag: "Strange", desc: "Internet rabbit holes" },
-    { title: "Animal Facts", emoji: "🦁", color: "from-emerald-500 to-teal-600", url: "/p/crazy-animal-fact", tag: "Cool", desc: "Wild discoveries" },
+    { title: "Animal Facts", emoji: "🦁", color: "from-emerald-500 to-teal-600", url: "/p/crazy-animal-fact", tag: "Cool", desc: "Wild nature facts" },
   ];
-
-  // --- 1. ENHANCED SCHEMA MARKUP (E-E-A-T) ---
-  const websiteSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "ImBoredNow",
-    "url": "https://imborednow.com",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://imborednow.com/articles?q={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
-  };
-
-  const softwareSchema = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "The Bored Button",
-    "operatingSystem": "Any",
-    "applicationCategory": "EntertainmentApplication",
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "12500"
-    },
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-  };
-
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "What is the Bored Button?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The Bored Button is an interactive tool that redirects users to random fun games, websites, and activities to cure boredom instantly."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Are these games unblocked for school?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, ImBoredNow focuses on browser-based, lightweight content that is typically accessible on school and work networks."
-        }
-      }
-    ]
-  };
 
   return (
     <>
       <Head>
-        {/* --- 2. ADVANCED META TAGS --- */}
-        <title>Bored Button: Random Games & Fun Sites to Cure Boredom Now</title>
-        <meta name="description" content="Feeling bored at school or work? Click the Bored Button for 100+ unblocked games, mind-bending riddles, and crazy websites. The ultimate boredom killer." />
-        <link rel="canonical" href="https://www.imborednow.com" />
-
-        {/* Open Graph / Social */}
-        <meta property="og:title" content="Bored Button: Beat Boredom in Seconds" />
-        <meta property="og:url" content="https://www.imborednow.com" />
-        <meta property="og:description" content="The internet's favorite 'I'm Bored' button. Discover 100+ random fun games and rabbit holes." />
-        <meta property="og:image" content="https://imborednow.com/og-home.png" />
-        <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary_large_image" />
-
-        {/* Structured Data Scripts */}
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+        <title>Bored Button: Games to Play When Bored & Fun Sites</title>
+        <meta name="description" content="Stuck with nothing to do? Click the red button to find the best games to play when bored. Explore 100+ fun websites when bored at school or work." />
+        <meta name="keywords" content="im bored, games to play when bored, red button, bored button, websites when bored, click the button, i am bored" />
       </Head>
 
-      <div className="min-h-screen bg-[#F8FAFC] font-sans selection:bg-purple-200 pb-20">
+      <div className="min-h-screen bg-[#F8FAFC] font-sans selection:bg-purple-200">
+        
         {/* --- 1. HERO SECTION --- */}
-        <section className="relative pt-20 pb-32 px-4 overflow-hidden bg-slate-950">
-          <div className="absolute inset-0 opacity-30">
-            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_30%_20%,_var(--tw-gradient-stops))] from-purple-600/40 via-transparent to-transparent" />
+        <section className="relative pt-32 pb-44 px-4 overflow-hidden bg-slate-950">
+          <div className="absolute inset-0">
+             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-purple-900/20 via-transparent to-transparent" />
+             <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10" />
           </div>
+
           <div className="relative z-10 max-w-5xl mx-auto text-center">
-            <nav className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur-xl rounded-full text-purple-300 text-[10px] font-black uppercase tracking-[0.3em] mb-8 border border-white/10">
-              🚀 The #1 Boredom Killer Website
-            </nav>
-            <h1 className="text-5xl md:text-8xl font-black text-white mb-6 tracking-tighter leading-[0.85]">
-              BEAT <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-400">BOREDOM</span><br />IN SECONDS.
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 backdrop-blur-md rounded-full text-emerald-400 text-[10px] font-black uppercase tracking-widest mb-8 border border-emerald-500/20">
+              <span className="w-2 h-2 bg-emerald-500 rounded-full animate-ping" />
+              {activeUsers.toLocaleString()} People Solving &quot;I Am Bored&quot; Right Now
+            </div>
+
+            <h1 className="text-6xl md:text-9xl font-black text-white mb-6 tracking-tighter leading-[0.8] uppercase">
+              Im <span className="text-transparent bg-clip-text bg-gradient-to-b from-yellow-200 to-orange-500">Bored</span><br />
+              <span className="text-white/90 text-4xl md:text-6xl tracking-normal">Click The Button.</span>
             </h1>
-            <p className="text-slate-400 max-w-2xl mx-auto mb-10 text-lg font-medium">
-              The internet&apos;s favorite &quot;I&quot;m Bored&quot; button. Discover 100+ random fun games, crazy facts, and interactive tools to kill time.
+            
+            <p className="text-slate-400 max-w-xl mx-auto mb-12 text-lg md:text-xl font-medium leading-relaxed">
+              If you&apos;re looking for <span className="text-white font-bold">games to play when bored</span>, you just found the jackpot. One click on the red button sends you to a random, amazing corner of the web.
             </p>
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-6 mt-8">
+
+            <div className="flex flex-col items-center gap-4">
               <Link href="/p/random-activity">
-                <button className="group relative px-10 py-5 bg-red-600 text-white rounded-2xl font-black text-xl hover:bg-red-500 transition-all shadow-[0_0_40px_rgba(220,38,38,0.3)] hover:shadow-[0_0_60px_rgba(220,38,38,0.5)] active:scale-95">
-                  THE BORED BUTTON 🔴
-                  <span className="absolute -top-2 -right-2 bg-yellow-400 text-black text-[10px] px-2 py-1 rounded-md animate-bounce">START HERE</span>
+                <button className="group relative px-12 py-6 bg-red-600 text-white rounded-[2rem] font-black text-2xl hover:bg-red-500 transition-all shadow-[0_20px_50px_rgba(220,38,38,0.4)] hover:shadow-[0_20px_70px_rgba(220,38,38,0.6)] active:scale-95 border-b-8 border-red-800 hover:border-red-700">
+                  PRESS THIS BUTTON 🔴
+                  <div className="absolute -top-4 -right-4 bg-yellow-400 text-black text-[12px] px-3 py-1 rounded-full font-black rotate-12 animate-bounce shadow-lg">
+                    BORED?
+                  </div>
                 </button>
               </Link>
+              <p className="text-slate-500 text-xs font-bold uppercase tracking-widest">The Ultimate Random Button Game</p>
             </div>
           </div>
         </section>
 
-        <main className="max-w-6xl mx-auto px-4 -mt-16 relative z-20 space-y-20">
-          {/* --- 2. INTERACTIVE BOREDOM METER --- */}
+        {/* --- 2. THE CONTENT HUB --- */}
+        <main className="max-w-6xl mx-auto px-4 -mt-24 relative z-20 pb-20 space-y-24">
+          
+          {/* BOREDOM SLIDER */}
           {mounted && (
-            <section className="bg-white p-8 rounded-[3rem] shadow-2xl border border-purple-100 max-w-3xl mx-auto">
-              <div className="text-center mb-6">
-                <h2 className="text-xl font-black text-slate-800 uppercase tracking-tight">How bored are you right now?</h2>
-                <p className="text-slate-500 text-sm">Slide to get a custom recommendation</p>
+            <div className="bg-white/80 backdrop-blur-2xl p-10 rounded-[3.5rem] shadow-[0_30px_100px_rgba(0,0,0,0.1)] border border-white max-w-4xl mx-auto">
+              <div className="flex flex-col md:flex-row items-center gap-8">
+                <div className="flex-grow w-full space-y-4">
+                  <h2 className="text-2xl font-black text-slate-900 tracking-tight italic">&quot;Im so bored, help me!&quot;</h2>
+                  <input 
+                    type="range" min="1" max="100" 
+                    value={boredomLevel} 
+                    onChange={(e) => setBoredomLevel(e.target.value)} 
+                    className="w-full h-6 bg-slate-100 rounded-full appearance-none cursor-pointer accent-purple-600 border-8 border-slate-50" 
+                  />
+                  <div className="flex justify-between font-black text-[11px] uppercase tracking-widest text-slate-400">
+                    <span>Just Browsing</span>
+                    <span className="text-purple-600 text-lg">BOREDOM LEVEL: {boredomLevel}%</span>
+                    <span>Brain is Melting</span>
+                  </div>
+                </div>
+                <div className="shrink-0">
+                  <Link href={categories[boredomLevel % 6].url}>
+                    <div className="w-32 h-32 rounded-3xl bg-purple-600 flex flex-col items-center justify-center text-white cursor-pointer hover:rotate-6 transition-all shadow-xl shadow-purple-200 group">
+                        <span className="text-4xl mb-1 group-hover:scale-125 transition-transform">{categories[boredomLevel % 6].emoji}</span>
+                        <span className="text-[10px] font-black uppercase tracking-tighter">Fix It</span>
+                    </div>
+                  </Link>
+                </div>
               </div>
-              <input type="range" min="1" max="100" value={boredomLevel} onChange={(e) => setBoredomLevel(e.target.value)} className="w-full h-4 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-purple-600" />
-              <div className="flex justify-between mt-4 font-black text-[10px] uppercase tracking-widest text-slate-400">
-                <span>Just Chilling</span>
-                <span className="text-purple-600 text-sm">Level: {boredomLevel}%</span>
-                <span>Dying of Boredom</span>
-              </div>
-              <div className="mt-8 text-center animate-fade-in">
-                <p className="text-slate-400 text-xs font-bold uppercase mb-2">Recommended for you:</p>
-                <Link href={categories[boredomLevel % 6].url}>
-                  <span className="inline-block px-6 py-3 bg-purple-50 text-purple-700 rounded-xl font-black hover:bg-purple-100 transition-colors cursor-pointer border border-purple-200">
-                    {categories[boredomLevel % 6].emoji} {categories[boredomLevel % 6].title} →
-                  </span>
-                </Link>
-              </div>
-            </section>
+            </div>
           )}
 
-          {/* --- 3. BENTO GRID --- */}
+          {/* BENTO GRID (SEO Optimized Titles) */}
           <section>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6">
-              {categories.map((cat, i) => (
-                <Link key={i} href={cat.url} title={`Play ${cat.title}`}>
-                  <div className={`group relative h-48 md:h-64 rounded-[2.5rem] bg-gradient-to-br ${cat.color} p-6 md:p-8 overflow-hidden cursor-pointer transition-all duration-500 hover:-translate-y-2 hover:rotate-1 shadow-xl active:scale-95`}>
-                    <div className="absolute top-[-5%] right-[-5%] text-8xl md:text-9xl opacity-15 group-hover:rotate-12 group-hover:scale-110 transition-transform duration-500">{cat.emoji}</div>
-                    <div className="relative h-full flex flex-col justify-between">
-                      <span className="self-start bg-black/20 backdrop-blur-md px-3 py-1 rounded-full text-[9px] font-black text-white uppercase tracking-widest">{cat.tag}</span>
-                      <div>
-                        <h3 className="text-lg md:text-2xl font-black text-white mb-1">{cat.title}</h3>
-                        <p className="text-white/80 text-[10px] uppercase font-bold tracking-widest group-hover:translate-x-2 transition-transform">{cat.desc} →</p>
-                      </div>
+            <div className="text-center mb-12">
+                <h2 className="text-3xl font-black text-slate-900">Sites To Visit When Bored</h2>
+                <p className="text-slate-500 font-bold">Hand-picked browser games and time killers</p>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
+                {categories.map((cat, i) => (
+                <Link key={i} href={cat.url}>
+                    <div className={`group relative h-56 md:h-72 rounded-[3rem] bg-gradient-to-br ${cat.color} p-8 overflow-hidden cursor-pointer transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl active:scale-95`}>
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 blur-3xl rounded-full translate-x-10 -translate-y-10 group-hover:scale-150 transition-transform duration-700" />
+                    
+                    <div className="relative h-full flex flex-col justify-between z-10">
+                        <div className="flex justify-between items-start">
+                            <span className="bg-black/20 backdrop-blur-md px-4 py-1.5 rounded-full text-[10px] font-black text-white uppercase tracking-widest">{cat.tag}</span>
+                            <span className="text-4xl md:text-5xl group-hover:scale-125 transition-transform">{cat.emoji}</span>
+                        </div>
+                        <div>
+                        <h3 className="text-xl md:text-3xl font-black text-white mb-2 leading-tight">{cat.title}</h3>
+                        <p className="text-white/70 text-xs font-bold uppercase tracking-widest flex items-center gap-2">
+                            {cat.desc} <span className="group-hover:translate-x-2 transition-transform">→</span>
+                        </p>
+                        </div>
                     </div>
-                  </div>
+                    </div>
                 </Link>
-              ))}
+                ))}
             </div>
           </section>
 
-          {/* --- 4. FEATURED CONTENT --- */}
-          <section className="grid md:grid-cols-2 gap-6">
-            <Link href="/p/dad-jokes" className="block transform transition hover:scale-[1.02]">
-              <article className="bg-white p-8 rounded-[2.5rem] shadow-xl border border-slate-100 h-full">
-                <div className="flex items-center justify-between mb-6">
-                  <span className="text-4xl">🎭</span>
-                  <span className="px-3 py-1 bg-purple-100 text-purple-600 rounded-lg text-[10px] font-black uppercase">Joke of the Day</span>
-                </div>
-                <h3 className="text-2xl font-black text-slate-800 mb-4">Why don&apos;t scientists trust atoms?</h3>
-                <p className="text-purple-600 font-bold">Because they make up everything! 😂</p>
-              </article>
-            </Link>
-            <Link href="/p/facts" className="block transform transition hover:scale-[1.02]">
-              <article className="bg-slate-900 p-8 rounded-[2.5rem] shadow-xl h-full relative overflow-hidden">
-                <div className="absolute right-[-5%] bottom-[-5%] text-9xl opacity-10">🧠</div>
-                <div className="relative z-10">
-                  <div className="flex items-center justify-between mb-6">
-                    <span className="text-4xl">💡</span>
-                    <span className="px-3 py-1 bg-white/10 text-white rounded-lg text-[10px] font-black uppercase">Random Fact</span>
-                  </div>
-                  <h3 className="text-2xl font-black text-white mb-4">Honey never spoils. Archaeologists found edible honey in 3,000-year-old tombs!</h3>
-                  <p className="text-indigo-300 font-bold uppercase text-[10px] tracking-[0.2em]">Learn More Facts →</p>
-                </div>
-              </article>
-            </Link>
-          </section>
-
-          {/* --- 5. THE DISCOVERY LAB --- */}
-          <section>
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-8 px-2">
-              <header>
-                <h2 className="text-2xl font-black text-slate-900 flex items-center gap-2">The Discovery Lab <span className="animate-pulse">🧪</span></h2>
-                <p className="text-sm font-bold text-slate-400 uppercase tracking-widest mt-1">Free Online Tools for Bored People</p>
+          {/* SEO LONG-FORM CONTENT (Human Tone + Excel Keywords) */}
+          <section className="bg-white rounded-[4rem] p-8 md:p-20 border border-slate-100 shadow-sm relative overflow-hidden">
+            <div className="max-w-4xl mx-auto relative z-10">
+              <header className="text-center mb-16">
+                <h2 className="text-4xl md:text-6xl font-black text-slate-900 mb-6 leading-tight">
+                    What is the <span className="text-red-600 italic">Bored Button</span>?
+                </h2>
+                <p className="text-slate-500 text-xl font-medium leading-relaxed">
+                    We&apos;ve all been there. You&apos;re sitting at your desk, you&apos;ve refreshed your feed ten times, and you&apos;re thinking, <span className="text-slate-900 font-bold">&quot;Man, i am bored.&quot;</span>
+                </p>
               </header>
-              <div className="h-[2px] hidden md:block flex-grow mx-6 bg-slate-100" />
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {[
-                { title: "Birthdate Secrets", icon: "🎂", desc: "What happened the day you were born?", color: "bg-blue-50 border-blue-100 text-blue-700", href: "/p/birthdate-calculator" },
-                { title: "History Timeline", icon: "⏳", desc: "Sync your life events with world history.", color: "bg-purple-50 border-purple-100 text-purple-700", href: "/p/history-timeline" },
-                { title: "Life Expectancy", icon: "❤️", desc: "How many days do you have left? Find out.", color: "bg-rose-50 border-rose-100 text-rose-700", href: "/p/life-expectancy-calculator" },
-                { title: "Lifestyle Factor", icon: "⚖️", desc: "Analyze how your habits affect your future.", color: "bg-emerald-50 border-emerald-100 text-emerald-700", href: "/p/life-style-factor" }
-              ].map((tool, i) => (
-                <Link key={i} href={tool.href}>
-                  <div className={`${tool.color} border p-6 rounded-3xl flex items-center gap-5 hover:scale-[1.03] transition-all cursor-pointer group active:scale-95 shadow-sm hover:shadow-md`}>
-                    <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-4xl shadow-sm group-hover:rotate-6 transition-transform">{tool.icon}</div>
-                    <div>
-                      <h4 className="font-black text-lg leading-tight mb-1">{tool.title}</h4>
-                      <p className="text-slate-600 text-xs font-bold opacity-80 leading-snug">{tool.desc}</p>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </section>
 
-          {/* --- 6. LATEST FROM THE RABBIT HOLE (SLUG-ID IMPLEMENTED) --- */}
-          <section>
-            <div className="flex items-center justify-between mb-8 px-2">
-              <h2 className="text-2xl font-black text-slate-900">The Rabbit Hole 📂</h2>
-              <Link href="/articles" className="text-[10px] font-black uppercase tracking-widest text-purple-600 hover:underline">View All Posts →</Link>
-            </div>
-            {loading ? (
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-pulse">
-                {[...Array(3)].map((_, i) => <div key={i} className="h-64 bg-slate-100 rounded-[2.5rem]" />)}
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {posts.map((post) => {
-                  const imageUrl = extractImage(post.content);
-                  const postSlug = `${slugify(post.title)}-${post.id}`;
-                  return (
-                    <Link key={post.id} href={`/articles/${postSlug}`}>
-                      <article className="group bg-white rounded-[2.5rem] overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer h-full flex flex-col">
-                        <div className="h-40 bg-slate-100 overflow-hidden relative">
-                          {imageUrl ? (
-                            <img src={imageUrl} alt={post.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                          ) : (
-                            <div className="flex items-center justify-center h-full text-4xl">✨</div>
-                          )}
-                        </div>
-                        <div className="p-6 flex flex-col flex-grow">
-                          <h3 className="font-black text-slate-800 group-hover:text-purple-600 transition-colors mb-2 line-clamp-2">{post.title}</h3>
-                          <p className="text-slate-500 text-xs font-medium line-clamp-2 flex-grow">{createExcerpt(post.content)}</p>
-                          <div className="mt-4 pt-4 border-t border-slate-50 flex items-center justify-between">
-                            <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">{new Date(post.published).toLocaleDateString()}</span>
-                            <span className="text-purple-600 font-black text-[10px]">READ →</span>
-                          </div>
-                        </div>
-                      </article>
-                    </Link>
-                  );
-                })}
-              </div>
-            )}
-          </section>
+              <div className="space-y-16 text-slate-600 text-lg leading-loose">
+                <article className="space-y-6">
+                  <h3 className="text-2xl font-black text-slate-900 uppercase tracking-tighter">The Best Websites When Bored</h3>
+                  <p>
+                    The internet is huge, but somehow, when you actually have time to kill, it feels empty. That&apos;s why we created this <strong>red button website</strong>. It isn&apos;t just a random link generator; it&apos;s a curated collection of the <strong>best games to play when bored</strong>. 
+                  </p>
+                  <p>
+                    From <strong>browser games free</strong> to play to weird digital experiments, we have indexed the most entertaining corners of the web. Whether you are <strong>bored at school</strong> or just need a 5-minute break from work, our <strong>fun button</strong> is your escape hatch.
+                  </p>
+                </article>
 
-          {/* --- 7. SEO LONG-FORM CONTENT --- */}
-          <section className="bg-white rounded-[3rem] p-8 md:p-16 border border-slate-100 shadow-sm">
-            <div className="max-w-4xl mx-auto prose prose-slate prose-lg">
-              <h2 className="text-4xl font-black text-slate-900 mb-8 text-center">The Science of Boredom: Why We Get Bored and How to Fix It</h2>
-              <div className="space-y-12 text-slate-600 leading-relaxed">
-                <div>
-                  <h3 className="text-2xl font-black text-purple-600 uppercase mb-4">What is the Bored Button?</h3>
-                  <p>The <strong>Bored Button</strong> is more than just a red circle on a screen; it is an interactive gateway to the most entertaining, educational, and downright "weird" parts of the internet. Our mission is simple: to provide an instant solution for anyone saying <strong>"I'm bored"</strong> at school, work, or home.</p>
-                  <p>In an age of endless scrolling and passive consumption, the Bored Button encourages active engagement. Whether it's a <strong>random game</strong>, a mind-bending riddle, or a deep dive into an obscure Wikipedia rabbit hole, we curate content that sparks curiosity and keeps the brain active.</p>
-                </div>
-                <div className="grid md:grid-cols-2 gap-8 bg-slate-50 p-8 rounded-3xl border border-slate-100">
-                  <div>
-                    <h3 className="text-xl font-black text-slate-800 mb-3">Why Do We Feel Bored?</h3>
-                    <p className="text-sm">Boredom is actually an evolutionary signal. It’s your brain’s way of telling you that you aren’t reaching your full cognitive potential in the current moment. When you are <strong>bored at work</strong>, your mind is craving a challenge or a novel stimulus. The Bored Button provides that "dopamine hit" safely and productively.</p>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-black text-slate-800 mb-3">Health Benefits of Fun</h3>
-                    <p className="text-sm">Taking short "micro-breaks" to play <strong>fun online games</strong> has been shown to improve overall productivity. By stepping away from a stressful task for 5 minutes to solve a riddle or read a funny joke, you reset your focus and reduce cortisol levels.</p>
-                  </div>
-                </div>
-                <h3 className="text-2xl font-black text-purple-600 uppercase text-center mt-12">Top 10 Things to Do When Bored (Beyond the Button)</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {["Learn a new magic trick using household items.", "Explore 'The Useless Web' for hidden internet gems.", "Practice mindfulness with a 2-minute breathing exercise.", "Try a DIY craft using only recycled paper.", "Take a virtual tour of a world-famous museum.", "Learn five words in a completely new language.", "Solve a logic puzzle or Sudoku to sharpen your mind.", "Listen to a '10-minute' mystery podcast episode.", "Write a letter to your future self 10 years from now.", "Challenge a friend to a quick online trivia battle."].map((item, idx) => (
-                    <div key={idx} className="flex gap-3 items-start p-4 bg-white border border-slate-100 rounded-2xl">
-                      <span className="text-purple-600 font-black">{idx + 1}.</span>
-                      <span className="text-sm font-medium">{item}</span>
+                <div className="grid md:grid-cols-2 gap-10">
+                    <div className="bg-blue-50 p-10 rounded-[3rem] border border-blue-100">
+                        <h3 className="text-xl font-black text-blue-900 mb-4 uppercase">Bored So Bored?</h3>
+                        <p className="text-sm text-blue-800/80 leading-relaxed font-medium">
+                            If you&apos;re feeling <strong>very bored</strong>, your brain is actually craving novelty. Our <strong>red button games</strong> are designed to give you that quick hit of &quot;Wait, what is this?&quot; that makes time fly by.
+                        </p>
                     </div>
-                  ))}
-                </div>
-                <h2 className="text-3xl font-black text-slate-900 pt-8 border-t border-slate-100">The Ultimate Guide to Curing Boredom at School or Work</h2>
-                <p>Finding <strong>unblocked games for school</strong> can be a challenge. We focus on lightweight, browser-based experiences that don't require heavy downloads or high-end hardware. Our platform is optimized for speed, ensuring that even on slower connections, you can find <strong>websites to go to when bored</strong> without the frustration of long load times.</p>
-                <h3 className="text-xl font-black text-slate-800">1. Interactive Riddles and Logic Puzzles</h3>
-                <p>Nothing kills boredom faster than a challenge. Our <strong>mind riddles</strong> section is designed to test your lateral thinking. These aren't just for kids; we have complex puzzles that will keep adults scratching their heads for hours.</p>
-                <h3 className="text-xl font-black text-slate-800">2. Weird and Wonderful Websites</h3>
-                <p>Have you ever seen a website that just lets you pet a virtual cat? Or a site that maps every lightning strike happening on Earth in real-time? The "Weird Web" category is a curated list of these digital oddities that remind us why the internet was invented in the first place—for fun!</p>
-                <h3 className="text-xl font-black text-slate-800">3. Educational But Entertaining Facts</h3>
-                <p>Did you know that a group of flamingos is called a "flamboyance"? Or that there are more trees on Earth than stars in the Milky Way? Our <strong>animal facts</strong> and <strong>trivia</strong> sections make sure that even while you're procrastinating, you're still learning something new.</p>
-                <h2 className="text-3xl font-black text-slate-900">Frequently Asked Questions (FAQ)</h2>
-                <div className="space-y-6">
-                  {[{ q: "Is the Bored Button free to use?", a: "Yes! Every game, fact, and tool on our site is 100% free with no registration required." }, { q: "Are these games unblocked at school?", a: "Most of our content is designed to be accessible on restricted networks, making them great for breaks between classes." }, { q: "How many activities are behind the red button?", a: "We currently have over 100+ unique activities, and we add new 'boredom killers' every single week." }, { q: "Can I submit my own 'weird website'?", a: "Absolutely! We love discovering new corners of the web. Contact our team to submit your favorite time-wasters." }].map((faq, i) => (
-                    <div key={i} className="border-b border-slate-100 pb-6">
-                      <h4 className="font-black text-slate-800 mb-2">Q: {faq.q}</h4>
-                      <p className="text-slate-600 text-sm">{faq.a}</p>
+                    <div className="bg-pink-50 p-10 rounded-[3rem] border border-pink-100">
+                        <h3 className="text-xl font-black text-pink-900 mb-4 uppercase">Unblocked Fun</h3>
+                        <p className="text-sm text-pink-800/80 leading-relaxed font-medium">
+                            Searching for <strong>im bored unblocked</strong>? Most of our <strong>online bored</strong> activities are lightweight and browser-based, making them perfect for those moments when you need a <strong>bored game</strong> that works anywhere.
+                        </p>
                     </div>
-                  ))}
+                </div>
+
+                <article className="space-y-6">
+                  <h3 className="text-2xl font-black text-slate-900 uppercase tracking-tighter">How the Button Game Works</h3>
+                  <p>
+                    It&apos;s simple: you <strong>click red button</strong>, and we do the rest. You might find yourself playing a hidden <strong>old internet game</strong>, discovering a website that tracks lightning in real-time, or reading <strong>fun facts</strong> that sound fake but aren&apos;t. It&apos;s the ultimate <strong>random button</strong> experience.
+                  </p>
+                </article>
+
+                {/* FAQ Section (SEO Rich) */}
+                <div className="pt-20 border-t border-slate-100">
+                   <h3 className="text-3xl font-black text-slate-900 mb-10 text-center">Frequently Asked Questions</h3>
+                   <div className="grid gap-4">
+                     {[
+                       { q: "What should I do if I am bored?", a: "The best thing to do is engage your brain with something novel! Click our red button to find random games to play when bored, riddles, or interactive websites." },
+                       { q: "Are these fun games to play while bored free?", a: "Yes, every single link and bored button game we provide is a free browser game." },
+                       { q: "Is this the original Bored Button?", a: "We are a modern take on the classic 'im bored' concept, focusing on high-quality, 2026-ready fun games to do when your bored." }
+                     ].map((faq, i) => (
+                        <details key={i} className="group bg-slate-50 rounded-3xl p-6 cursor-pointer border border-transparent hover:border-purple-200 transition-all">
+                            <summary className="list-none flex justify-between items-center font-black text-slate-800">
+                                {faq.q}
+                                <span className="text-purple-600 group-open:rotate-180 transition-transform">▼</span>
+                            </summary>
+                            <p className="mt-4 text-slate-600 font-medium text-sm">{faq.a}</p>
+                        </details>
+                     ))}
+                   </div>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* --- 8. NEWSLETTER --- */}
+          {/* NEWSLETTER */}
           <section className="bg-gradient-to-r from-purple-600 to-indigo-700 rounded-[3rem] p-10 md:p-20 text-center text-white relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -mr-20 -mt-20" />
-            <h2 className="text-3xl md:text-5xl font-black mb-4 tracking-tight">Never be bored again.</h2>
-            <p className="text-indigo-100 text-lg mb-10 max-w-xl mx-auto opacity-80 font-medium">Join 50,000+ humans getting a weekly dose of internet magic.</p>
+            <h2 className="text-3xl md:text-5xl font-black mb-4 tracking-tight">Stay Cured.</h2>
+            <p className="text-indigo-100 text-lg mb-10 max-w-xl mx-auto opacity-80 font-medium italic">Join 50k+ people who never say &quot;im so bored&quot; anymore.</p>
             <form className="max-w-md mx-auto flex flex-col sm:flex-row gap-3" onSubmit={(e) => e.preventDefault()}>
-              <input type="email" required placeholder="Your email address" className="flex-grow px-6 py-4 rounded-2xl bg-white/10 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-white/50" />
+              <input type="email" required placeholder="Email for weekly fun..." className="flex-grow px-6 py-4 rounded-2xl bg-white/10 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-white/50" />
               <button type="submit" className="px-8 py-4 bg-white text-indigo-600 font-black rounded-2xl hover:bg-indigo-50 transition-all hover:scale-105 active:scale-95">Join Free</button>
             </form>
           </section>

@@ -5,161 +5,124 @@ export default function PrivacyPolicy() {
   return (
     <>
       <Head>
-        <title>Privacy Policy | I'm Bored Now</title>
+        <title>Privacy Policy | I&apos;m Bored Now - Your Data Safety</title>
         <meta
           name="description"
-          content="Our privacy policy – simple, clear, and family-friendly. We don't collect your data!"
+          content="Learn how I'm Bored Now protects your privacy. We offer games to play when bored without invasive tracking. Read our Google AdSense & Cookie policy."
         />
+        <meta name="keywords" content="privacy policy, bored button, games to play when bored, google dart cookie, data safety" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50 pb-12">
+      <div className="min-h-screen bg-[#FAFAFA] pb-12 font-sans">
         {/* Hero Section */}
-        <section className="relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400 opacity-95"></div>
-          <div className="absolute inset-0">
-            <div className="absolute top-10 left-10 w-72 h-72 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
-            <div className="absolute bottom-20 right-20 w-96 h-96 bg-pink-300/20 rounded-full blur-3xl animate-pulse delay-700"></div>
-          </div>
-
-          <div className="relative container mx-auto px-4 sm:px-6 py-24 sm:py-32 text-center text-white">
-            <div className="max-w-4xl mx-auto space-y-8">
-              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black leading-tight drop-shadow-2xl">
-                Privacy Policy
-              </h1>
-              <p className="text-xl sm:text-2xl lg:text-3xl font-medium opacity-95 max-w-3xl mx-auto">
-                We keep it super simple and super safe! 😊
-              </p>
-            </div>
+        <section className="relative overflow-hidden bg-slate-900 pt-24 pb-32">
+          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
+          <div className="relative container mx-auto px-4 text-center">
+            <h1 className="text-5xl sm:text-7xl font-black text-white mb-6 tracking-tight">
+              Privacy <span className="text-blue-500">First.</span>
+            </h1>
+            <p className="text-xl text-slate-400 max-w-3xl mx-auto font-medium">
+              We provide <strong>games to play when bored</strong>, not tools to track you. 
+              Transparent, secure, and developer-verified.
+            </p>
           </div>
         </section>
 
-        {/* Main Content */}
-        <section className="py-16 sm:py-24 bg-white/60 backdrop-blur-sm">
-          <div className="container mx-auto px-4 sm:px-6 max-w-4xl">
-            <div className="bg-white rounded-3xl shadow-2xl p-8 sm:p-12 border border-purple-100 space-y-10">
-              <div className="text-center mb-10">
-                <span className="text-8xl">🔒</span>
-                <p className="text-2xl font-bold text-gray-800 mt-4">
-                  Your privacy is important to us – and we make it easy!
-                </p>
-              </div>
-
-              <div className="space-y-8 text-lg text-gray-700 leading-relaxed">
-                <div className="flex items-start gap-5">
-                  <span className="text-4xl">✅</span>
-                  <div>
-                    <h2 className="text-2xl font-bold text-purple-600 mb-2">
-                      We don't collect any personal data
-                    </h2>
-                    <p>
-                      I'm Bored Now is just for fun! We don't ask for your name,
-                      age, address, or anything like that. You can play games,
-                      read jokes, and enjoy everything without giving us any
-                      information.
-                    </p>
-                  </div>
+        {/* Main Content Card */}
+        <section className="relative z-10 -mt-16 px-4">
+          <div className="container mx-auto max-w-5xl">
+            <div className="bg-white rounded-[3rem] shadow-sm border border-slate-100 overflow-hidden">
+              
+              {/* Trust Badge Section */}
+              <div className="p-8 border-b border-slate-50 bg-slate-50/50 flex flex-wrap justify-center gap-8 md:gap-16">
+                <div className="flex items-center gap-2 text-slate-500 font-bold text-xs uppercase tracking-widest">
+                  <span className="text-green-500 text-xl">✓</span> No Personal Data
                 </div>
-
-                <div className="flex items-start gap-5">
-                  <span className="text-4xl">🍪</span>
-                  <div>
-                    <h2 className="text-2xl font-bold text-purple-600 mb-2">
-                      No cookies from us
-                    </h2>
-                    <p>
-                      We don't store any cookies on your device. That means no
-                      tracking, no profiles, no sneaky stuff.
-                    </p>
-                  </div>
+                <div className="flex items-center gap-2 text-slate-500 font-bold text-xs uppercase tracking-widest">
+                  <span className="text-blue-500 text-xl">✓</span> AdSense Compliant
                 </div>
-
-                <div className="flex items-start gap-5">
-                  <span className="text-4xl">📊</span>
-                  <div>
-                    <h2 className="text-2xl font-bold text-purple-600 mb-2">
-                      What about ads?
-                    </h2>
-                    <p>
-                      We show ads to keep the site free for everyone 🎉. Those
-                      ads are provided by Google. Google might use its own
-                      cookies to show you more relevant ads (that's called
-                      personalized advertising). We don't control that part –
-                      it's all handled by Google. If you want to learn more or
-                      turn it off, you can visit Google's privacy settings here:
-                      <a
-                        href="https://policies.google.com/privacy"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-purple-600 underline font-bold"
-                      >
-                        {" "}
-                        Google's Privacy Policy
-                      </a>
-                      .
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-5">
-                  <span className="text-4xl">📧</span>
-                  <div>
-                    <h2 className="text-2xl font-bold text-purple-600 mb-2">
-                      Newsletter (totally optional!)
-                    </h2>
-                    <p>
-                      If you choose to subscribe to our newsletter for daily
-                      jokes and fun updates, we only store the email address you
-                      give us – and only because you asked us to! You can
-                      unsubscribe anytime with one click. We never share or sell
-                      your email.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-5">
-                  <span className="text-4xl">👨‍👩‍👧‍👦</span>
-                  <div>
-                    <h2 className="text-2xl font-bold text-purple-600 mb-2">
-                      Kid-friendly & family-safe
-                    </h2>
-                    <p>
-                      Everything on I'm Bored Now is made to be safe and fun for
-                      all ages. No scary stuff, no personal questions, just pure
-                      boredom-busting joy!
-                    </p>
-                  </div>
+                <div className="flex items-center gap-2 text-slate-500 font-bold text-xs uppercase tracking-widest">
+                  <span className="text-purple-500 text-xl">✓</span> Family Safe
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl p-8 mt-12 text-center">
-                <p className="text-xl font-bold text-gray-800">
-                  In short: We respect your privacy and keep things simple,
-                  safe, and fun! 🌈
-                </p>
-                <p className="mt-4 text-gray-600">
-                  Last updated: December 30, 2025
-                </p>
+              <div className="p-8 md:p-16 space-y-12">
+                
+                {/* Introduction */}
+                <div className="prose prose-slate max-w-none">
+                  <h2 className="text-3xl font-black text-slate-900 mb-6">Transparency & Trust</h2>
+                  <p className="text-slate-600 text-lg leading-relaxed">
+                    At <strong>I&apos;m Bored Now</strong>, operated by our dedicated team of developers, your privacy is our priority. We understand that when you are looking for a <strong>bored button</strong> or <strong>websites when bored</strong>, you want instant fun, not invasive tracking. This policy explains what data we (don&apos;t) collect and how our partners help keep this site free.
+                  </p>
+                </div>
+
+                {/* 1. Log Files & Data */}
+                <div className="bg-slate-50 p-8 rounded-[2rem] border border-slate-100">
+                  <h3 className="text-xl font-black text-slate-900 mb-4 uppercase tracking-tight">1. Log Files & Standard Data</h3>
+                  <p className="text-slate-600 text-sm leading-relaxed">
+                    Like most <strong>fun button websites</strong>, we follow a standard procedure of using log files. These files log visitors when they visit websites. The information collected by log files includes internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, and referring/exit pages. These are not linked to any information that is personally identifiable.
+                  </p>
+                </div>
+
+                {/* 2. Google DoubleClick DART Cookie - CRITICAL FOR ADSENSE */}
+                <div className="space-y-4">
+                  <h3 className="text-xl font-black text-slate-900 uppercase tracking-tight">2. Advertising Partners & Cookies</h3>
+                  <p className="text-slate-600 leading-relaxed">
+                    To maintain our library of <strong>free browser games</strong>, we partner with third-party vendors, including Google.
+                  </p>
+                  <div className="border-l-4 border-blue-500 pl-6 py-2 space-y-4 text-slate-600 italic">
+                    <p>
+                      <strong>Google DART Cookie:</strong> Google, as a third-party vendor, uses cookies to serve ads on our site. Google&apos;s use of the DART cookie enables it to serve ads to our users based on their visit to <strong>I&apos;m Bored Now</strong> and other sites on the Internet.
+                    </p>
+                    <p>
+                      You may opt out of the use of the DART cookie by visiting the Google ad and content network Privacy Policy at the following URL: 
+                      <a href="https://policies.google.com/technologies/ads" className="text-blue-600 font-bold underline ml-1">Google Ad Policy</a>.
+                    </p>
+                  </div>
+                </div>
+
+                {/* 3. Children's Privacy */}
+                <div className="space-y-4 pt-6 border-t border-slate-100">
+                  <h3 className="text-xl font-black text-slate-900 uppercase tracking-tight">3. Children&apos;s Information</h3>
+                  <p className="text-slate-600 leading-relaxed">
+                    We believe our <strong>games to play when bored</strong> should be safe for everyone. <strong>I&apos;m Bored Now</strong> does not knowingly collect any Personal Identifiable Information from children under the age of 13. If you think your child provided this kind of information on our website, we strongly encourage you to contact us immediately, and we will do our best to promptly remove such information.
+                  </p>
+                </div>
+
+                {/* 4. Contact Policy */}
+                <div className="bg-gradient-to-br from-blue-600 to-indigo-700 p-10 rounded-[2.5rem] text-white">
+                  <h3 className="text-2xl font-black mb-4">Questions from Boredom Killers?</h3>
+                  <p className="text-blue-100 mb-6 font-medium">
+                    If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact our development team.
+                  </p>
+                  <Link href="/p/contact">
+                    <button className="px-8 py-4 bg-white text-indigo-600 rounded-2xl font-black hover:bg-blue-50 transition-all active:scale-95">
+                      Contact Team 📧
+                    </button>
+                  </Link>
+                </div>
+
               </div>
 
-              <div className="text-center pt-8">
+              {/* Legal Footer */}
+              <div className="bg-slate-50 p-8 text-center border-t border-slate-100">
+                <p className="text-slate-400 text-[10px] font-bold uppercase tracking-[0.3em] mb-2">
+                  Last Modified: January 2026 • I&apos;m Bored Now Development Group
+                </p>
                 <Link href="/">
-                  <button className="group px-10 py-5 text-2xl font-bold bg-white text-purple-600 rounded-full shadow-2xl hover:shadow-purple-400/50 hover:scale-105 transition-all duration-300">
-                    Back to the Fun 🎉
-                    <span className="inline-block group-hover:translate-x-2 transition-transform ml-3">
-                      →
-                    </span>
-                  </button>
+                   <span className="text-slate-400 hover:text-slate-600 text-xs cursor-pointer underline">Back to the Boredom Button</span>
                 </Link>
               </div>
+
             </div>
           </div>
         </section>
 
         {/* Ad Placeholder */}
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="bg-gradient-to-r from-gray-100 to-gray-200 border-2 border-dashed border-gray-300 rounded-xl w-full h-32 flex items-center justify-center text-gray-500 font-semibold shadow-inner">
-            [AdSense Leaderboard 728×90]
+        <div className="container mx-auto px-4 mt-16">
+          <div className="max-w-4xl mx-auto bg-slate-100 border-2 border-dashed border-slate-200 rounded-3xl h-24 flex items-center justify-center text-slate-400 text-xs font-black uppercase tracking-widest">
+            AdSense Safe Zone
           </div>
         </div>
       </div>

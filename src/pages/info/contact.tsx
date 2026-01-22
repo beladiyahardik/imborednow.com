@@ -5,123 +5,122 @@ export default function Contact() {
   return (
     <>
       <Head>
-        <title>Contact Us | I'm Bored Now</title>
+        <title>Contact Us | Support for Games to Play When Bored</title>
         <meta
           name="description"
-          content="Get in touch with us! We'd love to hear your feedback, suggestions, or just a hello 😊"
+          content="Have a suggestion for our boredom button? Contact the developers of I'm Bored Now. Share your favorite websites when bored or report a bug."
         />
+        <meta name="keywords" content="contact bored button, support, suggest games to play when bored, red button website feedback" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50 pb-12">
+      <div className="min-h-screen bg-[#FAFAFA] pb-12 font-sans">
         {/* Hero Section */}
-        <section className="relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400 opacity-95"></div>
-          <div className="absolute inset-0">
-            <div className="absolute top-10 left-10 w-72 h-72 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
-            <div className="absolute bottom-20 right-20 w-96 h-96 bg-pink-300/20 rounded-full blur-3xl animate-pulse delay-700"></div>
-          </div>
-
-          <div className="relative container mx-auto px-4 sm:px-6 py-24 sm:py-32 text-center text-white">
-            <div className="max-w-4xl mx-auto space-y-8">
-              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black leading-tight drop-shadow-2xl">
-                Contact Us
-              </h1>
-              <p className="text-xl sm:text-2xl lg:text-3xl font-medium opacity-95 max-w-3xl mx-auto">
-                We love hearing from you! Drop us a message anytime 😊
-              </p>
-            </div>
+        <section className="relative overflow-hidden bg-slate-900 pt-32 pb-40">
+           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-purple-900/40 via-transparent to-transparent"></div>
+          <div className="relative container mx-auto px-4 text-center">
+            <h1 className="text-5xl sm:text-7xl font-black text-white mb-6 tracking-tight">
+              Let&apos;s <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">Connect.</span>
+            </h1>
+            <p className="text-xl text-slate-400 max-w-2xl mx-auto font-medium">
+              Whether you have a new idea for <strong>games to play when bored</strong> or found a broken link on our <strong>red button</strong>, we want to hear it.
+            </p>
           </div>
         </section>
 
-        {/* Main Content */}
-        <section className="py-16 sm:py-24 bg-white/60 backdrop-blur-sm">
-          <div className="container mx-auto px-4 sm:px-6 max-w-4xl">
-            <div className="bg-white rounded-3xl shadow-2xl p-8 sm:p-12 border border-purple-100 space-y-10">
-              <div className="text-center mb-10">
-                <span className="text-8xl">✉️</span>
-                <p className="text-2xl font-bold text-gray-800 mt-4">
-                  Say hello, share ideas, or tell us your favorite joke!
-                </p>
+        {/* Main Content Card */}
+        <section className="relative z-10 -mt-24 px-4">
+          <div className="container mx-auto max-w-5xl">
+            <div className="bg-white rounded-[3rem] shadow-2xl shadow-purple-100 overflow-hidden border border-slate-100 grid md:grid-cols-2">
+              
+              {/* Left Side: Information */}
+              <div className="p-8 md:p-16 bg-slate-50 border-r border-slate-100">
+                <h2 className="text-3xl font-black text-slate-900 mb-8">Why Reach Out?</h2>
+                <div className="space-y-8">
+                  <div className="flex gap-4">
+                    <div className="w-12 h-12 shrink-0 bg-white rounded-2xl shadow-sm flex items-center justify-center text-2xl">💡</div>
+                    <div>
+                      <h3 className="font-black text-slate-800 uppercase text-xs tracking-widest mb-1">Feature Requests</h3>
+                      <p className="text-slate-500 text-sm italic">Found a <strong>website when bored</strong> that we missed? Send us the link!</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-4">
+                    <div className="w-12 h-12 shrink-0 bg-white rounded-2xl shadow-sm flex items-center justify-center text-2xl">🐞</div>
+                    <div>
+                      <h3 className="font-black text-slate-800 uppercase text-xs tracking-widest mb-1">Report a Bug</h3>
+                      <p className="text-slate-500 text-sm italic">If a <strong>bored game</strong> isn&apos;t loading, our developers will fix it ASAP.</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-4">
+                    <div className="w-12 h-12 shrink-0 bg-white rounded-2xl shadow-sm flex items-center justify-center text-2xl">🤝</div>
+                    <div>
+                      <h3 className="font-black text-slate-800 uppercase text-xs tracking-widest mb-1">Partnerships</h3>
+                      <p className="text-slate-500 text-sm italic">For advertising and collaboration regarding our <strong>fun button</strong>.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-12 pt-12 border-t border-slate-200">
+                   <p className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-2">Primary Contact</p>
+                   <a href="mailto:aeybhai@gmail.com" className="text-2xl font-black text-purple-600 hover:text-orange-500 transition-colors">
+                     aeybhai@gmail.com
+                   </a>
+                </div>
               </div>
 
-              <div className="space-y-8 text-lg text-gray-700 leading-relaxed">
-                <div className="text-center">
-                  <p className="mb-6">
-                    Whether you have feedback, a fun suggestion, a cool joke to
-                    share, or just want to say hi – we’re all ears!
+              {/* Right Side: Human-Written "Quick Form" Alternative */}
+              <div className="p-8 md:p-16 bg-white flex flex-col justify-center">
+                <div className="text-center md:text-left space-y-6">
+                  <h2 className="text-3xl font-black text-slate-900">Direct Support</h2>
+                  <p className="text-slate-600 leading-relaxed">
+                    Our team of developers usually responds within <strong>24-48 hours</strong>. We are real people (no machine-tone bots here!) who love making the internet a less boring place.
                   </p>
-
-                  <div className="bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl p-8 max-w-2xl mx-auto">
-                    <p className="text-xl font-bold text-gray-800 mb-4">
-                      Email us at:
+                  
+                  <div className="bg-purple-50 p-6 rounded-3xl border border-purple-100">
+                    <p className="text-purple-900 font-bold mb-2">Quick Tip:</p>
+                    <p className="text-purple-800/70 text-sm">
+                      If you are suggesting <strong>fun games to play while bored</strong>, please include the URL so we can review it faster!
                     </p>
-                    <a
-                      href="mailto:aeybhai@gmail.com"
-                      className="text-3xl sm:text-4xl font-black text-purple-600 hover:text-pink-600 transition-colors break-all"
+                  </div>
+
+                  <div className="space-y-4 pt-6">
+                    <button 
+                      onClick={() => window.location.href='mailto:aeybhai@gmail.com'}
+                      className="w-full py-5 bg-slate-900 text-white rounded-2xl font-black hover:bg-slate-800 transition-all shadow-xl active:scale-95"
                     >
-                      aeybhai@gmail.com
-                    </a>
-                    <p className="mt-6 text-gray-700">
-                      Click the email above or copy it and send us a message. We
-                      read every email and try to reply as soon as we can! 🚀
+                      SEND US AN EMAIL 📧
+                    </button>
+                    <p className="text-center text-[10px] text-slate-400 font-bold uppercase tracking-widest">
+                      Spam-free zone. Your privacy matters.
                     </p>
                   </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-                  <div className="text-center p-6 bg-purple-50 rounded-2xl border border-purple-200">
-                    <span className="text-5xl mb-4 block">💡</span>
-                    <p className="font-bold text-gray-800">Got a suggestion?</p>
-                    <p className="text-sm text-gray-600 mt-2">
-                      Tell us what new fun stuff you'd love to see!
-                    </p>
-                  </div>
-                  <div className="text-center p-6 bg-pink-50 rounded-2xl border border-pink-200">
-                    <span className="text-5xl mb-4 block">😂</span>
-                    <p className="font-bold text-gray-800">Share a joke</p>
-                    <p className="text-sm text-gray-600 mt-2">
-                      Send us your best jokes – we might feature them!
-                    </p>
-                  </div>
-                  <div className="text-center p-6 bg-orange-50 rounded-2xl border border-orange-200">
-                    <span className="text-5xl mb-4 block">👋</span>
-                    <p className="font-bold text-gray-800">Just say hi</p>
-                    <p className="text-sm text-gray-600 mt-2">
-                      We love friendly hellos from boredom-killers like you!
-                    </p>
-                  </div>
-                </div>
-
-                <div className="bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl p-8 text-center mt-12">
-                  <p className="text-xl font-bold text-gray-800">
-                    Thanks for making I'm Bored Now more fun every day! 🌟
-                  </p>
-                  <p className="mt-4 text-gray-600">
-                    We appreciate every message. Keep smiling and keep having
-                    fun!
-                  </p>
                 </div>
               </div>
 
-              <div className="text-center pt-8">
-                <Link href="/">
-                  <button className="group px-10 py-5 text-2xl font-bold bg-white text-purple-600 rounded-full shadow-2xl hover:shadow-purple-400/50 hover:scale-105 transition-all duration-300">
-                    Back to the Fun 🎉
-                    <span className="inline-block group-hover:translate-x-2 transition-transform ml-3">
-                      →
-                    </span>
-                  </button>
-                </Link>
-              </div>
+            </div>
+
+            {/* Bottom SEO Content Section */}
+            <div className="mt-20 max-w-3xl mx-auto text-center">
+                <h3 className="text-2xl font-black text-slate-900 mb-4 uppercase">Help Us Kill Boredom</h3>
+                <p className="text-slate-500 leading-loose">
+                    Since the launch of the <strong>bored button</strong>, our goal has always been to provide the most engaging <strong>online bored</strong> activities for people worldwide. Your feedback helps us keep our library of <strong>browser games free</strong> and our collection of <strong>fun facts</strong> fresh. If you&apos;re <strong>so bored</strong> that you&apos;ve reached the end of the internet, let us know—we&apos;ll build something new for you.
+                </p>
+            </div>
+
+            <div className="mt-12 text-center">
+              <Link href="/">
+                <button className="text-slate-500 hover:text-purple-600 font-black uppercase text-sm tracking-[0.2em] transition-colors">
+                  ← Back to the boredom-killer
+                </button>
+              </Link>
             </div>
           </div>
         </section>
 
-        {/* Ad Placeholder */}
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="bg-gradient-to-r from-gray-100 to-gray-200 border-2 border-dashed border-gray-300 rounded-xl w-full h-32 flex items-center justify-center text-gray-500 font-semibold shadow-inner">
-            [AdSense Leaderboard 728×90]
+        {/* Ad Placeholder (Strategic Placement for Approval) */}
+        <div className="container mx-auto px-4 mt-20">
+          <div className="max-w-4xl mx-auto bg-white border border-slate-200 rounded-2xl h-24 flex items-center justify-center text-slate-300 text-xs font-black tracking-widest uppercase">
+            [ Advertisement ]
           </div>
         </div>
       </div>
