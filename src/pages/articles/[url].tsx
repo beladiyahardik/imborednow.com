@@ -12,27 +12,30 @@ const slugify = (text: string) => {
     .replace(/\s+/g, '-').replace(/[^\w-]+/g, '').replace(/--+/g, '-');
 };
 
+const extractImage = (html: string) => {
+  const imgReg = /<img [^>]*src="([^"]+)"/;
+  const match = imgReg.exec(html);
+  return match ? match[1] : null;
+};
+
 export default function BlogPost({ post, recommendations }: { post: any, recommendations: any[] }) {
   const router = useRouter();
   const [completion, setCompletion] = useState(0);
 
-  // --- SEO HELPER LOGIC ---
-  // Clean HTML to get a pure text description
+  const calculateReadingTime = (html: string) => {
+    const text = html?.replace(/<[^>]*>/g, '') || "";
+    const words = text.trim().split(/\s+/).length;
+    return Math.ceil(words / 225) || 1;
+  };
+
+  const readingTime = calculateReadingTime(post?.content);
   const cleanDescription = post?.content
     ? post.content.replace(/<[^>]*>/g, '').substring(0, 160).trim() + "..."
     : "Read this interesting article on ImBoredNow.";
 
-  // Extract the first image from content for Open Graph
-  const extractOgImage = (html: string) => {
-    const imgReg = /<img [^>]*src="([^"]+)"/;
-    const match = imgReg.exec(html);
-    return match ? match[1] : "https://imborednow.com/default-og.png";
-  };
-
-  const ogImage = extractOgImage(post?.content || "");
+  const ogImage = extractImage(post?.content || "") || "https://imborednow.com/default-og.png";
   const canonicalURL = `https://imborednow.com/articles/${slugify(post?.title || "")}-${post?.id}`;
 
-  // --- JSON-LD SCHEMA (The Secret Sauce for E-E-A-T) ---
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -46,14 +49,7 @@ export default function BlogPost({ post, recommendations }: { post: any, recomme
       "url": post?.author?.url
     }],
     "description": cleanDescription,
-    "publisher": {
-      "@type": "Organization",
-      "name": "ImBoredNow",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://imborednow.com/logo.png"
-      }
-    }
+    "publisher": { "@type": "Organization", "name": "ImBoredNow", "logo": { "@type": "ImageObject", "url": "https://imborednow.com/logo.png" } }
   };
 
   useEffect(() => {
@@ -68,89 +64,137 @@ export default function BlogPost({ post, recommendations }: { post: any, recomme
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  if (router.isFallback) return <div className="min-h-screen bg-slate-950 flex items-center justify-center text-white">Loading...</div>;
+  if (router.isFallback) return <div className="min-h-screen bg-white flex items-center justify-center text-slate-400 font-medium tracking-widest animate-pulse uppercase">Syncing...</div>;
   if (!post) return null;
 
   return (
     <>
       <Head>
-        {/* --- PRIMARY META TAGS --- */}
         <title>{post.title} | ImBoredNow</title>
         <meta name="description" content={cleanDescription} />
         <link rel="canonical" href={canonicalURL} />
         <meta name="robots" content="index, follow, max-image-preview:large" />
-
-        {/* --- OPEN GRAPH (Facebook / Discord / LinkedIn) --- */}
         <meta property="og:type" content="article" />
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={cleanDescription} />
         <meta property="og:url" content={canonicalURL} />
-        <meta property="og:site_name" content="ImBoredNow" />
         <meta property="og:image" content={ogImage} />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="article:published_time" content={post.published} />
-        <meta property="article:author" content={post.author?.displayName} />
-
-        {/* --- TWITTER CARD --- */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={post.title} />
-        <meta name="twitter:description" content={cleanDescription} />
-        <meta name="twitter:image" content={ogImage} />
-
-        {/* --- SCHEMA MARKUP --- */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </Head>
 
-      {/* UI Elements remain the same... */}
-      <div className="fixed top-0 left-0 w-full h-1.5 z-[100] bg-slate-100">
-        <div className="h-full bg-purple-600 transition-transform duration-75 origin-left" style={{ transform: `scaleX(${completion / 100})` }} />
+      {/* --- PROGRESS BAR --- */}
+      <div className="fixed top-0 left-0 w-full h-1 z-[110] bg-slate-100">
+        <div className="h-full bg-indigo-600 transition-all duration-150" style={{ width: `${completion}%` }} />
       </div>
 
-      <div className="min-h-screen bg-[#F8FAFC]">
-        <header className="bg-slate-950 pt-24 pb-48 px-4 text-center relative overflow-hidden">
-          <div className="relative z-10 max-w-4xl mx-auto">
-            <Link href="/articles" className="text-purple-400 text-[10px] font-black uppercase tracking-[0.3em] mb-10 inline-block">← Back to Feed</Link>
-            <h1 className="text-4xl md:text-6xl font-black text-white leading-tight tracking-tighter mb-8">{post.title}</h1>
+      <div className="min-h-screen bg-white selection:bg-indigo-100">
+
+        {/* Ad Space (Adjusted for Header visibility) */}
+        {/* <div className="w-full bg-slate-50 py-3 flex justify-center border-b border-slate-100">
+          <span className="text-[9px] text-slate-300 font-bold uppercase tracking-[0.2em]">Partner Content</span>
+        </div> */}
+
+        <header className="max-w-4xl mx-auto pt-16 pb-12 px-6">
+          <Link href="/articles" className="text-[10px] font-black uppercase tracking-[0.3em] text-indigo-600 mb-8 inline-block bg-indigo-50 px-4 py-1.5 rounded-full hover:bg-indigo-600 hover:text-white transition-all">
+            ← Back to archives
+          </Link>
+          <h1 className="text-4xl md:text-7xl font-black text-slate-900 leading-[1.05] tracking-tight mb-10">
+            {post.title}
+          </h1>
+
+          {/* AUTHOR CARD */}
+          <div className="flex items-center justify-between py-8 border-y border-slate-100">
+            <div className="flex items-center gap-4">
+              <img src={post.author?.image?.url} className="w-14 h-14 rounded-2xl object-cover shadow-sm grayscale hover:grayscale-0 transition-all duration-500" alt={post.author?.displayName} />
+              <div>
+                <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-0.5">Written By</p>
+                <p className="font-bold text-slate-900 text-base">{post.author?.displayName}</p>
+              </div>
+            </div>
+            <div className="text-right">
+              <p className="text-[10px] font-black uppercase tracking-widest text-indigo-500 mb-0.5">{readingTime} MIN READ</p>
+              <p className="text-xs font-bold text-slate-400">{new Date(post.published).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}</p>
+            </div>
           </div>
         </header>
 
-        <main className="max-w-6xl mx-auto px-4 -mt-28 relative z-20 pb-20">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            <div className="lg:col-span-8">
-              <article className="bg-white rounded-[3rem] p-8 md:p-16 shadow-xl border border-slate-100">
-                {/* Use 'prose' classes to help Google understand content hierarchy */}
-                <div className="blog-content prose prose-slate max-w-none" dangerouslySetInnerHTML={{ __html: post.content }} />
+        <main className="max-w-7xl mx-auto px-6 pb-32">
+          <div className="flex flex-col lg:flex-row gap-16 items-start">
 
-                <div className="mt-16 pt-8 border-t border-slate-100 flex items-center justify-between">
-                  <div className="flex items-center gap-4">
-                    <img src={post.author?.image?.url} className="w-10 h-10 rounded-full" alt={post.author?.displayName} />
-                    <div className="flex flex-col">
-                      <span className="font-black text-xs uppercase tracking-widest">{post.author?.displayName}</span>
-                      <span className="text-[10px] text-slate-400 font-bold uppercase">Published {new Date(post.published).toLocaleDateString()}</span>
-                    </div>
-                  </div>
-                </div>
+            {/* --- CONTENT AREA (Left) --- */}
+            <div className="flex-1 max-w-3xl w-full overflow-hidden">
+              <article className="w-full">
+                <div
+                  className="blog-content prose prose-slate prose-xl max-w-none
+                    break-words [word-wrap:break-word] overflow-hidden
+                    prose-p:text-slate-600 prose-p:leading-[1.8] prose-p:mb-8
+                    prose-a:text-indigo-600 prose-a:font-bold prose-a:no-underline prose-a:border-b-2 prose-a:border-indigo-100 hover:prose-a:border-indigo-600 hover:prose-a:bg-indigo-50 transition-all
+                    prose-img:rounded-3xl prose-img:shadow-xl
+                    prose-headings:text-slate-900 prose-headings:font-black
+                    [&_iframe]:w-full [&_iframe]:aspect-video [&_iframe]:rounded-3xl
+                  "
+                  dangerouslySetInnerHTML={{ __html: post.content }}
+                />
               </article>
+
+              {/* END OF ARTICLE NAVIGATION */}
+              <section className="mt-20 pt-20 border-t border-slate-100">
+                <div className="flex items-center gap-4 mb-10">
+                  <h3 className="text-xs font-black uppercase tracking-[0.3em] text-slate-400 whitespace-nowrap">Explore More Artifacts</h3>
+                  <div className="h-px w-full bg-slate-100" />
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {recommendations.slice(0, 2).map((item: any) => {
+                    const thumb = extractImage(item.content);
+                    return (
+                      <Link key={item.id} href={`/articles/${slugify(item.title)}-${item.id}`} className="group block">
+                        <div className="bg-white rounded-[2rem] border border-slate-100 p-5 shadow-sm hover:shadow-xl transition-all h-full">
+                          {thumb && (
+                            <div className="h-44 w-full mb-6 overflow-hidden rounded-2xl bg-slate-50">
+                              <img src={thumb} alt="" className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" />
+                            </div>
+                          )}
+                          <h4 className="font-bold text-lg text-slate-900 leading-tight mb-4 group-hover:text-indigo-600 transition-colors">{item.title}</h4>
+                          <span className="text-[10px] font-black uppercase tracking-widest text-indigo-400 group-hover:text-indigo-600 transition-colors">View Deep Dive →</span>
+                        </div>
+                      </Link>
+                    )
+                  })}
+                </div>
+              </section>
             </div>
 
-            <aside className="lg:col-span-4">
-              <div className="sticky top-10 bg-white rounded-[2.5rem] p-8 shadow-xl border border-slate-100">
-                <h3 className="font-black text-slate-900 uppercase tracking-tighter mb-8 italic">Up Next</h3>
-                <div className="space-y-6">
-                  {recommendations.map((item: any) => (
-                    <Link key={item.id} href={`/articles/${slugify(item.title)}-${item.id}`} className="block group">
-                      <h4 className="font-bold text-sm text-slate-800 group-hover:text-purple-600 transition-colors leading-tight mb-1">{item.title}</h4>
-                      <p className="text-[9px] font-black text-slate-400 uppercase">{new Date(item.published).toLocaleDateString()}</p>
-                    </Link>
-                  ))}
-                </div>
-                <Link href="/">
-                  <button className="w-full mt-10 py-5 bg-red-600 text-white font-black rounded-2xl text-xs hover:bg-red-500 transition-all shadow-lg active:scale-95">I&apos;M STILL BORED 🔴</button>
-                </Link>
+            {/* --- STICKY SIDEBAR (Right) --- */}
+            {/* Note: top-24 assumes your common header is about 80-90px tall. Adjust as needed. */}
+            <aside className="w-full lg:w-80 lg:sticky lg:top-24 self-start">
+              <div className="space-y-12">
+
+                {/* Ad Space */}
+                {/* <div className="w-full h-[300px] bg-slate-50 rounded-3xl border border-slate-100 flex items-center justify-center text-center p-6 border-dashed">
+                  <span className="text-[10px] text-slate-300 font-black uppercase tracking-widest">Ad Slot</span>
+                </div> */}
+
+                <section>
+                  <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 mb-8 pb-2 border-b border-slate-50">Recent Artifacts</h3>
+                  <div className="space-y-8">
+                    {recommendations.map((item: any) => (
+                      <Link key={item.id} href={`/articles/${slugify(item.title)}-${item.id}`} className="block group">
+                        <h4 className="font-bold text-slate-800 text-sm leading-snug group-hover:text-indigo-600 transition-colors">{item.title}</h4>
+                      </Link>
+                    ))}
+                  </div>
+                </section>
+
+                <section className="p-8 bg-slate-900 rounded-[2.5rem] relative overflow-hidden group">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 blur-3xl group-hover:bg-indigo-500/20 transition-all" />
+                  <p className="relative z-10 text-[10px] font-black uppercase tracking-widest text-indigo-400 mb-4">The Escape Route</p>
+                  <Link href="/">
+                    <button className="relative z-10 w-full py-5 bg-red-600 text-white font-black rounded-xl text-[10px] uppercase tracking-[0.2em] hover:bg-white hover:text-slate-900 transition-all active:scale-95 shadow-lg">
+                      I&apos;m Still Bored 🔴
+                    </button>
+                  </Link>
+                </section>
               </div>
             </aside>
           </div>
@@ -164,7 +208,6 @@ export default function BlogPost({ post, recommendations }: { post: any, recomme
 export const getStaticPaths: GetStaticPaths = async () => {
   const res = await fetch(`https://www.googleapis.com/blogger/v3/blogs/${BLOG_ID}/posts?key=${API_KEY}&maxResults=10`);
   const data = await res.json();
-  // Generate paths using the Slug-ID format
   const paths = data.items?.map((p: any) => ({
     params: { url: `${slugify(p.title)}-${p.id}` }
   })) || [];
@@ -173,7 +216,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slug = params?.url as string;
-  // Extract ID from the end of the slug
   const parts = slug.split("-");
   const id = parts[parts.length - 1];
 
@@ -184,8 +226,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
     const recRes = await fetch(`https://www.googleapis.com/blogger/v3/blogs/${BLOG_ID}/posts?key=${API_KEY}&maxResults=10`);
     const recData = await recRes.json();
-    // Filter out current post and limit to 3 recommendations
-    const recommendations = recData.items?.filter((i: any) => i.id !== id).slice(0, 3) || [];
+    const recommendations = recData.items?.filter((i: any) => i.id !== id).slice(0, 4) || [];
 
     return { props: { post, recommendations }, revalidate: 60 };
   } catch (err) {
