@@ -15,7 +15,7 @@ function Header() {
   }, []);
 
   const navItems = [
-    { name: "Jokes", href: "/p/jokes", icon: "😂" },
+    { name: "Tools", href: "/p/tools", icon: "🛠️" },
     { name: "Facts", href: "/p/facts", icon: "💡" },
     { name: "Articles", href: "/articles", icon: "📰" },
     { name: "Press It", href: "/p/press-the-button", icon: "🔴" },

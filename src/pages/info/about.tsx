@@ -155,7 +155,7 @@ export default function About() {
                         <div className="w-12 h-12 rounded-full border-2 border-white/20 overflow-hidden shrink-0 shadow-lg">
                           <img
                             className="w-full h-full object-cover"
-                            src="https://media.licdn.com/dms/image/v2/D4D03AQHBtwWNAu_jig/profile-displayphoto-crop_800_800/B4DZpyNglzG8AM-/0/1762852736001?e=1770854400&v=beta&t=GipjCO27GivVn5VD0nJTF96MFLQjAShBESjFyRqWUPo"
+                            src="/hardik.png"
                             alt="Hardik B."
                           />
                         </div>
@@ -164,7 +164,7 @@ export default function About() {
                             Hardik B.
                           </p>
                           <p className="text-[11px] text-purple-200 uppercase tracking-wider font-medium mt-1">
-                            Lead Curator
+                            Founder & Creative Technologist
                           </p>
                         </div>
                       </div>
@@ -195,7 +195,7 @@ export default function About() {
                             Piyush K.
                           </p>
                           <p className="text-[11px] text-purple-200 uppercase tracking-wider font-medium mt-1">
-                            UX Engineer
+                            Software Architect
                           </p>
                         </div>
                       </div>
@@ -218,7 +218,7 @@ export default function About() {
                           <img
                             className="w-full h-full object-cover"
                             src="/dhruvin.jpg"
-                            alt="Dhruvin K."
+                            alt="Dhruvin S."
                           />
                         </div>
                         <div>
@@ -226,12 +226,42 @@ export default function About() {
                             Dhruvin S.
                           </p>
                           <p className="text-[11px] text-purple-200 uppercase tracking-wider font-medium mt-1">
-                            Creative Architect
+                            Co-Founder & Creative Technologist
                           </p>
                         </div>
                       </div>
                       <a
                         href="https://www.linkedin.com/in/dhruvin-sudani-411756258/"
+                        target="_blank"
+                        className="p-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors"
+                        aria-label="LinkedIn Profile"
+                      >
+                        <svg className="w-4 h-4 fill-white" viewBox="0 0 24 24">
+                          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                        </svg>
+                      </a>
+                    </div>
+                    {/* Darshan L. */}
+                    <div className="flex items-center justify-between group">
+                      <div className="flex items-center gap-3">
+                        <div className="w-12 h-12 rounded-full border-2 border-white/20 overflow-hidden shrink-0 shadow-lg">
+                          <img
+                            className="w-full h-full object-cover"
+                            src="/darshan.png"
+                            alt="Darshan L."
+                          />
+                        </div>
+                        <div>
+                          <p className="text-sm font-bold leading-none">
+                            Darshan L.
+                          </p>
+                          <p className="text-[11px] text-purple-200 uppercase tracking-wider font-medium mt-1">
+                            Chief of Concepts
+                          </p>
+                        </div>
+                      </div>
+                      <a
+                        href="https://www.linkedin.com/in/darshan-lukhi-0675962a3/"
                         target="_blank"
                         className="p-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors"
                         aria-label="LinkedIn Profile"
@@ -253,9 +283,6 @@ export default function About() {
                       <Link href="/p/random-activity">
                         🔴 Press the Red Button
                       </Link>
-                    </li>
-                    <li className="hover:translate-x-1 transition-transform cursor-pointer">
-                      <Link href="/p/weird-websites">🌐 Weird Websites</Link>
                     </li>
                     <li className="hover:translate-x-1 transition-transform cursor-pointer">
                       <Link href="/p/mind-bending-riddle">

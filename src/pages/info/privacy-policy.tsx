@@ -96,7 +96,7 @@ export default function PrivacyPolicy() {
                   <p className="text-blue-100 mb-6 font-medium">
                     If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact our development team.
                   </p>
-                  <Link href="/p/contact">
+                  <Link href="/info/contact">
                     <button className="px-8 py-4 bg-white text-indigo-600 rounded-2xl font-black hover:bg-blue-50 transition-all active:scale-95">
                       Contact Team 📧
                     </button>

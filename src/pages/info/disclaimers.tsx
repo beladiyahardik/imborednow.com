@@ -116,7 +116,7 @@ export default function Disclaimers() {
                         Back to the Button 🔴
                       </button>
                    </Link>
-                   <Link href="/p/contact">
+                   <Link href="/info/contact">
                       <button className="px-8 py-4 bg-slate-800 text-slate-400 rounded-2xl font-black hover:text-white transition-all">
                         Questions? Contact Us
                       </button>

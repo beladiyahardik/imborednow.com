@@ -117,12 +117,6 @@ export default function Contact() {
           </div>
         </section>
 
-        {/* Ad Placeholder (Strategic Placement for Approval) */}
-        <div className="container mx-auto px-4 mt-20">
-          <div className="max-w-4xl mx-auto bg-white border border-slate-200 rounded-2xl h-24 flex items-center justify-center text-slate-300 text-xs font-black tracking-widest uppercase">
-            [ Advertisement ]
-          </div>
-        </div>
       </div>
     </>
   );

@@ -120,7 +120,7 @@ export default function TermsAndConditions() {
                       I AGREE, TAKE ME TO THE FUN 🎉
                     </button>
                   </Link>
-                  <Link href="/p/contact">
+                  <Link href="/info/contact">
                     <button className="px-10 py-5 bg-white text-slate-500 border border-slate-200 rounded-2xl font-black hover:text-slate-900 transition-all">
                       HAVE QUESTIONS?
                     </button>
