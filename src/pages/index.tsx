@@ -77,11 +77,6 @@ export default function Home() {
           </div>
 
           <div className="relative z-10 max-w-5xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 backdrop-blur-md rounded-full text-emerald-400 text-[10px] font-black uppercase tracking-widest mb-8 border border-emerald-500/20">
-              <span className="w-2 h-2 bg-emerald-500 rounded-full animate-ping" />
-              {activeUsers.toLocaleString()} People Solving &quot;I Am Bored&quot; Right Now
-            </div>
-
             <h1 className="text-6xl md:text-9xl font-black text-white mb-6 tracking-tighter leading-[0.8] uppercase">
               Im <span className="text-transparent bg-clip-text bg-gradient-to-b from-yellow-200 to-orange-500">Bored</span><br />
               <span className="text-white/90 text-4xl md:text-6xl tracking-normal">Click The Button.</span>
