@@ -45,6 +45,20 @@ export default function ToolsHub() {
       tag: "Health",
     },
     {
+      title: "Word Link",
+      icon: "🔗",
+      desc: "Connect letters and hunt for hidden words in this minimalist lexical challenge.",
+      color: "from-indigo-600 via-indigo-500 to-violet-600",
+      href: "/p/word-link",
+      tag: "Master",
+      difficulty: "Dynamic",
+      estimatedTime: "3-8 min",
+      stats: {
+        solvers: "2.4k+",
+        avgScore: "92%",
+      },
+    },
+    {
       title: "Daily Crossword",
       icon: "🧩",
       desc: "Sharpen your focus and expand your vocabulary with today's master-level grid.",
