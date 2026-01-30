@@ -19,7 +19,7 @@ function Footer() {
     Legal: [
       { name: "Privacy Policy", href: "/info/privacy-policy" },
       { name: "Terms of Service", href: "/info/terms" },
-      { name: "Disclaimer", href: "/info/disclaimers" },
+      { name: "Disclaimer", href: "/info/disclaimer" },
     ],
   };
 

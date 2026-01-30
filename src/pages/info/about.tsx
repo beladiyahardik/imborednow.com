@@ -139,7 +139,7 @@ export default function About() {
                         </li>
                       </ul>
                       <p className="mt-4 text-sm">
-                        Full details in our <Link href="/info/privacy" className="text-blue-600 underline font-bold">Privacy Policy</Link>.
+                        Full details in our <Link href="/info/privacy-policy" className="text-blue-600 underline font-bold">Privacy Policy</Link>.
                       </p>
                     </div>
                     <p>
@@ -252,7 +252,7 @@ export default function About() {
                       <Link href="/">🔴 The Famous Red Button</Link>
                     </li>
                     <li className="hover:translate-x-2 transition-transform">
-                      <Link href="/info/privacy">🔒 Privacy Policy</Link>
+                      <Link href="/info/privacy-policy">🔒 Privacy Policy</Link>
                     </li>
                     <li className="hover:translate-x-2 transition-transform">
                       <Link href="/info/terms">📜 Terms & Conditions</Link>
