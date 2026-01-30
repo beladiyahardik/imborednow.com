@@ -717,11 +717,11 @@ const RIDDLES = [
     options: {
       A: "A kangaroo.",
       B: "A frog.",
-      C: "Anything—buildings can't jump.",
+      C: "Anything - buildings can't jump.",
       D: "An elevator.",
     },
     correct_answer: "C",
-    correct_text: "Anything—buildings can't jump.",
+    correct_text: "Anything - buildings can't jump.",
   },
   {
     id: 50,

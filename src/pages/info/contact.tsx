@@ -17,7 +17,7 @@ export default function Contact() {
       <div className="min-h-screen bg-[#FAFAFA] pb-12 font-sans">
         {/* Hero Section */}
         <section className="relative overflow-hidden bg-slate-900 pt-32 pb-40">
-           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-purple-900/40 via-transparent to-transparent"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-purple-900/40 via-transparent to-transparent"></div>
           <div className="relative container mx-auto px-4 text-center">
             <h1 className="text-5xl sm:text-7xl font-black text-white mb-6 tracking-tight">
               Let&apos;s <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">Connect.</span>
@@ -32,7 +32,7 @@ export default function Contact() {
         <section className="relative z-10 -mt-24 px-4">
           <div className="container mx-auto max-w-5xl">
             <div className="bg-white rounded-[3rem] shadow-2xl shadow-purple-100 overflow-hidden border border-slate-100 grid md:grid-cols-2">
-              
+
               {/* Left Side: Information */}
               <div className="p-8 md:p-16 bg-slate-50 border-r border-slate-100">
                 <h2 className="text-3xl font-black text-slate-900 mb-8">Why Reach Out?</h2>
@@ -61,10 +61,10 @@ export default function Contact() {
                 </div>
 
                 <div className="mt-12 pt-12 border-t border-slate-200">
-                   <p className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-2">Primary Contact</p>
-                   <a href="mailto:aeybhai@gmail.com" className="text-2xl font-black text-purple-600 hover:text-orange-500 transition-colors">
-                     aeybhai@gmail.com
-                   </a>
+                  <p className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-2">Primary Contact</p>
+                  <a href="mailto:aeybhai@gmail.com" className="text-2xl font-black text-purple-600 hover:text-orange-500 transition-colors">
+                    aeybhai@gmail.com
+                  </a>
                 </div>
               </div>
 
@@ -75,7 +75,7 @@ export default function Contact() {
                   <p className="text-slate-600 leading-relaxed">
                     Our team of developers usually responds within <strong>24-48 hours</strong>. We are real people (no machine-tone bots here!) who love making the internet a less boring place.
                   </p>
-                  
+
                   <div className="bg-purple-50 p-6 rounded-3xl border border-purple-100">
                     <p className="text-purple-900 font-bold mb-2">Quick Tip:</p>
                     <p className="text-purple-800/70 text-sm">
@@ -84,8 +84,8 @@ export default function Contact() {
                   </div>
 
                   <div className="space-y-4 pt-6">
-                    <button 
-                      onClick={() => window.location.href='mailto:aeybhai@gmail.com'}
+                    <button
+                      onClick={() => window.location.href = 'mailto:aeybhai@gmail.com'}
                       className="w-full py-5 bg-slate-900 text-white rounded-2xl font-black hover:bg-slate-800 transition-all shadow-xl active:scale-95"
                     >
                       SEND US AN EMAIL 📧
@@ -101,10 +101,10 @@ export default function Contact() {
 
             {/* Bottom SEO Content Section */}
             <div className="mt-20 max-w-3xl mx-auto text-center">
-                <h3 className="text-2xl font-black text-slate-900 mb-4 uppercase">Help Us Kill Boredom</h3>
-                <p className="text-slate-500 leading-loose">
-                    Since the launch of the <strong>bored button</strong>, our goal has always been to provide the most engaging <strong>online bored</strong> activities for people worldwide. Your feedback helps us keep our library of <strong>browser games free</strong> and our collection of <strong>fun facts</strong> fresh. If you&apos;re <strong>so bored</strong> that you&apos;ve reached the end of the internet, let us know—we&apos;ll build something new for you.
-                </p>
+              <h3 className="text-2xl font-black text-slate-900 mb-4 uppercase">Help Us Kill Boredom</h3>
+              <p className="text-slate-500 leading-loose">
+                Since the launch of the <strong>bored button</strong>, our goal has always been to provide the most engaging <strong>online bored</strong> activities for people worldwide. Your feedback helps us keep our library of <strong>browser games free</strong> and our collection of <strong>fun facts</strong> fresh. If you&apos;re <strong>so bored</strong> that you&apos;ve reached the end of the internet, let us know - we&apos;ll build something new for you.
+              </p>
             </div>
 
             <div className="mt-12 text-center">

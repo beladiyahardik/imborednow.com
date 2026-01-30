@@ -369,7 +369,7 @@ export default function LifeExpectancyCalculator({ seo, jsonLd }: PageProps) {
               health. Our bodies are composed of trillions of cells, each
               containing a biological clock known as telomeres. Every time a
               cell divides, these telomeres shorten. Once they become too short,
-              the cell enters a state of senescence—it no longer functions
+              the cell enters a state of senescence - it no longer functions
               correctly but refuses to die, often causing inflammation in
               surrounding tissues.
             </p>
@@ -402,7 +402,7 @@ export default function LifeExpectancyCalculator({ seo, jsonLd }: PageProps) {
                   Exercise & Mitophagy
                 </h4>
                 <p className="text-base text-slate-700">
-                  Physical activity triggers mitophagy—the process where your
+                  Physical activity triggers mitophagy - the process where your
                   body clears out damaged mitochondria. This "cellular cleanup"
                   is why active individuals often possess a "health age" that is
                   5 to 10 years younger than their chronological age.
@@ -414,7 +414,7 @@ export default function LifeExpectancyCalculator({ seo, jsonLd }: PageProps) {
               3. Blue Zones: Lessons from Centenarians
             </h3>
             <p>
-              Researchers have identified specific "Blue Zones"—geographic
+              Researchers have identified specific "Blue Zones" - geographic
               regions where people live significantly longer than the global
               average. These include Okinawa (Japan), Sardinia (Italy), and
               Nicoya (Costa Rica). Their longevity isn't a result of high-tech
@@ -469,7 +469,7 @@ export default function LifeExpectancyCalculator({ seo, jsonLd }: PageProps) {
             <p>
               Dietary impact on lifespan is often debated, but the consensus
               points toward a plant-heavy, whole-food diet. High sugar
-              consumption leads to "glycation"—where sugar molecules attach to
+              consumption leads to "glycation" - where sugar molecules attach to
               proteins and fats, creating "Advanced Glycation Endproducts"
               (AGEs). These AGEs literally "caramelize" your tissues, making
               them stiff and prone to failure.
@@ -504,7 +504,7 @@ export default function LifeExpectancyCalculator({ seo, jsonLd }: PageProps) {
                   What will you do with your remaining days?
                 </h4>
                 <p className="text-slate-400 text-lg leading-relaxed">
-                  Knowing your estimated lifespan isn't about fear—it's about
+                  Knowing your estimated lifespan isn't about fear - it's about
                   intentionality. It's a reminder that every day is a finite
                   resource. Whether you use this data to quit a habit, start a
                   new passion, or spend more time with loved ones, the power of
@@ -522,7 +522,7 @@ export default function LifeExpectancyCalculator({ seo, jsonLd }: PageProps) {
               editing to senolytic drugs that target and remove "zombie" cells,
               the scientific community is moving from treating disease to
               delaying aging itself. In the coming decade, we may see the first
-              "longevity escape velocity"—a point where for every year you live,
+              "longevity escape velocity" - a point where for every year you live,
               science adds more than one year to your life expectancy.
             </p>
             <p>

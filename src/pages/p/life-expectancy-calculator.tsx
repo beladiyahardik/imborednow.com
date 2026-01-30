@@ -437,7 +437,7 @@ export default function LifeExpectancyCalculator({
               While we provide a{" "}
               <strong>most accurate life expectancy calculator</strong>,
               remember that these are averages. Your journey is unique. Don't
-              just ask <strong>how long will i live</strong>—ask how well you
+              just ask <strong>how long will i live</strong> - ask how well you
               will live. Every day is an opportunity to improve your{" "}
               <strong>longevity calculator</strong> results through healthy
               living and a positive mindset.

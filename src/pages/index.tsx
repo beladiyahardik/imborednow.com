@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Head from "next/head";
 import Link from "next/link";
+import { GetStaticProps } from "next";
 
 // --- Utilities ---
 const createExcerpt = (html: string) => {
@@ -19,35 +20,96 @@ const slugify = (text: string) => {
   return text.toString().toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w-]+/g, '').replace(/--+/g, '-');
 };
 
-export default function Home() {
+// --- API Constants ---
+const NEWSLETTER_API_URL = "https://belbytes.com/APIs/imborednow/subscribe.php";
+
+interface HomeProps {
+  initialPosts: any[];
+  initialSubscriberCount: number;
+}
+
+export default function Home({ initialPosts, initialSubscriberCount }: HomeProps) {
   const [boredomLevel, setBoredomLevel] = useState<any>(50);
   const [mounted, setMounted] = useState(false);
-  const [posts, setPosts] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+
+  // Initialize with Static Props data, but allow updates
+  const [posts] = useState<any[]>(initialPosts);
   const [activeUsers, setActiveUsers] = useState(12450);
 
-  const API_KEY = "AIzaSyDw4oUW9oN8DfN5u6CUgFJ5rE7CF512l_0";
-  const BLOG_ID = "9008125657659692221";
-  const BASE_URL = `https://www.googleapis.com/blogger/v3/blogs/${BLOG_ID}/posts?key=${API_KEY}&maxResults=3`;
+  // Newsletter states
+  const [email, setEmail] = useState('');
+  const [submitting, setSubmitting] = useState(false);
+  const [statusMessage, setStatusMessage] = useState('');
+
+  // Initialize with server count, update client-side for "real-time" accuracy
+  const [subscriberCount, setSubscriberCount] = useState<number>(initialSubscriberCount);
 
   useEffect(() => {
     setMounted(true);
-    fetchLatestPosts();
+
+    // Fetch fresh subscriber count on mount (Real-time requirement)
+    fetchSubscriberCount();
+
     const interval = setInterval(() => {
       setActiveUsers(prev => prev + Math.floor(Math.random() * 10) - 5);
     }, 3000);
+
     return () => clearInterval(interval);
   }, []);
 
-  const fetchLatestPosts = async () => {
+  const fetchSubscriberCount = async () => {
     try {
-      const res = await fetch(BASE_URL);
+      const res = await fetch(NEWSLETTER_API_URL, {
+        method: 'GET',
+        cache: 'no-store',
+      });
+
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+
       const data = await res.json();
-      if (data.items) setPosts(data.items);
+      if (data.success && data.count !== undefined) {
+        setSubscriberCount(data.count);
+      }
     } catch (err) {
-      console.error("Home Blogger Fetch Error:", err);
+      console.error('Failed to update subscriber count:', err);
+    }
+  };
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatusMessage('');
+
+    if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
+      setStatusMessage('Please enter a valid email address.');
+      return;
+    }
+
+    setSubmitting(true);
+
+    try {
+      const res = await fetch(NEWSLETTER_API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: email.trim() }),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        setStatusMessage('Successfully subscribed! 🎉');
+        setEmail('');
+        fetchSubscriberCount(); // Refresh count
+      } else {
+        setStatusMessage(data.message || 'Subscription failed. Please try again.');
+      }
+    } catch (err) {
+      setStatusMessage('An error occurred. Please try again later.');
     } finally {
-      setLoading(false);
+      setSubmitting(false);
     }
   };
 
@@ -189,7 +251,7 @@ export default function Home() {
             </div>
           </section>
 
-          {/* SEO LONG-FORM CONTENT (Human Tone + Excel Keywords) */}
+          {/* SEO LONG-FORM CONTENT */}
           <section className="bg-white rounded-[4rem] p-8 md:p-20 border border-slate-100 shadow-sm relative overflow-hidden">
             <div className="max-w-4xl mx-auto relative z-10">
               <header className="text-center mb-16">
@@ -257,17 +319,80 @@ export default function Home() {
             </div>
           </section>
 
-          {/* NEWSLETTER */}
+          {/* NEWSLETTER - FULLY INTEGRATED WITH API & DYNAMIC COUNT */}
           <section className="bg-gradient-to-r from-purple-600 to-indigo-700 rounded-[3rem] p-10 md:p-20 text-center text-white relative overflow-hidden">
             <h2 className="text-3xl md:text-5xl font-black mb-4 tracking-tight">Stay Cured.</h2>
-            <p className="text-indigo-100 text-lg mb-10 max-w-xl mx-auto opacity-80 font-medium italic">Join 50k+ people who never say &quot;im so bored&quot; anymore.</p>
-            <form className="max-w-md mx-auto flex flex-col sm:flex-row gap-3" onSubmit={(e) => e.preventDefault()}>
-              <input type="email" required placeholder="Email for weekly fun..." className="flex-grow px-6 py-4 rounded-2xl bg-white/10 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-white/50" />
-              <button type="submit" className="px-8 py-4 bg-white text-indigo-600 font-black rounded-2xl hover:bg-indigo-50 transition-all hover:scale-105 active:scale-95">Join Free</button>
+            <p className="text-indigo-100 text-lg mb-10 max-w-xl mx-auto opacity-80 font-medium italic">
+              {/* Removed + sign as requested */}
+              Join {subscriberCount !== null ? `${subscriberCount?.toLocaleString()}` : '50,000'} people who never say &quot;im so bored&quot; anymore.
+            </p>
+
+            <form className="max-w-md mx-auto flex flex-col sm:flex-row gap-3" onSubmit={handleSubscribe}>
+              <input
+                type="email"
+                required
+                placeholder="Email for weekly fun..."
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="flex-grow px-6 py-4 rounded-2xl bg-white/10 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-white/50"
+              />
+              <button
+                type="submit"
+                disabled={submitting}
+                className="px-8 py-4 bg-white text-indigo-600 font-black rounded-2xl hover:bg-indigo-50 transition-all hover:scale-105 active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed"
+              >
+                {submitting ? 'Joining...' : 'Join Free'}
+              </button>
             </form>
+
+            {statusMessage && (
+              <p className={`mt-6 text-lg font-bold ${statusMessage.includes('Successfully') ? 'text-green-200' : 'text-red-200'}`}>
+                {statusMessage}
+              </p>
+            )}
           </section>
         </main>
       </div>
     </>
   );
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+  const API_KEY = "AIzaSyDw4oUW9oN8DfN5u6CUgFJ5rE7CF512l_0";
+  const BLOG_ID = "9008125657659692221";
+  const BLOGGER_URL = `https://www.googleapis.com/blogger/v3/blogs/${BLOG_ID}/posts?key=${API_KEY}&maxResults=3`;
+
+  let initialPosts = [];
+  let initialSubscriberCount = 50000; // Fallback default
+
+  // 1. Fetch Posts (Static)
+  try {
+    const res = await fetch(BLOGGER_URL);
+    const data = await res.json();
+    if (data.items) {
+      initialPosts = data.items;
+    }
+  } catch (err) {
+    console.error("SSG Post Fetch Error:", err);
+  }
+
+  // 2. Fetch Initial Subscriber Count (To avoid flash on load, but updated via client later)
+  try {
+    const res = await fetch(NEWSLETTER_API_URL);
+    const data = await res.json();
+    if (data.success && data.count !== undefined) {
+      initialSubscriberCount = data.count;
+    }
+  } catch (err) {
+    console.error("SSG Subscriber Count Error:", err);
+  }
+
+  return {
+    props: {
+      initialPosts,
+      initialSubscriberCount
+    },
+    // ISR: Re-generate the page every hour
+    revalidate: 3600,
+  };
+};

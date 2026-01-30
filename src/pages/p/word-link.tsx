@@ -322,7 +322,7 @@ export default function WordLinkPage() {
             <p>
               Have you ever wondered why finding a simple five-letter word in a
               circle of scrambled characters feels so satisfying? It’s not just
-              in your head—it’s neurobiology. When your brain identifies a
+              in your head - it’s neurobiology. When your brain identifies a
               pattern (like a hidden word), it releases a burst of dopamine.
               This neurotransmitter is the heart of the "reward system,"
               encouraging us to repeat behaviors that provide a sense of
@@ -349,7 +349,7 @@ export default function WordLinkPage() {
             </p>
             <p>
               This modern approach aligns with how we interact with technology
-              today—fast, fluid, and responsive. However, the core challenge
+              today - fast, fluid, and responsive. However, the core challenge
               remains the same: how well do you know your own language?
             </p>
 
@@ -390,7 +390,7 @@ export default function WordLinkPage() {
               We understand that sometimes you just need a five-minute break
               during a long study session or a tedious shift. That’s why we’ve
               optimized Word Link to be lightweight and accessible. It’s an
-              "unblocked game" in the truest sense—designed to run smoothly on
+              "unblocked game" in the truest sense - designed to run smoothly on
               any browser without the need for heavy downloads or invasive
               permissions.
             </p>
@@ -398,7 +398,7 @@ export default function WordLinkPage() {
               It provides a safe, intellectual sanctuary. Instead of
               doom-scrolling through social media, you’re actively improving
               your "lexical retrieval speed." This is the speed at which your
-              brain can fetch a word from your long-term memory—a skill that
+              brain can fetch a word from your long-term memory - a skill that
               pays dividends in real-world conversations and professional
               writing.
             </p>
@@ -407,7 +407,7 @@ export default function WordLinkPage() {
               Building a Daily Habit
             </h3>
             <p>
-              Neuroplasticity—the brain's ability to reorganize itself—is most
+              Neuroplasticity - the brain's ability to reorganize itself - is most
               effective with consistent, short bursts of activity. Playing just
               one level of Word Link a day can help maintain cognitive
               flexibility as you age. It’s like a gym for your prefrontal
