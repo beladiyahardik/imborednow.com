@@ -49,6 +49,14 @@ export default function ToolsHub() {
           href: "/p/binary-switch",
           tag: "Computing",
         },
+        {
+          title: "Circuit Flow",
+          icon: "⚡",
+          desc: "Route power through logic gates to activate the core. A high-voltage mental challenge.",
+          color: "from-yellow-500 via-orange-500 to-red-600",
+          href: "/p/circuit-flow",
+          tag: "Expert",
+        },
       ],
     },
     {
