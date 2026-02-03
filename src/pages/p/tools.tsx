@@ -172,38 +172,41 @@ export default function ToolsHub() {
 
             {/* GRID FOR ITEMS */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {cat.items.map((tool, i) => (
-                <Link key={i} href={tool.href}>
-                  <div className="bg-white p-2 rounded-[3rem] border border-slate-100 shadow-xl hover:shadow-2xl transition-all group cursor-pointer active:scale-[0.98]">
-                    <div className="flex flex-col sm:flex-row items-center gap-6 p-6 md:p-8">
-                      {/* ICON BLOCK */}
-                      <div
-                        className={`shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-[1.8rem] bg-gradient-to-br ${tool.color} flex items-center justify-center text-4xl md:text-5xl shadow-lg transform group-hover:rotate-6 transition-transform`}
-                      >
-                        <span className="drop-shadow-md">{tool.icon}</span>
-                      </div>
-
-                      {/* TEXT CONTENT */}
-                      <div className="flex-grow text-center sm:text-left">
-                        <div className="flex flex-col md:flex-row md:items-center gap-2 mb-2">
-                          <h4 className="font-black text-xl md:text-2xl text-slate-900 tracking-tight uppercase italic">
-                            {tool.title}
-                          </h4>
-                          <span className="w-fit mx-auto md:mx-0 px-2 py-0.5 bg-slate-100 rounded text-[8px] font-black text-slate-500 uppercase tracking-widest">
-                            {tool.tag}
-                          </span>
+              {cat.items.map((tool, i) => {
+                if (!tool) return null;
+                return (
+                  <Link key={i} href={tool.href}>
+                    <div className="bg-white p-2 rounded-[3rem] border border-slate-100 shadow-xl hover:shadow-2xl transition-all group cursor-pointer active:scale-[0.98]">
+                      <div className="flex flex-col sm:flex-row items-center gap-6 p-6 md:p-8">
+                        {/* ICON BLOCK */}
+                        <div
+                          className={`shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-[1.8rem] bg-gradient-to-br ${tool.color} flex items-center justify-center text-4xl md:text-5xl shadow-lg transform group-hover:rotate-6 transition-transform`}
+                        >
+                          <span className="drop-shadow-md">{tool.icon}</span>
                         </div>
-                        <p className="text-slate-500 text-sm font-semibold leading-relaxed mb-4 line-clamp-2">
-                          {tool.desc}
-                        </p>
-                        <div className="inline-flex items-center gap-1 text-[10px] font-black uppercase tracking-widest text-purple-600 group-hover:translate-x-2 transition-transform">
-                          Launch <span className="text-lg">→</span>
+
+                        {/* TEXT CONTENT */}
+                        <div className="flex-grow text-center sm:text-left">
+                          <div className="flex flex-col md:flex-row md:items-center gap-2 mb-2">
+                            <h4 className="font-black text-xl md:text-2xl text-slate-900 tracking-tight uppercase italic">
+                              {tool.title}
+                            </h4>
+                            <span className="w-fit mx-auto md:mx-0 px-2 py-0.5 bg-slate-100 rounded text-[8px] font-black text-slate-500 uppercase tracking-widest">
+                              {tool.tag}
+                            </span>
+                          </div>
+                          <p className="text-slate-500 text-sm font-semibold leading-relaxed mb-4 line-clamp-2">
+                            {tool.desc}
+                          </p>
+                          <div className="inline-flex items-center gap-1 text-[10px] font-black uppercase tracking-widest text-purple-600 group-hover:translate-x-2 transition-transform">
+                            Launch <span className="text-lg">→</span>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </Link>
-              ))}
+                  </Link>
+                );
+              })}
             </div>
           </div>
         ))}
