@@ -20,7 +20,8 @@ export default function NumberMergePage() {
       .map((val, idx) => (val === null ? idx : null))
       .filter((val) => val !== null) as number[];
     if (emptyCells.length === 0) return currentGrid;
-    const randomCell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+    const randomCell =
+      emptyCells[Math.floor(Math.random() * emptyCells.length)];
     const newGrid = [...currentGrid];
     newGrid[randomCell] = Math.random() > 0.1 ? 2 : 4;
     return newGrid;
@@ -142,43 +143,49 @@ export default function NumberMergePage() {
   };
 
   return (
-    <div className="min-h-screen bg-white font-sans selection:bg-rose-200 overflow-x-hidden">
+    <div className="min-h-screen bg-white font-sans selection:bg-rose-200 overflow-x-hidden select-none">
       <Head>
         <title>NumMerge | Logic Lab</title>
       </Head>
 
-      {/* --- HERO / GAME SECTION (Logic Lab Dark) --- */}
+      {/* --- HERO / GAME SECTION --- */}
       <section className="relative min-h-[90vh] flex flex-col items-center justify-center px-4 py-12 bg-slate-950">
         <div className="absolute inset-0">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-rose-900/20 via-slate-950 to-transparent" />
         </div>
 
         <div className="relative z-10 max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-12 items-center">
-          
-          {/* LEFT: THE GAME ENGINE */}
           <div className="max-w-md mx-auto w-full">
             <div className="flex justify-between items-end mb-8 px-2">
-              <div>
+              <div className="text-left">
                 <h1 className="text-3xl font-black italic uppercase text-white tracking-tighter leading-none">
                   Num<span className="text-rose-500">Merge</span>
                 </h1>
-                <p className="text-[9px] font-bold text-slate-500 uppercase tracking-[0.3em] mt-2">Protocol: Exponential</p>
+                <p className="text-[9px] font-bold text-slate-500 uppercase tracking-[0.3em] mt-2 text-left">
+                  Protocol: Exponential
+                </p>
               </div>
               <div className="flex gap-4">
                 <div className="text-right">
-                  <p className="text-[9px] font-black text-slate-500 uppercase">Score</p>
-                  <p className="text-2xl font-black text-white leading-none">{score}</p>
+                  <p className="text-[9px] font-black text-slate-500 uppercase">
+                    Score
+                  </p>
+                  <p className="text-2xl font-black text-white leading-none">
+                    {score}
+                  </p>
                 </div>
                 <div className="text-right">
-                  <p className="text-[9px] font-black text-slate-500 uppercase">Best</p>
-                  <p className="text-2xl font-black text-rose-500 leading-none">{bestScore}</p>
+                  <p className="text-[9px] font-black text-slate-500 uppercase">
+                    Best
+                  </p>
+                  <p className="text-2xl font-black text-rose-500 leading-none">
+                    {bestScore}
+                  </p>
                 </div>
               </div>
             </div>
 
-            {/* THE FRAME: Logic Lab White Card Container */}
             <div className="bg-white rounded-[3rem] p-2 shadow-[0_30px_60px_-12px_rgba(0,0,0,0.5)]">
-              {/* RESTORED EXACT BOARD CODE */}
               <div
                 onTouchStart={onTouchStart}
                 onTouchEnd={onTouchEnd}
@@ -209,22 +216,21 @@ export default function NumberMergePage() {
             </div>
           </div>
 
-          {/* RIGHT: HOW TO PLAY (Logic Lab Sidebar) */}
-          <div className="bg-[#11131E] rounded-[3.5rem] p-8 border border-white/5 shadow-2xl h-fit">
+          <div className="hidden lg:block bg-[#11131E] rounded-[3.5rem] p-8 border border-white/5 shadow-2xl h-fit">
             <h3 className="text-xs font-black uppercase tracking-[0.3em] text-rose-500 mb-8 flex items-center gap-3">
               <span className="w-8 h-[2px] bg-rose-500"></span>
               Operation Manual
             </h3>
-            <ul className="space-y-6">
+            <ul className="space-y-6 text-left">
               {[
-                { t: "Slide", d: "Swipe or use arrows to shift all tiles." },
-                { t: "Fuse", d: "Identical values merge on impact (2+2=4)." },
-                { t: "Anchor", d: "Keep highest values in a static corner." },
-                { t: "Chain", d: "Create sequential paths for massive merges." }
+                { t: "Desktop", d: "Use Arrow Keys for rapid shifts." },
+                { t: "Mobile", d: "Swipe in any direction to move." },
+                { t: "Fuse", d: "Match numbers to double power." },
+                { t: "Logic", d: "Keep the highest value in a corner." },
               ].map((item, idx) => (
                 <li key={idx} className="group">
                   <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1 group-hover:text-rose-400 transition-colors">
-                    Step 0{idx + 1}
+                    Mode 0{idx + 1}
                   </p>
                   <p className="text-slate-200 font-bold text-sm leading-snug">
                     <span className="text-white">{item.t}:</span> {item.d}
@@ -232,19 +238,41 @@ export default function NumberMergePage() {
                 </li>
               ))}
             </ul>
-            <button 
-              onClick={initGame}
-              className="mt-10 w-full py-4 border border-white/10 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 hover:bg-white hover:text-black transition-all"
-            >
-              Reset Protocol
-            </button>
           </div>
         </div>
       </section>
 
-      {/* --- ARTICLE SECTION --- */}
+      {/* --- HOW TO PLAY SECTION (FIXED ALIGNMENT) --- */}
       <section className="bg-white py-24 px-6">
         <div className="max-w-4xl mx-auto">
+          <div className="bg-[#11131E] rounded-[3.5rem] p-10 md:p-16 border border-white/5 shadow-2xl mb-20">
+            <h3 className="text-3xl font-black text-white mb-10 flex items-center gap-4">
+              <span className="text-4xl">🎮</span>
+              <span>How to Play</span>
+            </h3>
+            <ul className="space-y-8">
+              {[
+                "Desktop: Use Arrow Keys (↑, ↓, ←, →) to move all tiles simultaneously.",
+                "Mobile: Swipe your finger in the direction you want the tiles to slide.",
+                "Colliding tiles with identical values will fuse into a single doubled tile.",
+                "Goal: Chain your merges strategically until you produce the 2048 tile.",
+                "Strategic Tip: Don't move UP if your highest tile is at the bottom. Keep it anchored!",
+                "The protocol ends if the grid fills completely and no more merges are possible.",
+              ].map((text, idx) => (
+                <li key={idx} className="flex items-start gap-6 text-left">
+                  {/* The number circle stays at the top */}
+                  <span className="flex-shrink-0 w-8 h-8 bg-rose-500 text-white text-sm font-bold rounded-full flex items-center justify-center">
+                    {idx + 1}
+                  </span>
+                  {/* pt-0.5 aligns the text perfectly with the circle center */}
+                  <p className="text-slate-300 font-medium text-lg leading-relaxed pt-0.5">
+                    {text}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
+
           <article className="space-y-16">
             <div className="text-center">
               <span className="bg-rose-100 text-rose-600 px-4 py-2 rounded-full text-xs font-black uppercase tracking-widest">
@@ -252,38 +280,57 @@ export default function NumberMergePage() {
               </span>
               <h2 className="text-4xl md:text-6xl font-black tracking-tight text-slate-950 mt-8 mb-6 leading-tight">
                 The Zen of the Double: <br />
-                <span className="text-rose-600 italic font-black">Exponential Growth</span>
+                <span className="text-rose-600 italic font-black">
+                  Exponential Growth
+                </span>
               </h2>
             </div>
 
-            <div className="space-y-12 text-lg text-slate-700 leading-relaxed">
+            <div className="space-y-12 text-lg text-slate-700 leading-relaxed text-left">
               <div className="bg-slate-50 p-10 md:p-16 rounded-[3rem] border border-slate-100">
-                <h3 className="text-3xl font-black text-slate-900 mb-6">The Architecture of Simplicity</h3>
+                <h3 className="text-3xl font-black text-slate-900 mb-6">
+                  The Architecture of Simplicity
+                </h3>
                 <p>
-                  At its core, this data is processed using a system of binary growth. The magic happens when two simple "2s" slide across a digital board and click into a "4."
+                  NumMerge is a study in exponential scaling. By merging small
+                  units, we build complex structures. This mirrors how computers
+                  handle memory and how biological systems grow through cell
+                  division.
                 </p>
               </div>
 
               <div className="grid md:grid-cols-2 gap-8">
                 <div className="space-y-4">
-                  <h3 className="text-2xl font-black text-slate-900">The Corner Anchor</h3>
-                  <p>By anchoring your highest tile in the corner, you create a natural gradient that allows for sequential chain reactions.</p>
+                  <h3 className="text-2xl font-black text-slate-900">
+                    The Snake Strategy
+                  </h3>
+                  <p>
+                    Experienced researchers use a &quot;Snake&quot; pattern,
+                    arranging tiles in a descending order of value. This ensures
+                    that a single move can trigger a cascade of merges.
+                  </p>
                 </div>
                 <div className="space-y-4">
-                  <h3 className="text-2xl font-black text-slate-900">Pattern Recognition</h3>
-                  <p>A 4x4 grid offers only 16 slots, forcing the player to prioritize spatial management over quick merges.</p>
+                  <h3 className="text-2xl font-black text-slate-900">
+                    Entropy Management
+                  </h3>
+                  <p>
+                    In the lab, chaos is the enemy. In NumMerge, every move that
+                    doesn&apos;t result in a merge increases entropy (filling a
+                    slot). The key is to maximize merges per movement.
+                  </p>
                 </div>
               </div>
 
               <div className="bg-slate-900 text-white p-12 rounded-[3rem] relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-rose-500/10 blur-3xl rounded-full" />
-                <h3 className="text-2xl font-black mb-6">Pro Strategy: Subtractive Logic</h3>
-                <p className="text-slate-400 italic">"Instead of searching for merges, search for space. Space is your most valuable asset in the grid."</p>
-                <div className="mt-8 flex flex-wrap gap-4">
-                  <div className="bg-white/10 px-4 py-2 rounded-lg font-mono text-xs">Priority: Corners</div>
-                  <div className="bg-white/10 px-4 py-2 rounded-lg font-mono text-xs">Motion: L-Shape</div>
-                  <div className="bg-white/10 px-4 py-2 rounded-lg font-mono text-xs">Target: 2048</div>
-                </div>
+                <h3 className="text-2xl font-black mb-6">
+                  Lab Protocol: Anchor Point
+                </h3>
+                <p className="text-slate-400 italic">
+                  &quot;A cornered king is a safe king. Pick one corner and
+                  never let your largest tile leave it.&quot;
+                </p>
               </div>
             </div>
           </article>

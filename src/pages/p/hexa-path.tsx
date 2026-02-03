@@ -109,10 +109,12 @@ export default function HexaPathPage() {
     const point = "touches" in e ? e.touches[0] : (e as React.MouseEvent);
     const element = document.elementFromPoint(point.clientX, point.clientY);
     const qAttr = element?.getAttribute("data-q"),
-      rAttr = element?.getAttribute("data-r");
-    if (qAttr === null || rAttr === null) return;
+      rAttr = element?.getAttribute("data-r-attr"); // Fixed potentially broken attr name from original or use data-r
+    const rRealAttr = element?.getAttribute("data-r");
+
+    if (qAttr === null || rRealAttr === null) return;
     const q = parseInt(qAttr!),
-      r = parseInt(rAttr!);
+      r = parseInt(rRealAttr!);
     const currentPath = paths[activeColor] || [];
     const lastPos = currentPath[currentPath.length - 1];
 
@@ -153,10 +155,10 @@ export default function HexaPathPage() {
         <title>HexaPath | Logic Lab</title>
       </Head>
 
-      {/* --- HERO / GAME SECTION (ORIGINAL AS REQUESTED) --- */}
+      {/* --- HERO / GAME SECTION --- */}
       <section className="relative flex flex-col items-center justify-center px-6 py-10 bg-slate-950 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-rose-500/5 via-transparent to-transparent">
         <main className="max-w-6xl w-full mx-auto flex flex-col lg:grid lg:grid-cols-[300px_1fr_300px] items-center gap-12">
-          {/* LEFT: INSTRUCTIONS */}
+          {/* LEFT: RULES BRIEF */}
           <div className="hidden lg:block space-y-6">
             <h2 className="text-white font-black italic uppercase tracking-widest text-sm border-l-4 border-rose-500 pl-4">
               Rules of Engagement
@@ -302,9 +304,36 @@ export default function HexaPathPage() {
         </main>
       </section>
 
-      {/* --- ARTICLE SECTION (Logic Lab White Theme) --- */}
-      <section className="bg-white py-24 px-6 border-t border-slate-100">
+      {/* --- HOW TO PLAY SECTION (NEWLY ADDED) --- */}
+      <section className="bg-white py-24 px-6">
         <div className="max-w-4xl mx-auto">
+          <div className="bg-[#11131E] rounded-[3.5rem] p-10 md:p-16 border border-white/5 shadow-2xl mb-20">
+            <h3 className="text-3xl font-black text-white mb-10 flex items-center gap-4">
+              <span className="text-4xl">🎮</span>
+              <span>How to Play</span>
+            </h3>
+            <ul className="space-y-8">
+              {[
+                "Identify the colored endpoints positioned on the hexagonal grid.",
+                "Drag from an endpoint to create a path to its matching color pair.",
+                "Paths cannot intersect or overlap; crossing one will erase the other.",
+                "Ensure that every single hexagonal cell is filled with a color path.",
+                "To win, all colors must be connected and the grid must be 100% occupied.",
+                "Use the 'Reset Logic' button if you reach an unsolvable configuration.",
+              ].map((text, idx) => (
+                <li key={idx} className="flex items-center gap-6 text-left">
+                  <span className="flex-shrink-0 w-8 h-8 bg-rose-500 text-white text-sm font-bold rounded-full flex items-center justify-center">
+                    {idx + 1}
+                  </span>
+                  <p className="text-slate-300 font-medium text-lg leading-relaxed m-0">
+                    {text}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* --- ARTICLE SECTION --- */}
           <article className="space-y-16">
             <div className="text-center">
               <span className="bg-rose-100 text-rose-600 px-4 py-2 rounded-full text-xs font-black uppercase tracking-widest">
@@ -320,10 +349,10 @@ export default function HexaPathPage() {
 
             <div className="space-y-12 text-lg text-slate-700 leading-relaxed">
               <div className="bg-slate-50 p-10 md:p-16 rounded-[3rem] border border-slate-100">
-                <h3 className="text-3xl font-black text-slate-900 mb-6">
+                <h3 className="text-3xl font-black text-slate-900 mb-6 text-left">
                   Efficiency in Geometry
                 </h3>
-                <p>
+                <p className="text-left">
                   Hexagons are nature's most efficient shape. In a hexagonal
                   grid, every neighbor is equidistant. This symmetry creates a
                   pure logic puzzle that activates the parietal lobe,
@@ -331,7 +360,7 @@ export default function HexaPathPage() {
                 </p>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid md:grid-cols-2 gap-8 text-left">
                 <div className="space-y-4">
                   <h3 className="text-2xl font-black text-slate-900">
                     Mental Rotation
@@ -353,7 +382,7 @@ export default function HexaPathPage() {
                 </div>
               </div>
 
-              <div className="bg-slate-900 text-white p-12 rounded-[3rem] relative overflow-hidden">
+              <div className="bg-slate-900 text-white p-12 rounded-[3rem] relative overflow-hidden text-left">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-rose-500/10 blur-3xl rounded-full" />
                 <h3 className="text-2xl font-black mb-6">
                   Pro Strategy: Perimeter First
@@ -368,7 +397,7 @@ export default function HexaPathPage() {
         </div>
       </section>
 
-      {/* SUCCESS MODAL (Updated Theme) */}
+      {/* SUCCESS MODAL */}
       {gameClear && (
         <div className="fixed inset-0 bg-slate-950/95 backdrop-blur-2xl z-[100] flex items-center justify-center p-6 transition-all duration-700">
           <div className="bg-white rounded-[4rem] p-12 text-center max-w-sm w-full shadow-2xl">

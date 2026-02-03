@@ -16,7 +16,7 @@ function Header() {
 
   const navItems = [
     { name: "Tools", href: "/p/tools", icon: "🛠️" },
-    { name: "Facts", href: "/p/facts", icon: "💡" },
+    { name: "Games to play when bored", href: "/p/games-to-play-when-bored", icon: "💡" },
     { name: "Articles", href: "/articles", icon: "📰" },
     { name: "Press It", href: "/p/press-the-button", icon: "🔴" },
     { name: "About", href: "/info/about", icon: "✨" },

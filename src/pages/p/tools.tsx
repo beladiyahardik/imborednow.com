@@ -57,6 +57,23 @@ export default function ToolsHub() {
           href: "/p/circuit-flow",
           tag: "Expert",
         },
+        {
+          title: "Resonance",
+          icon: "🌊",
+          desc: "Master wave mechanics. Align frequency, amplitude, and phase to synchronize signals.",
+          color: "from-cyan-500 via-blue-500 to-indigo-600",
+          href: "/p/resonance",
+          tag: "Physics",
+        },
+        {
+          title: "Quantum Maze",
+          icon: "🌌",
+          desc: "Navigate through shifting dimensions. Master the art of superposition to reach the exit.",
+          color: "from-violet-600 via-fuchsia-600 to-indigo-700",
+          href: "/p/quantum-maze",
+          tag: "Space-Time",
+        },
+        ,
       ],
     },
     {

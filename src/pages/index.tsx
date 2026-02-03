@@ -6,7 +6,7 @@ import { GetStaticProps } from "next";
 // --- Utilities ---
 const createExcerpt = (html: string) => {
   if (!html) return "";
-  const text = html.replace(/<[^>]*>?/gm, '');
+  const text = html.replace(/<[^>]*>?/gm, "");
   return text.substring(0, 100) + "...";
 };
 
@@ -17,7 +17,13 @@ const extractImage = (html: string) => {
 };
 
 const slugify = (text: string) => {
-  return text.toString().toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w-]+/g, '').replace(/--+/g, '-');
+  return text
+    .toString()
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, "-")
+    .replace(/[^\w-]+/g, "")
+    .replace(/--+/g, "-");
 };
 
 // --- API Constants ---
@@ -28,109 +34,82 @@ interface HomeProps {
   initialSubscriberCount: number;
 }
 
-export default function Home({ initialPosts, initialSubscriberCount }: HomeProps) {
-  const [boredomLevel, setBoredomLevel] = useState<any>(50);
+export default function Home({
+  initialPosts,
+  initialSubscriberCount,
+}: HomeProps) {
   const [mounted, setMounted] = useState(false);
 
-  // Initialize with Static Props data, but allow updates
-  const [posts] = useState<any[]>(initialPosts);
-  const [activeUsers, setActiveUsers] = useState(12450);
-
   // Newsletter states
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [submitting, setSubmitting] = useState(false);
-  const [statusMessage, setStatusMessage] = useState('');
-
-  // Initialize with server count, update client-side for "real-time" accuracy
-  const [subscriberCount, setSubscriberCount] = useState<number>(initialSubscriberCount);
+  const [statusMessage, setStatusMessage] = useState("");
+  const [subscriberCount, setSubscriberCount] = useState<number>(
+    initialSubscriberCount,
+  );
 
   useEffect(() => {
     setMounted(true);
-
-    // Fetch fresh subscriber count on mount (Real-time requirement)
     fetchSubscriberCount();
-
-    const interval = setInterval(() => {
-      setActiveUsers(prev => prev + Math.floor(Math.random() * 10) - 5);
-    }, 3000);
-
-    return () => clearInterval(interval);
   }, []);
 
   const fetchSubscriberCount = async () => {
     try {
       const res = await fetch(NEWSLETTER_API_URL, {
-        method: 'GET',
-        cache: 'no-store',
+        method: "GET",
+        cache: "no-store",
       });
-
-      if (!res.ok) {
-        throw new Error(`HTTP error! status: ${res.status}`);
-      }
-
       const data = await res.json();
       if (data.success && data.count !== undefined) {
         setSubscriberCount(data.count);
       }
     } catch (err) {
-      console.error('Failed to update subscriber count:', err);
+      console.error("Failed to update subscriber count:", err);
     }
   };
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
-    setStatusMessage('');
-
+    setStatusMessage("");
     if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
-      setStatusMessage('Please enter a valid email address.');
+      setStatusMessage("Please enter a valid email address.");
       return;
     }
-
     setSubmitting(true);
-
     try {
       const res = await fetch(NEWSLETTER_API_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: email.trim() }),
       });
-
       const data = await res.json();
-
       if (data.success) {
-        setStatusMessage('Successfully subscribed! 🎉');
-        setEmail('');
-        fetchSubscriberCount(); // Refresh count
+        setStatusMessage("Successfully subscribed! 🎉");
+        setEmail("");
+        fetchSubscriberCount();
       } else {
-        setStatusMessage(data.message || 'Subscription failed. Please try again.');
+        setStatusMessage(
+          data.message || "Subscription failed. Please try again.",
+        );
       }
     } catch (err) {
-      setStatusMessage('An error occurred. Please try again later.');
+      setStatusMessage("An error occurred. Please try again later.");
     } finally {
       setSubmitting(false);
     }
   };
 
-  const categories = [
-    { title: "Boredom Trivia", emoji: "🧠", color: "from-indigo-600 to-blue-700", url: "/p/trivia", tag: "Hot", desc: "Mind-blowing trivia" },
-    { title: "Quick DIY Craft", emoji: "✨", color: "from-orange-500 to-rose-500", url: "/p/diy-craft", tag: "New", desc: "Creative escapes" },
-    { title: "Mind Riddles", emoji: "🧩", color: "from-purple-600 to-pink-600", url: "/p/mind-bending-riddle", tag: "Brainy", desc: "Logic puzzles" },
-    { title: "Random Jokes", emoji: "😂", color: "from-blue-500 to-cyan-500", url: "/p/random-jokes", tag: "Funny", desc: "Instant laughs" },
-    { title: "Animal Facts", emoji: "🦁", color: "from-emerald-500 to-teal-600", url: "/p/crazy-animal-fact", tag: "Cool", desc: "Wild nature facts" },
-  ];
-
   return (
     <>
       <Head>
         <title>Bored Button: Games to Play When Bored & Fun Sites</title>
-        <meta name="description" content="Stuck with nothing to do? Click the red button to find the best games to play when bored. Explore 100+ fun websites when bored at school or work." />
-        <meta name="keywords" content="im bored, games to play when bored, red button, bored button, websites when bored, click the button, i am bored" />
+        <meta
+          name="description"
+          content="Stuck with nothing to do? Click the red button to find the best games to play when bored."
+        />
       </Head>
 
       <div className="min-h-screen bg-[#F8FAFC] font-sans selection:bg-purple-200">
-
         {/* --- 1. HERO SECTION --- */}
         <section className="relative pt-32 pb-44 px-4 overflow-hidden bg-slate-950">
           <div className="absolute inset-0">
@@ -140,12 +119,23 @@ export default function Home({ initialPosts, initialSubscriberCount }: HomeProps
 
           <div className="relative z-10 max-w-5xl mx-auto text-center">
             <h1 className="text-6xl md:text-9xl font-black text-white mb-6 tracking-tighter leading-[0.8] uppercase">
-              Im <span className="text-transparent bg-clip-text bg-gradient-to-b from-yellow-200 to-orange-500">Bored</span><br />
-              <span className="text-white/90 text-4xl md:text-6xl tracking-normal">Click The Button.</span>
+              Im{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-b from-yellow-200 to-orange-500">
+                Bored
+              </span>
+              <br />
+              <span className="text-white/90 text-4xl md:text-6xl tracking-normal">
+                Click The Button.
+              </span>
             </h1>
 
             <p className="text-slate-400 max-w-xl mx-auto mb-12 text-lg md:text-xl font-medium leading-relaxed">
-              If you&apos;re looking for <span className="text-white font-bold">games to play when bored</span>, you just found the jackpot. One click on the red button sends you to a random, amazing corner of the web.
+              If you&apos;re looking for{" "}
+              <span className="text-white font-bold">
+                games to play when bored
+              </span>
+              , you just found the jackpot. One click on the red button sends
+              you to a random, amazing corner of the web.
             </p>
 
             <div className="flex flex-col items-center gap-4">
@@ -157,63 +147,70 @@ export default function Home({ initialPosts, initialSubscriberCount }: HomeProps
                   </div>
                 </button>
               </Link>
-              <p className="text-slate-500 text-xs font-bold uppercase tracking-widest">The Ultimate Random Button Game</p>
+              <p className="text-slate-500 text-xs font-bold uppercase tracking-widest">
+                The Ultimate Random Button Game
+              </p>
             </div>
           </div>
         </section>
 
-        {/* --- 2. THE CONTENT HUB --- */}
-        <main className="max-w-6xl mx-auto px-4 -mt-24 relative z-20 pb-20 space-y-24">
-
-          {/* BOREDOM SLIDER */}
-          {mounted && (
-            <div className="bg-white/80 backdrop-blur-2xl p-10 rounded-[3.5rem] shadow-[0_30px_100px_rgba(0,0,0,0.1)] border border-white max-w-4xl mx-auto">
-              <div className="flex flex-col md:flex-row items-center gap-8">
-                <div className="flex-grow w-full space-y-4">
-                  <h2 className="text-2xl font-black text-slate-900 tracking-tight italic">&quot;Im so bored, help me!&quot;</h2>
-                  <input
-                    type="range" min="1" max="100"
-                    value={boredomLevel}
-                    onChange={(e) => setBoredomLevel(e.target.value)}
-                    className="w-full h-6 bg-slate-100 rounded-full appearance-none cursor-pointer accent-purple-600 border-8 border-slate-50"
-                  />
-                  <div className="flex justify-between font-black text-[11px] uppercase tracking-widest text-slate-400">
-                    <span>Just Browsing</span>
-                    <span className="text-purple-600 text-lg">BOREDOM LEVEL: {boredomLevel}%</span>
-                    <span>Brain is Melting</span>
-                  </div>
-                </div>
-                <div className="shrink-0">
-                  <Link href={categories[boredomLevel % 6].url}>
-                    <div className="w-32 h-32 rounded-3xl bg-purple-600 flex flex-col items-center justify-center text-white cursor-pointer hover:rotate-6 transition-all shadow-xl shadow-purple-200 group">
-                      <span className="text-4xl mb-1 group-hover:scale-125 transition-transform">{categories[boredomLevel % 6].emoji}</span>
-                      <span className="text-[10px] font-black uppercase tracking-tighter">Fix It</span>
-                    </div>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* 2.3 THE DISCOVERY LAB */}
-          <section className="bg-slate-100/50 p-12 rounded-[4rem] border border-slate-200/50">
+        {/* --- 2. MAIN CONTENT --- */}
+        <main className="max-w-6xl mx-auto px-4 -mt-12 relative z-20 pb-20 space-y-24">
+          {/* 2.1 THE DISCOVERY LAB */}
+          <section className="bg-white/80 backdrop-blur-2xl p-10 rounded-[3.5rem] shadow-[0_30px_100px_rgba(0,0,0,0.1)] border border-white mx-auto">
             <header className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-2">The Discovery Lab 🧪</h2>
-              <p className="text-slate-500 font-bold uppercase tracking-[0.2em] text-sm">Tools you didn&apos;t know you needed</p>
+              <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-2">
+                The Discovery Lab 🧪
+              </h2>
+              <p className="text-slate-500 font-bold uppercase tracking-[0.2em] text-sm">
+                Tools you didn&apos;t know you needed
+              </p>
             </header>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[
-                { title: "Birthdate Secrets", icon: "🎂", desc: "Unlock the hidden cosmic data of your birthday.", color: "bg-white text-blue-600 border-blue-50", href: "/p/birthdate-calculator" },
-                { title: "History Timeline", icon: "⏳", desc: "Where do you stand in the history of the universe?", color: "bg-white text-purple-600 border-purple-50", href: "/p/history-timeline" },
-                { title: "Life Expectancy", icon: "❤️", desc: "A brutally honest look at your remaining days.", color: "bg-white text-rose-600 border-rose-50", href: "/p/life-expectancy-calculator" },
-                { title: "Lifestyle Factor", icon: "⚖️", desc: "Is your daily routine helping or hurting your future?", color: "bg-white text-emerald-600 border-emerald-50", href: "/p/life-style-factor" }
+                {
+                  title: "Birthdate Secrets",
+                  icon: "🎂",
+                  desc: "Unlock the hidden cosmic data of your birthday.",
+                  color: "bg-white text-blue-600 border-blue-50",
+                  href: "/p/birthdate-calculator",
+                },
+                {
+                  title: "History Timeline",
+                  icon: "⏳",
+                  desc: "Where do you stand in the history of the universe?",
+                  color: "bg-white text-purple-600 border-purple-50",
+                  href: "/p/history-timeline",
+                },
+                {
+                  title: "Life Expectancy",
+                  icon: "❤️",
+                  desc: "A brutally honest look at your remaining days.",
+                  color: "bg-white text-rose-600 border-rose-50",
+                  href: "/p/life-expectancy-calculator",
+                },
+                {
+                  title: "Lifestyle Factor",
+                  icon: "⚖️",
+                  desc: "Is your daily routine helping or hurting your future?",
+                  color: "bg-white text-emerald-600 border-emerald-50",
+                  href: "/p/life-style-factor",
+                },
               ].map((tool, i) => (
                 <Link key={i} href={tool.href}>
-                  <div className={`${tool.color} border-2 p-8 rounded-[2.5rem] flex items-center gap-6 hover:shadow-xl hover:border-purple-200 transition-all group cursor-pointer active:scale-[0.98]`}>
-                    <div className="w-20 h-20 bg-slate-50 rounded-3xl flex items-center justify-center text-4xl shadow-inner group-hover:scale-110 transition-transform">{tool.icon}</div>
+                  <div
+                    className={`${tool.color} border-2 p-8 rounded-[2.5rem] flex items-center gap-6 hover:shadow-xl hover:border-purple-200 transition-all group cursor-pointer active:scale-[0.98]`}
+                  >
+                    <div className="w-20 h-20 bg-slate-50 rounded-3xl flex items-center justify-center text-4xl shadow-inner group-hover:scale-110 transition-transform">
+                      {tool.icon}
+                    </div>
                     <div>
-                      <h4 className="font-black text-xl text-slate-900 mb-1">{tool.title}</h4>
-                      <p className="text-slate-500 text-sm font-medium leading-tight">{tool.desc}</p>
+                      <h4 className="font-black text-xl text-slate-900 mb-1">
+                        {tool.title}
+                      </h4>
+                      <p className="text-slate-500 text-sm font-medium leading-tight">
+                        {tool.desc}
+                      </p>
                     </div>
                   </div>
                 </Link>
@@ -221,96 +218,157 @@ export default function Home({ initialPosts, initialSubscriberCount }: HomeProps
             </div>
           </section>
 
-          {/* BENTO GRID (SEO Optimized Titles) */}
-          <section>
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-black text-slate-900">Sites To Visit When Bored</h2>
-              <p className="text-slate-500 font-bold">Hand-picked browser games and time killers</p>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
-              {categories.map((cat, i) => (
-                <Link key={i} href={cat.url}>
-                  <div className={`group relative h-56 md:h-72 rounded-[3rem] bg-gradient-to-br ${cat.color} p-8 overflow-hidden cursor-pointer transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl active:scale-95`}>
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 blur-3xl rounded-full translate-x-10 -translate-y-10 group-hover:scale-150 transition-transform duration-700" />
-
-                    <div className="relative h-full flex flex-col justify-between z-10">
-                      <div className="flex justify-between items-start">
-                        <span className="bg-black/20 backdrop-blur-md px-4 py-1.5 rounded-full text-[10px] font-black text-white uppercase tracking-widest">{cat.tag}</span>
-                        <span className="text-4xl md:text-5xl group-hover:scale-125 transition-transform">{cat.emoji}</span>
-                      </div>
-                      <div>
-                        <h3 className="text-xl md:text-3xl font-black text-white mb-2 leading-tight">{cat.title}</h3>
-                        <p className="text-white/70 text-xs font-bold uppercase tracking-widest flex items-center gap-2">
-                          {cat.desc} <span className="group-hover:translate-x-2 transition-transform">→</span>
+          {/* 2.2 LATEST ARTICLES */}
+          <section className="bg-slate-950 p-10 md:p-16 rounded-[3.5rem] shadow-2xl border border-slate-900">
+            <header className="mb-12">
+              <h2 className="text-3xl font-black text-white uppercase tracking-tighter italic">
+                Latest from the Lab
+              </h2>
+              <div className="h-1 w-12 bg-purple-600 mt-2 rounded-full" />
+            </header>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {initialPosts.slice(0, 3).map((post) => {
+                const imageUrl = extractImage(post.content);
+                const postSlug = `${slugify(post.title)}-${post.id}`;
+                return (
+                  <Link
+                    key={post.id}
+                    href={`/articles/${postSlug}`}
+                    className="block break-inside-avoid transform transition-transform duration-300 hover:-translate-y-2"
+                  >
+                    <article className="group relative bg-slate-900/40 backdrop-blur-md border border-slate-800/50 rounded-[2.5rem] overflow-hidden transition-all duration-500 hover:border-purple-500/40 hover:bg-slate-800/60 hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)] h-full flex flex-col">
+                      {imageUrl && (
+                        <div className="relative h-64 overflow-hidden">
+                          <img
+                            src={imageUrl}
+                            alt={post.title}
+                            loading="lazy"
+                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[30%] group-hover:grayscale-0"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/20 to-transparent" />
+                        </div>
+                      )}
+                      <div className="p-8 flex flex-col flex-grow">
+                        <div className="flex items-center gap-3 mb-5">
+                          <span className="h-[2px] w-10 bg-gradient-to-r from-purple-500 to-pink-500" />
+                          <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">
+                            {new Date(post.published).toLocaleDateString(
+                              undefined,
+                              {
+                                month: "long",
+                                day: "numeric",
+                                year: "numeric",
+                              },
+                            )}
+                          </span>
+                        </div>
+                        <h2 className="text-2xl font-black text-white mb-4 group-hover:text-purple-300 transition-colors leading-tight">
+                          {post.title}
+                        </h2>
+                        <p className="text-slate-400 text-sm leading-relaxed line-clamp-3 font-medium">
+                          {createExcerpt(post.content)}
                         </p>
                       </div>
-                    </div>
-                  </div>
-                </Link>
-              ))}
+                    </article>
+                  </Link>
+                );
+              })}
             </div>
           </section>
 
-          {/* SEO LONG-FORM CONTENT */}
+          {/* 2.3 SEO LONG-FORM CONTENT */}
           <section className="bg-white rounded-[4rem] p-8 md:p-20 border border-slate-100 shadow-sm relative overflow-hidden">
             <div className="max-w-4xl mx-auto relative z-10">
               <header className="text-center mb-16">
                 <h2 className="text-4xl md:text-6xl font-black text-slate-900 mb-6 leading-tight">
-                  What is the <span className="text-red-600 italic">Bored Button</span>?
+                  What is the{" "}
+                  <span className="text-red-600 italic">Bored Button</span>?
                 </h2>
                 <p className="text-slate-500 text-xl font-medium leading-relaxed">
-                  We&apos;ve all been there. You&apos;re sitting at your desk, you&apos;ve refreshed your feed ten times, and you&apos;re thinking, <span className="text-slate-900 font-bold">&quot;Man, i am bored.&quot;</span>
+                  We&apos;ve all been there. You&apos;re sitting at your desk,
+                  thinking,{" "}
+                  <span className="text-slate-900 font-bold">
+                    &quot;Man, i am bored.&quot;
+                  </span>
                 </p>
               </header>
 
               <div className="space-y-16 text-slate-600 text-lg leading-loose">
                 <article className="space-y-6">
-                  <h3 className="text-2xl font-black text-slate-900 uppercase tracking-tighter">The Best Websites When Bored</h3>
+                  <h3 className="text-2xl font-black text-slate-900 uppercase tracking-tighter">
+                    The Best Websites When Bored
+                  </h3>
                   <p>
-                    The internet is huge, but somehow, when you actually have time to kill, it feels empty. That&apos;s why we created this <strong>red button website</strong>. It isn&apos;t just a random link generator; it&apos;s a curated collection of the <strong>best games to play when bored</strong>.
+                    The internet is huge, but somehow, when you actually have
+                    time to kill, it feels empty. That&apos;s why we created
+                    this <strong>red button website</strong>. It isn&apos;t just
+                    a random link generator; it&apos;s a curated collection of
+                    the <strong>best games to play when bored</strong>.
                   </p>
                   <p>
-                    From <strong>browser games free</strong> to play to weird digital experiments, we have indexed the most entertaining corners of the web. Whether you are <strong>bored at school</strong> or just need a 5-minute break from work, our <strong>fun button</strong> is your escape hatch.
+                    From <strong>browser games free</strong> to play to weird
+                    digital experiments, we have indexed the most entertaining
+                    corners of the web. Perfect for when you are{" "}
+                    <strong>bored at school</strong> or work.
                   </p>
                 </article>
 
                 <div className="grid md:grid-cols-2 gap-10">
                   <div className="bg-blue-50 p-10 rounded-[3rem] border border-blue-100">
-                    <h3 className="text-xl font-black text-blue-900 mb-4 uppercase">Bored So Bored?</h3>
+                    <h3 className="text-xl font-black text-blue-900 mb-4 uppercase">
+                      Bored So Bored?
+                    </h3>
                     <p className="text-sm text-blue-800/80 leading-relaxed font-medium">
-                      If you&apos;re feeling <strong>very bored</strong>, your brain is actually craving novelty. Our <strong>red button games</strong> are designed to give you that quick hit of &quot;Wait, what is this?&quot; that makes time fly by.
+                      If you&apos;re feeling <strong>very bored</strong>, your
+                      brain is actually craving novelty. Our{" "}
+                      <strong>red button games</strong> give you that quick hit
+                      of discovery.
                     </p>
                   </div>
                   <div className="bg-pink-50 p-10 rounded-[3rem] border border-pink-100">
-                    <h3 className="text-xl font-black text-pink-900 mb-4 uppercase">Unblocked Fun</h3>
+                    <h3 className="text-xl font-black text-pink-900 mb-4 uppercase">
+                      Unblocked Fun
+                    </h3>
                     <p className="text-sm text-pink-800/80 leading-relaxed font-medium">
-                      Searching for <strong>im bored unblocked</strong>? Most of our <strong>online bored</strong> activities are lightweight and browser-based, making them perfect for those moments when you need a <strong>bored game</strong> that works anywhere.
+                      Searching for <strong>im bored unblocked</strong>? Most of
+                      our <strong>online bored</strong> activities are
+                      lightweight and browser-based.
                     </p>
                   </div>
                 </div>
 
-                <article className="space-y-6">
-                  <h3 className="text-2xl font-black text-slate-900 uppercase tracking-tighter">How the Button Game Works</h3>
-                  <p>
-                    It&apos;s simple: you <strong>click red button</strong>, and we do the rest. You might find yourself playing a hidden <strong>old internet game</strong>, discovering a website that tracks lightning in real-time, or reading <strong>fun facts</strong> that sound fake but aren&apos;t. It&apos;s the ultimate <strong>random button</strong> experience.
-                  </p>
-                </article>
-
-                {/* FAQ Section (SEO Rich) */}
                 <div className="pt-20 border-t border-slate-100">
-                  <h3 className="text-3xl font-black text-slate-900 mb-10 text-center">Frequently Asked Questions</h3>
+                  <h3 className="text-3xl font-black text-slate-900 mb-10 text-center">
+                    Frequently Asked Questions
+                  </h3>
                   <div className="grid gap-4">
                     {[
-                      { q: "What should I do if I am bored?", a: "The best thing to do is engage your brain with something novel! Click our red button to find random games to play when bored, riddles, or interactive websites." },
-                      { q: "Are these fun games to play while bored free?", a: "Yes, every single link and bored button game we provide is a free browser game." },
-                      { q: "Is this the original Bored Button?", a: "We are a modern take on the classic 'im bored' concept, focusing on high-quality, 2026-ready fun games to do when your bored." }
+                      {
+                        q: "What should I do if I am bored?",
+                        a: "Engage your brain with something novel! Click our red button for random games, riddles, or interactive websites.",
+                      },
+                      {
+                        q: "Are these games free?",
+                        a: "Yes, every single link and bored button game we provide is a free browser game.",
+                      },
+                      {
+                        q: "Is this the original Bored Button?",
+                        a: "We are a modern take on the classic 'im bored' concept, focusing on high-quality fun.",
+                      },
                     ].map((faq, i) => (
-                      <details key={i} className="group bg-slate-50 rounded-3xl p-6 cursor-pointer border border-transparent hover:border-purple-200 transition-all">
+                      <details
+                        key={i}
+                        className="group bg-slate-50 rounded-3xl p-6 cursor-pointer border border-transparent hover:border-purple-200 transition-all"
+                      >
                         <summary className="list-none flex justify-between items-center font-black text-slate-800">
                           {faq.q}
-                          <span className="text-purple-600 group-open:rotate-180 transition-transform">▼</span>
+                          <span className="text-purple-600 group-open:rotate-180 transition-transform">
+                            ▼
+                          </span>
                         </summary>
-                        <p className="mt-4 text-slate-600 font-medium text-sm">{faq.a}</p>
+                        <p className="mt-4 text-slate-600 font-medium text-sm">
+                          {faq.a}
+                        </p>
                       </details>
                     ))}
                   </div>
@@ -319,15 +377,20 @@ export default function Home({ initialPosts, initialSubscriberCount }: HomeProps
             </div>
           </section>
 
-          {/* NEWSLETTER - FULLY INTEGRATED WITH API & DYNAMIC COUNT */}
+          {/* 2.4 NEWSLETTER */}
           <section className="bg-gradient-to-r from-purple-600 to-indigo-700 rounded-[3rem] p-10 md:p-20 text-center text-white relative overflow-hidden">
-            <h2 className="text-3xl md:text-5xl font-black mb-4 tracking-tight">Stay Cured.</h2>
+            <h2 className="text-3xl md:text-5xl font-black mb-4 tracking-tight">
+              Stay Cured.
+            </h2>
             <p className="text-indigo-100 text-lg mb-10 max-w-xl mx-auto opacity-80 font-medium italic">
-              {/* Removed + sign as requested */}
-              Join {subscriberCount !== null ? `${subscriberCount?.toLocaleString()}` : '50,000'} people who never say &quot;im so bored&quot; anymore.
+              Join {subscriberCount.toLocaleString()} people who never say
+              &quot;im so bored&quot; anymore.
             </p>
 
-            <form className="max-w-md mx-auto flex flex-col sm:flex-row gap-3" onSubmit={handleSubscribe}>
+            <form
+              className="max-w-md mx-auto flex flex-col sm:flex-row gap-3"
+              onSubmit={handleSubscribe}
+            >
               <input
                 type="email"
                 required
@@ -339,14 +402,16 @@ export default function Home({ initialPosts, initialSubscriberCount }: HomeProps
               <button
                 type="submit"
                 disabled={submitting}
-                className="px-8 py-4 bg-white text-indigo-600 font-black rounded-2xl hover:bg-indigo-50 transition-all hover:scale-105 active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed"
+                className="px-8 py-4 bg-white text-indigo-600 font-black rounded-2xl hover:bg-indigo-50 transition-all hover:scale-105 active:scale-95 disabled:opacity-70 shadow-lg"
               >
-                {submitting ? 'Joining...' : 'Join Free'}
+                {submitting ? "Joining..." : "Join Free"}
               </button>
             </form>
 
             {statusMessage && (
-              <p className={`mt-6 text-lg font-bold ${statusMessage.includes('Successfully') ? 'text-green-200' : 'text-red-200'}`}>
+              <p
+                className={`mt-6 text-lg font-bold ${statusMessage.includes("Successfully") ? "text-green-200" : "text-red-200"}`}
+              >
                 {statusMessage}
               </p>
             )}
@@ -363,36 +428,27 @@ export const getStaticProps: GetStaticProps = async () => {
   const BLOGGER_URL = `https://www.googleapis.com/blogger/v3/blogs/${BLOG_ID}/posts?key=${API_KEY}&maxResults=3`;
 
   let initialPosts = [];
-  let initialSubscriberCount = 50000; // Fallback default
+  let initialSubscriberCount = 50000;
 
-  // 1. Fetch Posts (Static)
   try {
     const res = await fetch(BLOGGER_URL);
     const data = await res.json();
-    if (data.items) {
-      initialPosts = data.items;
-    }
+    if (data.items) initialPosts = data.items;
   } catch (err) {
-    console.error("SSG Post Fetch Error:", err);
+    console.error("SSG Error:", err);
   }
 
-  // 2. Fetch Initial Subscriber Count (To avoid flash on load, but updated via client later)
   try {
     const res = await fetch(NEWSLETTER_API_URL);
     const data = await res.json();
-    if (data.success && data.count !== undefined) {
+    if (data.success && data.count !== undefined)
       initialSubscriberCount = data.count;
-    }
   } catch (err) {
-    console.error("SSG Subscriber Count Error:", err);
+    console.error("SSG Error:", err);
   }
 
   return {
-    props: {
-      initialPosts,
-      initialSubscriberCount
-    },
-    // ISR: Re-generate the page every hour
+    props: { initialPosts, initialSubscriberCount },
     revalidate: 3600,
   };
 };

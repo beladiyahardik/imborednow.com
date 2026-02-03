@@ -7,9 +7,8 @@ function Footer() {
   const footerLinks = {
     Play: [
       { name: "Press The Button", href: "/p/press-the-button" },
-      { name: "Funny Jokes", href: "/p/jokes" },
-      { name: "Interesting Facts", href: "/p/facts" },
       { name: "Bored Button", href: "/" },
+      { name: "Games", href: "/p/games-to-play-when-bored" },
     ],
     Company: [
       { name: "About Us", href: "/info/about" },

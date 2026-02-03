@@ -129,21 +129,20 @@ export default function WordLinkPage() {
   if (!isLoaded) return <div className="min-h-screen bg-slate-950" />;
 
   return (
-    <div className="min-h-screen bg-white font-sans selection:bg-indigo-200 overflow-x-hidden">
+    <div className="min-h-screen bg-white font-sans selection:bg-indigo-200 overflow-x-hidden select-none">
       <Head>
         <title>WordLink | Logic Lab</title>
       </Head>
 
-      {/* --- HERO / GAME SECTION (Logic Lab Dark) --- */}
+      {/* --- HERO / GAME SECTION --- */}
       <section className="relative min-h-[90vh] flex flex-col items-center justify-center px-4 py-12 bg-slate-950">
         <div className="absolute inset-0">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-indigo-900/20 via-slate-950 to-transparent pointer-events-none" />
         </div>
 
         <div className="relative z-10 w-full max-w-6xl mx-auto">
-          {/* TOP HEADER */}
           <div className="flex justify-between items-end mb-8 px-2 max-w-6xl mx-auto">
-            <div>
+            <div className="text-left">
               <h1 className="text-3xl font-black italic uppercase text-white tracking-tighter leading-none">
                 Word<span className="text-indigo-500">Link</span>
               </h1>
@@ -153,8 +152,7 @@ export default function WordLinkPage() {
             </div>
           </div>
 
-          {/* --- THE BOARD SECTION (EXACT ORIGINAL STRUCTURE) --- */}
-          <div className="max-w-6xl w-full mx-auto relative z-10 grid lg:grid-cols-[1fr_380px] gap-6 items-center">
+          <div className="max-w-6xl w-full mx-auto relative z-10 grid lg:grid-cols-[1fr_300px] gap-6 items-center">
             {/* GAME ENGINE */}
             <div className="bg-slate-900/40 backdrop-blur-xl border border-white/5 rounded-[2.5rem] p-4 md:p-8 shadow-2xl flex flex-col h-full max-h-[90vh]">
               <div className="flex flex-wrap justify-center gap-2 mb-6 overflow-y-auto pr-2 max-h-[25%] scrollbar-hide">
@@ -176,7 +174,6 @@ export default function WordLinkPage() {
                 })}
               </div>
 
-              {/* SELECTION BOX */}
               <div className="h-12 flex items-center justify-center mb-4">
                 <div
                   className={`px-6 py-2 rounded-xl bg-white text-slate-950 font-black text-2xl md:text-3xl uppercase tracking-widest transition-all ${currentWord ? "scale-100 opacity-100 shadow-xl" : "scale-90 opacity-0"} ${shake ? "animate-shake bg-red-500 text-white" : ""}`}
@@ -185,7 +182,6 @@ export default function WordLinkPage() {
                 </div>
               </div>
 
-              {/* WHEEL */}
               <div className="flex-grow flex items-center justify-center min-h-[280px]">
                 <div
                   className="relative w-[260px] h-[260px] md:w-[320px] md:h-[320px]"
@@ -263,7 +259,6 @@ export default function WordLinkPage() {
                 </div>
               </div>
 
-              {/* SLIM ACTIONS */}
               <div className="flex justify-center items-center gap-3 mt-6">
                 <button
                   onClick={shuffleLetters}
@@ -280,9 +275,9 @@ export default function WordLinkPage() {
               </div>
             </div>
 
-            {/* DASHBOARD & HOW TO PLAY */}
+            {/* SIDE DASHBOARD */}
             <div className="flex flex-col gap-4 h-full justify-start">
-              <div className="bg-indigo-600 p-8 rounded-[2rem] shadow-xl text-white">
+              <div className="bg-indigo-600 p-8 rounded-[2rem] shadow-xl text-white text-left">
                 <p className="text-[10px] font-black uppercase tracking-widest opacity-80 mb-1">
                   Completion
                 </p>
@@ -292,7 +287,7 @@ export default function WordLinkPage() {
                   )}
                   %
                 </h3>
-                <div className="mt-4 h-1.5 bg-black/20 rounded-full">
+                <div className="mt-4 h-1.5 bg-black/20 rounded-full overflow-hidden">
                   <div
                     className="h-full bg-white transition-all duration-700"
                     style={{
@@ -307,48 +302,41 @@ export default function WordLinkPage() {
               >
                 Clear Progress
               </button>
-
-              {/* HOW TO PLAY SECTION */}
-              <div className="bg-slate-900/60 backdrop-blur-md border border-white/5 p-6 rounded-[2rem] shadow-xl">
-                <h3 className="text-xs font-black uppercase tracking-widest text-indigo-400 mb-4 flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 bg-indigo-500 rounded-full animate-pulse"></span>
-                  How to Play
-                </h3>
-                <ul className="space-y-3 text-[11px] md:text-xs text-slate-400 font-medium leading-relaxed">
-                  <li className="flex gap-3">
-                    <span className="text-indigo-500 font-black">01.</span>
-                    <span>
-                      <strong className="text-slate-200">
-                        Connect letters:
-                      </strong>{" "}
-                      Drag your finger or mouse across the wheel to link
-                      letters.
-                    </span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="text-indigo-500 font-black">02.</span>
-                    <span>
-                      <strong className="text-slate-200">Fill the grid:</strong>{" "}
-                      Each correct word pops into the slots above.
-                    </span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="text-indigo-500 font-black">03.</span>
-                    <span>
-                      <strong className="text-slate-200">Stuck?</strong> Hit 🔄
-                      to see the letters from a fresh perspective.
-                    </span>
-                  </li>
-                </ul>
-              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* --- ARTICLE SECTION (Logic Lab White) --- */}
+      {/* --- HOW TO PLAY SECTION (ALIGNMENT FIXED) --- */}
       <section className="bg-white py-24 px-6">
         <div className="max-w-4xl mx-auto">
+          <div className="bg-[#11131E] rounded-[3.5rem] p-10 md:p-16 border border-white/5 shadow-2xl mb-20">
+            <h3 className="text-3xl font-black text-white mb-10 flex items-center gap-4">
+              <span className="text-4xl">🎮</span>
+              <span>How to Play</span>
+            </h3>
+            <ul className="space-y-8">
+              {[
+                "Analyze the floating letters on the circular Lexical Wheel.",
+                "Drag your finger or mouse to connect letters and form valid words.",
+                "Correct words will automatically populate the encrypted grid above.",
+                "Stuck on a pattern? Use the 🔄 Shuffle button to reorder the wheel.",
+                "Earn hints 💡 to reveal specific letters within the hidden word slots.",
+                "Unlock all hidden lexical strings to complete the protocol mission."
+              ].map((text, idx) => (
+                <li key={idx} className="flex items-center gap-6 text-left">
+                  <span className="flex-shrink-0 w-8 h-8 bg-indigo-500 text-white text-sm font-bold rounded-full flex items-center justify-center">
+                    {idx + 1}
+                  </span>
+                  <p className="text-slate-300 font-medium text-lg leading-relaxed m-0">
+                    {text}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* --- ARTICLE SECTION --- */}
           <article className="space-y-16">
             <div className="text-center">
               <span className="bg-indigo-100 text-indigo-600 px-4 py-2 rounded-full text-xs font-black uppercase tracking-widest">
@@ -362,7 +350,7 @@ export default function WordLinkPage() {
               </h2>
             </div>
 
-            <div className="space-y-12 text-lg text-slate-700 leading-relaxed">
+            <div className="space-y-12 text-lg text-slate-700 leading-relaxed text-left">
               <div className="bg-slate-50 p-10 md:p-16 rounded-[3rem] border border-slate-100">
                 <h3 className="text-3xl font-black text-slate-900 mb-6">
                   The Psychology of Play
@@ -373,6 +361,7 @@ export default function WordLinkPage() {
                   challenge" - a puzzle with a logical solution that provides
                   order in a chaotic world.
                 </p>
+                
               </div>
 
               <div className="grid md:grid-cols-2 gap-8">
@@ -423,7 +412,7 @@ export default function WordLinkPage() {
         </div>
       </section>
 
-      {/* SUCCESS MODAL (Updated Theme) */}
+      {/* SUCCESS MODAL */}
       {foundWords.length === LEVEL_DATA.words.length && (
         <div className="fixed inset-0 bg-slate-950/95 backdrop-blur-2xl z-[100] flex items-center justify-center p-6">
           <div className="text-center bg-white rounded-[3rem] p-10 max-w-sm w-full shadow-2xl">
