@@ -96,10 +96,10 @@ export default function BlogPost({ post, recommendations }: { post: any; recomme
 
   const updatedDate = post?.updated !== post?.published
     ? new Date(post?.updated).toLocaleDateString("en-US", {
-      month: "long",
-      day: "numeric",
-      year: "numeric",
-    })
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+      })
     : null;
 
   const jsonLdPost = {
@@ -117,6 +117,7 @@ export default function BlogPost({ post, recommendations }: { post: any; recomme
       },
     ],
     description: cleanDescription,
+    keywords: post?.labels || [],
     publisher: {
       "@type": "Organization",
       name: "ImBoredNow",
@@ -160,12 +161,30 @@ export default function BlogPost({ post, recommendations }: { post: any; recomme
         <meta name="description" content={cleanDescription} />
         <link rel="canonical" href={canonicalURL} />
         <meta name="robots" content="index, follow, max-image-preview:large" />
+        <meta name="author" content={post.author?.displayName} />
+        <meta name="keywords" content={post.labels?.join(", ") || ""} />
+
+        {/* Open Graph */}
         <meta property="og:type" content="article" />
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={cleanDescription} />
         <meta property="og:url" content={canonicalURL} />
         <meta property="og:image" content={ogImage} />
+        <meta property="og:site_name" content="ImBoredNow" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="article:published_time" content={post.published} />
+        <meta property="article:modified_time" content={post.updated} />
+        <meta property="article:author" content={post.author?.displayName} />
+        {post.labels?.map((label: string) => (
+          <meta property="article:tag" content={label} key={label} />
+        ))}
+
+        {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={post.title} />
+        <meta name="twitter:description" content={cleanDescription} />
+        <meta name="twitter:image" content={ogImage} />
+        <meta name="twitter:creator" content="@imborednow" />
 
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdPost) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdOrg) }} />
@@ -173,15 +192,15 @@ export default function BlogPost({ post, recommendations }: { post: any; recomme
 
       {/* Progress bar */}
       <div className="fixed top-0 left-0 w-full h-1 z-[110] bg-slate-100">
-        <div className="h-full bg-indigo-600 transition-all duration-150" style={{ width: `${completion}%` }} />
+        <div className="h-full bg-gradient-to-r from-indigo-600 to-violet-600 transition-all duration-150" style={{ width: `${completion}%` }} />
       </div>
 
       {/* BREADCRUMBS */}
       <div className="max-w-7xl mx-auto px-6 pt-8 pb-4">
         <nav aria-label="Breadcrumb" className="flex text-xs text-slate-400 font-medium">
-          <Link href="/" className="hover:text-slate-600">Home</Link>
+          <Link href="/" className="hover:text-slate-600 transition-colors">Home</Link>
           <span className="mx-2">›</span>
-          <Link href="/articles" className="hover:text-slate-600">Articles</Link>
+          <Link href="/articles" className="hover:text-slate-600 transition-colors">Articles</Link>
           <span className="mx-2">›</span>
           <span className="text-slate-600 font-semibold truncate max-w-[300px]">{post.title}</span>
         </nav>
@@ -195,9 +214,23 @@ export default function BlogPost({ post, recommendations }: { post: any; recomme
             <div className="w-full max-w-prose">
 
               <header className="pt-12 pb-16">
-                <h1 className="text-4xl md:text-7xl font-black text-slate-900 leading-[1.05] tracking-tight mb-8">
+                <h1 className="text-4xl md:text-7xl font-black text-slate-900 leading-[1.05] tracking-[-0.02em] mb-8">
                   {post.title}
                 </h1>
+
+                {/* Labels / Tags */}
+                {post.labels && post.labels.length > 0 && (
+                  <div className="flex flex-wrap gap-2 mb-10">
+                    {post.labels.map((label: string) => (
+                      <span
+                        key={label}
+                        className="text-xs font-semibold uppercase tracking-widest px-4 py-2 bg-gradient-to-br from-indigo-50 to-violet-50 text-indigo-700 rounded-2xl border border-indigo-100 hover:border-indigo-200 transition-all hover:scale-105"
+                      >
+                        {label}
+                      </span>
+                    ))}
+                  </div>
+                )}
 
                 {/* Metadata */}
                 <div className="flex flex-wrap items-center gap-x-8 gap-y-4 text-sm text-slate-500 font-medium mb-12">
@@ -218,7 +251,7 @@ export default function BlogPost({ post, recommendations }: { post: any; recomme
                 </div>
 
                 {/* Enhanced Author Card */}
-                <div className="bg-white border border-slate-100 rounded-3xl p-7 shadow-sm">
+                <div className="bg-white border border-slate-100 rounded-3xl p-7 shadow-sm hover:shadow-md transition-shadow">
                   <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start">
                     <img
                       src={getHighResAuthorImage(post.author?.image?.url)}
@@ -264,31 +297,62 @@ export default function BlogPost({ post, recommendations }: { post: any; recomme
                 />
               </article>
 
-              {/* Social Share */}
-              <div className="flex flex-col sm:flex-row gap-4 mt-16 border-t border-slate-100 pt-10">
+              {/* SOCIAL SHARE - Fixed + Icons */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 border-t border-slate-100 pt-10">
+                {/* X */}
                 <a
                   href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(canonicalURL)}&text=${encodeURIComponent(post.title)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 bg-[#1DA1F2] text-white py-4 rounded-2xl font-semibold text-sm flex items-center justify-center gap-2 hover:brightness-110 transition"
+                  className="group flex items-center justify-center gap-3 bg-[#000000] hover:bg-[#1DA1F2] text-white py-4 rounded-2xl font-semibold text-sm transition-all active:scale-95 shadow-sm"
+                  aria-label="Share on X"
                 >
-                  Share on 𝕏
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M18.244 2.25L12 10.59 5.756 2.25H2.25L10.5 13.5 2.25 21.75H5.756L12 15.41 18.244 21.75H21.75L13.5 10.59 21.75 2.25Z" />
+                  </svg>
+                  <span className="group-hover:scale-110 transition-transform">X</span>
                 </a>
+
+                {/* Facebook */}
                 <a
                   href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(canonicalURL)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 bg-[#1877F2] text-white py-4 rounded-2xl font-semibold text-sm flex items-center justify-center gap-2 hover:brightness-110 transition"
+                  className="group flex items-center justify-center gap-3 bg-[#1877F2] text-white py-4 rounded-2xl font-semibold text-sm hover:brightness-110 transition-all active:scale-95 shadow-sm"
+                  aria-label="Share on Facebook"
                 >
-                  Share on Facebook
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                  </svg>
+                  <span>Facebook</span>
                 </a>
+
+                {/* LinkedIn */}
                 <a
                   href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(canonicalURL)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 bg-[#0A66C2] text-white py-4 rounded-2xl font-semibold text-sm flex items-center justify-center gap-2 hover:brightness-110 transition"
+                  className="group flex items-center justify-center gap-3 bg-[#0A66C2] text-white py-4 rounded-2xl font-semibold text-sm hover:brightness-110 transition-all active:scale-95 shadow-sm"
+                  aria-label="Share on LinkedIn"
                 >
-                  Share on LinkedIn
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" />
+                  </svg>
+                  <span>LinkedIn</span>
+                </a>
+
+                {/* WhatsApp */}
+                <a
+                  href={`https://wa.me/?text=${encodeURIComponent(`${post.title} - ${canonicalURL}`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center justify-center gap-3 bg-[#25D366] text-white py-4 rounded-2xl font-semibold text-sm hover:brightness-110 transition-all active:scale-95 shadow-sm"
+                  aria-label="Share on WhatsApp"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.198-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.485-.888-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.355L1.5 22.5l1.3-4.757a9.875 9.875 0 01-1.348-5.035 9.875 9.875 0 0110.02-9.875 9.875 9.875 0 019.875 9.875 9.875 9.875 0 01-9.875 9.875z" />
+                  </svg>
+                  <span>WhatsApp</span>
                 </a>
               </div>
 
@@ -303,7 +367,7 @@ export default function BlogPost({ post, recommendations }: { post: any; recomme
                     const thumb = extractImage(item.content);
                     return (
                       <Link key={item.id} href={`/articles/${slugify(item.title)}-${item.id}`} className="group block">
-                        <div className="bg-white rounded-[2rem] border border-slate-100 p-5 shadow-sm hover:shadow-xl transition-all h-full">
+                        <div className="bg-white rounded-[2rem] border border-slate-100 p-5 shadow-sm hover:shadow-xl transition-all h-full overflow-hidden">
                           {thumb && (
                             <div className="h-44 w-full mb-6 overflow-hidden rounded-2xl bg-slate-50">
                               <img src={thumb} alt="" className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" />
