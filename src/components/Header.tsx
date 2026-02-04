@@ -71,13 +71,13 @@ function Header() {
           </nav>
 
           {/* Action Buttons (Desktop) */}
-          <div className="hidden md:flex items-center gap-3">
+          {/* <div className="hidden md:flex items-center gap-3">
              <button className="p-2.5 bg-slate-900 text-white rounded-full hover:bg-purple-600 transition-colors shadow-lg shadow-purple-500/20">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
              </button>
-          </div>
+          </div> */}
 
           {/* Mobile Toggle */}
           <button
@@ -117,11 +117,11 @@ function Header() {
               ))}
             </nav>
             
-            <div className="mt-6 pt-6 border-t border-slate-100">
+            {/* <div className="mt-6 pt-6 border-t border-slate-100">
                 <button className="w-full py-4 bg-slate-900 text-white rounded-2xl font-black text-lg shadow-xl active:scale-95 transition-transform">
                     🔍 SEARCH SITE
                 </button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
