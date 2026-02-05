@@ -2,11 +2,13 @@
 
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import Head from "next/head";
+import dynamic from "next/dynamic";
+import NumberMerge from "@/components/games/NumberMerge";
 
 // --- CONSTANTS ---
 const WINNING_SCORE = 2048;
 
-export default function NumberMergePage() {
+export default function NumberMergePage({ seo, jsonLd }: any) {
   const [grid, setGrid] = useState<(number | null)[]>(Array(16).fill(null));
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
@@ -145,11 +147,20 @@ export default function NumberMergePage() {
   return (
     <div className="min-h-screen bg-white font-sans selection:bg-rose-200 overflow-x-hidden select-none">
       <Head>
-        <title>NumMerge | Logic Lab</title>
+        <title>{seo.title}</title>
+        <meta name="description" content={seo.description} />
+        <meta name="keywords" content={seo.keywords} />
+        <link rel="canonical" href={seo.canonical} />
+        <meta property="og:image" content={seo.ogImage} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </Head>
 
       {/* --- HERO / GAME SECTION --- */}
-      <section className="relative min-h-[90vh] flex flex-col items-center justify-center px-4 py-12 bg-slate-950">
+      <NumberMerge />
+      {/* <section className="relative min-h-[90vh] flex flex-col items-center justify-center px-4 py-12 bg-slate-950">
         <div className="absolute inset-0">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-rose-900/20 via-slate-950 to-transparent" />
         </div>
@@ -240,7 +251,7 @@ export default function NumberMergePage() {
             </ul>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* --- HOW TO PLAY SECTION (FIXED ALIGNMENT) --- */}
       <section className="bg-white py-24 px-6">
@@ -338,4 +349,38 @@ export default function NumberMergePage() {
       </section>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const seo = {
+    title: "Number Merge: 2048 Strategy Game | ImBoredNow",
+    description:
+      "Challenge your brain with Number Merge. A strategic 2048-style puzzle game to play when bored. Merge tiles, reach 2048, and master exponential growth.",
+    keywords:
+      "number merge, 2048 game, math games, bored games, logic puzzles, merge numbers online, free browser games",
+    canonical: "https://www.imborednow.com/p/number-merge",
+    ogImage: "https://www.imborednow.com/og-number-merge.png",
+  };
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: "Number Merge Strategy Game",
+    url: "https://www.imborednow.com/p/number-merge",
+    description:
+      "A strategic tile-merging puzzle game designed for cognitive training and entertainment.",
+    applicationCategory: "GameApplication",
+    operatingSystem: "Any",
+    author: {
+      "@type": "Organization",
+      name: "ImBoredNow",
+    },
+  };
+
+  return {
+    props: {
+      seo,
+      jsonLd,
+    },
+  };
 }

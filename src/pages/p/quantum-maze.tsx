@@ -1,196 +1,23 @@
-"use client";
-
-import React, { useState, useEffect, useCallback } from "react";
+import QuantumMazeHero from "@/components/games/QuantumMazeHero";
+import { GetStaticProps } from "next";
 import Head from "next/head";
 
-const GRID_SIZE = 7;
-
-export default function QuantumMazePage() {
-  const [playerPos, setPlayerPos] = useState({ r: 0, c: 0 });
-  const [exitPos] = useState({ r: GRID_SIZE - 1, c: GRID_SIZE - 1 });
-  const [walls, setWalls] = useState<boolean[][]>([]);
-  const [isVisible, setIsVisible] = useState(true);
-  const [isSolved, setIsSolved] = useState(false);
-  const [isFailed, setIsFailed] = useState(false);
-
-  // Generate a random solvable maze with a Safe Zone for the player
-  const generateMaze = useCallback(() => {
-    const newWalls = Array(GRID_SIZE)
-      .fill(0)
-      .map(() => Array(GRID_SIZE).fill(false));
-
-    for (let r = 0; r < GRID_SIZE; r++) {
-      for (let c = 0; c < GRID_SIZE; c++) {
-        // SAFE ZONE: Prevent walls at start, exit, and the immediate surrounding tiles
-        const isStart = r === 0 && c === 0;
-        const isExit = r === exitPos.r && c === exitPos.c;
-        const isBuffer =
-          (r === 0 && c === 1) || (r === 1 && c === 0) || (r === 1 && c === 1);
-
-        if (isStart || isExit || isBuffer) {
-          newWalls[r][c] = false;
-        } else {
-          newWalls[r][c] = Math.random() < 0.28;
-        }
-      }
-    }
-    setWalls(newWalls);
-    setPlayerPos({ r: 0, c: 0 });
-    setIsVisible(true);
-    setIsSolved(false);
-    setIsFailed(false);
-
-    // Quantum Collapse: Maze vanishes after 4 seconds (extended for mobile comfort)
-    setTimeout(() => setIsVisible(false), 4000);
-  }, [exitPos.r, exitPos.c]);
-
-  useEffect(() => {
-    generateMaze();
-  }, [generateMaze]);
-
-  const movePlayer = useCallback(
-    (dr: number, dc: number) => {
-      if (isSolved || isFailed) return;
-
-      setPlayerPos((prev) => {
-        const newR = prev.r + dr;
-        const newC = prev.c + dc;
-
-        // Check bounds
-        if (newR >= 0 && newR < GRID_SIZE && newC >= 0 && newC < GRID_SIZE) {
-          // Check for wall collision
-          if (walls[newR][newC]) {
-            setIsFailed(true);
-            setIsVisible(true); // Reveal walls on failure
-            return prev;
-          }
-
-          // Check for exit
-          if (newR === exitPos.r && newC === exitPos.c) {
-            setIsSolved(true);
-            setIsVisible(true);
-          }
-          return { r: newR, c: newC };
-        }
-        return prev;
-      });
-    },
-    [walls, isSolved, isFailed, exitPos],
-  );
-
-  // Desktop Keyboard support
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "ArrowUp") movePlayer(-1, 0);
-      if (e.key === "ArrowDown") movePlayer(1, 0);
-      if (e.key === "ArrowLeft") movePlayer(0, -1);
-      if (e.key === "ArrowRight") movePlayer(0, 1);
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [movePlayer]);
-
+export default function QuantumMazePage({ seo, jsonLd }: any) {
   return (
     <div className="min-h-screen bg-white font-sans selection:bg-purple-200 overflow-x-hidden select-none">
       <Head>
-        <title>Quantum Maze | Logic Lab</title>
+        <title>{seo.title}</title>
+        <meta name="description" content={seo.description} />
+        <meta name="keywords" content={seo.keywords} />
+        <link rel="canonical" href={seo.canonical} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </Head>
 
       {/* --- HERO / GAME ENGINE --- */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center p-4 bg-slate-950 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-purple-500/10 via-transparent to-transparent">
-        <main className="max-w-6xl w-full mx-auto flex flex-col lg:grid lg:grid-cols-[300px_1fr_300px] items-center gap-12">
-          {/* LEFT: DESKTOP PROTOCOLS */}
-          <div className="hidden lg:block space-y-6">
-            <h2 className="text-white font-black italic uppercase tracking-widest text-sm border-l-4 border-purple-500 pl-4 text-left">
-              Observation Rules
-            </h2>
-            <div className="space-y-4 text-xs font-medium text-slate-400 text-left">
-              <p>
-                <span className="text-purple-500 font-bold">01.</span> Study the
-                layout. The maze vanishes after 4s.
-              </p>
-              <p>
-                <span className="text-purple-500 font-bold">02.</span> Navigate
-                the void using your internal map.
-              </p>
-              <p>
-                <span className="text-purple-500 font-bold">03.</span> Collision
-                causes immediate decoherence.
-              </p>
-            </div>
-          </div>
-
-          {/* CENTER: THE GRID & MOBILE CONTROLS */}
-          <div className="flex flex-col items-center w-full">
-            <div className="text-center mb-8">
-              <h1 className="text-4xl md:text-5xl font-black italic uppercase tracking-tighter text-white">
-                Quantum <span className="text-purple-500">Maze</span>
-              </h1>
-              <p className="text-slate-500 text-[10px] font-bold uppercase tracking-[0.4em] mt-2 italic">
-                Wavefunction: {isVisible ? "OBSERVED" : "COLLAPSED"}
-              </p>
-            </div>
-
-            <div className="bg-slate-900/60 p-4 md:p-6 rounded-[2.5rem] border border-white/10 backdrop-blur-xl shadow-2xl">
-              <div className="grid grid-cols-7 gap-1.5 md:gap-2">
-                {walls.map((row, rIdx) =>
-                  row.map((isWall, cIdx) => {
-                    const isPlayer =
-                      playerPos.r === rIdx && playerPos.c === cIdx;
-                    const isExit = exitPos.r === rIdx && exitPos.c === cIdx;
-
-                    return (
-                      <div
-                        key={`${rIdx}-${cIdx}`}
-                        className={`w-10 h-10 sm:w-12 sm:h-12 rounded-lg transition-all duration-500 flex items-center justify-center ${
-                          isPlayer
-                            ? "bg-purple-500 shadow-[0_0_15px_#a855f7] z-10 scale-105"
-                            : isExit
-                              ? "bg-emerald-500/20 border border-emerald-500 text-[8px] font-bold text-emerald-400"
-                              : isVisible && isWall
-                                ? "bg-slate-700 shadow-inner"
-                                : "bg-white/5"
-                        } ${isFailed && isWall ? "bg-red-500/40 border border-red-500" : ""}`}
-                      >
-                        {isExit && "EXIT"}
-                      </div>
-                    );
-                  }),
-                )}
-              </div>
-            </div>
-
-            {/* MOBILE D-PAD */}
-            <div className="grid grid-cols-3 gap-2 mt-8 md:hidden">
-              <div />
-              <ControlButton onClick={() => movePlayer(-1, 0)} label="▲" />
-              <div />
-              <ControlButton onClick={() => movePlayer(0, -1)} label="◀" />
-              <ControlButton onClick={() => movePlayer(1, 0)} label="▼" />
-              <ControlButton onClick={() => movePlayer(0, 1)} label="▶" />
-            </div>
-
-            <button
-              onClick={generateMaze}
-              className="mt-8 px-8 py-2 bg-white/5 border border-white/10 rounded-full text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-purple-500 transition-all"
-            >
-              Reset Wavefunction
-            </button>
-          </div>
-
-          {/* RIGHT: DESKTOP STABILITY DATA */}
-          <div className="hidden lg:block w-full space-y-4 text-left">
-            <div className="bg-slate-900/40 border border-white/5 p-8 rounded-[2.5rem]">
-              <p className="text-[10px] font-black uppercase text-slate-500 mb-1">
-                System Stability
-              </p>
-              <h3 className="text-4xl font-black italic text-white">
-                {isFailed ? "0" : "100"}%
-              </h3>
-            </div>
-          </div>
-        </main>
-      </section>
+      <QuantumMazeHero />
 
       {/* --- HOW TO PLAY SECTION (PURPLE THEME) --- */}
       <section className="bg-white py-24 px-6">
@@ -323,49 +150,29 @@ export default function QuantumMazePage() {
           </article>
         </div>
       </section>
-
-      {/* MODALS */}
-      {(isSolved || isFailed) && (
-        <div className="fixed inset-0 bg-slate-950/95 backdrop-blur-2xl z-[100] flex items-center justify-center p-6">
-          <div className="bg-white rounded-[4rem] p-12 text-center max-w-sm w-full shadow-2xl animate-in zoom-in duration-300">
-            <h2
-              className={`text-5xl font-black uppercase italic mb-2 ${isSolved ? "text-emerald-500" : "text-red-500"}`}
-            >
-              {isSolved ? "Stable" : "Collapsed"}
-            </h2>
-            <p className="text-slate-500 font-bold mb-10 tracking-widest uppercase text-xs">
-              {isSolved ? "Quantum Path Validated" : "Decoherence Detected"}
-            </p>
-            <button
-              onClick={generateMaze}
-              className="w-full bg-slate-900 text-white py-5 rounded-2xl font-black uppercase tracking-widest hover:bg-purple-500 transition-all shadow-xl"
-            >
-              Retry Protocol
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
 
-// --- HELPER COMPONENTS ---
-function ControlButton({
-  onClick,
-  label,
-}: {
-  onClick: () => void;
-  label: string;
-}) {
-  return (
-    <button
-      onPointerDown={(e) => {
-        e.preventDefault();
-        onClick();
-      }}
-      className="w-14 h-14 bg-white/10 border border-white/10 rounded-xl flex items-center justify-center text-white text-xl active:bg-purple-500 active:scale-90 transition-all shadow-lg"
-    >
-      {label}
-    </button>
-  );
-}
+export const getStaticProps: GetStaticProps = async () => {
+  return {
+    props: {
+      seo: {
+        title: "Quantum Maze | Invisible Logic & Memory Puzzle 2026",
+        description:
+          "Challenge your sensory memory with Quantum Maze. Memorize the layout before it vanishes and navigate the invisible grid to safety. Free online logic game.",
+        keywords:
+          "memory game, invisible maze, spatial memory puzzle, quantum game online, brain training, logic lab",
+        canonical: "https://www.imborednow.com/p/quantum-maze",
+      },
+      jsonLd: {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        name: "Quantum Maze Logic Lab",
+        operatingSystem: "Web",
+        applicationCategory: "PuzzleGame",
+        offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+      },
+    },
+  };
+};
