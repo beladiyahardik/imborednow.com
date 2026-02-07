@@ -15,6 +15,7 @@ function Header() {
   }, []);
 
   const navItems = [
+    { name: "Bored AI", href: "/bored-ai", icon: "🤖" },
     { name: "Tools", href: "/p/tools", icon: "🛠️" },
     { name: "Games to play when bored", href: "/p/games-to-play-when-bored", icon: "💡" },
     { name: "Articles", href: "/articles", icon: "📰" },
