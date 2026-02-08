@@ -61,7 +61,7 @@ export default function GamesArchive() {
                   const randomGame = games[Math.floor(Math.random() * games.length)];
                   window.location.href = randomGame.url;
                 }}
-                className="bg-white text-black font-bold px-10 rounded-2xl hover:bg-zinc-100 transition flex items-center justify-center gap-2 whitespace-nowrap"
+                className="bg-white text-black font-bold px-10 py-3 rounded-2xl hover:bg-zinc-100 transition flex items-center justify-center gap-2 whitespace-nowrap"
               >
                 🎲 Random Game
               </button>

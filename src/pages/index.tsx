@@ -155,9 +155,9 @@ export default function Home({
         </section>
 
         {/* --- 2. MAIN CONTENT --- */}
-        <main className="max-w-6xl mx-auto px-4 -mt-12 relative z-20 pb-20 space-y-24">
+        <main className="max-w-6xl mx-auto px-4 -mt-12 relative z-20 pb-20 md:space-y-24 space-y-12">
           {/* 2.1 THE DISCOVERY LAB */}
-          <section className="bg-white/80 backdrop-blur-2xl p-10 rounded-[3.5rem] shadow-[0_30px_100px_rgba(0,0,0,0.1)] border border-white mx-auto">
+          <section className="bg-white/80 backdrop-blur-2xl md:p-10 p-6 md:rounded-[3.5rem] rounded-xl shadow-[0_30px_100px_rgba(0,0,0,0.1)] border border-white mx-auto">
             <header className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-2">
                 The Discovery Lab 🧪
@@ -199,16 +199,16 @@ export default function Home({
               ].map((tool, i) => (
                 <Link key={i} href={tool.href}>
                   <div
-                    className={`${tool.color} border-2 p-8 rounded-[2.5rem] flex items-center gap-6 hover:shadow-xl hover:border-purple-200 transition-all group cursor-pointer active:scale-[0.98]`}
+                    className={`${tool.color} border-2 p-5 md:p-8 rounded-2xl md:rounded-[2.5rem] flex items-center gap-4 md:gap-6 hover:shadow-xl transition-all cursor-pointer active:scale-[0.98]`}
                   >
-                    <div className="w-20 h-20 bg-slate-50 rounded-3xl flex items-center justify-center text-4xl shadow-inner group-hover:scale-110 transition-transform">
+                    <div className="w-14 h-10 md:w-20 md:h-20 bg-slate-50 rounded-xl md:rounded-2xl flex items-center justify-center text-xl md:text-4xl shadow-inner">
                       {tool.icon}
                     </div>
                     <div>
-                      <h4 className="font-black text-xl text-slate-900 mb-1">
+                      <h4 className="font-black text-lg md:text-xl text-slate-900 mb-1">
                         {tool.title}
                       </h4>
-                      <p className="text-slate-500 text-sm font-medium leading-tight">
+                      <p className="text-slate-500 text-xs md:text-sm font-medium leading-tight">
                         {tool.desc}
                       </p>
                     </div>
@@ -219,7 +219,7 @@ export default function Home({
           </section>
 
           {/* 2.2 LATEST ARTICLES */}
-          <section className="bg-slate-950 p-10 md:p-16 rounded-[3.5rem] shadow-2xl border border-slate-900">
+          {/* <section className="bg-slate-950 p-6 md:p-16 md:rounded-[3.5rem] rounded-xl shadow-2xl border border-slate-900">
             <header className="mb-12">
               <h2 className="text-3xl font-black text-white uppercase tracking-tighter italic">
                 Latest from the Lab
@@ -236,7 +236,7 @@ export default function Home({
                     href={`/articles/${postSlug}`}
                     className="block break-inside-avoid transform transition-transform duration-300 hover:-translate-y-2"
                   >
-                    <article className="group relative bg-slate-900/40 backdrop-blur-md border border-slate-800/50 rounded-[2.5rem] overflow-hidden transition-all duration-500 hover:border-purple-500/40 hover:bg-slate-800/60 hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)] h-full flex flex-col">
+                    <article className="group relative bg-slate-900/40 backdrop-blur-md border border-slate-800/50 md:rounded-[2.5rem] rounded-xl overflow-hidden transition-all duration-500 hover:border-purple-500/40 hover:bg-slate-800/60 hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)] h-full flex flex-col">
                       {imageUrl && (
                         <div className="relative h-64 overflow-hidden">
                           <img
@@ -274,10 +274,89 @@ export default function Home({
                 );
               })}
             </div>
+          </section> */}
+          <section className="bg-slate-950 p-6 md:p-16 md:rounded-[3.5rem] rounded-xl shadow-2xl border border-slate-900">
+            <header className="mb-12 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+              <div>
+                <h2 className="text-3xl font-black text-white uppercase tracking-tighter italic">
+                  Latest from the Lab
+                </h2>
+                <div className="h-1 w-12 bg-purple-600 mt-2 rounded-full" />
+              </div>
+
+              {/* Desktop "View All" Link - Hidden on mobile, visible on MD+ */}
+              <Link
+                href="/articles"
+                className="hidden md:flex items-center gap-2 text-slate-400 hover:text-purple-400 font-bold uppercase text-sm tracking-widest transition-colors group"
+              >
+                Browse All Articles
+                <span className="group-hover:translate-x-1 transition-transform">
+                  →
+                </span>
+              </Link>
+            </header>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {initialPosts.slice(0, 3).map((post) => {
+                const imageUrl = extractImage(post.content);
+                const postSlug = `${slugify(post.title)}-${post.id}`;
+                return (
+                  <Link
+                    key={post.id}
+                    href={`/articles/${postSlug}`}
+                    className="block break-inside-avoid transform transition-transform duration-300 hover:-translate-y-2"
+                  >
+                    <article className="group relative bg-slate-900/40 backdrop-blur-md border border-slate-800/50 md:rounded-[2.5rem] rounded-xl overflow-hidden transition-all duration-500 hover:border-purple-500/40 hover:bg-slate-800/60 hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)] h-full flex flex-col">
+                      {imageUrl && (
+                        <div className="relative h-48 md:h-64 overflow-hidden">
+                          <img
+                            src={imageUrl}
+                            alt={post.title}
+                            loading="lazy"
+                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[30%] group-hover:grayscale-0"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/20 to-transparent" />
+                        </div>
+                      )}
+                      <div className="p-6 md:p-8 flex flex-col flex-grow">
+                        <div className="flex items-center gap-3 mb-4 md:mb-5">
+                          <span className="h-[2px] w-8 md:w-10 bg-gradient-to-r from-purple-500 to-pink-500" />
+                          <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">
+                            {new Date(post.published).toLocaleDateString(
+                              undefined,
+                              {
+                                month: "short",
+                                day: "numeric",
+                                year: "numeric",
+                              },
+                            )}
+                          </span>
+                        </div>
+                        <h2 className="text-xl md:text-2xl font-black text-white mb-4 group-hover:text-purple-300 transition-colors leading-tight">
+                          {post.title}
+                        </h2>
+                        <p className="text-slate-400 text-sm leading-relaxed line-clamp-3 font-medium">
+                          {createExcerpt(post.content)}
+                        </p>
+                      </div>
+                    </article>
+                  </Link>
+                );
+              })}
+            </div>
+
+            {/* Mobile "View All" Button - Centered and prominent for thumb-tapping */}
+            <div className="mt-10 md:hidden flex justify-center">
+              <Link href="/articles" className="w-full">
+                <button className="w-full py-4 px-6 bg-slate-900 border border-slate-800 text-slate-300 font-black uppercase tracking-widest text-xs rounded-xl active:scale-95 transition-all">
+                  Browse All Articles 🔎
+                </button>
+              </Link>
+            </div>
           </section>
 
           {/* 2.3 SEO LONG-FORM CONTENT */}
-          <section className="bg-white rounded-[4rem] p-8 md:p-20 border border-slate-100 shadow-sm relative overflow-hidden">
+          <section className="bg-white rounded-[4rem] p-8 md:p-20 md:rounded-[3.5rem] rounded-xl border border-slate-100 shadow-sm relative overflow-hidden">
             <div className="max-w-4xl mx-auto relative z-10">
               <header className="text-center mb-16">
                 <h2 className="text-4xl md:text-6xl font-black text-slate-900 mb-6 leading-tight">
@@ -314,7 +393,7 @@ export default function Home({
                 </article>
 
                 <div className="grid md:grid-cols-2 gap-10">
-                  <div className="bg-blue-50 p-10 rounded-[3rem] border border-blue-100">
+                  <div className="bg-blue-50 md:p-10 p-6 md:rounded-[3rem] rounded-xl border border-blue-100">
                     <h3 className="text-xl font-black text-blue-900 mb-4 uppercase">
                       Bored So Bored?
                     </h3>
@@ -325,7 +404,7 @@ export default function Home({
                       of discovery.
                     </p>
                   </div>
-                  <div className="bg-pink-50 p-10 rounded-[3rem] border border-pink-100">
+                  <div className="bg-pink-50 md:p-10 p-6 md:rounded-[3rem] rounded-xl border border-pink-100">
                     <h3 className="text-xl font-black text-pink-900 mb-4 uppercase">
                       Unblocked Fun
                     </h3>
@@ -337,7 +416,7 @@ export default function Home({
                   </div>
                 </div>
 
-                <div className="pt-20 border-t border-slate-100">
+                <div className="md:pt-20 pt-10 border-t border-slate-100">
                   <h3 className="text-3xl font-black text-slate-900 mb-10 text-center">
                     Frequently Asked Questions
                   </h3>
@@ -358,7 +437,7 @@ export default function Home({
                     ].map((faq, i) => (
                       <details
                         key={i}
-                        className="group bg-slate-50 rounded-3xl p-6 cursor-pointer border border-transparent hover:border-purple-200 transition-all"
+                        className="group bg-slate-50 md:rounded-3xl rounded-xl md:p-6 p-4 cursor-pointer border border-transparent hover:border-purple-200 transition-all"
                       >
                         <summary className="list-none flex justify-between items-center font-black text-slate-800">
                           {faq.q}
@@ -378,7 +457,7 @@ export default function Home({
           </section>
 
           {/* 2.4 NEWSLETTER */}
-          <section className="bg-gradient-to-r from-purple-600 to-indigo-700 rounded-[3rem] p-10 md:p-20 text-center text-white relative overflow-hidden">
+          <section className="bg-gradient-to-r from-purple-600 to-indigo-700 md:rounded-[3rem] rounded-xl p-8 md:p-20 text-center text-white relative overflow-hidden">
             <h2 className="text-3xl md:text-5xl font-black mb-4 tracking-tight">
               Stay Cured.
             </h2>
@@ -397,12 +476,12 @@ export default function Home({
                 placeholder="Email for weekly fun..."
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="flex-grow px-6 py-4 rounded-2xl bg-white/10 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-white/50"
+                className="flex-grow px-6 py-4 md:rounded-2xl rounded-xl bg-white/10 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-white/50"
               />
               <button
                 type="submit"
                 disabled={submitting}
-                className="px-8 py-4 bg-white text-indigo-600 font-black rounded-2xl hover:bg-indigo-50 transition-all hover:scale-105 active:scale-95 disabled:opacity-70 shadow-lg"
+                className="px-8 py-4 bg-white text-indigo-600 font-black md:rounded-2xl rounded-xl hover:bg-indigo-50 transition-all hover:scale-105 active:scale-95 disabled:opacity-70 shadow-lg"
               >
                 {submitting ? "Joining..." : "Join Free"}
               </button>
