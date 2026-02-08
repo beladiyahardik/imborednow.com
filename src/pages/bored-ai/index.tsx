@@ -68,8 +68,8 @@ export default function BoredAI() {
           content="bored, boredom cure, fun things to do online, cool websites, games when bored, rabbit holes, interesting articles, AI recommendations, anti-boredom, productivity breaks, creative ideas"
         />
         <meta name="author" content="Hardik" />
-        <meta name="robots" content="index, follow" />
-        <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <meta name="robots" content="index, nofollow" />
+        <meta name="googlebot" content="index, nofollow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
 
         {/* Canonical URL (important for avoiding duplicate content issues) */}
         <link rel="canonical" href="https://www.imborednow.com/" /> {/* ← replace with your real domain */}
