@@ -20,7 +20,7 @@ function Header() {
     { name: "Games to play when bored", href: "/p/games-to-play-when-bored", icon: "💡" },
     { name: "Articles", href: "/articles", icon: "📰" },
     { name: "Press It", href: "/p/press-the-button", icon: "🔴" },
-    { name: "Guess Number", href: "/p/number-guesser", icon: "🔢" },
+    { name: "Crack the PIN", href: "/p/password-guesser", icon: "🔢" },
     { name: "About", href: "/info/about", icon: "✨" },
   ];
 
