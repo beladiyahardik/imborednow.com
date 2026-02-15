@@ -43,7 +43,7 @@ export default function About() {
                   </h2>
                   <div className="prose prose-slate prose-lg text-slate-600 leading-relaxed space-y-6">
                     <p>
-                      <strong>I'm Bored Now</strong> began as a simple idea in 2024: create the ultimate digital escape for anyone uttering the phrase “I’m bored.” Founded by Hardik in Ahmedabad, Gujarat, India, our platform has grown into one of the web’s most beloved boredom-busting destinations.
+                      <strong>I'm Bored Now</strong> began as a simple idea in 2025: create the ultimate digital escape for anyone uttering the phrase “I’m bored.” Founded by Hardik in Surat, Gujarat, India, our platform has grown into one of the web’s most beloved boredom-busting destinations.
                     </p>
                     <p>
                       We hand-curate thousands of high-quality, family-friendly activities  -  from classic browser games and mind-bending riddles to quirky calculators, fascinating facts, and interactive tools. Our signature <strong>red Bored Button</strong> uses a smart algorithm to deliver fresh, randomized experiences every click, ensuring endless variety without repetition.

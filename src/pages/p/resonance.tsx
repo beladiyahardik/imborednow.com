@@ -73,7 +73,7 @@ export default function ResonancePage({ seo, jsonLd }: any) {
                 <p>
                   Modern life is a sea of waves. Radio, Wi-Fi, and cellular data
                   are all vibrating through you right now. In **Resonance**,
-                  you’re doing exactly what a classic radio dial does—picking
+                  you’re doing exactly what a classic radio dial does - picking
                   one specific &quot;song&quot; out of that deafening static.
                 </p>
               </div>

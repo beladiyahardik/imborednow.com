@@ -61,7 +61,7 @@ export default function BoredAI() {
         <title>Bored AI | Find Fun Things to Do Online When Bored</title>
         <meta
           name="description"
-          content="Feeling bored? Bored AI instantly recommends personalized fun activities, cool websites, games, rabbit holes, articles, and more based on your boredom level and interests. Stop scrolling endlessly — get curated escapes now!"
+          content="Feeling bored? Bored AI instantly recommends personalized fun activities, cool websites, games, rabbit holes, articles, and more based on your boredom level and interests. Stop scrolling endlessly  -  get curated escapes now!"
         />
         <meta
           name="keywords"
@@ -78,7 +78,7 @@ export default function BoredAI() {
         <meta property="og:title" content="Bored AI – Instant Fun When You're Bored" />
         <meta
           property="og:description"
-          content="Tell us your boredom level and interests — get perfect online escapes: games, deep dives, mind-bending sites, learning rabbit holes, and more. Powered by AI."
+          content="Tell us your boredom level and interests  -  get perfect online escapes: games, deep dives, mind-bending sites, learning rabbit holes, and more. Powered by AI."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.imborednow.com/" /> {/* ← replace */}
@@ -225,7 +225,7 @@ export default function BoredAI() {
               </motion.div>
               <h3 className="text-2xl font-bold text-purple-900 mb-3">Ready for lift-off?</h3>
               <p className="text-purple-800/90 leading-relaxed">
-                We scan the coolest corners of the internet — just for your current mood.
+                We scan the coolest corners of the internet  -  just for your current mood.
               </p>
             </div>
           </div>

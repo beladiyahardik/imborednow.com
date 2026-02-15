@@ -138,7 +138,7 @@ export default function CircuitFlowPage({ seo, jsonLd }: { seo: any; jsonLd: any
                 Notice how the **parietal lobe** kicks in when you're playing?
                 That's the part of your brain responsible for spatial
                 navigation. You’re essentially performing mental
-                rotations—simulating the outcome of a move before you actually
+                rotations - simulating the outcome of a move before you actually
                 make it. It’s a mental rehearsal. When you look at an 'I' tile
                 and realize it needs to bridge the gap between two 'L' shapes,
                 you are practicing the same geometry that NASA engineers use to
@@ -157,7 +157,7 @@ export default function CircuitFlowPage({ seo, jsonLd }: { seo: any; jsonLd: any
                 force the electricity to follow *our* path. There’s a lesson
                 there about life, too. Sometimes the most direct route isn't
                 available. You might find your path blocked by a "fixed"
-                tile—one of those stubborn pieces that won't rotate no matter
+                tile - one of those stubborn pieces that won't rotate no matter
                 how hard you click.
               </p>
               <p>
@@ -208,7 +208,7 @@ export default function CircuitFlowPage({ seo, jsonLd }: { seo: any; jsonLd: any
               <p>
                 In the coming decades, our real-world circuits are going to get
                 much more complex. With renewable energy, power doesn't just
-                flow one way anymore. It’s becoming a "Smart Grid"—a giant,
+                flow one way anymore. It’s becoming a "Smart Grid" - a giant,
                 global game of Circuit Flow where the pieces are moving every
                 second. By training your brain here, you’re developing the
                 intuition needed to understand the energy-fluid world we are

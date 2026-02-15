@@ -210,7 +210,7 @@ export default function PrivacyPolicy() {
               {/* Legal Footer */}
               <div className="bg-slate-50 p-8 text-center border-t border-slate-100">
                 <p className="text-slate-400 text-[10px] font-bold uppercase tracking-[0.3em] mb-2">
-                  Last Updated: January 31, 2026 • Operated by Hardik • Ahmedabad, India
+                  Last Updated: January 31, 2026 • Operated by Hardik • Surat, India
                 </p>
                 <Link href="/">
                    <span className="text-slate-400 hover:text-slate-600 text-xs cursor-pointer underline">Back to the Bored Button</span>

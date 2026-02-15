@@ -86,7 +86,7 @@ export default function QuantumMazePage({ seo, jsonLd }: any) {
                 Have you ever walked through your own house in the middle of the
                 night, in total darkness, and found the kitchen without stubbing
                 your toe? You weren&apos;t using your eyes; you were using a
-                &quot;mental map&quot;—a ghost image of your reality stored deep
+                &quot;mental map&quot; - a ghost image of your reality stored deep
                 in your subconscious.
               </p>
 
@@ -143,7 +143,7 @@ export default function QuantumMazePage({ seo, jsonLd }: any) {
                 </h4>
                 <p className="text-sm leading-relaxed opacity-80">
                   Most players don&apos;t remember the whole grid. They remember
-                  &quot;shapes&quot;—a zig-zag here, a long straight line there.
+                  &quot;shapes&quot; - a zig-zag here, a long straight line there.
                 </p>
               </div>
             </div>

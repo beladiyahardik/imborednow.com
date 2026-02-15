@@ -86,8 +86,7 @@ function Footer() {
         {/* Bottom bar */}
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-slate-500 text-sm font-medium">
-            © {currentYear} <span className="text-slate-300">I’m Bored Now</span>.
-            All rights reserved.
+            © {currentYear} I'm Bored Now. Built with ❤️ in Surat, Gujarat.
           </p>
 
           <div className="flex gap-6">
