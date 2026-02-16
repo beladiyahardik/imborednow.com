@@ -85,7 +85,7 @@ export default function BlogPost({ post, recommendations }: { post: any; recomme
     ? post.content.replace(/<[^>]*>/g, "").substring(0, 160).trim() + "..."
     : "Read this interesting article on ImBoredNow.";
 
-  const ogImage = extractImage(post?.content || "") || "https://imborednow.com/default-og.png";
+  const ogImage = extractImage(post?.content || "") || "https://www.imborednow.com/logo.png";
   const canonicalURL = `https://imborednow.com/articles/${slugify(post?.title || "")}-${post?.id}`;
 
   const publishedDate = new Date(post?.published).toLocaleDateString("en-US", {
@@ -157,7 +157,7 @@ export default function BlogPost({ post, recommendations }: { post: any; recomme
   return (
     <>
       <Head>
-        <title>{post.title} | ImBoredNow</title>
+        <title>{post.title} | I'm Bored Now</title>
         <meta name="description" content={cleanDescription} />
         <link rel="canonical" href={canonicalURL} />
         <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -213,7 +213,7 @@ export default function BlogPost({ post, recommendations }: { post: any; recomme
             {/* CENTERED CONTENT COLUMN */}
             <div className="w-full max-w-prose">
 
-              <header className="pt-12 pb-16">
+              <header className="pt-12 pb-4">
                 <h1 className="text-4xl md:text-7xl font-black text-slate-900 leading-[1.05] tracking-[-0.02em] mb-8">
                   {post.title}
                 </h1>
@@ -290,11 +290,23 @@ export default function BlogPost({ post, recommendations }: { post: any; recomme
                 </div>
               </header>
 
-              <article className="prose prose-slate prose-lg mx-auto">
-                <div
-                  className="blog-content prose-p:text-[20px] prose-p:leading-[1.85] prose-p:text-slate-700 prose-p:mb-10 prose-headings:font-extrabold prose-headings:tracking-[-0.015em] prose-headings:text-slate-900 prose-h1:text-5xl prose-h2:text-[2.25rem] prose-h3:text-2xl prose-h4:text-xl prose-a:text-indigo-600 prose-a:font-medium prose-a:underline-offset-4 hover:prose-a:text-indigo-700 prose-strong:font-semibold prose-strong:text-slate-900 prose-blockquote:border-l-4 prose-blockquote:border-indigo-300 prose-blockquote:pl-8 prose-blockquote:italic prose-blockquote:text-xl prose-blockquote:text-slate-600 prose-blockquote:my-12 prose-li:text-[20px] prose-li:leading-[1.8] prose-li:my-4 prose-ul:my-10 prose-ol:my-10 prose-img:rounded-3xl prose-img:shadow-2xl prose-img:my-12 prose-img:-mx-4 lg:prose-img:-mx-8 [&_iframe]:w-full [&_iframe]:aspect-video [&_iframe]:rounded-3xl [&_iframe]:my-12 [&_iframe]:shadow-xl break-words [&_ul]:list-disc [&_ul]:list-inside [&_ul_ul]:list-circle [&_ul_ul]:list-inside [&_ul_ul_ul]:list-square [&_ul_ul_ul]:list-inside [&_ol]:list-decimal [&_ol]:list-inside [&_ul>li::before]:content-none [&_ul_ul>li::before]:content-none [&_ul_ul_ul>li::before]:content-none [&_ul_ul_ul_ul>li::before]:content-none [&_*::marker]:text-slate-900 [&_*::marker]:font-bold"
-                  dangerouslySetInnerHTML={{ __html: post.content }}
-                />
+              <article className="min-h-screen bg-white py-10 px-4">
+                {/* Inner wrapper that mimics the width of a chat response */}
+                {/* <div className="max-w-4xl mx-auto"> */}
+
+                <div className="flex items-start gap-4 md:gap-6">
+                  <div
+                    className="blog-content w-full"
+                    dangerouslySetInnerHTML={{ __html: post.content }}
+                  />
+                </div>
+
+                {/* Optional: Action buttons (Copy, Like, Dislike) at the bottom */}
+                <div className="mt-6 ml-12 flex gap-4 text-gray-400">
+                  <button className="hover:text-gray-600 text-sm">Copy</button>
+                  <button className="hover:text-gray-600 text-sm">Refine</button>
+                </div>
+                {/* </div> */}
               </article>
 
               {/* SOCIAL SHARE - Fixed + Icons */}

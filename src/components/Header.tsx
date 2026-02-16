@@ -7,6 +7,8 @@ function Header() {
   const [scrolled, setScrolled] = useState(false);
   const router = useRouter();
 
+  const currentPath = router.asPath.split("?")[0].split("#")[0];
+
   // Handle scroll effect for a cleaner "glass" look
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -14,8 +16,21 @@ function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const isNavItemActive = (href: string) => {
+    if (href === "/articles") {
+      return currentPath === "/articles" || currentPath.startsWith("/articles/");
+    }
+
+    if (href === "/info/about") {
+      return currentPath.startsWith("/info/");
+    }
+
+    return currentPath === href;
+  };
+
   const navItems = [
     // { name: "Bored AI", href: "/bored-ai", icon: "🤖" },
+    { name: "Home", href: "/", icon: "🏠" },
     { name: "Tools", href: "/p/tools", icon: "🛠️" },
     { name: "Games to play when bored", href: "/p/games-to-play-when-bored", icon: "💡" },
     { name: "Articles", href: "/articles", icon: "📰" },
@@ -54,7 +69,7 @@ function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center bg-white/40 p-1 rounded-full border border-white/20 shadow-inner">
             {navItems.map((item) => {
-              const isActive = router.pathname === item.href;
+              const isActive = isNavItemActive(item.href);
               return (
                 <Link
                   key={item.name}

@@ -2,45 +2,86 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #0d0d0d;
+  --chat-gray: #f9f9f9;
+  --chat-border: #e5e5e5;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-chat-gray: var(--chat-gray);
+  --color-chat-border: var(--chat-border);
+  --font-sans: "Inter", var(--font-mulish), system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Base Body Styles */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* globals.css */
+/* ChatGPT-like Article Container */
 .blog-content {
-  @apply text-slate-700 leading-relaxed text-lg;
+  @apply max-w-3xl mx-auto leading-relaxed text-[16px] md:text-[17px] text-gray-800;
 }
 
-/* Remove extra margins from Blogger's nested divs */
-.blog-content div, .blog-content p {
-  @apply mb-5 mt-0;
+/* Layout Resets */
+.blog-content p {
+  @apply mb-5 last:mb-0;
 }
 
-.blog-content h1, .blog-content h2, .blog-content h3 {
-  @apply font-black tracking-tighter text-slate-900 mt-8 mb-4 leading-tight;
+/* Headings: Semi-bold and cleaner */
+.blog-content h1,
+.blog-content h2,
+.blog-content h3 {
+  @apply font-semibold text-gray-900 mt-8 mb-3 tracking-tight;
 }
 
+.blog-content h1 {
+  @apply text-3xl;
+}
+
+.blog-content h2 {
+  @apply text-xl;
+}
+
+/* Code Blocks: The signature ChatGPT look */
+.blog-content pre {
+  @apply bg-[#0d0d0d] text-gray-200 p-4 rounded-xl my-6 overflow-x-auto font-mono text-sm;
+}
+
+/* Tables: Functional and bordered */
+.blog-content table {
+  @apply w-full border-collapse my-6 text-sm text-left;
+}
+
+.blog-content th {
+  @apply bg-chat-gray border border-chat-border px-3 py-2 font-semibold;
+}
+
+.blog-content td {
+  @apply border border-chat-border px-3 py-2;
+}
+
+/* Lists */
+.blog-content ul,
+.blog-content ol {
+  @apply my-5 pl-6 space-y-2;
+}
+
+.blog-content ul {
+  @apply list-disc;
+}
+
+.blog-content ol {
+  @apply list-decimal;
+}
+
+/* Images: Sharp but clean */
 .blog-content img {
-  @apply rounded-3xl shadow-lg my-6 mx-auto block max-w-full h-auto;
+  @apply rounded-lg border border-chat-border my-2 mx-auto block max-w-full;
 }
 
 /* AdSense Slot Styling */
