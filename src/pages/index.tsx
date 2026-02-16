@@ -31,7 +31,7 @@ const NEWSLETTER_API_URL = "https://belbytes.com/APIs/imborednow/subscribe.php";
 const faqData = [
   {
     q: "What is the Bored Button?",
-    a: "The Bored Button is a simple, one-click portal that instantly loads one of our hand-picked, high-quality browser tools or games directly on our site. Every experience runs seamlessly within imborednow.com — no redirects, no external sites, just pure engagement.",
+    a: "The Bored Button is a simple, one-click portal that instantly loads one of our hand-picked, high-quality browser tools or games directly on our site. Every experience runs seamlessly within imborednow.com  -  no redirects, no external sites, just pure engagement.",
   },
   {
     q: "Who runs I'm Bored Now?",
@@ -43,7 +43,7 @@ const faqData = [
   },
   {
     q: "Is the content safe and family-friendly?",
-    a: "Yes. We prioritize wholesome, safe experiences suitable for all ages — students, professionals, and families. No malicious code, no adult content, and no endless ads.",
+    a: "Yes. We prioritize wholesome, safe experiences suitable for all ages  -  students, professionals, and families. No malicious code, no adult content, and no endless ads.",
   },
   {
     q: "Are all tools completely free?",
@@ -51,7 +51,7 @@ const faqData = [
   },
   {
     q: "How does the random selection work?",
-    a: "Our smart algorithm pulls from a carefully maintained collection of vetted tools. It’s random but never truly chaotic — you’ll always land on something high-quality and engaging, loaded directly on our site.",
+    a: "Our smart algorithm pulls from a carefully maintained collection of vetted tools. It’s random but never truly chaotic  -  you’ll always land on something high-quality and engaging, loaded directly on our site.",
   },
   {
     q: "Can I suggest a new tool?",
@@ -372,68 +372,73 @@ export default function Home({
           </div>
         </section>
 
-        {/* --- QUIZ & ACTIVITY GUIDE --- */}
+        {/* --- GAME SELECTION GRID --- */}
         <section className="max-w-7xl mx-auto px-6 py-24">
-          <div className="grid md:grid-cols-2 gap-12">
-            {/* Quiz */}
-            <div className="bg-white p-10 rounded-3xl border border-slate-200">
-              <h3 className="text-2xl font-black mb-6">Activity Matchmaker</h3>
-              <form onSubmit={handleQuizSubmit} className="space-y-6">
-                <div>
-                  <label className="block text-sm font-bold uppercase tracking-widest text-slate-400 mb-3">How much time do you have?</label>
-                  <select
-                    className="w-full p-4 rounded-xl border border-slate-200 bg-slate-50"
-                    onChange={(e) => setQuizAnswers({ ...quizAnswers, time: e.target.value })}
-                  >
-                    <option value="">Select time...</option>
-                    <option value="2-5">Quick Break (2-5 mins)</option>
-                    <option value="15-30">Deep Dive (15-30 mins)</option>
-                    <option value="unlimited">I've got all day</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-bold uppercase tracking-widest text-slate-400 mb-3">Current Mood?</label>
-                  <select
-                    className="w-full p-4 rounded-xl border border-slate-200 bg-slate-50"
-                    onChange={(e) => setQuizAnswers({ ...quizAnswers, mood: e.target.value })}
-                  >
-                    <option value="">Select mood...</option>
-                    <option value="restless">A bit restless</option>
-                    <option value="curious">Very curious</option>
-                    <option value="tired">Brain-dead</option>
-                  </select>
-                </div>
-                <button className="w-full py-4 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition shadow-lg">
-                  Get Recommendation
-                </button>
-              </form>
-              {quizResult && (
-                <div className="mt-8 p-6 bg-indigo-50 text-indigo-900 font-medium rounded-xl border border-indigo-100 animate-pulse">
-                  ✨ {quizResult}
-                </div>
-              )}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-4">
+              Instant Boredom Killers
+            </h2>
+            <p className="text-slate-600 max-w-2xl mx-auto text-lg">
+              No downloads, no accounts, no fluff. Just pure, unadulterated distraction.
+              Pick a vibe and dive in.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Card 1: Press It */}
+            <div className="group bg-white p-8 rounded-3xl border border-slate-200 hover:border-indigo-500 hover:shadow-2xl transition-all duration-300 flex flex-col">
+              <div className="w-14 h-14 bg-indigo-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-transform">
+                <span className="text-3xl">🔴</span>
+              </div>
+              <h3 className="text-xl font-bold mb-3 text-slate-900">Press It</h3>
+              <p className="text-slate-500 text-sm mb-8 flex-grow leading-relaxed">
+                One button. One choice. One consequence that will make you think twice about your own curiosity.
+              </p>
+              <Link href="/p/press-the-button" className="w-full py-3 bg-slate-900 text-white rounded-xl font-bold hover:bg-indigo-600 text-center transition-colors">
+                Play Now
+              </Link>
             </div>
 
-            {/* Activity Guide */}
-            <div className="flex flex-col justify-center">
-              <h3 className="text-3xl font-black mb-6">Personalized Experiences</h3>
-              <p className="text-slate-600 mb-8">We don't believe in one-size-fits-all. Every visitor has a different reason for feeling bored. Use our guide to find your perfect state of mind.</p>
-              <div className="flex gap-4 mb-8">
-                {["time", "mood", "device"].map((t) => (
-                  <button
-                    key={t}
-                    onClick={() => setActiveTab(t as any)}
-                    className={`px-6 py-2 rounded-full font-bold text-sm transition ${activeTab === t ? 'bg-slate-900 text-white' : 'bg-slate-200 text-slate-600 hover:bg-slate-300'}`}
-                  >
-                    By {t.charAt(0).toUpperCase() + t.slice(1)}
-                  </button>
-                ))}
+            {/* Card 2: Crack the PIN */}
+            <div className="group bg-white p-8 rounded-3xl border border-slate-200 hover:border-emerald-500 hover:shadow-2xl transition-all duration-300 flex flex-col">
+              <div className="w-14 h-14 bg-emerald-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-transform">
+                <span className="text-3xl">🔢</span>
               </div>
-              <div className="p-6 bg-white rounded-2xl border border-slate-100 shadow-sm">
-                {activeTab === 'time' && <p className="text-slate-600">From 30-second logic puzzles to hour-long historical explorations, we respect your schedule.</p>}
-                {activeTab === 'mood' && <p className="text-slate-600">Feeling creative? Try our drawing tools. Feeling stressed? Our ambient sound generator is for you.</p>}
-                {activeTab === 'device' && <p className="text-slate-600">Every tool is optimized. Whether you're on an iPhone or a dual-monitor setup, it looks great.</p>}
+              <h3 className="text-xl font-bold mb-3 text-slate-900">Crack the PIN</h3>
+              <p className="text-slate-500 text-sm mb-8 flex-grow leading-relaxed">
+                Test your intuition. A logic game designed to highlight just how predictable human security really is.
+              </p>
+              <Link href="/p/password-guesser" className="w-full py-3 bg-slate-900 text-white rounded-xl font-bold hover:bg-emerald-600 text-center transition-colors">
+                Start Cracking
+              </Link>
+            </div>
+
+            {/* Card 3: Circuit Flow */}
+            <div className="group bg-white p-8 rounded-3xl border border-slate-200 hover:border-orange-500 hover:shadow-2xl transition-all duration-300 flex flex-col">
+              <div className="w-14 h-14 bg-orange-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-transform">
+                <span className="text-3xl">⚡</span>
               </div>
+              <h3 className="text-xl font-bold mb-3 text-slate-900">Circuit Flow</h3>
+              <p className="text-slate-500 text-sm mb-8 flex-grow leading-relaxed">
+                A circuit is more than just wire and silicon; it’s a path for intent. Connect the flow, complete the path.
+              </p>
+              <Link href="/p/circuit-flow" className="w-full py-3 bg-slate-900 text-white rounded-xl font-bold hover:bg-orange-600 text-center transition-colors">
+                Complete Circuit
+              </Link>
+            </div>
+
+            {/* Card 4: Binary Switch */}
+            <div className="group bg-white p-8 rounded-3xl border border-slate-200 hover:border-rose-500 hover:shadow-2xl transition-all duration-300 flex flex-col">
+              <div className="w-14 h-14 bg-rose-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-transform">
+                <span className="text-3xl">🔌</span>
+              </div>
+              <h3 className="text-xl font-bold mb-3 text-slate-900">Binary Switch</h3>
+              <p className="text-slate-500 text-sm mb-8 flex-grow leading-relaxed">
+                Master the language of 8 bits. Can you calculate the byte before the clock hits zero?
+              </p>
+              <Link href="/p/binary-switch" className="w-full py-3 bg-slate-900 text-white rounded-xl font-bold hover:bg-rose-600 text-center transition-colors">
+                Take Challenge
+              </Link>
             </div>
           </div>
         </section>
@@ -458,29 +463,55 @@ export default function Home({
 
         {/* --- NEWSLETTER --- */}
         <section className="max-w-7xl mx-auto px-6 pb-24">
-          <div className="bg-indigo-600 rounded-[3rem] p-12 md:p-24 text-center text-white relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-64 h-64 bg-white/10 blur-[100px] -translate-x-1/2 -translate-y-1/2 rounded-full"></div>
-            <h2 className="text-4xl md:text-6xl font-black mb-8 relative z-10">Join {subscriberCount.toLocaleString()}+ curious minds.</h2>
-            <p className="text-indigo-100 text-xl max-w-2xl mx-auto mb-12 relative z-10">
-              Get one weekly email with a single hand-curated tool to help you stay creative and focused. No spam, ever.
-            </p>
-            <form onSubmit={handleSubscribe} className="max-w-lg mx-auto flex flex-col sm:flex-row gap-4 relative z-10">
-              <input
-                type="email"
-                placeholder="Enter your email address"
-                className="flex-grow px-6 py-4 rounded-2xl text-slate-900 focus:outline-none focus:ring-4 focus:ring-indigo-300"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <button
-                type="submit"
-                disabled={submitting}
-                className="px-8 py-4 bg-slate-900 text-white font-bold rounded-2xl hover:bg-slate-800 transition active:scale-95 disabled:opacity-70"
-              >
-                {submitting ? "Joining..." : "Subscribe"}
-              </button>
-            </form>
-            {statusMessage && <p className="mt-6 font-medium text-indigo-100">{statusMessage}</p>}
+          <div className="bg-indigo-600 rounded-[3rem] p-12 md:p-20 text-center text-white relative overflow-hidden border-4 border-indigo-500/30 shadow-2xl">
+            {/* Dynamic Background Elements */}
+            <div className="absolute top-0 left-0 w-96 h-96 bg-white/10 blur-[120px] -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none"></div>
+            <div className="absolute bottom-0 right-0 w-64 h-64 bg-indigo-400/20 blur-[80px] translate-x-1/3 translate-y-1/3 rounded-full pointer-events-none"></div>
+
+            <div className="relative z-10">
+              <span className="inline-block py-1 px-4 rounded-full bg-indigo-500/50 text-indigo-100 text-xs font-bold uppercase tracking-widest mb-6 backdrop-blur-md">
+                Weekly Inspiration
+              </span>
+
+              <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tight leading-tight">
+                Join {(193 + subscriberCount).toLocaleString()}+ <br className="hidden md:block" /> curious minds.
+              </h2>
+
+              <p className="text-indigo-100 text-lg md:text-xl max-w-2xl mx-auto mb-12 opacity-90 leading-relaxed">
+                One weekly email. One hand-curated tool.
+                Zero noise. Stay creative and focused without the scroll.
+              </p>
+
+              <form onSubmit={handleSubscribe} className="max-w-lg mx-auto group">
+                <div className="flex flex-col sm:flex-row gap-3 p-2 bg-white/10 backdrop-blur-xl rounded-[2rem] border border-white/20 transition-all focus-within:bg-white/15 focus-within:border-white/40">
+                  <input
+                    type="email"
+                    placeholder="Enter your email address"
+                    className="flex-grow px-6 py-4 bg-transparent text-white placeholder:text-indigo-200 focus:outline-none"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className="px-10 py-4 bg-white text-indigo-600 font-bold rounded-[1.5rem] hover:bg-indigo-50 transition-all active:scale-95 disabled:opacity-70 shadow-lg shadow-indigo-900/20"
+                  >
+                    {submitting ? (
+                      <span className="flex items-center gap-2">
+                        Joining...
+                      </span>
+                    ) : "Subscribe"}
+                  </button>
+                </div>
+              </form>
+
+              {statusMessage && (
+                <div className="mt-6 inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 border border-white/10 text-indigo-100 text-sm font-medium animate-fade-in-up">
+                  ✨ {statusMessage}
+                </div>
+              )}
+            </div>
           </div>
         </section>
       </div>
