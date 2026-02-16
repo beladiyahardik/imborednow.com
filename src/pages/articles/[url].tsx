@@ -96,10 +96,10 @@ export default function BlogPost({ post, recommendations }: { post: any; recomme
 
   const updatedDate = post?.updated !== post?.published
     ? new Date(post?.updated).toLocaleDateString("en-US", {
-        month: "long",
-        day: "numeric",
-        year: "numeric",
-      })
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    })
     : null;
 
   const jsonLdPost = {
@@ -292,7 +292,7 @@ export default function BlogPost({ post, recommendations }: { post: any; recomme
 
               <article className="prose prose-slate prose-lg mx-auto">
                 <div
-                  className="blog-content prose-p:text-[20px] prose-p:leading-[1.85] prose-p:text-slate-700 prose-p:mb-10 prose-headings:font-extrabold prose-headings:tracking-[-0.015em] prose-headings:text-slate-900 prose-h1:text-5xl prose-h2:text-[2.25rem] prose-h3:text-2xl prose-h4:text-xl prose-a:text-indigo-600 prose-a:font-medium prose-a:underline-offset-4 hover:prose-a:text-indigo-700 prose-strong:font-semibold prose-strong:text-slate-900 prose-blockquote:border-l-4 prose-blockquote:border-indigo-300 prose-blockquote:pl-8 prose-blockquote:italic prose-blockquote:text-xl prose-blockquote:text-slate-600 prose-blockquote:my-12 prose-li:text-[19px] prose-li:leading-[1.8] prose-li:my-3 prose-ul:my-10 prose-ol:my-10 prose-img:rounded-3xl prose-img:shadow-2xl prose-img:my-12 prose-img:-mx-4 lg:prose-img:-mx-8 [&_iframe]:w-full [&_iframe]:aspect-video [&_iframe]:rounded-3xl [&_iframe]:my-12 [&_iframe]:shadow-xl break-words"
+                  className="blog-content prose-p:text-[20px] prose-p:leading-[1.85] prose-p:text-slate-700 prose-p:mb-10 prose-headings:font-extrabold prose-headings:tracking-[-0.015em] prose-headings:text-slate-900 prose-h1:text-5xl prose-h2:text-[2.25rem] prose-h3:text-2xl prose-h4:text-xl prose-a:text-indigo-600 prose-a:font-medium prose-a:underline-offset-4 hover:prose-a:text-indigo-700 prose-strong:font-semibold prose-strong:text-slate-900 prose-blockquote:border-l-4 prose-blockquote:border-indigo-300 prose-blockquote:pl-8 prose-blockquote:italic prose-blockquote:text-xl prose-blockquote:text-slate-600 prose-blockquote:my-12 prose-li:text-[20px] prose-li:leading-[1.8] prose-li:my-4 prose-ul:my-10 prose-ol:my-10 prose-img:rounded-3xl prose-img:shadow-2xl prose-img:my-12 prose-img:-mx-4 lg:prose-img:-mx-8 [&_iframe]:w-full [&_iframe]:aspect-video [&_iframe]:rounded-3xl [&_iframe]:my-12 [&_iframe]:shadow-xl break-words [&_ul]:list-disc [&_ul]:list-inside [&_ul_ul]:list-circle [&_ul_ul]:list-inside [&_ul_ul_ul]:list-square [&_ul_ul_ul]:list-inside [&_ol]:list-decimal [&_ol]:list-inside [&_ul>li::before]:content-none [&_ul_ul>li::before]:content-none [&_ul_ul_ul>li::before]:content-none [&_ul_ul_ul_ul>li::before]:content-none [&_*::marker]:text-slate-900 [&_*::marker]:font-bold"
                   dangerouslySetInnerHTML={{ __html: post.content }}
                 />
               </article>

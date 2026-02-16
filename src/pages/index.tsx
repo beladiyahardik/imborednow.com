@@ -16,7 +16,7 @@ const extractImage = (html: string) => {
   return match ? match[1] : "/api/placeholder/400/250"; // Fallback image
 };
 
-const Hakslugify = (text: string) => {
+const slugify = (text: string) => {
   return text
     .toString()
     .toLowerCase()
@@ -308,7 +308,7 @@ export default function Home({
                     </p>
                     <div className="mt-auto">
                       <Link
-                        href={`/blog/${Hakslugify(post.title)}`}
+                        href={`/articles/${slugify(post.title)}-${post.id}`}
                         className="text-sm font-black uppercase tracking-widest text-slate-900 border-b-2 border-slate-900 pb-1 hover:text-indigo-600 hover:border-indigo-600 transition"
                       >
                         Read More
