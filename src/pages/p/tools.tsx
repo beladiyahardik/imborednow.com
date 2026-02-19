@@ -11,14 +11,14 @@ export default function ToolsHub() {
 
   const allTools = [
     // Games
-    { title: "Number Merge", icon: "🔢", desc: "Classic 2048-style number merging puzzle.", href: "/p/number-merge", tag: "Trending", category: "games" },
-    { title: "Word Link", icon: "🔗", desc: "Connect letters to find hidden words.", href: "/p/word-link", tag: "Popular", category: "games" },
-    { title: "Daily Crossword", icon: "🧩", desc: "Today's vocabulary challenge.", href: "/p/daily-crossword", tag: "Daily", category: "games" },
-    { title: "Hexa-Path", icon: "⬢", desc: "Navigate hexagonal logic grids.", href: "/p/hexa-path", tag: "Logic", category: "games" },
-    { title: "Binary Switch", icon: "🔌", desc: "Toggle bits to match binary targets.", href: "/p/binary-switch", tag: "Computing", category: "games" },
-    { title: "Circuit Flow", icon: "⚡", desc: "Route power through logic gates.", href: "/p/circuit-flow", tag: "Expert", category: "games" },
-    { title: "Resonance", icon: "🌊", desc: "Align waves and frequencies.", href: "/p/resonance", tag: "Physics", category: "games" },
-    { title: "Quantum Maze", icon: "🌌", desc: "Navigate shifting quantum dimensions.", href: "/p/quantum-maze", tag: "Advanced", category: "games" },
+    // { title: "Number Merge", icon: "🔢", desc: "Classic 2048-style number merging puzzle.", href: "/p/number-merge", tag: "Trending", category: "games" },
+    // { title: "Word Link", icon: "🔗", desc: "Connect letters to find hidden words.", href: "/p/word-link", tag: "Popular", category: "games" },
+    // { title: "Daily Crossword", icon: "🧩", desc: "Today's vocabulary challenge.", href: "/p/daily-crossword", tag: "Daily", category: "games" },
+    // { title: "Hexa-Path", icon: "⬢", desc: "Navigate hexagonal logic grids.", href: "/p/hexa-path", tag: "Logic", category: "games" },
+    // { title: "Binary Switch", icon: "🔌", desc: "Toggle bits to match binary targets.", href: "/p/binary-switch", tag: "Computing", category: "games" },
+    // { title: "Circuit Flow", icon: "⚡", desc: "Route power through logic gates.", href: "/p/circuit-flow", tag: "Expert", category: "games" },
+    // { title: "Resonance", icon: "🌊", desc: "Align waves and frequencies.", href: "/p/resonance", tag: "Physics", category: "games" },
+    // { title: "Quantum Maze", icon: "🌌", desc: "Navigate shifting quantum dimensions.", href: "/p/quantum-maze", tag: "Advanced", category: "games" },
     // Tools
     { title: "Birthdate Secrets", icon: "🎂", desc: "Fascinating facts about your birthday.", href: "/p/birthdate-calculator", tag: "Popular", category: "tools" },
     { title: "Pixel Art Studio", icon: "🎨", desc: "Create 8-bit pixel art instantly.", href: "/p/pixel-art", tag: "Creative", category: "tools" },
@@ -168,7 +168,7 @@ export default function ToolsHub() {
           {/* Quick Stats */}
           {!search && (
             <div className="flex flex-wrap justify-center gap-6 mb-8">
-              <div className="flex items-center gap-3 px-6 py-3 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl border border-indigo-100">
+              {/* <div className="flex items-center gap-3 px-6 py-3 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl border border-indigo-100">
                 <div className="w-10 h-10 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center text-white text-xl">
                   🎮
                 </div>
@@ -176,7 +176,7 @@ export default function ToolsHub() {
                   <div className="text-2xl font-black text-slate-900">{gamesCount}</div>
                   <div className="text-xs text-slate-600 font-medium">Brain Games</div>
                 </div>
-              </div>
+              </div> */}
 
               <div className="flex items-center gap-3 px-6 py-3 bg-gradient-to-br from-pink-50 to-rose-50 rounded-2xl border border-pink-100">
                 <div className="w-10 h-10 rounded-full bg-gradient-to-r from-pink-500 to-rose-500 flex items-center justify-center text-white text-xl">
@@ -225,7 +225,7 @@ export default function ToolsHub() {
         ) : (
           <>
             {/* Games Section */}
-            <div id="games" className="mb-24 scroll-mt-20">
+            {/* <div id="games" className="mb-24 scroll-mt-20">
               <div className="flex items-center gap-4 mb-10">
                 <div className="w-12 h-12 rounded-2xl bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center text-white text-2xl shadow-lg shadow-indigo-500/30">
                   🎮
@@ -239,7 +239,7 @@ export default function ToolsHub() {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 {allTools.filter(t => t.category === "games").map((tool, i) => <ToolCard key={i} tool={tool} />)}
               </div>
-            </div>
+            </div> */}
 
             {/* Tools Section */}
             <div id="tools" className="scroll-mt-20 mb-24">
