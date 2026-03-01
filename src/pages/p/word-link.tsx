@@ -4,6 +4,7 @@
 import React, { useState, useMemo, useEffect } from "react";
 import Head from "next/head";
 import WordLinkHero from "@/components/games/WordLinkHero";
+import { Gamepad2 } from "lucide-react";
 
 // --- LEVEL DATA ---
 const LEVEL_DATA = {
@@ -49,7 +50,7 @@ export default function WordLinkPage({ seo, jsonLd }: any) {
         <div className="max-w-4xl mx-auto">
           <div className="bg-[#11131E] rounded-[3.5rem] p-10 md:p-16 border border-white/5 shadow-2xl mb-20">
             <h3 className="text-3xl font-black text-white mb-10 flex items-center gap-4">
-              <span className="text-4xl">🎮</span>
+              <Gamepad2 className="h-9 w-9 text-indigo-400" aria-hidden="true" />
               <span>How to Play</span>
             </h3>
             <ul className="space-y-8">

@@ -2,6 +2,7 @@
 import CipherGrid from "@/components/games/CipherGrid";
 import Head from "next/head";
 import Link from "next/link";
+import { LockKeyhole } from "lucide-react";
 
 export default function CipherGridPage({ seo, jsonLd }: any) {
   return (
@@ -69,7 +70,7 @@ export default function CipherGridPage({ seo, jsonLd }: any) {
         <div className="max-w-4xl mx-auto">
           <div className="bg-[#11131E] rounded-[2rem] md:rounded-[3.5rem] p-6 md:p-16 border border-white/5 shadow-2xl mb-12 md:mb-20">
             <h3 className="text-xl md:text-3xl font-black text-white mb-8 md:mb-12 flex items-center gap-3 md:gap-4">
-              <span className="text-2xl md:text-4xl">🔐</span>
+              <LockKeyhole className="h-7 w-7 md:h-9 md:w-9 text-indigo-400" aria-hidden="true" />
               <span>Decryption Protocols</span>
             </h3>
             <ul className="space-y-8 md:space-y-10">

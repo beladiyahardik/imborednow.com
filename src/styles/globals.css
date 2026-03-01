@@ -1,8 +1,15 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 :root {
-  --background: #ffffff;
-  --foreground: #0d0d0d;
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --muted: #475569;
+  --surface: #ffffff;
+  --surface-soft: #f1f5f9;
+  --border: #e2e8f0;
+  --primary: #2563eb;
+  --primary-ink: #ffffff;
   --chat-gray: #f9f9f9;
   --chat-border: #e5e5e5;
 }
@@ -10,6 +17,12 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-surface: var(--surface);
+  --color-surface-soft: var(--surface-soft);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-ink: var(--primary-ink);
   --color-chat-gray: var(--chat-gray);
   --color-chat-border: var(--chat-border);
   --font-sans: "Inter", var(--font-mulish), system-ui, sans-serif;
@@ -20,6 +33,140 @@ body {
   background: var(--background);
   color: var(--foreground);
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: inherit;
+}
+
+/* Shared layout primitives for clean, consistent pages */
+.site-shell {
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.site-main {
+  min-height: calc(100vh - 8rem);
+  background: linear-gradient(to bottom, #f8fafc, #ffffff);
+}
+
+/* Ensure Tailwind `container` class and custom wrappers share the same layout width */
+.container,
+.site-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.clean-section {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.clean-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+}
+
+.clean-heading {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+}
+
+.clean-copy {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.clean-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  font-weight: 700;
+  padding: 0.75rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.clean-btn-primary {
+  background: var(--primary);
+  color: var(--primary-ink);
+}
+
+.clean-btn-primary:hover {
+  filter: brightness(0.95);
+}
+
+.clean-btn-secondary {
+  background: var(--surface);
+  color: var(--foreground);
+  border: 1px solid var(--border);
+}
+
+.clean-btn-secondary:hover {
+  background: var(--surface-soft);
+}
+
+/* Shared page theme utilities for visual consistency */
+.page-wrap {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 768px) {
+  .container,
+  .site-container,
+  .page-wrap {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+}
+
+.page-hero {
+  padding-top: 3rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.page-title {
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+}
+
+.page-subtitle {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.page-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+}
+
+/* Global readable defaults for article/policy content */
+.prose {
+  max-width: 72ch;
+}
+
+.prose :where(h1, h2, h3, h4) {
+  color: var(--foreground);
+  letter-spacing: -0.02em;
+}
+
+.prose :where(p, li) {
+  color: var(--muted);
 }
 
 /* AdSense Slot Styling */

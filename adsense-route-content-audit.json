@@ -1,0 +1,171 @@
+{
+  "generatedAt": "2026-03-01T11:39:29.860Z",
+  "summary": {
+    "tested": 17,
+    "thinRoutes": [
+      "/info/about",
+      "/info/contact",
+      "/info/disclaimer",
+      "/p/tools",
+      "/p/random-activity",
+      "/bored-ai"
+    ],
+    "noindexRoutes": [],
+    "non200": []
+  },
+  "results": [
+    {
+      "route": "/",
+      "status": 200,
+      "words": 1425,
+      "headingCount": 23,
+      "hasMain": true,
+      "robots": "index,follow",
+      "thin": false
+    },
+    {
+      "route": "/articles",
+      "status": 200,
+      "words": 673,
+      "headingCount": 13,
+      "hasMain": true,
+      "robots": "index,follow",
+      "thin": false
+    },
+    {
+      "route": "/info/about",
+      "status": 200,
+      "words": 204,
+      "headingCount": 8,
+      "hasMain": true,
+      "robots": "index,follow",
+      "thin": true
+    },
+    {
+      "route": "/info/contact",
+      "status": 200,
+      "words": 122,
+      "headingCount": 3,
+      "hasMain": true,
+      "robots": "index,follow",
+      "thin": true
+    },
+    {
+      "route": "/info/privacy-policy",
+      "status": 200,
+      "words": 278,
+      "headingCount": 8,
+      "hasMain": true,
+      "robots": "index,follow",
+      "thin": false
+    },
+    {
+      "route": "/info/terms",
+      "status": 200,
+      "words": 275,
+      "headingCount": 9,
+      "hasMain": true,
+      "robots": "index,follow",
+      "thin": false
+    },
+    {
+      "route": "/info/disclaimer",
+      "status": 200,
+      "words": 204,
+      "headingCount": 7,
+      "hasMain": true,
+      "robots": "index,follow",
+      "thin": true
+    },
+    {
+      "route": "/p/tools",
+      "status": 200,
+      "words": 155,
+      "headingCount": 7,
+      "hasMain": true,
+      "robots": "index,follow",
+      "thin": true
+    },
+    {
+      "route": "/p/random-activity",
+      "status": 200,
+      "words": 52,
+      "headingCount": 0,
+      "hasMain": true,
+      "robots": "index,follow",
+      "thin": true
+    },
+    {
+      "route": "/p/games-to-play-when-bored",
+      "status": 200,
+      "words": 342,
+      "headingCount": 17,
+      "hasMain": true,
+      "robots": "index,follow",
+      "thin": false
+    },
+    {
+      "route": "/p/daily-crossword",
+      "status": 200,
+      "words": 663,
+      "headingCount": 5,
+      "hasMain": true,
+      "robots": "index,follow",
+      "thin": false
+    },
+    {
+      "route": "/p/press-the-button",
+      "status": 200,
+      "words": 474,
+      "headingCount": 6,
+      "hasMain": true,
+      "robots": "index,follow",
+      "thin": false
+    },
+    {
+      "route": "/p/pixel-art",
+      "status": 200,
+      "words": 698,
+      "headingCount": 11,
+      "hasMain": true,
+      "robots": "index,follow",
+      "thin": false
+    },
+    {
+      "route": "/p/life-expectancy-calculator",
+      "status": 200,
+      "words": 283,
+      "headingCount": 5,
+      "hasMain": true,
+      "robots": "index,follow",
+      "thin": false
+    },
+    {
+      "route": "/p/life-style-factor",
+      "status": 200,
+      "words": 262,
+      "headingCount": 4,
+      "hasMain": true,
+      "robots": "index,follow",
+      "thin": false
+    },
+    {
+      "route": "/p/history-timeline",
+      "status": 200,
+      "words": 237,
+      "headingCount": 5,
+      "hasMain": true,
+      "robots": "index,follow",
+      "thin": false
+    },
+    {
+      "route": "/bored-ai",
+      "status": 200,
+      "words": 106,
+      "headingCount": 2,
+      "hasMain": true,
+      "robots": "index,follow",
+      "thin": true
+    }
+  ]
+}

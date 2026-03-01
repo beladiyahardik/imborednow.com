@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import DailyCrosswordHero from "@/components/games/DailyCrosswordHero";
 import Head from "next/head";
+import { Check } from "lucide-react";
 
 export default function DailyCrosswordPage({ seo, jsonLd }: any) {
   return (
@@ -146,7 +147,7 @@ export default function DailyCrosswordPage({ seo, jsonLd }: any) {
               </div>
               <div className="flex items-center gap-4 text-indigo-600 font-black uppercase tracking-widest text-[10px] md:text-xs">
                 <div className="w-8 h-8 md:w-10 md:h-10 bg-indigo-50 rounded-full flex items-center justify-center">
-                  ✓
+                  <Check className="h-4 w-4 text-indigo-600" aria-hidden="true" />
                 </div>
                 Online crossword maker for teachers
               </div>

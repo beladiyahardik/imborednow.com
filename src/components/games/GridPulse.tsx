@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import * as PIXI from "pixi.js";
+import { Zap } from "lucide-react";
 
 export default function GridPulse() {
   const gameRef = useRef<HTMLDivElement>(null);
@@ -183,7 +184,7 @@ export default function GridPulse() {
         <div className="absolute inset-0 bg-[#0F172A]/95 backdrop-blur-xl flex items-center justify-center z-20 p-4">
           <div className="bg-[#11131E] p-8 md:p-12 rounded-[2.5rem] md:rounded-[3.5rem] border border-white/10 text-center shadow-2xl max-w-sm w-full animate-in zoom-in duration-200">
             <div className="w-16 h-16 md:w-20 md:h-20 bg-indigo-600/20 text-indigo-500 rounded-full flex items-center justify-center text-2xl md:text-3xl mx-auto mb-6 border border-indigo-500/30">
-              ⚡
+              <Zap className="h-8 w-8 md:h-10 md:w-10" aria-hidden="true" />
             </div>
             <h2 className="text-white text-3xl md:text-4xl font-black mb-2 tracking-tighter uppercase">
               Sync Lost

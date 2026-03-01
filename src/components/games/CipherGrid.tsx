@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import * as PIXI from "pixi.js";
+import { Battery, Radio, Target } from "lucide-react";
 
 export default function CipherGrid() {
   const gameRef = useRef<HTMLDivElement>(null);
@@ -239,7 +240,7 @@ export default function CipherGrid() {
 
           {attempts.length === 0 && (
             <div className="h-full flex flex-col items-center justify-center opacity-30 text-center">
-              <div className="text-2xl mb-2">📡</div>
+              <Radio className="mb-2 h-7 w-7 text-slate-400" aria-hidden="true" />
               <p className="text-[10px] text-slate-400 uppercase font-bold tracking-tighter">
                 Scanning for sequence...
               </p>
@@ -252,7 +253,13 @@ export default function CipherGrid() {
         <div className="absolute inset-0 z-[200] flex items-center justify-center p-6 bg-[#0F172A]/80 backdrop-blur-md animate-in fade-in duration-300">
           <div className="bg-[#1E293B] border border-white/10 w-full max-w-sm rounded-[2.5rem] p-8 shadow-2xl text-center transform animate-in zoom-in-95 slide-in-from-bottom-10 duration-500">
             <div className="mb-6">
-              <span className={`text-5xl mb-4 block`}>{won ? "🎯" : "🔋"}</span>
+              <div className="mb-4 flex justify-center">
+                {won ? (
+                  <Target className="h-12 w-12 text-emerald-400" aria-hidden="true" />
+                ) : (
+                  <Battery className="h-12 w-12 text-slate-200" aria-hidden="true" />
+                )}
+              </div>
               <h2
                 className={`text-4xl font-black uppercase tracking-tighter ${won ? "text-emerald-400" : "text-slate-200"}`}
               >
