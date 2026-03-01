@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { Battery, Zap } from "lucide-react";
 
 // --- TYPES & LOGIC HELPERS ---
 type TileType = "I" | "L" | "T" | "SOURCE" | "SINK";
@@ -302,19 +303,17 @@ function TileIcon({ type, isPowered }: { type: TileType; isPowered: boolean }) {
     );
   if (type === "SOURCE")
     return (
-      <div
+      <Battery
+        aria-hidden="true"
         className={`text-2xl ${isPowered ? "opacity-100 scale-110 drop-shadow-[0_0_8px_white]" : "opacity-40"}`}
-      >
-        🔋
-      </div>
+      />
     );
   if (type === "SINK")
     return (
-      <div
+      <Zap
+        aria-hidden="true"
         className={`text-2xl ${isPowered ? "opacity-100 scale-110 drop-shadow-[0_0_12px_#fbbf24]" : "opacity-40"}`}
-      >
-        ⚡
-      </div>
+      />
     );
   return null;
 }

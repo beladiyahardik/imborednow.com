@@ -2,6 +2,21 @@ import { useState, useEffect } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import { GetStaticProps } from "next";
+import { fetchBloggerPostsPage } from "@/lib/blogger";
+import { Binary, Circle, CircleDot, Hash, Sparkles, Zap } from "lucide-react";
+
+type BloggerPreview = {
+  id: string;
+  title: string;
+  published?: string;
+  excerpt: string;
+  image: string;
+};
+
+type HomeProps = {
+  initialPosts: BloggerPreview[];
+  initialSubscriberCount: number;
+};
 
 // --- Utilities ---
 const createExcerpt = (html: string) => {
@@ -31,7 +46,7 @@ const NEWSLETTER_API_URL = "https://belbytes.com/APIs/imborednow/subscribe.php";
 const faqData = [
   {
     q: "What is the Bored Button?",
-    a: "The Bored Button is a simple, one-click portal that instantly loads one of our hand-picked, high-quality browser tools or games directly on our site. Every experience runs seamlessly within imborednow.com  -  no redirects, no external sites, just pure engagement.",
+    a: "The Bored Button is a simple, one-click portal that instantly loads one of our hand-picked, high-quality browser tools or games. We prioritize fast loading and a consistent experience across the site.",
   },
   {
     q: "Who runs I'm Bored Now?",
@@ -78,7 +93,7 @@ const faqData = [
 export default function Home({
   initialPosts = [],
   initialSubscriberCount = 0,
-}: any) {
+}: HomeProps) {
   const [email, setEmail] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [statusMessage, setStatusMessage] = useState("");
@@ -224,13 +239,13 @@ export default function Home({
           <p className="text-xl md:text-2xl text-slate-600 max-w-4xl mx-auto mb-10 leading-relaxed font-light">
             Welcome to <span className="font-semibold">I'm Bored Now</span> - a hand-crafted sanctuary built to turn
             your empty moments into opportunities for creativity, reflection, and focused play.
-            No redirects, no aggressive ads, just pure, vetted quality.
+            Fast loading, family-friendly experiences, and carefully vetted quality.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <Link href="/p/random-activity">
               <button className="px-12 py-6 bg-slate-900 text-white font-bold text-xl rounded-2xl hover:bg-indigo-600 transition-all active:scale-95 shadow-2xl shadow-slate-200 flex items-center gap-3">
-                <span className="text-2xl">🔘</span> Launch Random Tool
+                <CircleDot className="h-6 w-6" aria-hidden="true" /> Launch Random Tool
               </button>
             </Link>
           </div>
@@ -282,7 +297,7 @@ export default function Home({
               <p className="text-lg text-slate-600">From the science of focus to the best digital tools for productivity - our editorial team covers it all.</p>
             </div>
             <Link href="/articles">
-              <button className="px-8 py-4 border-2 border-slate-900 font-bold rounded-xl hover:bg-slate-900 hover:text-white transition group flex items-center gap-2">
+              <button className="px-8 py-4 border-2 border-slate-900 text-slate-900 font-bold rounded-xl hover:bg-slate-900 hover:text-white transition group flex items-center gap-2">
                 Browse All Articles <span className="group-hover:translate-x-1 transition-transform">→</span>
               </button>
             </Link>
@@ -290,11 +305,11 @@ export default function Home({
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {initialPosts.length > 0 ? (
-              initialPosts.slice(0, 9).map((post: any) => (
+              initialPosts.slice(0, 9).map((post: BloggerPreview) => (
                 <article key={post.id} className="group bg-white rounded-3xl border border-slate-200 overflow-hidden hover:shadow-2xl transition-all duration-300 flex flex-col">
                   <div className="aspect-video overflow-hidden">
                     <img
-                      src={extractImage(post.content)}
+                      src={post.image}
                       alt={post.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
@@ -304,7 +319,7 @@ export default function Home({
                       {post.title}
                     </h3>
                     <p className="text-slate-500 text-sm mb-6 line-clamp-3 leading-relaxed">
-                      {createExcerpt(post.content)}
+                      {post.excerpt}
                     </p>
                     <div className="mt-auto">
                       <Link
@@ -388,7 +403,7 @@ export default function Home({
             {/* Card 1: Press It */}
             <div className="group bg-white p-8 rounded-3xl border border-slate-200 hover:border-indigo-500 hover:shadow-2xl transition-all duration-300 flex flex-col">
               <div className="w-14 h-14 bg-indigo-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-transform">
-                <span className="text-3xl">🔴</span>
+                <Circle className="h-8 w-8 text-indigo-600" aria-hidden="true" />
               </div>
               <h3 className="text-xl font-bold mb-3 text-slate-900">Press It</h3>
               <p className="text-slate-500 text-sm mb-8 flex-grow leading-relaxed">
@@ -402,7 +417,7 @@ export default function Home({
             {/* Card 2: Crack the PIN */}
             <div className="group bg-white p-8 rounded-3xl border border-slate-200 hover:border-emerald-500 hover:shadow-2xl transition-all duration-300 flex flex-col">
               <div className="w-14 h-14 bg-emerald-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-transform">
-                <span className="text-3xl">🔢</span>
+                <Hash className="h-8 w-8 text-emerald-600" aria-hidden="true" />
               </div>
               <h3 className="text-xl font-bold mb-3 text-slate-900">Crack the PIN</h3>
               <p className="text-slate-500 text-sm mb-8 flex-grow leading-relaxed">
@@ -416,7 +431,7 @@ export default function Home({
             {/* Card 3: Circuit Flow */}
             <div className="group bg-white p-8 rounded-3xl border border-slate-200 hover:border-orange-500 hover:shadow-2xl transition-all duration-300 flex flex-col">
               <div className="w-14 h-14 bg-orange-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-transform">
-                <span className="text-3xl">⚡</span>
+                <Zap className="h-8 w-8 text-orange-600" aria-hidden="true" />
               </div>
               <h3 className="text-xl font-bold mb-3 text-slate-900">Circuit Flow</h3>
               <p className="text-slate-500 text-sm mb-8 flex-grow leading-relaxed">
@@ -430,7 +445,7 @@ export default function Home({
             {/* Card 4: Binary Switch */}
             <div className="group bg-white p-8 rounded-3xl border border-slate-200 hover:border-rose-500 hover:shadow-2xl transition-all duration-300 flex flex-col">
               <div className="w-14 h-14 bg-rose-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-transform">
-                <span className="text-3xl">🔌</span>
+                <Binary className="h-8 w-8 text-rose-600" aria-hidden="true" />
               </div>
               <h3 className="text-xl font-bold mb-3 text-slate-900">Binary Switch</h3>
               <p className="text-slate-500 text-sm mb-8 flex-grow leading-relaxed">
@@ -508,7 +523,7 @@ export default function Home({
 
               {statusMessage && (
                 <div className="mt-6 inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 border border-white/10 text-indigo-100 text-sm font-medium animate-fade-in-up">
-                  ✨ {statusMessage}
+                  <Sparkles className="h-4 w-4" aria-hidden="true" /> {statusMessage}
                 </div>
               )}
             </div>
@@ -519,18 +534,21 @@ export default function Home({
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-  const API_KEY = "AIzaSyDw4oUW9oN8DfN5u6CUgFJ5rE7CF512l_0";
-  const BLOG_ID = "9008125657659692221";
-  const BLOGGER_URL = `https://www.googleapis.com/blogger/v3/blogs/${BLOG_ID}/posts?key=${API_KEY}&maxResults=9`;
-
-  let initialPosts = [];
+export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+  let initialPosts: BloggerPreview[] = [];
   let initialSubscriberCount = 0;
 
   try {
-    const res = await fetch(BLOGGER_URL);
-    const data = await res.json();
-    if (data.items) initialPosts = data.items;
+    const data = await fetchBloggerPostsPage({ maxResults: 9 });
+    if (data.items) {
+      initialPosts = data.items.map((post) => ({
+        id: post.id,
+        title: post.title,
+        published: post.published,
+        excerpt: createExcerpt(post.content),
+        image: extractImage(post.content),
+      }));
+    }
   } catch (err) {
     console.error("SSG Error (Posts):", err);
   }
@@ -548,3 +566,5 @@ export const getStaticProps: GetStaticProps = async () => {
     revalidate: 3600,
   };
 };
+
+

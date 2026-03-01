@@ -68,11 +68,11 @@ export default function BoredAI() {
           content="bored, boredom cure, fun things to do online, cool websites, games when bored, rabbit holes, interesting articles, AI recommendations, anti-boredom, productivity breaks, creative ideas"
         />
         <meta name="author" content="Hardik" />
-        <meta name="robots" content="index, nofollow" />
-        <meta name="googlebot" content="index, nofollow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <meta name="robots" content="noindex, nofollow" />
+        <meta name="googlebot" content="noindex, nofollow" />
 
         {/* Canonical URL (important for avoiding duplicate content issues) */}
-        <link rel="canonical" href="https://www.imborednow.com/" /> {/* ← replace with your real domain */}
+        <link rel="canonical" href="https://www.imborednow.com/bored-ai" />
 
         {/* Open Graph (Facebook, LinkedIn, WhatsApp, Discord, etc.) */}
         <meta property="og:title" content="Bored AI – Instant Fun When You're Bored" />
@@ -81,11 +81,11 @@ export default function BoredAI() {
           content="Tell us your boredom level and interests  -  get perfect online escapes: games, deep dives, mind-bending sites, learning rabbit holes, and more. Powered by AI."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.imborednow.com/" /> {/* ← replace */}
+        <meta property="og:url" content="https://www.imborednow.com/bored-ai" />
         <meta property="og:site_name" content="Bored AI" />
         <meta
           property="og:image"
-          content="https://www.imborednow.com/logo.jpg" /* ← create & host a 1200×630 image */
+          content="https://www.imborednow.com/logo.png"
         />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
@@ -101,7 +101,7 @@ export default function BoredAI() {
         />
         <meta
           name="twitter:image"
-          content="https://www.imborednow.com/og-image.jpg" /* same as OG image for consistency */
+          content="https://www.imborednow.com/logo.png"
         />
         <meta name="twitter:image:alt" content="Bored AI recommendation interface" />
         {/* Optional: if you have a Twitter handle */}

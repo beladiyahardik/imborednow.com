@@ -3,6 +3,7 @@ import { useState, useEffect, useMemo } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import { Binary, Circle, Hash, Hexagon, Link2, Puzzle, Waves, Zap, type LucideIcon } from "lucide-react";
 
 // --- DYNAMIC IMPORTS FOR ALL 8 GAMES ---
 const NumberMerge = dynamic(
@@ -45,7 +46,7 @@ interface TGame {
   description: string;
   color: string;
   tagline: string;
-  icon: string;
+  icon: LucideIcon;
 }
 
 export default function RandomWebsiteMachine() {
@@ -61,7 +62,7 @@ export default function RandomWebsiteMachine() {
         description: "Master exponential growth.",
         color: "from-purple-600 to-indigo-600",
         tagline: "GROWTH_ALGORITHM_ACTIVE",
-        icon: "🔢",
+        icon: Hash,
       },
       {
         id: "word-link",
@@ -70,7 +71,7 @@ export default function RandomWebsiteMachine() {
         description: "Connect the lexicon.",
         color: "from-indigo-600 to-violet-600",
         tagline: "LEXICAL_STREAM_SYNCED",
-        icon: "🔗",
+        icon: Link2,
       },
       {
         id: "crossword",
@@ -79,7 +80,7 @@ export default function RandomWebsiteMachine() {
         description: "Focus your vocabulary.",
         color: "from-blue-600 to-violet-500",
         tagline: "GRID_DECRYPTED",
-        icon: "🧩",
+        icon: Puzzle,
       },
       {
         id: "hexa-path",
@@ -88,7 +89,7 @@ export default function RandomWebsiteMachine() {
         description: "Spatial reasoning challenge.",
         color: "from-rose-500 to-purple-600",
         tagline: "GEOMETRY_LOCKED",
-        icon: "⬢",
+        icon: Hexagon,
       },
       {
         id: "binary-switch",
@@ -97,7 +98,7 @@ export default function RandomWebsiteMachine() {
         description: "Master the bits.",
         color: "from-emerald-500 to-cyan-600",
         tagline: "BITSTREAM_STABLE",
-        icon: "🔌",
+        icon: Binary,
       },
       {
         id: "circuit",
@@ -106,7 +107,7 @@ export default function RandomWebsiteMachine() {
         description: "Route the power.",
         color: "from-yellow-500 to-red-600",
         tagline: "LOGIC_CORE_ACTIVE",
-        icon: "⚡",
+        icon: Zap,
       },
       {
         id: "resonance",
@@ -115,7 +116,7 @@ export default function RandomWebsiteMachine() {
         description: "Sync the signals.",
         color: "from-cyan-500 to-indigo-600",
         tagline: "SIGNAL_LOCKED",
-        icon: "🌊",
+        icon: Waves,
       },
       {
         id: "quantum",
@@ -124,7 +125,7 @@ export default function RandomWebsiteMachine() {
         description: "Navigate the unseen.",
         color: "from-violet-600 to-indigo-700",
         tagline: "WAVEFUNCTION_COLLAPSE",
-        icon: "🌌",
+        icon: Hexagon,
       },
     ],
     [],
@@ -151,11 +152,13 @@ export default function RandomWebsiteMachine() {
 
   const currentGame = currentIndex !== null ? games[currentIndex] : null;
   const GameComponent = currentGame?.component;
+  const ActiveIcon = currentGame?.icon;
 
   return (
     <div className="h-screen bg-slate-950 font-sans overflow-hidden flex flex-col">
       <Head>
         <title>Logic Machine | 8 Master Challenges</title>
+        <meta name="robots" content="noindex, nofollow" />
       </Head>
 
       {/* --- TOP BAR --- */}
@@ -167,16 +170,16 @@ export default function RandomWebsiteMachine() {
             <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/20" />
             <div className="w-2.5 h-2.5 rounded-full bg-green-500/20" />
           </div>
-          <Link href="/p">
+          <Link href="/p/tools">
             <span className="text-[9px] font-black text-slate-500 uppercase tracking-widest hover:text-white transition-colors cursor-pointer">
-              ← Exit Machine
+              Back to Tools
             </span>
           </Link>
         </div>
 
         {/* --- CENTER: GAME TAGLINE (Hidden on small screens) --- */}
         <div className="hidden lg:flex bg-black/40 px-6 py-1.5 rounded-full border border-white/5 text-[10px] font-mono text-cyan-400/80 tracking-widest uppercase">
-          {loading ? "SEARCHING_FOR_SIGNAL..." : currentGame?.tagline}
+          {loading ? "Finding your next activity..." : currentGame?.tagline}
         </div>
 
         {/* --- RIGHT: ADSENSE SAFETY HIGHLIGHT --- */}
@@ -184,10 +187,10 @@ export default function RandomWebsiteMachine() {
           <div className="flex items-center bg-emerald-500/10 border border-emerald-500/40 px-3 py-1.5 rounded-xl shadow-[0_0_15px_rgba(16,185,129,0.1)]">
             <div className="flex flex-col items-end mr-3 border-r border-emerald-500/30 pr-3">
               <span className="text-[10px] font-black text-emerald-500 uppercase tracking-tighter leading-none">
-                100% Native Content
+                Handpicked In-House
               </span>
               <span className="text-[7px] font-bold text-emerald-600/80 uppercase leading-none mt-1">
-                Original Property of ImBoredNow
+                Built and tested by ImBoredNow
               </span>
             </div>
             <div className="relative flex h-2 w-2">
@@ -230,7 +233,7 @@ export default function RandomWebsiteMachine() {
             <div
               className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${currentGame?.color} flex-none flex items-center justify-center text-xl shadow-lg`}
             >
-              {currentGame?.icon}
+              {ActiveIcon && <ActiveIcon className="h-6 w-6 text-white" aria-hidden="true" />}
             </div>
             <div className="overflow-hidden">
               <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">
@@ -247,7 +250,7 @@ export default function RandomWebsiteMachine() {
             disabled={loading}
             className="flex-none h-16 px-8 bg-red-600 hover:bg-red-500 text-white rounded-2xl font-black text-sm uppercase tracking-widest transition-all active:scale-90 shadow-[0_0_40px_rgba(220,38,38,0.4)] disabled:opacity-50"
           >
-            {loading ? "..." : "Next Game 🔴"}
+            {loading ? "..." : <span className="inline-flex items-center gap-2">Next Game <Circle className="h-4 w-4" aria-hidden="true" /></span>}
           </button>
         </div>
       </footer>

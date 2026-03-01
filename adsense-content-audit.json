@@ -1,0 +1,54 @@
+{
+  "summary": {
+    "totalPosts": 24,
+    "avgWords": 1237,
+    "medianWords": 1125,
+    "postsUnder600Words": 1,
+    "postsUnder900Words": 3,
+    "postsKeywordDenseOver1_2pct": 2,
+    "postsWithWeirdEncodingSignals": 0,
+    "repeatedSentencePatterns": 0,
+    "suspiciousTemplateSignals": 4
+  },
+  "thin": [
+    {
+      "id": "443359539757551808",
+      "title": "What to Do When You're Bored and Lonely at the Same Time",
+      "words": 585
+    }
+  ],
+  "keywordHeavy": [
+    {
+      "id": "8955525689374867964",
+      "title": "Stuff to Do When Bored With Friends at Home, Outside, or Online",
+      "keywordDensity": 2.01,
+      "words": 1092
+    },
+    {
+      "id": "950147041580971436",
+      "title": "What to Do When Bored: Realistic Ideas for Everyday Life",
+      "keywordDensity": 1.38,
+      "words": 1378
+    }
+  ],
+  "weirdEncoding": [],
+  "repeated": [],
+  "suspicious": [
+    {
+      "id": "8127157709143677037",
+      "title": "15 Practical Ways to Break Routine Boredom in Daily Life"
+    },
+    {
+      "id": "3696181693917397196",
+      "title": "What Games to Play When Bored at Work (Without Wrecking Your Focus)"
+    },
+    {
+      "id": "605076290496660488",
+      "title": "50 Things to Do When Bored at Home That Actually Work"
+    },
+    {
+      "id": "1323022994671396230",
+      "title": " Stuck at Your Desk? 15 Fun Games to Play on Your Computer When Bored"
+    }
+  ]
+}

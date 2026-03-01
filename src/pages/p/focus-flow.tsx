@@ -2,6 +2,7 @@ import FocusFlow from "@/components/games/FocusFlow";
 import { GetStaticProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
+import { Zap } from "lucide-react";
 
 export default function FocusFlowPage({ seo, jsonLd }: any) {
   return (
@@ -69,7 +70,7 @@ export default function FocusFlowPage({ seo, jsonLd }: any) {
         <div className="max-w-4xl mx-auto">
           <div className="bg-[#11131E] rounded-[3.5rem] p-10 md:p-16 border border-white/5 shadow-2xl mb-20">
             <h3 className="text-3xl font-black text-white mb-12 flex items-center gap-4">
-              <span className="text-4xl">⚡</span>
+              <Zap className="h-9 w-9 text-indigo-400" aria-hidden="true" />
               <span>Training Protocols</span>
             </h3>
             <ul className="space-y-10">

@@ -1,0 +1,785 @@
+{
+  "generatedAt": "2026-03-01T11:36:31.476Z",
+  "totalPosts": 24,
+  "highRisk": 2,
+  "mediumRisk": 10,
+  "lowRisk": 12,
+  "top": [
+    {
+      "id": "605076290496660488",
+      "title": "50 Things to Do When Bored at Home That Actually Work",
+      "url": "http://imborednow-zestarc.blogspot.com/2026/01/50-things-to-do-when-bored-at-home-that.html",
+      "wordCount": 828,
+      "boredomDensity": 2.17,
+      "aiStyleHits": [
+        {
+          "pattern": "from .* to .*",
+          "sample": "from routine, repetition, or mental fatigue. When your days start to feel predictable, your brain naturally looks for st"
+        }
+      ],
+      "repeatedSentences": [],
+      "seoPatternHits": [
+        {
+          "pattern": "best\\s+\\w+\\s+\\w+",
+          "count": 1,
+          "sample": "best for you"
+        },
+        {
+          "pattern": "free\\s+online",
+          "count": 1,
+          "sample": "free online"
+        },
+        {
+          "pattern": "things\\s+to\\s+do\\s+when\\s+bored",
+          "count": 3,
+          "sample": "Things to Do When Bored"
+        }
+      ],
+      "risk": 6
+    },
+    {
+      "id": "8955525689374867964",
+      "title": "Stuff to Do When Bored With Friends at Home, Outside, or Online",
+      "url": "http://imborednow-zestarc.blogspot.com/2026/02/stuff-to-do-when-bored-with-friends-at.html",
+      "wordCount": 1116,
+      "boredomDensity": 3.49,
+      "aiStyleHits": [
+        {
+          "pattern": "from .* to .*",
+          "sample": "from one line These work because they create interaction , not competition. 2. Watch Something Bad on Purpose Not every "
+        }
+      ],
+      "repeatedSentences": [],
+      "seoPatternHits": [
+        {
+          "pattern": "best\\s+\\w+\\s+\\w+",
+          "count": 3,
+          "sample": "best conversations happen"
+        },
+        {
+          "pattern": "things\\s+to\\s+do\\s+when\\s+bored",
+          "count": 5,
+          "sample": "things to do when bored"
+        }
+      ],
+      "risk": 5
+    },
+    {
+      "id": "443359539757551808",
+      "title": "What to Do When You're Bored and Lonely at the Same Time",
+      "url": "http://imborednow-zestarc.blogspot.com/2026/01/what-to-do-when-youre-bored-and-lonely.html",
+      "wordCount": 582,
+      "boredomDensity": 1.03,
+      "aiStyleHits": [
+        {
+          "pattern": "from .* to .*",
+          "sample": "from there. Try Low-Pressure Connection You don't need a deep, meaningful conversation when you feel like this. Send a q"
+        }
+      ],
+      "repeatedSentences": [],
+      "seoPatternHits": [],
+      "risk": 4
+    },
+    {
+      "id": "3325812802006918321",
+      "title": "Boredom Games: Simple Ways to Break Office and Remote Work Monotony",
+      "url": "http://imborednow-zestarc.blogspot.com/2026/02/boredom-games-simple-ways-to-break.html",
+      "wordCount": 883,
+      "boredomDensity": 2.83,
+      "aiStyleHits": [
+        {
+          "pattern": "from .* to .*",
+          "sample": "from the Workday Example 1: The Between-Meetings Gap You’ve got 7 minutes before your next Zoom call. Starting a big tas"
+        }
+      ],
+      "repeatedSentences": [],
+      "seoPatternHits": [],
+      "risk": 4
+    },
+    {
+      "id": "6519031392857714856",
+      "title": "Restless at Night? What to Do When You Can’t Sleep and Feel Bored",
+      "url": "http://imborednow-zestarc.blogspot.com/2026/02/restless-at-night-what-to-do-when-you.html",
+      "wordCount": 1102,
+      "boredomDensity": 1.54,
+      "aiStyleHits": [
+        {
+          "pattern": "from .* to .*",
+          "sample": "from institutions such as Harvard Medical School’s Division of Sleep Medicine suggests that blue light exposure in the e"
+        }
+      ],
+      "repeatedSentences": [],
+      "seoPatternHits": [
+        {
+          "pattern": "best\\s+\\w+\\s+\\w+",
+          "count": 1,
+          "sample": "best to consult"
+        }
+      ],
+      "risk": 4
+    },
+    {
+      "id": "950147041580971436",
+      "title": "What to Do When Bored: Realistic Ideas for Everyday Life",
+      "url": "http://imborednow-zestarc.blogspot.com/2026/02/what-to-do-when-bored-realistic-ideas.html",
+      "wordCount": 1412,
+      "boredomDensity": 3.54,
+      "aiStyleHits": [
+        {
+          "pattern": "from .* to .*",
+          "sample": "from the University of York suggests boredom can appear when there’s a mismatch between mental energy and the environmen"
+        }
+      ],
+      "repeatedSentences": [],
+      "seoPatternHits": [
+        {
+          "pattern": "things\\s+to\\s+do\\s+when\\s+bored",
+          "count": 2,
+          "sample": "Things to Do When Bored"
+        }
+      ],
+      "risk": 4
+    },
+    {
+      "id": "8127157709143677037",
+      "title": "15 Practical Ways to Break Routine Boredom in Daily Life",
+      "url": "http://imborednow-zestarc.blogspot.com/2026/02/15-practical-ways-to-break-routine.html",
+      "wordCount": 1456,
+      "boredomDensity": 1.03,
+      "aiStyleHits": [
+        {
+          "pattern": "from .* to .*",
+          "sample": "from a library instead of home Explore a new neighborhood Try a cuisine you’ve never ordered Novelty expands your sense "
+        }
+      ],
+      "repeatedSentences": [],
+      "seoPatternHits": [
+        {
+          "pattern": "free\\s+online",
+          "count": 1,
+          "sample": "free online"
+        },
+        {
+          "pattern": "top\\s+\\d+",
+          "count": 1,
+          "sample": "top 3"
+        }
+      ],
+      "risk": 4
+    },
+    {
+      "id": "3696181693917397196",
+      "title": "What Games to Play When Bored at Work (Without Wrecking Your Focus)",
+      "url": "http://imborednow-zestarc.blogspot.com/2026/02/what-games-to-play-when-bored-at-work.html",
+      "wordCount": 965,
+      "boredomDensity": 1.97,
+      "aiStyleHits": [
+        {
+          "pattern": "from .* to .*",
+          "sample": "from Think of them as a mental reset, not an escape hatch. Types of Games That Work Well When You’re Bored Instead of na"
+        }
+      ],
+      "repeatedSentences": [],
+      "seoPatternHits": [],
+      "risk": 3
+    },
+    {
+      "id": "2994411691593182679",
+      "title": "Fun Challenges When Bored Alone: Practical, Creative Ways to Re-Energize Yourself",
+      "url": "http://imborednow-zestarc.blogspot.com/2026/02/fun-challenges-when-bored-alone.html",
+      "wordCount": 981,
+      "boredomDensity": 1.33,
+      "aiStyleHits": [
+        {
+          "pattern": "from .* to .*",
+          "sample": "from drifting to engaging. Momentum rarely appears first. It follows action. Quick Creative Challenges (For Restless Ene"
+        }
+      ],
+      "repeatedSentences": [],
+      "seoPatternHits": [],
+      "risk": 3
+    },
+    {
+      "id": "6116798545104713209",
+      "title": "What to Do When You’re Sick at Home and Have Nothing to Do",
+      "url": "http://imborednow-zestarc.blogspot.com/2026/02/what-to-do-when-youre-sick-at-home-and.html",
+      "wordCount": 1002,
+      "boredomDensity": 1.2,
+      "aiStyleHits": [
+        {
+          "pattern": "from .* to .*",
+          "sample": "from childhood or early adulthood Slow, predictable documentaries On recovery days, familiarity often feels better than "
+        }
+      ],
+      "repeatedSentences": [],
+      "seoPatternHits": [
+        {
+          "pattern": "best\\s+\\w+\\s+\\w+",
+          "count": 1,
+          "sample": "Best Option It"
+        }
+      ],
+      "risk": 3
+    },
+    {
+      "id": "4160633250904015479",
+      "title": "When Lunch Feels Boring: Easy Slow Cooker Ideas That Help",
+      "url": "http://imborednow-zestarc.blogspot.com/2026/02/when-lunch-feels-boring-easy-slow.html",
+      "wordCount": 1176,
+      "boredomDensity": 0.85,
+      "aiStyleHits": [
+        {
+          "pattern": "from .* to .*",
+          "sample": "from you. A slow cooker lentil stew is the kind of lunch that feels steady rather than thrilling - which is sometimes ex"
+        }
+      ],
+      "repeatedSentences": [],
+      "seoPatternHits": [
+        {
+          "pattern": "best\\s+\\w+\\s+\\w+",
+          "count": 1,
+          "sample": "best when expectations"
+        }
+      ],
+      "risk": 3
+    },
+    {
+      "id": "2504371059181281384",
+      "title": "The 15-Minute Cure for a Boring Afternoon That Actually Works",
+      "url": "http://imborednow-zestarc.blogspot.com/2026/01/the-15-minute-cure-for-boring-afternoon_17.html",
+      "wordCount": 1296,
+      "boredomDensity": 0.85,
+      "aiStyleHits": [
+        {
+          "pattern": "from .* to .*",
+          "sample": "from every other \"beat boredom\" suggestion: you're creating instead of consuming. And it takes just 15 minutes. What You"
+        }
+      ],
+      "repeatedSentences": [],
+      "seoPatternHits": [
+        {
+          "pattern": "best\\s+\\w+\\s+\\w+",
+          "count": 2,
+          "sample": "best when you"
+        }
+      ],
+      "risk": 3
+    }
+  ],
+  "all": [
+    {
+      "id": "605076290496660488",
+      "title": "50 Things to Do When Bored at Home That Actually Work",
+      "url": "http://imborednow-zestarc.blogspot.com/2026/01/50-things-to-do-when-bored-at-home-that.html",
+      "wordCount": 828,
+      "boredomDensity": 2.17,
+      "aiStyleHits": [
+        {
+          "pattern": "from .* to .*",
+          "sample": "from routine, repetition, or mental fatigue. When your days start to feel predictable, your brain naturally looks for st"
+        }
+      ],
+      "repeatedSentences": [],
+      "seoPatternHits": [
+        {
+          "pattern": "best\\s+\\w+\\s+\\w+",
+          "count": 1,
+          "sample": "best for you"
+        },
+        {
+          "pattern": "free\\s+online",
+          "count": 1,
+          "sample": "free online"
+        },
+        {
+          "pattern": "things\\s+to\\s+do\\s+when\\s+bored",
+          "count": 3,
+          "sample": "Things to Do When Bored"
+        }
+      ],
+      "risk": 6
+    },
+    {
+      "id": "8955525689374867964",
+      "title": "Stuff to Do When Bored With Friends at Home, Outside, or Online",
+      "url": "http://imborednow-zestarc.blogspot.com/2026/02/stuff-to-do-when-bored-with-friends-at.html",
+      "wordCount": 1116,
+      "boredomDensity": 3.49,
+      "aiStyleHits": [
+        {
+          "pattern": "from .* to .*",
+          "sample": "from one line These work because they create interaction , not competition. 2. Watch Something Bad on Purpose Not every "
+        }
+      ],
+      "repeatedSentences": [],
+      "seoPatternHits": [
+        {
+          "pattern": "best\\s+\\w+\\s+\\w+",
+          "count": 3,
+          "sample": "best conversations happen"
+        },
+        {
+          "pattern": "things\\s+to\\s+do\\s+when\\s+bored",
+          "count": 5,
+          "sample": "things to do when bored"
+        }
+      ],
+      "risk": 5
+    },
+    {
+      "id": "443359539757551808",
+      "title": "What to Do When You're Bored and Lonely at the Same Time",
+      "url": "http://imborednow-zestarc.blogspot.com/2026/01/what-to-do-when-youre-bored-and-lonely.html",
+      "wordCount": 582,
+      "boredomDensity": 1.03,
+      "aiStyleHits": [
+        {
+          "pattern": "from .* to .*",
+          "sample": "from there. Try Low-Pressure Connection You don't need a deep, meaningful conversation when you feel like this. Send a q"
+        }
+      ],
+      "repeatedSentences": [],
+      "seoPatternHits": [],
+      "risk": 4
+    },
+    {
+      "id": "3325812802006918321",
+      "title": "Boredom Games: Simple Ways to Break Office and Remote Work Monotony",
+      "url": "http://imborednow-zestarc.blogspot.com/2026/02/boredom-games-simple-ways-to-break.html",
+      "wordCount": 883,
+      "boredomDensity": 2.83,
+      "aiStyleHits": [
+        {
+          "pattern": "from .* to .*",
+          "sample": "from the Workday Example 1: The Between-Meetings Gap You’ve got 7 minutes before your next Zoom call. Starting a big tas"
+        }
+      ],
+      "repeatedSentences": [],
+      "seoPatternHits": [],
+      "risk": 4
+    },
+    {
+      "id": "6519031392857714856",
+      "title": "Restless at Night? What to Do When You Can’t Sleep and Feel Bored",
+      "url": "http://imborednow-zestarc.blogspot.com/2026/02/restless-at-night-what-to-do-when-you.html",
+      "wordCount": 1102,
+      "boredomDensity": 1.54,
+      "aiStyleHits": [
+        {
+          "pattern": "from .* to .*",
+          "sample": "from institutions such as Harvard Medical School’s Division of Sleep Medicine suggests that blue light exposure in the e"
+        }
+      ],
+      "repeatedSentences": [],
+      "seoPatternHits": [
+        {
+          "pattern": "best\\s+\\w+\\s+\\w+",
+          "count": 1,
+          "sample": "best to consult"
+        }
+      ],
+      "risk": 4
+    },
+    {
+      "id": "950147041580971436",
+      "title": "What to Do When Bored: Realistic Ideas for Everyday Life",
+      "url": "http://imborednow-zestarc.blogspot.com/2026/02/what-to-do-when-bored-realistic-ideas.html",
+      "wordCount": 1412,
+      "boredomDensity": 3.54,
+      "aiStyleHits": [
+        {
+          "pattern": "from .* to .*",
+          "sample": "from the University of York suggests boredom can appear when there’s a mismatch between mental energy and the environmen"
+        }
+      ],
+      "repeatedSentences": [],
+      "seoPatternHits": [
+        {
+          "pattern": "things\\s+to\\s+do\\s+when\\s+bored",
+          "count": 2,
+          "sample": "Things to Do When Bored"
+        }
+      ],
+      "risk": 4
+    },
+    {
+      "id": "8127157709143677037",
+      "title": "15 Practical Ways to Break Routine Boredom in Daily Life",
+      "url": "http://imborednow-zestarc.blogspot.com/2026/02/15-practical-ways-to-break-routine.html",
+      "wordCount": 1456,
+      "boredomDensity": 1.03,
+      "aiStyleHits": [
+        {
+          "pattern": "from .* to .*",
+          "sample": "from a library instead of home Explore a new neighborhood Try a cuisine you’ve never ordered Novelty expands your sense "
+        }
+      ],
+      "repeatedSentences": [],
+      "seoPatternHits": [
+        {
+          "pattern": "free\\s+online",
+          "count": 1,
+          "sample": "free online"
+        },
+        {
+          "pattern": "top\\s+\\d+",
+          "count": 1,
+          "sample": "top 3"
+        }
+      ],
+      "risk": 4
+    },
+    {
+      "id": "3696181693917397196",
+      "title": "What Games to Play When Bored at Work (Without Wrecking Your Focus)",
+      "url": "http://imborednow-zestarc.blogspot.com/2026/02/what-games-to-play-when-bored-at-work.html",
+      "wordCount": 965,
+      "boredomDensity": 1.97,
+      "aiStyleHits": [
+        {
+          "pattern": "from .* to .*",
+          "sample": "from Think of them as a mental reset, not an escape hatch. Types of Games That Work Well When You’re Bored Instead of na"
+        }
+      ],
+      "repeatedSentences": [],
+      "seoPatternHits": [],
+      "risk": 3
+    },
+    {
+      "id": "2994411691593182679",
+      "title": "Fun Challenges When Bored Alone: Practical, Creative Ways to Re-Energize Yourself",
+      "url": "http://imborednow-zestarc.blogspot.com/2026/02/fun-challenges-when-bored-alone.html",
+      "wordCount": 981,
+      "boredomDensity": 1.33,
+      "aiStyleHits": [
+        {
+          "pattern": "from .* to .*",
+          "sample": "from drifting to engaging. Momentum rarely appears first. It follows action. Quick Creative Challenges (For Restless Ene"
+        }
+      ],
+      "repeatedSentences": [],
+      "seoPatternHits": [],
+      "risk": 3
+    },
+    {
+      "id": "6116798545104713209",
+      "title": "What to Do When You’re Sick at Home and Have Nothing to Do",
+      "url": "http://imborednow-zestarc.blogspot.com/2026/02/what-to-do-when-youre-sick-at-home-and.html",
+      "wordCount": 1002,
+      "boredomDensity": 1.2,
+      "aiStyleHits": [
+        {
+          "pattern": "from .* to .*",
+          "sample": "from childhood or early adulthood Slow, predictable documentaries On recovery days, familiarity often feels better than "
+        }
+      ],
+      "repeatedSentences": [],
+      "seoPatternHits": [
+        {
+          "pattern": "best\\s+\\w+\\s+\\w+",
+          "count": 1,
+          "sample": "Best Option It"
+        }
+      ],
+      "risk": 3
+    },
+    {
+      "id": "4160633250904015479",
+      "title": "When Lunch Feels Boring: Easy Slow Cooker Ideas That Help",
+      "url": "http://imborednow-zestarc.blogspot.com/2026/02/when-lunch-feels-boring-easy-slow.html",
+      "wordCount": 1176,
+      "boredomDensity": 0.85,
+      "aiStyleHits": [
+        {
+          "pattern": "from .* to .*",
+          "sample": "from you. A slow cooker lentil stew is the kind of lunch that feels steady rather than thrilling - which is sometimes ex"
+        }
+      ],
+      "repeatedSentences": [],
+      "seoPatternHits": [
+        {
+          "pattern": "best\\s+\\w+\\s+\\w+",
+          "count": 1,
+          "sample": "best when expectations"
+        }
+      ],
+      "risk": 3
+    },
+    {
+      "id": "2504371059181281384",
+      "title": "The 15-Minute Cure for a Boring Afternoon That Actually Works",
+      "url": "http://imborednow-zestarc.blogspot.com/2026/01/the-15-minute-cure-for-boring-afternoon_17.html",
+      "wordCount": 1296,
+      "boredomDensity": 0.85,
+      "aiStyleHits": [
+        {
+          "pattern": "from .* to .*",
+          "sample": "from every other \"beat boredom\" suggestion: you're creating instead of consuming. And it takes just 15 minutes. What You"
+        }
+      ],
+      "repeatedSentences": [],
+      "seoPatternHits": [
+        {
+          "pattern": "best\\s+\\w+\\s+\\w+",
+          "count": 2,
+          "sample": "best when you"
+        }
+      ],
+      "risk": 3
+    },
+    {
+      "id": "1242566270489008539",
+      "title": "Realistic Lazy Day Ideas for When You Feel Unmotivated",
+      "url": "http://imborednow-zestarc.blogspot.com/2026/02/realistic-lazy-day-ideas-for-when-you.html",
+      "wordCount": 1054,
+      "boredomDensity": 0.19,
+      "aiStyleHits": [
+        {
+          "pattern": "from .* to .*",
+          "sample": "from a different table Studying at a café Sitting on the floor instead of your desk Rearranging one corner It sounds sma"
+        }
+      ],
+      "repeatedSentences": [],
+      "seoPatternHits": [
+        {
+          "pattern": "best\\s+\\w+\\s+\\w+",
+          "count": 1,
+          "sample": "best lazy day"
+        }
+      ],
+      "risk": 2
+    },
+    {
+      "id": "7528141278350300437",
+      "title": "AI-Enhanced Art for Beginners: Design Your Own Room Decor",
+      "url": "http://imborednow-zestarc.blogspot.com/2026/01/ai-enhanced-art-for-beginners-design.html",
+      "wordCount": 1100,
+      "boredomDensity": 0,
+      "aiStyleHits": [
+        {
+          "pattern": "from .* to .*",
+          "sample": "from my pain. The Important Stuff (Ethics & Rights – Quick Version) Commercial rights change, so always double-check off"
+        }
+      ],
+      "repeatedSentences": [],
+      "seoPatternHits": [
+        {
+          "pattern": "best\\s+\\w+\\s+\\w+",
+          "count": 1,
+          "sample": "Best for big"
+        }
+      ],
+      "risk": 2
+    },
+    {
+      "id": "2842032112334258238",
+      "title": "2048 Explained: The Minimalist Logic Game That Never Gets Old",
+      "url": "http://imborednow-zestarc.blogspot.com/2026/02/2048-explained-minimalist-logic-game.html",
+      "wordCount": 1123,
+      "boredomDensity": 0.53,
+      "aiStyleHits": [
+        {
+          "pattern": "from .* to .*",
+          "sample": "from textbooks or lectures directly to social media can make it harder to refocus. 2048 offers a middle ground. Engaging"
+        }
+      ],
+      "repeatedSentences": [],
+      "seoPatternHits": [
+        {
+          "pattern": "best\\s+\\w+\\s+\\w+",
+          "count": 1,
+          "sample": "best seen as"
+        }
+      ],
+      "risk": 2
+    },
+    {
+      "id": "3111841540871212258",
+      "title": "Simple Gardening Advice for First-Time Gardeners",
+      "url": "http://imborednow-zestarc.blogspot.com/2026/02/simple-gardening-advice-for-first-time.html",
+      "wordCount": 1167,
+      "boredomDensity": 0,
+      "aiStyleHits": [
+        {
+          "pattern": "from .* to .*",
+          "sample": "from small mistakes. If you live in the U.S., UK, Canada, Australia, or another temperate region with clear seasons, the"
+        }
+      ],
+      "repeatedSentences": [],
+      "seoPatternHits": [
+        {
+          "pattern": "best\\s+\\w+\\s+\\w+",
+          "count": 1,
+          "sample": "best time to"
+        }
+      ],
+      "risk": 2
+    },
+    {
+      "id": "524979593422963015",
+      "title": "Rainy Day Ideas: Cozy, Creative & Productive Ways to Spend Time",
+      "url": "http://imborednow-zestarc.blogspot.com/2026/02/rainy-day-ideas-cozy-creative.html",
+      "wordCount": 1260,
+      "boredomDensity": 0.32,
+      "aiStyleHits": [
+        {
+          "pattern": "from .* to .*",
+          "sample": "from mismatch. You try to be productive when you’re exhausted, or you try to relax when your brain wants stimulation. On"
+        }
+      ],
+      "repeatedSentences": [],
+      "seoPatternHits": [
+        {
+          "pattern": "best\\s+\\w+\\s+\\w+",
+          "count": 2,
+          "sample": "best things to"
+        }
+      ],
+      "risk": 2
+    },
+    {
+      "id": "8884776011529374852",
+      "title": "Kill Time the Right Way: 60+ Smart Things to Do While Waiting (Without Wasting Your Day)",
+      "url": "http://imborednow-zestarc.blogspot.com/2026/02/kill-time-right-way-60-smart-things-to.html",
+      "wordCount": 1388,
+      "boredomDensity": 0.07,
+      "aiStyleHits": [
+        {
+          "pattern": "from .* to .*",
+          "sample": "from 300 by 6s Name animals A–Z Recall every country you can think of Mental friction keeps your brain engaged without o"
+        }
+      ],
+      "repeatedSentences": [],
+      "seoPatternHits": [
+        {
+          "pattern": "best\\s+\\w+\\s+\\w+",
+          "count": 1,
+          "sample": "best things to"
+        }
+      ],
+      "risk": 2
+    },
+    {
+      "id": "1323022994671396230",
+      "title": " Stuck at Your Desk? 15 Fun Games to Play on Your Computer When Bored",
+      "url": "http://imborednow-zestarc.blogspot.com/2026/01/stuck-at-your-desk-15-fun-games-to-play.html",
+      "wordCount": 1848,
+      "boredomDensity": 0.49,
+      "aiStyleHits": [
+        {
+          "pattern": "whether you'?re",
+          "sample": "Whether you're"
+        },
+        {
+          "pattern": "from .* to .*",
+          "sample": "from quick word puzzles to deep, atmospheric mysteries that you can play for free. Quick Browser Games You Can Finish in"
+        }
+      ],
+      "repeatedSentences": [],
+      "seoPatternHits": [
+        {
+          "pattern": "best\\s+\\w+\\s+\\w+",
+          "count": 5,
+          "sample": "best browser and"
+        }
+      ],
+      "risk": 2
+    },
+    {
+      "id": "2809765319722483075",
+      "title": "Walking Mood Boost: Beat Boredom with These 4 Running & Walking Types",
+      "url": "http://imborednow-zestarc.blogspot.com/2026/01/walking-mood-boost-beat-boredom-with_28.html",
+      "wordCount": 2249,
+      "boredomDensity": 0.49,
+      "aiStyleHits": [
+        {
+          "pattern": "whether you'?re",
+          "sample": "whether you're"
+        },
+        {
+          "pattern": "from .* to .*",
+          "sample": "from \"I'm stuck here\" to \"I'm multitasking connection.\" Input rotation prevents audio fatigue. Podcasts aren't one-size-"
+        }
+      ],
+      "repeatedSentences": [],
+      "seoPatternHits": [
+        {
+          "pattern": "best\\s+\\w+\\s+\\w+",
+          "count": 1,
+          "sample": "best part of"
+        }
+      ],
+      "risk": 2
+    },
+    {
+      "id": "5339124229946248371",
+      "title": "What to Draw When You’re Bored: Easy, Cute & Creative Ideas for All Ages",
+      "url": "http://imborednow-zestarc.blogspot.com/2026/01/what-to-draw-when-youre-bored-easy-cute.html",
+      "wordCount": 2792,
+      "boredomDensity": 0.21,
+      "aiStyleHits": [
+        {
+          "pattern": "from .* to .*",
+          "sample": "from doodles to step-by-step tutorials), practical tips (including what to draw with just a pencil), and even fun challe"
+        }
+      ],
+      "repeatedSentences": [],
+      "seoPatternHits": [
+        {
+          "pattern": "best\\s+\\w+\\s+\\w+",
+          "count": 2,
+          "sample": "best way to"
+        }
+      ],
+      "risk": 2
+    },
+    {
+      "id": "7121912677617331968",
+      "title": "Screen-Free Fun Ideas for 10 Year Old Kids Stuck at Home",
+      "url": "http://imborednow-zestarc.blogspot.com/2026/02/screen-free-fun-ideas-for-10-year-old.html",
+      "wordCount": 1007,
+      "boredomDensity": 0.6,
+      "aiStyleHits": [
+        {
+          "pattern": "from .* to .*",
+          "sample": "from sitting still too long. By the time I finished, I wasn’t bored anymore - I was laughing and proud of myself. 2. Bui"
+        }
+      ],
+      "repeatedSentences": [],
+      "seoPatternHits": [],
+      "risk": 1
+    },
+    {
+      "id": "5189092497034282209",
+      "title": "Wearing Earbuds While Driving: What U.S. Law Says",
+      "url": "http://imborednow-zestarc.blogspot.com/2026/02/wearing-earbuds-while-driving-what-us.html",
+      "wordCount": 1193,
+      "boredomDensity": 0,
+      "aiStyleHits": [
+        {
+          "pattern": "from .* to .*",
+          "sample": "from the National Highway Traffic Safety Administration shows that distracted driving contributes to thousands of fatali"
+        }
+      ],
+      "repeatedSentences": [],
+      "seoPatternHits": [],
+      "risk": 1
+    },
+    {
+      "id": "3301438427311097951",
+      "title": "Why Do I Feel So Lonely - And How to Feel Less Lonely",
+      "url": "http://imborednow-zestarc.blogspot.com/2026/02/why-do-i-feel-so-lonely-and-how-to-feel.html",
+      "wordCount": 1460,
+      "boredomDensity": 0.07,
+      "aiStyleHits": [
+        {
+          "pattern": "from .* to .*",
+          "sample": "from coworkers. Conversely, someone living alone might feel deeply connected through meaningful online conversations, ho"
+        }
+      ],
+      "repeatedSentences": [],
+      "seoPatternHits": [],
+      "risk": 1
+    }
+  ]
+}

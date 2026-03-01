@@ -1,0 +1,459 @@
+{
+  "summary": {
+    "total": 56,
+    "emptyTitle": 25,
+    "duplicateDesc": 52,
+    "duplicateCanonical": 49,
+    "duplicateRobots": 56
+  },
+  "issues": [
+    {
+      "file": ".next/server/pages/404.html",
+      "titleCount": 1,
+      "emptyTitle": false,
+      "descCount": 1,
+      "canonicalCount": 1,
+      "robotsCount": 3
+    },
+    {
+      "file": ".next/server/pages/500.html",
+      "titleCount": 1,
+      "emptyTitle": false,
+      "descCount": 1,
+      "canonicalCount": 1,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/articles/15-practical-ways-to-break-routine-boredom-in-daily-life-8127157709143677037.html",
+      "titleCount": 1,
+      "emptyTitle": true,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/articles/2048-explained-the-minimalist-logic-game-that-never-gets-old-2842032112334258238.html",
+      "titleCount": 1,
+      "emptyTitle": true,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/articles/50-things-to-do-when-bored-at-home-that-actually-work-605076290496660488.html",
+      "titleCount": 1,
+      "emptyTitle": true,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/articles/ai-enhanced-art-for-beginners-design-your-own-room-decor-7528141278350300437.html",
+      "titleCount": 1,
+      "emptyTitle": true,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/articles/boredom-games-simple-ways-to-break-office-and-remote-work-monotony-3325812802006918321.html",
+      "titleCount": 1,
+      "emptyTitle": true,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/articles/fun-challenges-when-bored-alone-practical-creative-ways-to-re-energize-yourself-2994411691593182679.html",
+      "titleCount": 1,
+      "emptyTitle": true,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/articles/kill-time-the-right-way-60-smart-things-to-do-while-waiting-without-wasting-your-day-8884776011529374852.html",
+      "titleCount": 1,
+      "emptyTitle": true,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/articles/rainy-day-ideas-cozy-creative-productive-ways-to-spend-time-524979593422963015.html",
+      "titleCount": 1,
+      "emptyTitle": true,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/articles/realistic-lazy-day-ideas-for-when-you-feel-unmotivated-1242566270489008539.html",
+      "titleCount": 1,
+      "emptyTitle": true,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/articles/restless-at-night-what-to-do-when-you-cant-sleep-and-feel-bored-6519031392857714856.html",
+      "titleCount": 1,
+      "emptyTitle": true,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/articles/screen-free-fun-ideas-for-10-year-old-kids-stuck-at-home-7121912677617331968.html",
+      "titleCount": 1,
+      "emptyTitle": true,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/articles/simple-gardening-advice-for-first-time-gardeners-3111841540871212258.html",
+      "titleCount": 1,
+      "emptyTitle": true,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/articles/stuck-at-your-desk-15-fun-games-to-play-on-your-computer-when-bored-1323022994671396230.html",
+      "titleCount": 1,
+      "emptyTitle": true,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/articles/stuff-to-do-when-bored-with-friends-at-home-outside-or-online-8955525689374867964.html",
+      "titleCount": 1,
+      "emptyTitle": true,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/articles/the-15-minute-cure-for-a-boring-afternoon-that-actually-works-2504371059181281384.html",
+      "titleCount": 1,
+      "emptyTitle": true,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/articles/walking-mood-boost-beat-boredom-with-these-4-running-walking-types-2809765319722483075.html",
+      "titleCount": 1,
+      "emptyTitle": true,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/articles/wearing-earbuds-while-driving-what-us-law-says-5189092497034282209.html",
+      "titleCount": 1,
+      "emptyTitle": true,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/articles/what-games-to-play-when-bored-at-work-without-wrecking-your-focus-3696181693917397196.html",
+      "titleCount": 1,
+      "emptyTitle": true,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/articles/what-to-do-when-bored-realistic-ideas-for-everyday-life-950147041580971436.html",
+      "titleCount": 1,
+      "emptyTitle": true,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/articles/what-to-do-when-youre-bored-and-lonely-at-the-same-time-443359539757551808.html",
+      "titleCount": 1,
+      "emptyTitle": true,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/articles/what-to-do-when-youre-sick-at-home-and-have-nothing-to-do-6116798545104713209.html",
+      "titleCount": 1,
+      "emptyTitle": true,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/articles/what-to-draw-when-youre-bored-easy-cute-creative-ideas-for-all-ages-5339124229946248371.html",
+      "titleCount": 1,
+      "emptyTitle": true,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/articles/when-lunch-feels-boring-easy-slow-cooker-ideas-that-help-4160633250904015479.html",
+      "titleCount": 1,
+      "emptyTitle": true,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/articles/why-do-i-feel-so-lonely-and-how-to-feel-less-lonely-3301438427311097951.html",
+      "titleCount": 1,
+      "emptyTitle": true,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/articles.html",
+      "titleCount": 1,
+      "emptyTitle": false,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/bored-ai.html",
+      "titleCount": 1,
+      "emptyTitle": false,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 3
+    },
+    {
+      "file": ".next/server/pages/index.html",
+      "titleCount": 1,
+      "emptyTitle": false,
+      "descCount": 2,
+      "canonicalCount": 1,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/info/about.html",
+      "titleCount": 1,
+      "emptyTitle": false,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/info/contact.html",
+      "titleCount": 1,
+      "emptyTitle": false,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/info/disclaimer.html",
+      "titleCount": 1,
+      "emptyTitle": false,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/info/privacy-policy.html",
+      "titleCount": 1,
+      "emptyTitle": false,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/info/terms.html",
+      "titleCount": 1,
+      "emptyTitle": false,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/p/binary-switch.html",
+      "titleCount": 1,
+      "emptyTitle": false,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/p/birthdate-calculator.html",
+      "titleCount": 1,
+      "emptyTitle": false,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/p/cipher-grid.html",
+      "titleCount": 1,
+      "emptyTitle": true,
+      "descCount": 1,
+      "canonicalCount": 1,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/p/circuit-flow.html",
+      "titleCount": 1,
+      "emptyTitle": false,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/p/daily-crossword.html",
+      "titleCount": 1,
+      "emptyTitle": false,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/p/focus-flow.html",
+      "titleCount": 1,
+      "emptyTitle": false,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/p/games-to-play-when-bored.html",
+      "titleCount": 1,
+      "emptyTitle": false,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 3
+    },
+    {
+      "file": ".next/server/pages/p/grid-pulse.html",
+      "titleCount": 1,
+      "emptyTitle": false,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/p/hexa-path.html",
+      "titleCount": 1,
+      "emptyTitle": false,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/p/history-timeline.html",
+      "titleCount": 1,
+      "emptyTitle": false,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/p/life-expectancy-calculator.html",
+      "titleCount": 1,
+      "emptyTitle": false,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/p/life-style-factor.html",
+      "titleCount": 1,
+      "emptyTitle": false,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/p/neural-link.html",
+      "titleCount": 1,
+      "emptyTitle": false,
+      "descCount": 2,
+      "canonicalCount": 1,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/p/number-merge.html",
+      "titleCount": 1,
+      "emptyTitle": false,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/p/password-guesser.html",
+      "titleCount": 1,
+      "emptyTitle": false,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 3
+    },
+    {
+      "file": ".next/server/pages/p/pixel-art.html",
+      "titleCount": 1,
+      "emptyTitle": false,
+      "descCount": 2,
+      "canonicalCount": 1,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/p/press-the-button.html",
+      "titleCount": 1,
+      "emptyTitle": false,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/p/quantum-maze.html",
+      "titleCount": 1,
+      "emptyTitle": false,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/p/random-activity.html",
+      "titleCount": 1,
+      "emptyTitle": false,
+      "descCount": 1,
+      "canonicalCount": 1,
+      "robotsCount": 3
+    },
+    {
+      "file": ".next/server/pages/p/resonance.html",
+      "titleCount": 1,
+      "emptyTitle": false,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    },
+    {
+      "file": ".next/server/pages/p/tools.html",
+      "titleCount": 1,
+      "emptyTitle": false,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 3
+    },
+    {
+      "file": ".next/server/pages/p/word-link.html",
+      "titleCount": 1,
+      "emptyTitle": false,
+      "descCount": 2,
+      "canonicalCount": 2,
+      "robotsCount": 2
+    }
+  ]
+}

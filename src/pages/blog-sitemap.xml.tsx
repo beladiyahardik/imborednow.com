@@ -1,7 +1,6 @@
 import { GetServerSideProps } from 'next';
+import { fetchAllBloggerPosts } from "@/lib/blogger";
 
-const API_KEY = "AIzaSyDw4oUW9oN8DfN5u6CUgFJ5rE7CF512l_0";
-const BLOG_ID = "9008125657659692221";
 const EXTERNAL_DATA_URL = 'https://www.imborednow.com/articles';
 
 // --- Utilities ---
@@ -56,11 +55,7 @@ function SiteMap() {
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   try {
-    const request = await fetch(
-      `https://www.googleapis.com/blogger/v3/blogs/${BLOG_ID}/posts?key=${API_KEY}&maxResults=100`
-    );
-    const data = await request.json();
-    const posts = data.items || [];
+    const posts = await fetchAllBloggerPosts({ pageSize: 100, maxPages: 30 });
 
     const sitemap = generateSiteMap(posts);
 

@@ -16,6 +16,35 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Environment Variables
+
+Create a `.env` file with the following variables:
+
+```bash
+GEMINI_API_KEY=your_gemini_key
+BLOGGER_API_KEY=your_blogger_api_key
+BLOGGER_BLOG_ID=your_blogger_blog_id
+NEXT_PUBLIC_SITE_URL=https://www.your-domain.com
+```
+
+## SEO + AdSense Readiness
+
+This project now includes:
+
+- `next-seo` for consistent global SEO defaults
+- `@tailwindcss/typography` for cleaner long-form content styling
+- `robots.txt` and `sitemap.xml` routes
+
+### Policy Pages Required for AdSense
+
+Ensure these pages remain published and linked in navigation/footer:
+
+- `/info/about`
+- `/info/contact`
+- `/info/privacy-policy`
+- `/info/terms`
+- `/info/disclaimer`
+
 You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
 [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.

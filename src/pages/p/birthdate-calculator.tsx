@@ -446,7 +446,7 @@ export async function getStaticProps() {
     title: "Birthday Calculator: How Many Days Have I Lived? | Age in Days",
     description: "Use our free birthday calculator to find out exactly how many days old you are. Calculate days lived, hours, minutes, and real-time seconds since your birth.",
     keywords: "birthday calculator, how many days i lived, birthday, calculator, days lived, age calculator, days old, days since birth, birthday calculator online, age in days, how old am I in days, days alive, days lived calculator",
-    canonical: "https://www.imborednow.com/birthday-calculator",
+    canonical: "https://www.imborednow.com/p/birthdate-calculator",
     ogImage: "https://www.imborednow.com/og-birthday.png",
   };
 
@@ -454,7 +454,7 @@ export async function getStaticProps() {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     name: "Birthday Calculator: How Many Days Have I Lived?",
-    url: "https://www.imborednow.com/birthday-calculator",
+    url: "https://www.imborednow.com/p/birthdate-calculator",
     description: "Calculate exactly how many days you have lived. Find out your age in days, hours, minutes, and even real-time seconds since birth.",
     applicationCategory: "EducationalApplication",
     operatingSystem: "Any",

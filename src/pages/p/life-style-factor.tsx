@@ -340,203 +340,65 @@ export default function LifeExpectancyCalculator({ seo, jsonLd }: PageProps) {
         </main>
       )}
 
-      {/* --- EXPANDED 1500+ WORD ARTICLE --- */}
       <section className="mt-32 bg-slate-50 py-24 px-6 border-t border-slate-200">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-5xl md:text-7xl font-black text-slate-950 mb-12 tracking-tighter">
-            Deciphering the <br />
-            <span className="text-emerald-600">Human Expiry.</span>
+            A Practical View of <br />
+            <span className="text-emerald-600">Longevity</span>
           </h2>
 
-          <div className="space-y-12 text-slate-900 text-xl leading-relaxed">
-            <div className="border-l-4 border-blue-500 pl-8 py-4 bg-white rounded-r-3xl shadow-sm">
-              <p className="font-bold text-2xl text-slate-950 italic">
-                "The goal is not to live forever, but to create a body that
-                will."
-              </p>
-              <p className="mt-4 text-slate-600 font-medium">
-                By using advanced biometric data, we can now project human
-                longevity with unprecedented accuracy. But what truly defines
-                how long we stay on this planet?
-              </p>
-            </div>
-
-            <h3 className="text-4xl font-black text-slate-950 pt-10">
-              1. The Biological Clock and Cellular Senescence
-            </h3>
+          <div className="space-y-10 text-slate-900 text-xl leading-relaxed">
             <p>
-              At the core of every life expectancy calculation is cellular
-              health. Our bodies are composed of trillions of cells, each
-              containing a biological clock known as telomeres. Every time a
-              cell divides, these telomeres shorten. Once they become too short,
-              the cell enters a state of senescence - it no longer functions
-              correctly but refuses to die, often causing inflammation in
-              surrounding tissues.
-            </p>
-            <p>
-              Modern research suggests that while our genetics provide the
-              "baseline" for these telomeres, our lifestyle choices act as the
-              primary accelerators or decelerators. A sedentary lifestyle, high
-              stress, and poor nutrition act as a catalyst for cellular aging,
-              effectively "fast-forwarding" your terminal date.
+              This page is not here to scare anyone. It is here to give you a clearer baseline so you can make smarter
+              decisions about health, money, and time.
             </p>
 
-            <h3 className="text-4xl font-black text-slate-950 pt-10">
-              2. The Impact of Chronic Habits
+            <h3 className="text-3xl font-black text-slate-950 pt-6">
+              What lifestyle inputs really do
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-10">
+            <p>
+              Smoking, exercise, diet, and weight do not just change a score on screen. They affect long-term risk.
+              The model here uses simplified adjustments to show direction, not certainty.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-6">
               <div className="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-200">
                 <h4 className="font-black text-blue-600 text-sm tracking-widest uppercase mb-4">
-                  Smoking & Oxidation
+                  Use it as a baseline
                 </h4>
                 <p className="text-base text-slate-700">
-                  Smoking introduces over 7,000 chemicals into the bloodstream,
-                  triggering massive oxidative stress. This process damages DNA
-                  directly, leading to an average loss of 10 years. However, the
-                  body's regenerative power is immense; quitting before 40 can
-                  reclaim nearly all of those lost years.
+                  Run the calculator with your current habits. Then test one improvement at a time and compare.
                 </p>
               </div>
               <div className="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-200">
                 <h4 className="font-black text-emerald-600 text-sm tracking-widest uppercase mb-4">
-                  Exercise & Mitophagy
+                  Focus on consistency
                 </h4>
                 <p className="text-base text-slate-700">
-                  Physical activity triggers mitophagy - the process where your
-                  body clears out damaged mitochondria. This "cellular cleanup"
-                  is why active individuals often possess a "health age" that is
-                  5 to 10 years younger than their chronological age.
+                  Long-term routines usually beat short bursts of motivation. Small changes repeated daily add up.
                 </p>
               </div>
             </div>
 
-            <h3 className="text-4xl font-black text-slate-950 pt-10">
-              3. Blue Zones: Lessons from Centenarians
+            <h3 className="text-3xl font-black text-slate-950 pt-6">
+              Better questions to ask after you see your result
             </h3>
             <p>
-              Researchers have identified specific "Blue Zones" - geographic
-              regions where people live significantly longer than the global
-              average. These include Okinawa (Japan), Sardinia (Italy), and
-              Nicoya (Costa Rica). Their longevity isn't a result of high-tech
-              medicine, but rather "The Power 9" habits.
-            </p>
-            <ul className="space-y-4 text-lg">
-              <li className="flex gap-4 items-start">
-                <span className="bg-emerald-100 text-emerald-700 w-8 h-8 rounded-full flex items-center justify-center font-bold flex-shrink-0">
-                  1
-                </span>{" "}
-                <strong>Natural Movement:</strong> They don't run marathons;
-                they walk, garden, and move every 20 minutes.
-              </li>
-              <li className="flex gap-4 items-start">
-                <span className="bg-emerald-100 text-emerald-700 w-8 h-8 rounded-full flex items-center justify-center font-bold flex-shrink-0">
-                  2
-                </span>{" "}
-                <strong>The 80% Rule:</strong> They stop eating when their
-                stomach is 80% full, preventing metabolic overload.
-              </li>
-              <li className="flex gap-4 items-start">
-                <span className="bg-emerald-100 text-emerald-700 w-8 h-8 rounded-full flex items-center justify-center font-bold flex-shrink-0">
-                  3
-                </span>{" "}
-                <strong>The Power of 'Ikigai':</strong> Having a clear purpose
-                or "reason for being" adds psychological resilience that
-                manifests as physical health.
-              </li>
-            </ul>
-
-            <h3 className="text-4xl font-black text-slate-950 pt-10">
-              4. The Psychology of Longevity
-            </h3>
-            <p>
-              Longevity is as much mental as it is physical. Chronic stress
-              triggers the release of cortisol, which in small doses is helpful
-              but in long doses is corrosive. Cortisol suppresses the immune
-              system and increases blood pressure. Interestingly, social
-              isolation has been found to be as damaging to life expectancy as
-              smoking 15 cigarettes a day.
-            </p>
-            <p>
-              Strong social ties and community engagement act as a "buffer"
-              against the physiological damage of aging. People with deep
-              emotional connections tend to recover faster from illness and have
-              lower rates of cognitive decline.
+              Instead of asking, "Is this exact?", ask: "What can I improve this month?" and "How do I reduce future risk?"
+              That mindset turns this from a curiosity tool into a useful planning tool.
             </p>
 
-            <h3 className="text-4xl font-black text-slate-950 pt-10">
-              5. Nutrition: Fueling the Centenarian Engine
-            </h3>
-            <p>
-              Dietary impact on lifespan is often debated, but the consensus
-              points toward a plant-heavy, whole-food diet. High sugar
-              consumption leads to "glycation" - where sugar molecules attach to
-              proteins and fats, creating "Advanced Glycation Endproducts"
-              (AGEs). These AGEs literally "caramelize" your tissues, making
-              them stiff and prone to failure.
-            </p>
-            <p>
-              By contrast, diets rich in antioxidants (found in berries, leafy
-              greens, and nuts) neutralize free radicals, protecting your DNA
-              from the daily wear and tear of existence.
-            </p>
-
-            <h3 className="text-4xl font-black text-slate-950 pt-10">
-              6. Planning for the "Third Act"
-            </h3>
-            <p>
-              As we extend our lifespan, the concept of retirement must evolve.
-              In the 20th century, life was seen in three stages: education,
-              work, and rest. In the 21st century, we are moving toward a
-              multi-stage life. You might have three different careers, take
-              multiple "gap years" in your 50s, and remain productive well into
-              your 80s.
-            </p>
-            <p>
-              Financial readiness is the cornerstone of this extended life. If
-              our calculator shows you have 40 years of runway left, your
-              financial strategy must account for inflation, healthcare costs,
-              and the desire for continued growth and adventure.
-            </p>
-
-            <div className="bg-slate-950 text-white p-12 md:p-16 rounded-[4rem] my-20 shadow-2xl relative overflow-hidden">
+            <div className="bg-slate-950 text-white p-12 md:p-16 rounded-[4rem] my-12 shadow-2xl relative overflow-hidden">
               <div className="relative z-10">
-                <h4 className="text-3xl font-black mb-6 italic">
-                  What will you do with your remaining days?
+                <h4 className="text-3xl font-black mb-4 italic">
+                  Your next decade is still editable.
                 </h4>
                 <p className="text-slate-400 text-lg leading-relaxed">
-                  Knowing your estimated lifespan isn't about fear - it's about
-                  intentionality. It's a reminder that every day is a finite
-                  resource. Whether you use this data to quit a habit, start a
-                  new passion, or spend more time with loved ones, the power of
-                  this analysis lies in the action you take today.
+                  The strongest value in this calculator is reflection. Use it to set healthier defaults and track progress over time.
                 </p>
               </div>
               <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-600/20 blur-[120px]" />
             </div>
-
-            <h3 className="text-4xl font-black text-slate-950 pt-10">
-              7. The Future of Longevity Technology
-            </h3>
-            <p>
-              We are entering the era of "Longevity 2.0." From CRISPR gene
-              editing to senolytic drugs that target and remove "zombie" cells,
-              the scientific community is moving from treating disease to
-              delaying aging itself. In the coming decade, we may see the first
-              "longevity escape velocity" - a point where for every year you live,
-              science adds more than one year to your life expectancy.
-            </p>
-            <p>
-              Until then, the most powerful tool in your arsenal is the daily
-              decision. What you eat, how you move, and how you think are the
-              true architects of your future.
-            </p>
-          </div>
-
-          <div className="mt-20 pt-10 border-t border-slate-200 flex flex-col items-center">
-            <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-emerald-500 mb-8 rounded-full" />
-            <p className="text-slate-400 text-xs font-bold uppercase tracking-widest text-center">
-              Refined Biometric Data Series 2026 • ImBoredNow Lab
-            </p>
           </div>
         </div>
       </section>
@@ -548,21 +410,21 @@ export async function getStaticProps() {
   return {
     props: {
       seo: {
-        title: "How Long Will I Live? | Advanced Life Expectancy Forecast 2026",
+        title: "Lifestyle Factor Calculator | ImBoredNow",
         description:
-          "Use our biometric longevity lab to forecast your life expectancy. Analyze habits, geography, and lifestyle to determine your future health runway.",
-        canonical: "https://imborednow.com/life-expectancy-calculator",
-        ogTitle: "Biometric Forecast: Discover Your Estimated Lifespan",
+          "Estimate how daily habits can influence long-term life expectancy using a simple lifestyle-based model.",
+        canonical: "https://www.imborednow.com/p/life-style-factor",
+        ogTitle: "Lifestyle Factor Calculator",
         ogDescription:
-          "A data-driven approach to longevity. Calculate your remaining days and learn the science of living to 100.",
+          "See how smoking, activity, diet, and weight choices can affect your long-term estimate.",
       },
       jsonLd: {
         "@context": "https://schema.org",
         "@type": "WebApplication",
-        name: "Longevity Lab 2026",
-        url: "https://www.imborednow.com/life-expectancy-calculator",
+        name: "Lifestyle Factor Calculator",
+        url: "https://www.imborednow.com/p/life-style-factor",
         description:
-          "Biological lifespan forecasting tool based on lifestyle and actuarial data.",
+          "Lifestyle-based life expectancy estimation tool.",
         author: { "@type": "Organization", name: "ImBoredNow" },
       },
     },

@@ -11,10 +11,10 @@ export async function getStaticProps() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    name: "Most Accurate Life Expectancy Calculator",
-    url: "https://www.imborednow.com/life-expectancy-calculator",
+    name: "Life Expectancy Calculator",
+    url: "https://www.imborednow.com/p/life-expectancy-calculator",
     description:
-      "Calculate how long will I live with our longevity calculator. Get insights into life insurance calculation and RMD tables.",
+      "Estimate your life expectancy using regional averages and lifestyle inputs.",
     applicationCategory: "HealthApplication",
   };
 
@@ -91,14 +91,10 @@ export default function LifeExpectancyCalculator({
   return (
     <>
       <Head>
-        <title>Life Expectancy Calculator: Most Accurate Longevity Test</title>
+        <title>Life Expectancy Calculator | ImBoredNow</title>
         <meta
           name="description"
-          content="How long will I live? Use our life expectancy calculator to find out. Discover your longevity, life insurance calculation needs, and RMD calculation tables."
-        />
-        <meta
-          name="keywords"
-          content="life expectancy calculator, most accurate life expectancy calculator, life insurance calculation, longevity calculator, how long will i live, rmd calculation table, life expectancy test"
+          content="Estimate your life expectancy with a simple calculator based on age, region, and lifestyle factors."
         />
         <script
           type="application/ld+json"
@@ -107,15 +103,15 @@ export default function LifeExpectancyCalculator({
         <meta property="og:type" content="website" />
         <meta
           property="og:title"
-          content="Life Expectancy Calculator: How Long Will I Live?"
+          content="Life Expectancy Calculator"
         />
         <meta
           property="og:description"
-          content="Calculate your lifespan based on global data. The most accurate life expectancy calculator to help you answer: how long can I live?"
+          content="Explore a simple life expectancy estimate based on public data and lifestyle choices."
         />
         <link
           rel="canonical"
-          href="https://imborednow.com/life-expectancy-calculator"
+          href="https://www.imborednow.com/p/life-expectancy-calculator"
         />
       </Head>
       <div className="min-h-screen bg-[#F8FAFC] font-sans selection:bg-purple-200 pb-20">
@@ -294,101 +290,53 @@ export default function LifeExpectancyCalculator({
           </main>
         )}
 
-        {/* --- 3. SEO CONTENT SECTION (1500 WORDS DEPTH) --- */}
         <section className="max-w-6xl mx-auto px-4 mt-24">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            <div className="lg:col-span-2 space-y-12">
+            <div className="lg:col-span-2 space-y-10">
               <div>
                 <h2 className="text-4xl font-black text-slate-900 mb-6 tracking-tight">
-                  How Long Will I Live? Understanding the Most Accurate Life
-                  Expectancy Calculator
+                  How to Use This Life Expectancy Result
                 </h2>
                 <p className="text-slate-600 leading-relaxed text-lg">
-                  The question <strong>"how long will I live?"</strong> has
-                  fascinated humanity for centuries. Today, thanks to modern
-                  data science, we can provide answers using a{" "}
-                  <strong>most accurate life expectancy calculator</strong>.
-                  Whether you are curious about{" "}
-                  <strong>how long can I live</strong> for personal reasons or
-                  need a <strong>life expectancy test</strong> for{" "}
-                  <strong>life insurance calculation</strong>, our Longevity Lab
-                  is built on global health metrics.
+                  This calculator gives you a statistical estimate, not a fixed prediction. Think of it as a planning tool:
+                  a way to zoom out and see the long timeline of your health, habits, and goals.
                 </p>
               </div>
 
               <div>
                 <h3 className="text-2xl font-black text-slate-900 mb-4 uppercase tracking-widest">
-                  The Science of a Longevity Calculator
+                  What the Number Means
                 </h3>
                 <p className="text-slate-600 leading-relaxed mb-4">
-                  A <strong>longevity calculator</strong> is more than just a
-                  fun tool; it is a vital instrument for financial and
-                  retirement planning. Organizations like{" "}
-                  <strong>life expectancy calculator aarp</strong> provide
-                  similar tools to help seniors understand their{" "}
-                  <strong>rmd calculation table</strong> requirements. When you
-                  ask <strong>"how long am I going to live?"</strong>, you are
-                  essentially looking at actuarial data that considers your
-                  current age, location, and biological gender.
+                  The estimate combines baseline country and sex data with lifestyle inputs like smoking, movement, and diet.
+                  It is useful for perspective, especially if you are making long-term decisions around savings, insurance, or
+                  retirement timing.
                 </p>
                 <p className="text-slate-600 leading-relaxed">
-                  By calculating <strong>how long i live</strong> in days, we
-                  provide a perspective that years cannot. It emphasizes the
-                  value of every single day. If you've ever wondered{" "}
-                  <strong>how long can you live</strong> under ideal
-                  circumstances, the data suggests that with modern medicine,
-                  human life is consistently extending.
+                  A better outcome is not about perfection. Small consistent changes usually matter more than extreme short-term
+                  plans.
                 </p>
               </div>
 
               <div className="bg-slate-50 p-8 rounded-[2.5rem] border border-slate-100">
                 <h3 className="text-xl font-black text-slate-900 mb-4">
-                  Life Insurance Calculation and RMD Table Basics
+                  Better Ways to Use the Estimate
                 </h3>
-                <p className="text-slate-500 text-sm leading-relaxed mb-6">
-                  For many, the motivation to find out{" "}
-                  <strong>how long do i have left to live</strong> is rooted in
-                  financial security. A{" "}
-                  <strong>life insurance calculation</strong> often relies on
-                  your mortality risk. Similarly, the{" "}
-                  <strong>rmd calculation table</strong> (Required Minimum
-                  Distributions) is used by tax authorities to determine how
-                  much you must withdraw from retirement accounts based on{" "}
-                  <strong>how long do i have to live</strong>. Knowing{" "}
-                  <strong>how long do i live</strong> statistically allows you
-                  to build a robust financial legacy.
-                </p>
-                <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-bold text-slate-700">
-                  <li className="flex items-center gap-2">
-                    ✅ Accuracy based on WHO 2026 data
-                  </li>
-                  <li className="flex items-center gap-2">
-                    ✅ Integrated life insurance calculation tips
-                  </li>
-                  <li className="flex items-center gap-2">
-                    ✅ Real-time how long will i live calculator
-                  </li>
-                  <li className="flex items-center gap-2">
-                    ✅ Privacy-focused longevity test
-                  </li>
+                <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm font-bold text-slate-700">
+                  <li className="flex items-center gap-2">Track changes over time as your habits improve.</li>
+                  <li className="flex items-center gap-2">Use it for practical financial planning, not fear.</li>
+                  <li className="flex items-center gap-2">Discuss health concerns with a qualified professional.</li>
+                  <li className="flex items-center gap-2">Focus on quality of life, not only years.</li>
                 </ul>
               </div>
 
               <div>
                 <h3 className="text-2xl font-black text-slate-900 mb-4 uppercase tracking-widest">
-                  How Long Do I Have Left to Live?
+                  One Honest Reminder
                 </h3>
                 <p className="text-slate-600 leading-relaxed">
-                  Asking <strong>how long do i have to live</strong> shouldn't
-                  be a source of anxiety. Instead, use a{" "}
-                  <strong>how long will i live calculator</strong> to motivate
-                  your health choices. Whether you are searching for{" "}
-                  <strong>how long i live</strong> or{" "}
-                  <strong>how long am i going to live</strong>, remember that
-                  lifestyle, diet, and stress management play a huge role in
-                  defying the averages. Our{" "}
-                  <strong>most accurate life expectancy calculator</strong>{" "}
-                  provides the baseline, but you write the story.
+                  No online tool can predict an individual life with certainty. What this page can do is help you make
+                  thoughtful decisions now, while you still have the chance to shape the future.
                 </p>
               </div>
             </div>
@@ -396,33 +344,11 @@ export default function LifeExpectancyCalculator({
             <aside className="space-y-6">
               <div className="bg-slate-900 p-10 rounded-[3rem] text-white shadow-2xl">
                 <h4 className="text-xs font-black text-blue-400 uppercase tracking-widest mb-4 italic">
-                  Pro Planning
+                  Quick Context
                 </h4>
-                <p className="text-xl font-black mb-6">
-                  Is your future secure?
+                <p className="text-slate-400 text-sm leading-relaxed">
+                  This is an educational estimate based on public averages and your selected inputs. It is not medical advice.
                 </p>
-                <p className="text-slate-400 text-sm mb-8 leading-relaxed">
-                  Using a <strong>longevity calculator</strong> is the first
-                  step in estate planning. If you know{" "}
-                  <strong>how long will i live</strong>, you can optimize your
-                  savings and ensure your family is protected through proper{" "}
-                  <strong>life insurance calculation</strong>.
-                </p>
-                <div className="h-px bg-white/10 w-full mb-8" />
-                <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">
-                  Key Terms:
-                </p>
-                <div className="flex flex-wrap gap-2 mt-3 text-[9px] font-black uppercase tracking-tighter">
-                  <span className="bg-white/5 px-2 py-1 rounded">
-                    rmd calculation table
-                  </span>
-                  <span className="bg-white/5 px-2 py-1 rounded">
-                    life expectancy test
-                  </span>
-                  <span className="bg-white/5 px-2 py-1 rounded">
-                    how long can i live
-                  </span>
-                </div>
               </div>
             </aside>
           </div>
@@ -434,13 +360,9 @@ export default function LifeExpectancyCalculator({
               Maximize Your Longevity 🏃‍♂️
             </h4>
             <p className="text-slate-500 text-sm leading-relaxed max-w-2xl mx-auto font-medium">
-              While we provide a{" "}
-              <strong>most accurate life expectancy calculator</strong>,
-              remember that these are averages. Your journey is unique. Don't
-              just ask <strong>how long will i live</strong> - ask how well you
-              will live. Every day is an opportunity to improve your{" "}
-              <strong>longevity calculator</strong> results through healthy
-              living and a positive mindset.
+              This tool is based on averages, not certainty. Your path is
+              personal. Use the estimate as a planning signal, then focus on
+              habits that improve both health and quality of life over time.
             </p>
           </div>
         </footer>

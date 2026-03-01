@@ -39,6 +39,7 @@ export default function Custom404() {
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col items-center justify-center p-4 font-sans overflow-hidden relative">
       <Head>
         <title>Lost in Space | imborednow</title>
+        <meta name="robots" content="noindex, nofollow" />
       </Head>
 
       {/* --- ANIMATED BACKGROUND ELEMENTS --- */}
@@ -109,7 +110,7 @@ export default function Custom404() {
                 Love
               </button>
 
-              <Link href="/random-jokes" className="flex-1">
+              <Link href="/p/random-activity" className="flex-1">
                 <button className="w-full flex items-center justify-center gap-2 px-3 md:px-4 py-3 md:py-4 bg-[#dbeafe] text-[#2563eb] rounded-xl md:rounded-2xl font-bold text-xs md:text-base hover:brightness-95 transition-all active:scale-90">
                   <Icons.Refresh className="w-4 h-4 md:w-6 md:h-6 group-hover:rotate-180 transition-transform duration-500" />
                   Free Joke
