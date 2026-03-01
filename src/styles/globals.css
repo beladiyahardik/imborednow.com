@@ -37,7 +37,7 @@ body {
 }
 
 a {
-  color: inherit;
+ text-decoration: none;
 }
 
 /* Shared layout primitives for clean, consistent pages */

@@ -258,7 +258,7 @@ export default function Home({
               Why Boredom is Your Secret Superpower
             </h2>
 
-            <div className="prose prose-slate prose-lg max-w-none text-slate-600 space-y-8">
+            <div className="text-slate-600 space-y-8" >
               <p>
                 In our modern, hyper-connected world, boredom has become something we fear. We treat it as a void that must be filled instantly with short-form videos, social media notifications, or endless news cycles. But at <strong>I'm Bored Now</strong>, we believe this "junk-food" stimulation is actually making us more restless.
               </p>
@@ -347,7 +347,6 @@ export default function Home({
               <div>
                 <h2 className="text-4xl md:text-5xl font-black mb-8">Our 7-Point <br /><span className="text-indigo-400">Quality Vetting</span></h2>
                 <p className="text-slate-400 text-lg mb-12">We don't just find tools; we audition them. Only 5% of the experiences we test make it to the I'm Bored Now rotation.</p>
-
                 <div className="space-y-6">
                   {[
                     { t: "Security Check", d: "Zero trackers, malware, or suspicious scripts." },
